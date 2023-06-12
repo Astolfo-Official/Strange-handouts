@@ -182,8 +182,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.5.4}比尔-朗伯定律}{63}{subsection.4.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.6}绝热表象和透热表象}{64}{section.4.6}%
+\contentsline {section}{\numberline {4.6}$Legendre$变换}{64}{section.4.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}讨论题}{65}{chapter.5}%
+\contentsline {section}{\numberline {4.7}绝热表象和透热表象}{67}{section.4.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}如何理解原子、分子上电子运动范围和能量的关系}{65}{section.5.1}%
+\contentsline {chapter}{\numberline {5}讨论题}{68}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}如何理解原子、分子上电子运动范围和能量的关系}{68}{section.5.1}%

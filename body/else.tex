@@ -514,4 +514,103 @@ W_{n1} & W_{n2} & \ldots & W_{nn}\\
 
 上述表达式意味着我们可以通过某分子的轨道及能量信息来预测该物质的摩尔吸光系数。
 
+\section{$Legendre$变换}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.2]{./fig/Legendre Transform/1.png}
+\end{figure}
+
+一维情形下，如果我们想利用$f(x)$在某点$x_0$的切线斜率$u_0=f'(x_0)$确定$f(x_0)$，我们还需要知道这条切线的纵截距记为$c(x_0)$:
+\[f(x_0)=f'(x_0)x_0+c(x_0)\]
+我们也可以进一步将上式扩展到全定义域:
+\[f(x)=f'(x)x+c(x)\]
+由于切线斜率是已知的，所以这里我们更希望得到一个曲线斜率“表象”下的信息而非目前现有的坐标“表象”。因此，我们希望引入反函数
+\[x=[f']^{-1}(u)\]
+易知，这里我们要求$f':x \rightarrow u$是一个双射，故一般我们要求做$Legendre$变换的对象函数$f$是凸的，
+当然也可以是凹的，不过一般物理上需要做$Legendre$变换的能量项都是凸的，故我们一般都默认$Legendre$变换是定义在凸函数上的。
+
+明确上述要求后，我们继续往下
+\[f([f']^{-1}(u))=u[f']^{-1}(u)+c([f']^{-1}(u))\]
+这时，我们引入记号$\tilde{f}(u)$\textbf{称做$f(x)$的$Legendre$变换}:
+\[\tilde{f}(u):=-c([f']^{-1}(u))=ux-f(x)\]
+
+\begin{definition}[一维$Legendre$变换]
+    定义$f(x)$为一个实变量的实值凸函数，我们称$\tilde{f}(u)$为$f(x)$的$Legendre$变换如果其满足
+    \[\tilde{f}(u)=ux-f(x)\]
+\end{definition}
+
+函数的曲线$x \ vs. \ f(x)$表示的信息与由它在所有点的切线斜率$u=f'(x)$和截距$-\tilde{f}(u)$完全等价。
+如果把图中所有点的的切线都画出来，它们描绘（切）出的曲线边缘就是$f(x)$的形状。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.8]{./fig/Legendre Transform/2.png}
+\end{figure}
+所以说$Legendre$变换将点与线的信息关联起来，也称作对偶性($duality$)。
+$f(x)$和$\tilde{f}(u)$互为$Legendre$变换，且$Legendre$变换具有对合性，即$\tilde{\tilde{f}}=f$。
+
+$Legendre$变换是一个实变量的实值凸函数的对合变换，代数意义上,$Legendre$变换是一将向量空间($Vector \ space$)映射到对偶空间($Dual \ Space$)的双射；
+在微分几何语言描述中它是切丛到余切丛的同构映射。
+
+进而我们可以二维情形，给定二元凸函数$f(x,y)$，其全微分如下:
+\[df=\frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy:=udx+vdy\]
+
+考虑表象变换$(x,y) \ \rightarrow \ (u,v)$:
+\[\frac{\partial f}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}=u\frac{\partial x}{\partial u}+v\frac{\partial y}{\partial u}=\frac{\partial (ux)}{\partial u}-x+v\frac{\partial y}{\partial u}\]
+\[\frac{\partial f}{\partial v}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}=u\frac{\partial x}{\partial v}+v\frac{\partial y}{\partial v}=u\frac{\partial x}{\partial v}+\frac{\partial (vy)}{\partial v}-y\]
+易得
+\[x=\frac{\partial (ux+vy-f)}{\partial u}:=\frac{\partial \tilde{f}}{\partial u}\]
+\[y=\frac{\partial (ux+vy-f)}{\partial v}:=\frac{\partial \tilde{f}}{\partial v}\]
+
+同样地，我们也可以定义n维$Legendre$变换。
+
+\begin{definition}[n维$Legendre$变换]
+    定义$f(x_1,x_2,\cdots,x_n)$为一个实变量的实值凸函数，我们称$\tilde{f}(u_1,u_2,\cdots,u_n)$为$f(x_1,x_2,\cdots,x_n)$的$Legendre$变换如果其满足
+    \[\tilde{f}(u_1,u_2,\cdots,u_n)=\sum_{i=1}^nx_iu_i-f(x_1,x_2,\cdots,x_n)\]
+    其中
+    \[u_i=\frac{\partial f}{\partial x} \qquad x_i=\frac{\partial \tilde{f}}{\partial u} \qquad (i-1,2,\cdots,n)\]
+\end{definition}
+
+容易验证
+\[d\tilde{f}=\sum_{i=1}^n(x_idu_i+u_idx_i)-df=\sum_{i=1}^nx_idu_i \qquad x_i=\frac{\partial \tilde{f}}{\partial u} \qquad (i-1,2,\cdots,n)\]
+
+$Legendre$变换在热力学上有应用，其中一个例子就是四个热力学函数之间的转换，四个热力学函数的相互转化关系如下
+\[U=U(S,V)\]
+\[H=H(S,p)=U+pV \qquad F=F(T,V)=U-TS \qquad G=G(T,p)=H-TS=U+pV-TS\]
+由
+\[dU=TdS-pdV\]
+可以得到其他函数的全微分
+\[dH=d(U+pV)=TdS-pdV+pdV+Vdp=TdS+Vdp=dH(S,p)\]
+\[dF=d(U-TS)=TdS-pdV-TdS-SdT=-SdT-pdV=dF(T,V)\]
+\[dG=d(U+pV-TS)=TdS-pdV+pdV+Vdp-TdS-SdT=Vdp-SdT=dG(T,p)\]
+
+进而可以得到$Maxwell$关系
+\[dU=TdS-pdV \quad \Rightarrow \quad \left(\frac{\partial T}{\partial V}\right)_S=-\left(\frac{\partial p}{\partial S}\right)_V\]
+\[dH=TdS+Vdp \quad \Rightarrow \quad \left(\frac{\partial T}{\partial p}\right)_S=\left(\frac{\partial V}{\partial S}\right)_p\]
+\[dF=-SdT-pdV \quad \Rightarrow \quad \left(\frac{\partial S}{\partial V}\right)_T=\left(\frac{\partial p}{\partial T}\right)_V\]
+\[dG=Vdp-SdT \quad \Rightarrow \quad \left(\frac{\partial S}{\partial p}\right)_T=-\left(\frac{\partial V}{\partial T}\right)_p\]
+
+在经典力学中，拉格朗日量到哈密顿量的变换也是有$Legendre$变换完成的。
+$Lagrangian$可以描述为$L=L(\mathbf{q},\dot{\mathbf{q}},t)$这里$q_i$、$\dot{q}_i$、$t$分别为广义坐标、广义速度和一维时间。利用$Euler-Lagrange$方程
+\[\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i}\]
+对$L$求全微分
+\[dL=\sum_i\frac{\partial L}{\partial q_i}dq_i+\sum_i\frac{\partial L}{\partial \dot{q}_i}d\dot{q}_i+\frac{\partial L}{\partial t}dt
+=\sum_i\frac{\partial L}{\partial q_i}dq_i+\sum_i\left[d\left(\frac{\partial L}{\partial \dot{q}_i}\dot{q}_i\right)-\dot{q}_id\left(\frac{\partial L}{\partial \dot{q}_i}\right)\right]+\frac{\partial L}{\partial t}dt\]
+
+现引入广义动量$p_i$
+\[\dot{p_i}=\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i}\]
+则
+\[dL=\sum_i\dot{p_i}dq_i+\sum_id\left(p_i\dot{q}_i\right)-\sum_i\dot{q}_idp_i+\frac{\partial L}{\partial t}dt\]
+$Hamiltonian$是广义坐标、广义动量和时间的函数$H=H(\mathbf{q},\mathbf{p},t)$,利用$Legendre$变换
+\[H(\mathbf{q},\mathbf{p},t)=\sum_ip_i\dot{q}_i-L(\mathbf{q},\dot{\mathbf{q}},t)\]
+\[dH=\sum_id\left(p_i\dot{q}_i\right)-dL=\sum_i\dot{q}_idp_i-\sum_i\dot{p_i}dq_i-\frac{\partial L}{\partial t}dt\]
+
+直接对$H$求全微分
+\[dH=\sum_i\frac{\partial H}{\partial q_i}dq_i+\sum_i\frac{\partial H}{\partial p_i}dp_i+\frac{\partial H}{\partial t}dt\]
+可得\textbf{$Hamilton$正则运动方程}
+\[\dot{q}_i=\frac{\partial H}{\partial p_i} \qquad \dot{p}_i=-\frac{\partial H}{\partial q_i} \qquad (i=1,2,\cdots,n)\]
+以及
+\[\frac{\partial L}{\partial t}=-\frac{\partial H}{\partial t}\]
+\textbf{注意：拉格朗日力学里广义坐标和广义速度是相互独立的，哈密顿力学里广义坐标和广义动量是相互独立的！}
+
 \section{绝热表象和透热表象}
