@@ -1,1 +1,1 @@
-# Strange-handouts
+# 一些随笔以及整理的一些讲义
