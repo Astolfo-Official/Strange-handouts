@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.4.21)  13 JUN 2023 00:47
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.4.21)  7 DEC 2023 16:49
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1440,7 +1440,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 
 ]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 173.
+(Font)              scaled to size 9.0pt on input line 171.
  [2])
 \tf@toc=\write10
 \openout10 = `"Strange handouts.toc"'.
@@ -1522,11 +1522,18 @@ Chapter 3.
 
 ] [48] [49] [50] [51]) [52]
 Chapter 4.
+(./body/dmet.tex [53
+
+]
+File: ./fig/et/dmet-hartree-fock-dm.png Graphic file (type bmp)
+<./fig/et/dmet-hartree-fock-dm.png>
+) [54]
+Chapter 5.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
- [53
+ [55
 
-] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63]
+] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 517.
@@ -1537,7 +1544,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
-[64]
+[66]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
@@ -1545,9 +1552,9 @@ Overfull \hbox (25.20421pt too wide) in paragraph at lines 552--554
 []$\OML/cmm/m/it/10 Legendre$ \TU/FandolSong-Regular(0)/m/n/10 变 换 是 一 个 实 变 量 的 实 值 凸 函 数 的 对 合 变 换，|  代 数 意 义 上\TU/texgyretermes(0)/m/n/10 ,$\OML/cmm/m/it/10 Legendre$ \TU/FandolSong-Regular(0)/m/n/10 变 换 是 一 将 向 量 空 间 \TU/texgyretermes(0)/m/n/10 ($\OML/cmm/m/it/10 Vector space$\TU/texgyretermes(0)/m/n/10 )
  []
 
-[65] [66]) [67]
-Chapter 5.
-(./body/question.tex) [68
+[67] [68]) [69]
+Chapter 6.
+(./body/question.tex) [70
 
 ] (./Strange handouts.aux)
 
@@ -1560,12 +1567,12 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44211 strings out of 476919
- 946968 string characters out of 5814224
- 1884392 words of memory out of 5000000
- 63350 multiletter control sequences out of 15000+600000
+ 44231 strings out of 476919
+ 947384 string characters out of 5814224
+ 1885852 words of memory out of 5000000
+ 63357 multiletter control sequences out of 15000+600000
  414180 words of font info for 110 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,15n,120p,747b,1314s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Strange handouts.pdf (69 pages).
+Output written on Strange handouts.pdf (71 pages).
