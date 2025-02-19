@@ -54,16 +54,16 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 本小节旨在介绍量子化学乃至量子力学中常用的部分数学语言，并不完全作为后续章节的铺垫。
 
 在讨论算符与表象空间之前，我们先来看看量子力学以及量子化学处理的对象在数学上的抽象，在后续的内容中我们最经常碰到的运算是：
-\[\int_E\varPsi_i^*\varPsi_jd\tau \qquad \int_E\varPsi_i^*\hat{A}_{ij}\varPsi_jd\tau\]
+\[\int_E\varPsi_i^*\varPsi_j\dd\tau \qquad \int_E\varPsi_i^*\hat{A}_{ij}\varPsi_j\dd\tau\]
 
 实际上这是函数类等价类空间$L^2(E)$上的内积运算，$L^2(E)$空间定义的正规赋范与欧氏空间的模具有相同形式：
-\[||f-g||=\left(\int_E(f-g)^2d\tau\right)^{\frac{1}{2}} \qquad ||f-g||=\sqrt{\sum_{i=1}^n(f_i-g_i)^2}\]
+\[||f-g||=\left(\int_E(f-g)^2\dd\tau\right)^{\frac{1}{2}} \qquad ||f-g||=\sqrt{\sum_{i=1}^n(f_i-g_i)^2}\]
 
 同时，许多欧氏空间的性质都可以自然推广到$L^2(E)$空间上。我们把定义了内积的$L^2(E)$空间称为$Hilbert$空间，该内积可以由$L^2$范数通过平行四边形法则诱导出：
-\[(f,g):=\int_Ef \cdot g d\tau\]
+\[(f,g):=\int_Ef \cdot g \dd\tau\]
 
 我们在结构化学以及量化基础两门课中碰到的函数都是定义在实数域(或空间)$\mathbb{R}$上的，如果我们只考虑品优波函数的话，那么我们处理的对象全体将属于$L^2(\mathbb{R})$空间的一个子空间，我们记作$\mathbb{E}$，同时，我们不限制函数是实值的还是复值的。那么此时，内积运算需要修改成以下形式，同时引入狄拉克符号：
-\[\bra{f}\ket{g}=(f,g):=\int_Ef^* \cdot g d\tau\]
+\[\bra{f}\ket{g}=(f,g):=\int_Ef^* \cdot g \dd\tau\]
 
 内积具有对称性，即：
 \[\bra*{f}\ket*{g}^*=\bra*{g}\ket*{f}\]
@@ -78,7 +78,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[f \mapsto f'\]
 
 因此，对算符$\hat{A}$我们可以进行下列运算，实质上就是考虑了复合上算符$\hat{A}$的内积：
-\[\bra*{g}\ket*{f'}=\bra*{g}\hat{A}\ket*{f}=\bra*{g}\ket*{\hat{A}f}=\int_Eg^* \cdot \hat{A}f d\tau\]
+\[\bra*{g}\ket*{f'}=\bra*{g}\hat{A}\ket*{f}=\bra*{g}\ket*{\hat{A}f}=\int_Eg^* \cdot \hat{A}f \dd\tau\]
 
 对于上述表示，如果考虑有限维表象，那么算符$\hat{A}$将变为矩阵，函数$f,g$将变为基向量的某个元素。
 
@@ -91,7 +91,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[\bra*{g}\hat{A}\ket*{f}^*=\bra*{f}\hat{A}\ket*{g}\]
 
 我们可以如下思考，下列的式子不是严格地推导，只是展现一种思考:
-\[\bra*{g}\hat{A}\ket*{f}^*=\left(\int_Eg^* \cdot \hat{A}f d\tau\right)^*=\int_Eg \cdot (\hat{A}f)^* d\tau=\int_E (\hat{A}f)^* \cdot g d\tau=\int_E f^*\hat{A}^{\dagger} \cdot g d\tau=\bra*{f}\hat{A}^{\dagger}\ket*{g}\]
+\[\bra*{g}\hat{A}\ket*{f}^*=\left(\int_Eg^* \cdot \hat{A}f \dd\tau\right)^*=\int_Eg \cdot (\hat{A}f)^* \dd\tau=\int_E (\hat{A}f)^* \cdot g \dd\tau=\int_E f^*\hat{A}^{\dagger} \cdot g \dd\tau=\bra*{f}\hat{A}^{\dagger}\ket*{g}\]
 
 即希望他满足$\hat{A}=\hat{A}^{\dagger}$(不严谨)，其中${\dagger}$表示算符的共轭。
 
@@ -102,8 +102,8 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 如,一维动量算符$\hat{p}_x$是厄米算符:
 \[\hat{p}_x=-i\hbar\frac{\partial}{\partial x}\]
-\[\int_{-\infty}^{+\infty}f^*\hat{p}_xg dx=\int_{-\infty}^{+\infty}f^*\left(-i\hbar\frac{\partial}{\partial x}\right)g dx=-i\hbar\int_{-\infty}^{+\infty}f^*\left(\frac{\partial g}{\partial x}\right) dx=-i\hbar\int_{-\infty}^{+\infty}f^*dg\]
-\[=-i\hbar\eval{fg}_{-\infty}^{+\infty}+i\hbar\int_{-\infty}^{+\infty}gdf^*=\int_{-\infty}^{+\infty}\left(-i\hbar\frac{\partial}{\partial x}\right)^*f^*gdx=\int_{-\infty}^{+\infty}(\hat{p}_xf)^*g dx\]
+\[\int_{-\infty}^{+\infty}f^*\hat{p}_xg \dd x=\int_{-\infty}^{+\infty}f^*\left(-i\hbar\frac{\partial}{\partial x}\right)g \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\left(\frac{\partial g}{\partial x}\right) \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\dd g\]
+\[=-i\hbar\eval{fg}_{-\infty}^{+\infty}+i\hbar\int_{-\infty}^{+\infty}g\dd f^*=\int_{-\infty}^{+\infty}\left(-i\hbar\frac{\partial}{\partial x}\right)^*f^*g\dd x=\int_{-\infty}^{+\infty}(\hat{p}_xf)^*g \dd x\]
 
 如果我们考虑一个厄密算符，我们声明(我不想证明)厄密算符都可以做正交对角化,且其特征值一定为实数，下面将会讨论厄密算符特征值和特征函数的一些性质:
 
@@ -204,11 +204,11 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[\hat{H}\varPsi=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\varPsi}{\mathrm{d}x^2}=E\varPsi\]
 
 容易解出其解：
-\[\varPsi=C_1exp\left (i \frac{\sqrt{2mE}}{\hbar}x \right )+C_2exp\left ( -i\frac{\sqrt{2mE}}{\hbar}x \right )\]
+\[\varPsi=C_1\exp\left (i \frac{\sqrt{2mE}}{\hbar}x \right )+C_2\exp\left ( -i\frac{\sqrt{2mE}}{\hbar}x \right )\]
 
 品优波函数要求\textbf{单值、连续、平方可积}(复共轭可积，根据物理意义波函数范数的平方是概率，则要求要可归一化)，当然如果需要满足薛定谔方程，连续条件需要从$C(E)$提高到$C^2(E)$，显然自由粒子波函数并不是品优波函数，因为它不平方可积：
-\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}exp\left (i \frac{2\sqrt{2mE}}{\hbar}x \right )+exp\left (-i \frac{2\sqrt{2mE}}{\hbar}x \right )dx \right )+C_1^2+C_2^2\]
-\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}sin\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )+cos\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )dx \right )+C_1^2+C_2^2=?\]
+\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}\exp\left (i \frac{2\sqrt{2mE}}{\hbar}x \right )+\exp\left (-i \frac{2\sqrt{2mE}}{\hbar}x \right )\dd x \right )+C_1^2+C_2^2\]
+\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}\sin\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )+\cos\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )\dd x \right )+C_1^2+C_2^2=?\]
 
 品优波函数中三个条件分别对应了对波函数不同方面的要求，第一点单值是对函数本身性质的要求；
 第二点连续是算符对波函数的微分性质提出的要求，算符经常会涉及到微分操作，这对波函数的可导性具有一定要求；
@@ -490,7 +490,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 简单来说，对两个宏观物体A、B，除了速度、位置外，我们还有大小、颜色之类的特征作为区分物体A、B，这也即表面在经典物理框架下，并没有全同性这一说法。但对于微观粒子A、B，我们似乎只有速度和位置这类无法区分粒子的可观测量。
 
-对微观粒子，除了自旋与位置，为了区分这两个粒子，我们还需要额外的一个粒子内禀的可观测的性质，但很遗憾目前我们并没有找到这样的性质，我们仅能在已有的两个可观测量上对粒子的类别进行区分，但做不到区分每一个粒子。顺便一提，在量子场论中，全同性被解释为：全同的两个粒子是同一个量子场产生的。譬如电子都是狄拉克场产生的，光子都是麦克斯韦场产生的。
+除了质量，电荷这种不能区分粒子的性质外，我们只知道微观粒子的自旋状态以及其所在的能级或者说单粒子空间轨道(如果我们认为多粒子波函数可以被单粒子波函数展开的话)，可以合并两者成单粒子的自旋轨道，他同样也不能区分粒子。这就意味着你只能把一堆不可区分的粒子放在不同的状态上，\textbf{对同一类粒子(质量，电荷，总自旋角动量$S^2$)而言，你只能区分态而不能区分粒子本身}。你舌头上的电子跟野兽先辈林檎上的电子就是全同的。
 
 相关的拓展内容可以请大家阅读一些关于“吉布斯佯谬”的相关论述，理解一些传统统计力学与量子统计力学的一些差异。
 
@@ -1011,21 +1011,22 @@ $\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对�
 迭代需要一个初猜，在这里也就是初始的密度矩阵(给初猜也是技术活)，然后通过对角化更新密度矩阵，反复迭代直到密度矩阵不再变化，这也就是SCF过程。
 \[\mathbf{F}(\mathbf{C}')\mathbf{C}'=\mathbf{C}'\varepsilon\]
 
-关于Hartree-Fock方法更多的内容推荐大家阅读\textbf{Szabo前三章}，也希望给位能够自己写一个程序来实现(doge)，这里提供两个实例：
+关于Hartree-Fock方法更多的内容推荐大家阅读\textbf{Szabo前三章}，也希望各位能够自己写一个程序来实现(doge)，这里提供两个实例：
 \href{https://github.com/yangdatou/hf-tutorial}{大头版HF (积分算好了) }和
 \href{https://github.com/Walter-Feng/Hartree-Fock-in-CPP}{叔叔版HF (从基组开始嗯造)}。
 
 Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现
-\[\mathbf{F}\mathbf{D}\mathbf{S}=\mathbf{S}\mathbf{D}\mathbf{F}\]
+\[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
 
 证明上述方程与Hartree-Fock–Roothaan方程等价之前先介绍密度矩阵的几个性质
-\[1. \ \mathbf{D}=\mathbf{D}^{\dagger} \qquad 2. \ \mathbf{D}\mathbf{S}\mathbf{D}=\mathbf{D} \qquad 3.\ \text{Tr}(\mathbf{D}\mathbf{S})=N\]
+\[1. \ \mathbf{P}=\mathbf{P}^{\dagger} \qquad 2. \ \mathbf{P}\mathbf{S}\mathbf{P}=\mathbf{P} \qquad 3.\ \text{Tr}(\mathbf{P}\mathbf{S})=N\]
 
 开始证明
-\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{F}\mathbf{D}\mathbf{S}=\varepsilon\]
-\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{I}=\varepsilon\mathbf{S}\mathbf{D}\mathbf{F} \quad \Rightarrow \quad \mathbf{I}=(\varepsilon\mathbf{S}\mathbf{D}\mathbf{F})^{\dagger} \quad \Rightarrow \quad \mathbf{S}\mathbf{D}\mathbf{F}=\varepsilon^{\dagger}=\varepsilon\]
+\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{F}\mathbf{P}\mathbf{S}=\varepsilon\]
+\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{I}=\varepsilon\mathbf{S}\mathbf{P}\mathbf{F} \quad \Rightarrow \quad \mathbf{I}=(\varepsilon\mathbf{S}\mathbf{P}\mathbf{F})^{\dagger} \quad \Rightarrow \quad \mathbf{S}\mathbf{P}\mathbf{F}=\varepsilon^{\dagger}=\varepsilon\]
 
 基于上述形式的自洽场方程可以介绍DIIS辣！
+
 
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
