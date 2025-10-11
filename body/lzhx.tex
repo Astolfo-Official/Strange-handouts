@@ -252,21 +252,21 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 施瓦兹不等式为：
 \[\bra*{a}\ket*{a}\bra*{b}\ket*{b} \geqslant \bra*{a}\ket*{b}\bra*{b}\ket*{a}\]
 
-定义$\ket*{a}=\hat{A'}\ket*{f}$，$\ket*{b}=\hat{B'}\ket*{f}$，代入不等式得到：
-\[\left \langle \hat{A'}^2 \right \rangle\left \langle \hat{B'}^2 \right \rangle \geqslant \left \langle \hat{A'}\hat{B'} \right \rangle\left \langle \hat{B'}\hat{A'} \right \rangle=\left \langle \hat{A'}\hat{B'} \right \rangle^2\]
+定义$\ket*{a}=\delta\hat{A}\ket*{f}$，$\ket*{b}=\delta\hat{B}\ket*{f}$，代入不等式得到：
+\[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \left \langle \delta\hat{A}\delta\hat{B} \right \rangle\left \langle \delta\hat{B}\delta\hat{A} \right \rangle=\left \langle \delta\hat{A}\delta\hat{B} \right \rangle^2\]
 
 再定义反对易子$\qty{\hat{A},\hat{B}}=\hat{A}\hat{B}+\hat{B}\hat{A}$,则：
-\[\hat{A'}\hat{B'}=\frac{1}{2}\comm{\hat{A}'}{\hat{B}'}+\frac{1}{2}\qty{\hat{A}',\hat{B}'}\]
+\[\delta\hat{A}\delta\hat{B}=\frac{1}{2}\comm{\delta\hat{A}}{\delta\hat{B}}+\frac{1}{2}\qty{\delta\hat{A},\delta\hat{B}}\]
 
 故：
-\[\left \langle \hat{A'}^2 \right \rangle\left \langle \hat{B'}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\hat{A}'}{\hat{B}'} \right \rangle+\left \langle \qty{\hat{A}',\hat{B}'} \right \rangle \right |^2\]
+\[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle+\left \langle \qty{\delta\hat{A},\delta\hat{B}} \right \rangle \right |^2\]
 
 分别对对易子及反对易子取复共轭可知，对易子是纯虚数而反对易子是纯实数：
 \[\comm{\hat{A}}{\hat{B}}^{\dagger}=\hat{B}^{\dagger}\hat{A}^{\dagger}-\hat{A}^{\dagger}\hat{B}^{\dagger}=\hat{B}\hat{A}-\hat{A}\hat{B}=-\comm{\hat{A}}{\hat{B}}\]
 \[\qty{\hat{A},\hat{B}}^{\dagger}=\hat{B}^{\dagger}\hat{A}^{\dagger}+\hat{A}^{\dagger}\hat{B}^{\dagger}=\hat{B}\hat{A}+\hat{A}\hat{B}=\qty{\hat{A},\hat{B}}\]
 
 故上式可以继续展开：
-\[\left \langle \hat{A'}^2 \right \rangle\left \langle \hat{B'}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\hat{A}'}{\hat{B}'} \right \rangle \right |^2 +\frac{1}{4} \left |\left \langle \qty{\hat{A}',\hat{B}'} \right \rangle \right |^2 \geqslant \frac{1}{4} \left | \left \langle \comm{\hat{A}'}{\hat{B}'} \right \rangle \right |^2\]
+\[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2 +\frac{1}{4} \left |\left \langle \qty{\delta\hat{A},\delta\hat{B}} \right \rangle \right |^2 \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2\]
 
 两边开方得到：
 \[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
@@ -288,49 +288,41 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 我们可以轻松获得能量与动量的关系，在凝聚态中称为色散关系（Dispersion relation）非常重要。
 \section{平动量子化——势箱}
 \subsection{一维势箱}
-上面提过，不平方可积意味着概率不存在，也即这个模型没有实际的物理意义，即没有真正意义上的自由粒子，因此我们引入势箱模型，边界条件的引入保证了波函数平方可积性，这也表明局部自由粒子是可以存在的。
-\begin{center}
-    \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211025092646.png}
-\end{center}
+上一小节中我们得不到一个有限模长的自由粒子态，即没有真正意义上的自由粒子。但是如果我们可以退而求其次引入一个有限的零势能环境，在这样的条件下是否存在可能的粒子态呢？因此我们引入势箱模型如下所示，其边界条件可以保证波函数平方可积性，满足了品优波函数的要求。
+
 我们给定一维势箱，粒子的势能$V(x)$为分段函数：
-\[V(x)=\left \{
+\[V(x)=\left\{
 \begin{array}{rl}
 +\infty & x<0\\
 0 & 0 \leq x \leq l\\
 +\infty & x>l
-\end{array} \right .\]
+\end{array} \right.\]
 
 由薛定谔方程，我们可以变形得到：
-\[-\frac{\hbar^2}{2m}\nabla^2\varPsi+V\varPsi=E\varPsi\]
-\[\varPsi=\frac{\hbar^2}{2m(V-E)}\nabla^2\varPsi\]
+\[-\frac{\hbar^2}{2m}\nabla^2\varPsi+V\varPsi=E\varPsi \quad \Rightarrow \quad \varPsi=\frac{\hbar^2}{2m(V-E)}\nabla^2\varPsi\]
 
 显然，我们能得到：
 \[\lim_{V \rightarrow +\infty}\varPsi=0\]
 
-因此，粒子波函数只可能出现在$x \in [0,l]$的范围内，
-且为保证连续性，波函数还需满足满足下列边界条件，在这种意义下势箱波函数可以看成是一种驻波：
+因此，粒子波函数只可能出现在$x \in [0,l]$的范围内，且为保证连续性，波函数还需满足满足下列边界条件，在这种意义下势箱波函数可以看成是一种驻波：
 \[\varPsi(0)=0 \qquad \varPsi(l)=0\]
 
-边界条件的引入也就是梦开始的地方，我们在自由粒子中看不到任何跟量子化有关系的地方，但是在接下来的内容以及后续的内容中我们会发现，
-量子化的出现都不是来源于量子力学的基本方程也即薛定谔方程，而是来源于各种的边界条件：
+边界条件的引入也就是梦开始的地方，我们在自由粒子中看不到任何跟离散化有关系的地方，但是在接下来的内容以及后续的内容中我们会发现，量子化的出现都不是来源于量子力学的基本方程也即薛定谔方程，而是来源于各种的边界条件（束缚态）：
 
 利用边界条件$\varPsi(0)=0$:
 \[\varPsi(0)=C_1sin \ 0+C_2cos \ 0=0 \Rightarrow C_2=0\]
 
 再利用边界条件$\varPsi(l)=0$，我们得到一维势箱能量量子化:
-\[\varPsi(l)=C_1sin(\frac{\sqrt{2mE}}{\hbar}l)=0 \Rightarrow E=\frac{n^2 \pi^2 \hbar^2}{2ml^2}=\frac{n^2 h^2}{8ml^2}\]
+\[\varPsi(l)=C_1sin(\frac{\sqrt{2mE}}{\hbar}l)=0 \quad \Rightarrow \quad E=\frac{n^2 \pi^2 \hbar^2}{2ml^2}=\frac{n^2 h^2}{8ml^2}\]
 
 归一化：
-\[\int_0^l\varPsi^*\varPsi=C_1^2\int_0^lsin^2\left (\frac{n \pi}{l}x \right )dx=\frac{C_1^2}{2}\int_0^l\left ( 1-cos\left (\frac{2n \pi}{l}x \right ) \right )dx=\frac{C_1^2l}{2}=1\]
-
-故：
-\[C_1=\sqrt{\frac{2}{l}}\]
+\[\int_0^l\varPsi^*\varPsi\dd{x}=C_1^2\int_0^lsin^2\left (\frac{n \pi}{l}x \right )\dd{x}=\frac{C_1^2}{2}\int_0^l\left ( 1-cos\left (\frac{2n \pi}{l}x \right ) \right )\dd{x}=\frac{C_1^2l}{2}=1 \quad \Rightarrow \quad C_1=\sqrt{\frac{2}{l}}\]
 
 最终我们得到归一化一维势箱波函数及能量表达式：
 \[\varPsi_n=\sqrt{\frac{2}{l}}sin\left (\frac{n \pi}{l}x \right ) \qquad E_n=\frac{n^2 h^2}{8ml^2} \qquad (n=1,2,3 \cdots)\]
 
 \begin{center}
-    \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211025150139.png}
+    \includegraphics[scale=0.4]{fig/lzhx/微信图片_20211025150139.png}
 \end{center}
 
 \subsection{三维势箱Box[a,b,c]}
@@ -346,15 +338,15 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[E:=E_x+E_y+E_z\]
 
 因此，我们可以将上述三维势箱薛定谔方程方程写成三个一维势箱薛定谔方程：
-\[-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2X}{\mathrm{d}x^2}=E_xX \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Y}{\mathrm{d}y^2}=E_yY \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Z}{\mathrm{d}z^2}=E_zZ\]
+\[-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2X}{\mathrm{d}x^2}=E_xX, \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Y}{\mathrm{d}y^2}=E_yY, \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Z}{\mathrm{d}z^2}=E_zZ\]
 
 解得三个波函数及能量：
-\[X=\sqrt{\frac{2}{a}}sin\left (\frac{n_x \pi}{l}x \right ) \qquad Y=\sqrt{\frac{2}{b}}sin\left (\frac{n_y \pi}{l}y \right ) \qquad Z=\sqrt{\frac{2}{c}}sin\left (\frac{n_z \pi}{l}z \right )\]
-\[E_{x,n}=\frac{n_x^2 h^2}{8ma^2} \qquad E_{y,n}=\frac{n_y^2 h^2}{8mb^2} \qquad E_{z,n}=\frac{n_z^2 h^2}{8mc^2}\]
+\[X=\sqrt{\frac{2}{a}}\sin\left (\frac{n_x \pi}{l}x \right ), \qquad Y=\sqrt{\frac{2}{b}}\sin\left (\frac{n_y \pi}{l}y \right ), \qquad Z=\sqrt{\frac{2}{c}}\sin\left (\frac{n_z \pi}{l}z \right )\]
+\[E_{x,n}=\frac{n_x^2 h^2}{8ma^2}, \qquad E_{y,n}=\frac{n_y^2 h^2}{8mb^2}, \qquad E_{z,n}=\frac{n_z^2 h^2}{8mc^2}\]
 \[(n_x,n_y,n_z=1,2,3 \cdots)\]
 
 合并波函数及能量：
-\[\varPsi=\sqrt{\frac{8}{abc}}sin\left (\frac{n_x \pi}{l}x \right )sin\left (\frac{n_y \pi}{l}y \right )sin\left (\frac{n_z \pi}{l}z \right )\]
+\[\varPsi=\sqrt{\frac{8}{abc}}\sin\left (\frac{n_x \pi}{l}x \right )\sin\left (\frac{n_y \pi}{l}y \right )\sin\left (\frac{n_z \pi}{l}z \right )\]
 \[E_{x,n}=\frac{h^2}{8m} \left (\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2}+\frac{n_z^2}{c^2} \right )\]
 \[(n_x,n_y,n_z=1,2,3 \cdots)\]
 
