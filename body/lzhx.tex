@@ -62,6 +62,7 @@
 
 再回到算符$\hat{O}$与纯态$\ket{\phi_{\alpha}}$上，我们说纯态是使用算符能测量到的态，也即当系统处于这个态时我们观测这个系统只会看到这个态（把算符$\hat{O}$作用到纯态$\ket{\phi_{\alpha}}$上我们只会得到纯态$\ket{\phi_{\alpha}}$本身）也即\textbf{纯态就是算符的本征态}。这也是经典物理熟悉的情况，可以认为经典世界是量子世界的本征值。再以投影算符$\hat{P}_a=\ket{\phi_a}\bra{\phi_a}$为例：
 \[\hat{P}_a\ket{\phi_a}=\ket{\phi_a}\bra{\phi_a}\ket{\phi_a}=\ket{\phi_a}\]
+
 \section{表象理论}
 在上一节的基本假设中我们构建了一个由算符$\hat{A}$的正交归一的本征态空间$\{\ket{\phi_{\alpha}}\}$，并引出了其对偶空间$\{\bra{\phi_{\alpha}}\}$。现在终于不用再引入什么假设可以安心搞点数学了（喜
 
@@ -71,6 +72,22 @@
 \[\bra{\phi_{\alpha'}}\hat{A}\ket{\phi_{\alpha}}=\bra{\phi_{\alpha'}}\left(\phi_{\alpha}\ket{\phi_{\alpha}}\right)=\phi_{\alpha}\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}=\delta_{\alpha\alpha'}\phi_{\alpha}\]
 不要对这个三明治感到惊讶($^{\circ}$o$^{\circ}$;;，似乎我们还没定义这是什么，这没什么(杰哥音)，算符作用到态上后拿到的是另外一个态，你只是在拿一个左矢作用到一个新的右矢上算个内积而已。先别管这个，上面我们在做的是计算了算符$\hat{A}$在基底$\{\ket{\phi_{\alpha}}\}$下的“矩阵元”。你可能觉得这似乎就是矩阵元，但不是的，我没说这基底是有限的啊，甚至都没说这基底是可数的啊，那矩阵又何从谈起呢？话说回来，算符就可以写成如下形式：
 \[\hat{A}=\sum_{\alpha}\ket{\phi_{\alpha}}\phi_{\alpha}\bra{\phi_{\alpha}}\]
+
+再引入一个数学概念，我们之前定义了右矢空间的对偶空间，左矢空间，同时也知道，算符作用在右矢态上得到的是一个新的右矢态，两者结合一下就有：
+\begin{definition}[伴随算符]
+$\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=\{\bra{\cdot}\}$上的算符，存在唯一的定义在$R$上的算符$\hat{A}$满足
+\[\forall \, \ket{\psi} \in R, \quad \bra{\psi}\hat{A}^{\dagger}=\hat{A}\ket{\psi}\]
+如果一个算子的伴随算子是自身则称这类算子为自拌算符或者厄米算符。
+\end{definition}
+
+伴随算符具有以下性质（继续无脑假定态空间具有自反性，哎哎傻逼物理，严谨性这块烂完了）：
+\[\bra{\phi}\hat{A}^{\dagger}\ket{\psi}=\left(\bra{\psi}\hat{A}\ket{\phi}\right)^{\dagger}\]
+
+\paragraph*{自拌算子的本征值为实数:}
+\[A_{\psi}=\bra{\psi}\hat{A}\ket{\psi}=\bra{\psi}\hat{A}^{\dagger}\ket{\psi}=\left(\bra{\psi}\hat{A}\ket{\psi}\right)^{\dagger}=A_{\psi}^* \quad \Rightarrow \quad A_{\psi}\in\mathbb{R}\]
+
+\paragraph*{自拌算子对应不同本征值的本征态正交:}
+\[A_{\psi}\bra{\phi}\ket{\psi}=\bra{\phi}\hat{A}\ket{\psi}=\left(\bra{\psi}\hat{A}^{\dagger}\ket{\phi}\right)^{\dagger}=\left(\bra{\psi}\hat{A}\ket{\phi}\right)^{\dagger}=A_{\phi}^*\bra{\psi}\ket{\phi}^{\dagger}=A_{\phi}\bra{\phi}\ket{\psi} \quad \Rightarrow \quad \bra{\phi}\ket{\psi}=0\]
 
 我们考虑一个特殊一点的算符——把对应所有基底的投影算符加起来——并计算这个新算符的矩阵元：
 \[\sum_{\alpha}\ket{\phi_{\alpha}}\bra{\phi_{\alpha}} \quad \Rightarrow \quad \bra{\phi_{\alpha'}}\left(\sum_{\alpha}\ket{\phi_{\alpha}}\bra{\phi_{\alpha}}\right)\ket{\phi_{\alpha''}}=\sum_{\alpha}\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}\bra{\phi_{\alpha}}\ket{\phi_{\alpha''}}=\sum_{\alpha}\delta_{\alpha'\alpha}\delta_{\alpha\alpha''}=\delta_{\alpha'\alpha''}\]
@@ -90,33 +107,34 @@
 
 在坐标表象下计算以下内积$\bra{\psi}\ket{\psi}$，你可能会说这不一眼盯真，鉴定为1吗？戳辣，还是上面那句话，我怎么知道这寄吧态$\ket{\psi}$是什么，没有一个表象来表示没有人能知道这寄吧态到底是什么：
 \[\bra{\psi}\ket{\psi}=\bra{\psi}\mathbbm{1}\ket{\psi}=\bra{\psi}\left(\sum_{\alpha}\ket{\bm{r}_{\alpha}}\bra{\bm{r}_{\alpha}}\right)\ket{\psi}=\sum_{\alpha}\bra{\psi}\ket{\bm{r}_{\alpha}}\bra{\bm{r}_{\alpha}}\ket{\psi}=\sum_{\alpha}|\psi(\bm{r}_{\alpha})|^2\]
-一通操作下来，这对吗？空间格点与实数基等势，那你嗯求和不炸了吗？
+一通操作下来，这对吗？空间格点与实数基等势，那你嗯求和不炸了吗？那到底是哪里的问题呢？当然是$\mathbbm{1}$有问题（震怒，把这个$\mathbbm{1}$抓出来魔改：
 \begin{theorem}[完备性公式]
 算符$\hat{A}$的本征态空间$\{\ket{\phi_{\alpha}}\}$基底满足：
-\[\mathbbm{1}=\sum_{\alpha}\ket{\phi_{\alpha}}\bra{\phi_{\alpha}}\]
+\[\mathbbm{1}=\sum_{\alpha}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\]
+其中$w(\alpha)$是用来避免无穷的权重因子。
 \end{theorem}
 
+这里我们需要具体说明一下，基底数量有三种情况：有限，与自然数基等势（称之为可数）以及与实数基等势或者更多（没有其他分类，不要试图挑战连续统假设）。我们之前得到的$\mathbbm{1}$仅在有限基下良定义。因此我们需要对其进行修改，引入一个权重使其不会达到无穷，这并不违背我们给出的量子力学基本假设，因为乘上一个数字并不改变态的性质（有点高血压的
 
-如,一维动量算符$\hat{p}_x$是厄米算符:
-\[\hat{p}_x=-i\hbar\frac{\partial}{\partial x}\]
-\[\int_{-\infty}^{+\infty}f^*\hat{p}_xg \dd x=\int_{-\infty}^{+\infty}f^*\left(-i\hbar\frac{\partial}{\partial x}\right)g \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\left(\frac{\partial g}{\partial x}\right) \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\dd g\]
-\[=-i\hbar\eval{fg}_{-\infty}^{+\infty}+i\hbar\int_{-\infty}^{+\infty}g\dd f^*=\int_{-\infty}^{+\infty}\left(-i\hbar\frac{\partial}{\partial x}\right)^*f^*g\dd x=\int_{-\infty}^{+\infty}(\hat{p}_xf)^*g \dd x\]
+在有了正确的完备性公式后，我们再来计算内积$\bra{\psi}\ket{\psi}$：
+\[\bra{\psi}\ket{\psi}=\bra{\psi}\mathbbm{1}\ket{\psi}=\bra{\psi}\left(\sum_{\alpha}\ket{\bm{r}_{\alpha}}w(\alpha)\bra{\bm{r}_{\alpha}}\right)\ket{\psi}=\sum_{\alpha}\bra{\psi}\ket{\bm{r}_{\alpha}}w(\alpha)\bra{\bm{r}_{\alpha}}\ket{\psi}=\sum_{\alpha}w(\alpha)|\psi(\bm{r}_{\alpha})|^2\]
 
-如果我们考虑一个厄密算符，我们声明(我不想证明)厄密算符都可以做正交对角化,且其特征值一定为实数，下面将会讨论厄密算符特征值和特征函数的一些性质:
+对于坐标表象$\{\ket{\bm{r}}\}$，其权重$w(\alpha)$是每个单位空间格点的体积，即$w(\alpha)=\dd{\bm{r}_{\alpha}}=\dd{\bm{r}}$，因此
+\[\bra{\psi}\ket{\psi}=\sum_{\alpha}w(\alpha)|\psi(\bm{r}_{\alpha})|^2=\int_{\mathbb{R}^n}\dd{\bm{r}}|\psi(\bm{r})|^2=1\]
 
-\paragraph*{一、所有特征值均为实数。}
-\[\hat{A}f=af \qquad (a \in \mathbb{R})\]
-\[\bra*{f}\hat{A}\ket*{f}=a\bra*{f}\ket*{f} \qquad \bra*{f}\hat{A}\ket*{f}^*=a^*\bra*{f}\ket*{f}\]
-\[(a-a^*)\bra*{f}\ket*{f}=0\]
-\[\bra*{f}\ket*{f} \geqslant 0 \Leftrightarrow a=a^*\]
+空间表象中的$\mathbbm{1}$即是：
+\[\mathbbm{1}=\int\dd{\bm{r}}\ket{\bm{r}}\bra{\bm{r}}\]
 
-\paragraph*{二、对应不同特征值的特征函数相互正交。}
-\[\hat{A}f=af \qquad \hat{A}g=bg \qquad (a \neq b \ , \ a,b \in \mathbb{R})\]
-\[\bra*{g}\hat{A}\ket*{f}=a\bra*{g}\ket*{f} \qquad \bra*{f}\hat{A}\ket*{g}=b\bra*{f}\ket*{g}\]
-\[\bra*{g}\hat{A}\ket*{f}^*=a^*\bra*{g}\ket*{f}^*=a\bra*{f}\ket*{g}=\bra*{f}\hat{A}\ket*{g}=b\bra*{f}\ket*{g}\]
-\[(a-b)\bra*{f}\ket*{g}=0 \Leftrightarrow \bra*{f}\ket*{g}=0\]
+再来另外一个例子：
+\[\psi(\bm{r})=\bra{\bm{r}}\ket{\psi}=\bra{\bm{r}}\mathbbm{1}\ket{\psi}=\int\dd{\bm{r}'}\bra{\bm{r}}\ket{\bm{r}'}\bra{\bm{r}'}\ket{\psi}=\int\dd{\bm{r}'}\delta(\bm{r}'-\bm{r})\psi(\bm{r}')\]
+很好得符合了数学上的定义（舒服了
 
-\subsection{对易}
+%如,一维动量算符$\hat{p}_x$是厄米算符:
+%\[\hat{p}_x=-i\hbar\frac{\partial}{\partial x}\]
+%\[\int_{-\infty}^{+\infty}f^*\hat{p}_xg \dd x=\int_{-\infty}^{+\infty}f^*\left(-i\hbar\frac{\partial}{\partial x}\right)g \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\left(\frac{\partial g}{\partial x}\right) \dd x=-i\hbar\int_{-\infty}^{+\infty}f^*\dd g\]
+%\[=-i\hbar\eval{fg}_{-\infty}^{+\infty}+i\hbar\int_{-\infty}^{+\infty}g\dd f^*=\int_{-\infty}^{+\infty}\left(-i\hbar\frac{\partial}{\partial x}\right)^*f^*g\dd x=\int_{-\infty}^{+\infty}(\hat{p}_xf)^*g \dd x\]
+
+\section{对易}
 定义算符对易，若两算符$\hat{A}$、$\hat{B}$满足如下结果则称两算符对易：
 \[\comm{\hat{A}}{\hat{B}}=\hat{A}\hat{B}-\hat{B}\hat{A}=0\]
 
