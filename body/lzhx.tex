@@ -6,11 +6,11 @@
 \[\ket{\psi}=\sum_{\alpha}c_{\alpha}\ket{\phi_{\alpha}}, \quad \text{满足归一化：} \sum_{\alpha}|c_{\alpha}|^2=1, \quad c_{\alpha}\in\mathbb{C}\]
 \end{theorem}
 
-需要说明的是这里我们认为所有的态$\{\ket{\phi_{\alpha}}\}$线性无关。因为我们可以考虑对线性相关的某个态再利用态叠加原理，使之由一系列线性无关的态组合而来，最终把所有线性相关的态都如上处理后，我们会发现所有的叠加态都可以被线性无关的态线性组合表示。这些线性无关的态构成了一组系统状态空间的一组基底。同时由于观测后系统只能处于唯一的某一个态上，我们可以直接规定系统中的所有态构成标准正交基，即$\ket{\alpha}^{\dagger}\ket{\alpha‘}=\delta_{\alpha\alpha'}$。
+需要说明的是这里我们认为所有的态$\{\ket{\phi_{\alpha}}\}$线性无关。因为我们可以考虑对线性相关的某个态再利用态叠加原理，使之由一系列线性无关的态组合而来，最终把所有线性相关的态都如上处理后，我们会发现所有的叠加态都可以被线性无关的态线性组合表示。这些线性无关的态构成了一组系统状态空间的一组基底。同时由于观测后系统只能处于唯一的某一个态上，但是\textcolor{blue}{\textbf{基底之间相互独立并不意味着基底之间相互正交}}，但是非正交的基底可以通过标准正交化变换成标准正交基，我们没有必要在入门量子力学的时候你们早就处理折磨复杂的体系（疑似有点抖M）。于是我们直接默认系统中的所有态构成标准正交基，即$\ket{\alpha}^{\dagger}\ket{\alpha‘}=\delta_{\alpha\alpha'}$。
 
-从上述的描述中我们不难发现，态叠加原理实质上是假设\textbf{量子态空间是线性的}。同时在定义中我们引入了“除此之外别无可能”的表述，这表明该这一系列量子态张成的空间$\text{Span}\{\ket{\phi_{\alpha}}\}$是完备的。我们一般称测量中能观测到的态为纯态（对应混合态），两者统称为波函数。
+从上述的描述中我们不难发现，态叠加原理实质上是假设\textcolor{blue}{\textbf{量子态空间是线性的}}。同时在定义中我们引入了“除此之外别无可能”的表述，这表明该这一系列量子态张成的空间$\text{Span}\{\ket{\phi_{\alpha}}\}$是完备的。我们一般称测量中能观测到的态为纯态（对应混合态），两者统称为波函数。
 
-我们可以做出如下论断，态叠加原理假设了量子力学中\textbf{量子态空间是$\mathbb{C}$上的一个完备的线性空间}。上述的论述中我们提到了所有可及的态都是观测得来的，这就有了完备性假设的一个等价表述：\textbf{算符的本征态张成的空间是完备的}。虽然目前我们还没定义什么是算符反正我先把这句话放这了。Ciallo$\sim$($\angle$$\cdot$$\omega$< )$\frown$$\star$
+我们可以做出如下论断，态叠加原理假设了量子力学中\textcolor{blue}{\textbf{量子态空间是$\mathbb{C}$上的一个完备的线性空间}}。上述的论述中我们提到了所有可及的态都是观测得来的，这就有了完备性假设的一个等价表述：\textcolor{blue}{\textbf{算符的本征态张成的空间是完备的}}。虽然目前我们还没定义什么是算符反正我先把这句话放这了。Ciallo$\sim$($\angle$$\cdot$$\omega$< )$\frown$$\star$
 
 
 在这样的一个完备的线性空间上我们可以定义内积：
@@ -60,8 +60,8 @@
 
 在量子力学的测量理论中，测量是整个量子力学在物理上的核心，测量所用的工具：\textcolor{blue}{\textbf{算符，是量子力学的唯一观测量}}；测量的对象：量子态，是量子力学中系统的描述；测量的结果：算子的本征值；测量之间的“社交”，被\textcolor{blue}{\textbf{算符的对易关系}}所描述；测量的整个过程，被量子系统的运动方程—— Schrodinger 方程描述。可以说，测量，就是代表量子力学的基本假设，诠释着量子力学的物理。
 
-再回到算符$\hat{O}$与纯态$\ket{\phi_{\alpha}}$上，我们说纯态是使用算符能测量到的态，也即当系统处于这个态时我们观测这个系统只会看到这个态（把算符$\hat{O}$作用到纯态$\ket{\phi_{\alpha}}$上我们只会得到纯态$\ket{\phi_{\alpha}}$本身）也即\textbf{纯态就是算符的本征态}。这也是经典物理熟悉的情况，可以认为经典世界是量子世界的本征值。再以投影算符$\hat{\bm{p}}_a=\ket{\phi_a}\bra{\phi_a}$为例：
-\[\hat{\bm{p}}_a\ket{\phi_a}=\ket{\phi_a}\bra{\phi_a}\ket{\phi_a}=\ket{\phi_a}\]
+再回到算符$\hat{O}$与纯态$\ket{\phi_{\alpha}}$上，我们说纯态是使用算符能测量到的态，也即当系统处于这个态时我们观测这个系统只会看到这个态（把算符$\hat{O}$作用到纯态$\ket{\phi_{\alpha}}$上我们只会得到纯态$\ket{\phi_{\alpha}}$本身）也即\textbf{纯态就是算符的本征态}。这也是经典物理熟悉的情况，可以认为经典世界是量子世界的本征值。再以投影算符$\hat{P}_a=\ket{\phi_a}\bra{\phi_a}$为例：
+\[\hat{P}_a\ket{\phi_a}=\ket{\phi_a}\bra{\phi_a}\ket{\phi_a}=\ket{\phi_a}\]
 
 \section{表象理论}
 在上一节的基本假设中我们构建了一个由算符$\hat{A}$的正交归一的本征态空间$\{\ket{\phi_{\alpha}}\}$，并引出了其对偶空间$\{\bra{\phi_{\alpha}}\}$。现在终于不用再引入什么假设可以安心搞点数学了（喜
@@ -134,9 +134,9 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 坐标表象下的正交归一性表现为$\delta$-函数，多了解一点其性质有助于身心健康以及后续的学习，比如$\delta$-函数的对称性和导数性质：
 \[\delta(\bm{r}-\bm{r}')=\bra{\bm{r}}\ket{\bm{r}'}=\bra{\bm{r}'}\ket{\bm{r}}^*=\bra{\bm{r}'}\ket{\bm{r}}=\delta(\bm{r}'-\bm{r}), \quad \nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')=-\nabla_{\bm{r}'}\delta(\bm{r}-\bm{r}')=-\nabla_{\bm{r}'}\delta(\bm{r}'-\bm{r})\]
 声明一下，$\delta(\bm{r}-\bm{r}')$的自变量是被减的$\bm{r}$，梯度算子$\nabla$的下角标表示对哪一套坐标求导。根据以上两条性质以及分部积分，我们知道：
-\[\int_{\mathbb{R}^n}\nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')f(\bm{r}')\dd{\bm{r}'}=-\int_{\mathbb{R}^n}\nabla_{\bm{r'}}\delta(\bm{r}'-\bm{r})f(\bm{r}')\dd{\bm{r}'}=\int_{\mathbb{R}^n}\delta(\bm{r}'-\bm{r})\nabla_{\bm{r'}}f(\bm{r}')\dd{\bm{r}'}=\nabla_{\bm{r}}f(\bm{r})\]
+\[\int_{\mathbb{R}^n}\nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')f(\bm{r}')\dd{\bm{r}'}=-\int_{\mathbb{R}^n}\nabla_{\bm{r'}}\delta(\bm{r}'-\bm{r})f(\bm{r}')\dd{\bm{r}'}=\int_{\mathbb{R}^n}\delta(\bm{r}'-\bm{r})\nabla_{\bm{r'}}f(\bm{r}')\dd{\bm{r}'}=\nabla_{\bm{r}}f(\bm{r}) \tag{a}\label{a}\]
 即：
-\[\nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')=\delta(\bm{r}-\bm{r}')\nabla_{\bm{r}'} \tag{a}\label{a}\]
+\[\nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')=\delta(\bm{r}-\bm{r}')\nabla_{\bm{r}'}\]
 我们来看一个有意思的算符，定义一个“导数”算符，它把态映射到态的导数（虽然我们既不知道态是什么也不知道态的导数是什么，权且假设态的导数也在完备的态空间中）：
 \[\hat{D}:R \to R, \quad \ket{\psi} \mapsto \ket{\nabla\psi} \]
 由于我们不知道态是什么，我们只能知道态在某个表象空间下的投影，因此，选择坐标表象：
@@ -156,7 +156,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\bra{\bm{r}}\hat{\bm{p}}\ket{\bm{k}}=\int_{\mathbb{R}^n}\bra{\bm{r}}\hat{\bm{p}}\ket{\bm{r}'}\bra{\bm{r}'}\ket{\bm{k}}\dd{\bm{r}'}=-i\hbar\int_{\mathbb{R}^n}\delta(\bm{r}-\bm{r}')\nabla_{\bm{r}'}\psi_{\bm{k}}(\bm{r}')\dd{\bm{r}'}=-i\hbar\nabla_{\bm{r}}\psi_{\bm{k}}(\bm{r})=\bm{k}\psi_{\bm{k}}(\bm{r})\]
 利用分离变量法可以轻松求解上述微分方程：
 \[\bra{\bm{r}}\ket{\bm{k}}=\psi_{\bm{k}}(\bm{r})=\frac{1}{\sqrt{2\pi}}\exp\left(\frac{i\bm{k}\cdot\bm{r}}{\hbar}\right)\]
-很自然我们就能猜到算符$\hat{\bm{p}}=-i\hbar\nabla_{\bm{r}}$，恭喜你拿到了坐标表象下的动量算符。而坐标算符$\hat{\bm{r}}$在坐标表象下就是一个数$\bm{r}$:
+很自然我们就能猜到算符$\hat{\bm{p}}=-i\hbar\nabla_{\bm{r}}$，恭喜你拿到了坐标表象下的动量算符以及它的本征态平面波$\ket{\bm{k}}$。而坐标算符$\hat{\bm{r}}$在坐标表象下就是一个数$\bm{r}$:
 \[\left\{\begin{aligned}
 \hat{\bm{r}} & \to \bm{r} \\ \hat{\bm{p}} & \to -i\hbar\nabla_{\bm{r}}
 \end{aligned}\right.\]
@@ -171,18 +171,50 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 &=\int_{-\infty}^{\infty}\psi^*(x)[i\hbar\partial_x]\phi(x)\dd{x}=\bra{\psi}\hat{p}_x^{\dagger}\ket{\phi}=\bra{\phi}\hat{p}_x\ket{\psi}^{\dagger}
 \end{aligned}\]
 
+\subsection{表象变换}
+表象理论的一大核心内容是表象之间的变换，这也是$\mathbbm{1}$发挥作用的重要领域。表象变换也即态空间的基底变换，假设我们已知基底$\{\ket{\phi_{\alpha}}\}$，某两个态$\ket{p},\ket{q}$与某个算符$\hat{O}$（并非一定要是生成该基底的算符，但在计算期望时要求至少本征态包含在基底中，原因见下），则内积$\bra{p}\ket{q}$与算符$\hat{O}$在基底$\{\ket{\phi_{\alpha}}\}$下的表示为：
+\[\bra{p}\ket{q}=\bra{p}\mathbbm{1}\ket{q}=\sum_{\alpha}\bra{p}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{q}=\sum_{\alpha}w(\alpha)c_{p\alpha}^*c_{q\alpha}\]
+\[\hat{O}=\mathbbm{1}\hat{O}\mathbbm{1}=\sum_{\alpha\alpha'}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\hat{O}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}:=\sum_{\alpha\alpha'}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\]
+这里$O_{\alpha\alpha'}$是算符在基底$\{\ket{\phi_{\alpha}}\}$下的生成元，这里给出正式名称，再叫矩阵元就不礼貌了。这里突然想到，我们既然可以给内积中间插入一个$\mathbbm{1}$算符，我们能不能插入其他算符呢？比如:
+\[\bra{p}\hat{O}\ket{q}=\sum_{\alpha\alpha'}\bra{p}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\ket{q}=\sum_{\alpha\alpha'}c_{p\alpha}^*w(\alpha)O_{\alpha\alpha'}w(\alpha')c_{q\alpha'}\]
+当$\ket{q}=\ket{p}$时，有：
+\[\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}=\sum_{\alpha\alpha'}\bra{p}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\ket{p}=\sum_{\alpha\alpha'}c_{p\alpha}^*w(\alpha)O_{\alpha\alpha'}w(\alpha')c_{p\alpha'}\]
+然后现在我们卡住了，唯一能推进的办法是假定该算符的本征态包含于基底$\{\ket{\phi_{\alpha}}\}$，此时有$O_{\alpha\alpha'}=O_{\alpha}\delta_{\alpha\alpha'}$:
+\[\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}=\sum_{\alpha}c_{p\alpha}^*w(\alpha)O_{\alpha}w(\alpha)c_{p\alpha}:=\sum_{\alpha}w(\alpha)O_{\alpha}P_p(\alpha) \quad \left(\sum_{\alpha}P_p(\alpha)=\sum_{\alpha}w(\alpha)c_{p\alpha}^*c_{p\alpha}=1\right)\]
+这与数学上期望的定义一致，我们称$\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}$为算符$\hat{O}$在态$\ket{p}$上的期望。
+
+回到表象变换，假设我们希望变换到新的基底$\{\ket{\psi_{\beta}}\}$，我们可以继续使用插入$\mathbbm{1}$的方法：
+\[\begin{aligned}
+\bra{p}\ket{q}&=\sum_{\alpha}\bra{p}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{q}=\sum_{\alpha}\bra{p}\mathbbm{1}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\mathbbm{1}\ket{q}\\
+&=\sum_{\alpha}\sum_{\beta\beta'}\bra{p}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{q}
+\end{aligned}\]
+\[\hat{O}=\sum_{\alpha\alpha'}\mathbbm{1}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\mathbbm{1}=\sum_{\alpha\alpha'}\sum_{\beta\beta'}\ket{\psi_{\beta}}\beta)\bra{\psi_{\beta}}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\ket{\psi_{\beta'}}w(\beta)\bra{\psi_{\beta'}}\]
+经过上述这么一大坨，我们就把内积$\bra{p}\ket{q}$和算符$\hat{O}$在新的基底$\{\ket{\phi_{\alpha}}\}$下表示了出来（可喜可贺，可喜可贺
+
+上述两个例子中都出现了变换元$S_{\alpha\beta}=\bra{\phi_{\alpha}}\ket{\psi_{\beta}}$，它是基底变换算符$\hat{S}_{\phi\psi}$的生成元，该算符可以写成：
+\[\hat{S}_{\phi\psi}=\sum_{\alpha\beta}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}=\sum_{\alpha\beta}\ket{\phi_{\alpha}}w(\alpha)S_{\alpha\beta}w(\beta)\bra{\psi_{\beta}}\]
+容易看出其伴随算子是：
+\[\hat{S}_{\psi\phi}^{\dagger}=\sum_{\beta'\alpha'}\ket{\psi_{\beta'}}w(\beta)\bra{\psi_{\beta'}}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}\]
+计算$\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}$:
+\[\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}=\sum_{\beta'\alpha'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}\]
+由于$\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}=\delta_{\alpha'\alpha}$:
+\[\sum_{\alpha'}\ket{\phi_{\alpha'}}\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}w(\alpha')=\ket{\phi_{\alpha}}\]
+故容易看出：
+\[\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}=\sum_{\beta'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}=\mathbbm{1}\mathbbm{1}\mathbbm{1}=\mathbbm{1}\]
+相对应的$\hat{S}_{\phi\psi}^{\dagger}\hat{S}_{\psi\phi}^{\dagger}=\mathbbm{1}$读者不难自证。综上所述说明，变换算符$\hat{S}_{\phi\psi}$是一个酉算符。至此我们结束了表象理论的内容，表象理论主要是在介绍如何去表示一些态，而下一小节对易部分的内容是在介绍如何去表示一些观测。
+
 \section{对易}
 定义算符对易，若两算符$\hat{A}$、$\hat{B}$满足如下结果则称两算符对易：
 \[\comm{\hat{A}}{\hat{B}}=\hat{A}\hat{B}-\hat{B}\hat{A}=0\]
 
-对易反映的是算符的可交换性，如果两算符对易，他们将\textbf{拥有相同的本征函数集}。
+对易反映的是算符的可交换性，数学意义上如果两算符对易，他们将\textcolor{blue}{\textbf{拥有相同的本征函数集}}。此时一般用两个算符的本征值来代表他们有共同的本征态：
+\[\hat{A}\ket{ab}=a\ket{ab}, \quad \hat{B}\ket{ab}=b\ket{ab}\]
 
-我们将观测过程描述为某一算符对波函数作用得到一个新的函数，如果该函数恰为其特征函数，那么该次观测得到的结果是特征值数乘上其特征函数。
-\[\hat{A}f_i=a_if_i\]
+为什么要定义算符的对易，数学上严格的表述是赋范线性空间的算子只满足线性和结合律一般不具备交换律。这就好比你肚子空空时先吃饭再答辩才能拉出好东西，而先答辩再吃饭可能还没等答辩完就饿昏过去了。
 
-如果我们说两个观测A，B对易，也即使说这两个操作不改变观测对象的状态。换成数学的语言来说就是，不论对应两种观测A，B的两个算符$\hat{A},\hat{B}$谁先和观测对象(本征函数集$\{f_i\}$)作用，都不会改变本征函数集的组成，即:
+而当两算符具有相同的本征态时一个算符只会把本征态映射到一个数乘上本征态本身上而不改\textcolor{blue}{\textbf{变态}}本身，当下一个算符作用上去的时候还是作用在这个本征态上。物理上玄乎的表述来说就是观测会改变系统的状态，只有当算符对易且观测本征态时，观测才不会改变系统的状态（跟放屁一样）。
 
-\[\hat{A}\hat{B}f_i=\hat{A}b_if_i=b_i\hat{A}f_i=b_ia_if_i=\hat{B}a_if=\hat{B}\hat{A}f_i \qquad (\comm{\hat{A}}{\hat{B}}=0)\]
+\[\hat{A}\hat{B}\ket{ab}=\hat{A}b\ket{ab}=b\hat{A}\ket{ab}=ba\ket{ab}=\hat{B}a\ket{ab}=\hat{B}\hat{A}\ket{ab} \quad \Leftrightarrow \quad \comm{\hat{A}}{\hat{B}}=\hat{0}\]
 
 对易还有以下关系：
 \[\comm{\hat{A}}{\hat{B}}=-\comm{\hat{B}}{\hat{A}}\]
@@ -191,8 +223,9 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\comm{\hat{A}\hat{B}}{\hat{C}}=\hat{A}\comm{\hat{B}}{\hat{C}}+\comm{\hat{A}}{\hat{C}}\hat{B}\]
 \[\comm{\hat{A}}{\comm{\hat{B}}{\hat{C}}}+\comm{\hat{B}}{\comm{\hat{A}}{\hat{C}}}+\comm{\hat{C}}{\comm{\hat{A}}{\hat{B}}}=0\]
 
-对任意两对不对易的算符，都满足不确定性原理$(Uncertainty \ principle)$：
-\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
+\section{不确定性原理}
+对任意两不对易的算符，都满足不确定性原理 (Uncertainty principle)：
+\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|, \quad \Delta\hat{A}=\sqrt{\hat{A}-\left \langle \hat{A} \right \rangle}\]
 
 下面给出两种证明：
 
@@ -241,24 +274,18 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 举个例子，以动量和坐标为例，$\comm{\hat{x}}{\hat{p}_x}=i\hbar$，则：
 \[\Delta \hat{x}\Delta \hat{p}_x \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{x}}{\hat{p}_x} \right \rangle|=\frac{\hbar}{2}\]
 
+测不准原理提供的是两个算符（测量）之间的兼容程度，越兼容不确定性越小，比如你不会觉得测量$y$方向的坐标会跟$x$方向的动量有什么不兼容，因此它俩是对易的。
+
 \section{自由粒子}
-对自由粒子，其受到的势能$V$为0,其薛定谔方程可以简化为：
-\[\hat{H}\varPsi=-\frac{\hbar^2}{2m}\nabla^2\varPsi=E\varPsi\]
+以一维自由粒子为例，其受到的势能$V$为0,其薛定谔方程可以简化为：
+\[\hat{H}\varPsi(x)=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\varPsi(x)}{\mathrm{d}x^2}=E\varPsi(x)\]
 
-利用分离变量法，我们可以将上式分离成三个单变量常微分方程求解，这里以x方向为例：
-\[\hat{H}\varPsi=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\varPsi}{\mathrm{d}x^2}=E\varPsi\]
+容易解出其解是一个沿着$x$轴正负方向行进的平面波：
+\[\varPsi(x)=C_1e^{ikx}+C_2e^{-ikx}, \quad k=\sqrt{2mE}/\hbar\]
 
-容易解出其解：
-\[\varPsi=C_1\exp\left (i \frac{\sqrt{2mE}}{\hbar}x \right )+C_2\exp\left ( -i\frac{\sqrt{2mE}}{\hbar}x \right )\]
-
-品优波函数要求\textbf{单值、连续、平方可积}(复共轭可积，根据物理意义波函数范数的平方是概率，则要求要可归一化)，当然如果需要满足薛定谔方程，连续条件需要从$C(E)$提高到$C^2(E)$，显然自由粒子波函数并不是品优波函数，因为它不平方可积：
-\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}\exp\left (i \frac{2\sqrt{2mE}}{\hbar}x \right )+\exp\left (-i \frac{2\sqrt{2mE}}{\hbar}x \right )\dd x \right )+C_1^2+C_2^2\]
-\[\int_{-\infty}^{+\infty}\varPsi^*\varPsi=C_1C_2 \left ( \int_{-\infty}^{+\infty}\sin\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )+\cos\left ( \frac{2\sqrt{2mE}}{\hbar}x \right )\dd x \right )+C_1^2+C_2^2=?\]
-
-品优波函数中三个条件分别对应了对波函数不同方面的要求，第一点单值是对函数本身性质的要求；
-第二点连续是算符对波函数的微分性质提出的要求，算符经常会涉及到微分操作，这对波函数的可导性具有一定要求；
-第三代平方可积是波函数物理意义对波函数积分性质提出的要求，为了可归一性，波函数的$L^2$范数要有限。
-
+一般要求薛定谔方程的解要是品优波函数，满足\textbf{单值、连续$C^n \ (n \geq 2)$、平方（$L^2$）可积}，很显然自由粒子并不满足这个要求，因为不可积。但这并不代表自由粒子是一个毫无意义的模型，比如如果我们在动量空间考虑其薛定谔方程有：
+\[\hat{H}\varPsi(k)=\frac{\hbar^2k^2}{2m}\varPsi(k)=E(k)\varPsi(k) \quad \Rightarrow \quad E(k)=\frac{\hbar^2k^2}{2m}\]
+我们可以轻松获得能量与动量的关系，在凝聚态中称为色散关系（Dispersion relation）非常重要。
 \section{平动量子化——势箱}
 \subsection{一维势箱}
 上面提过，不平方可积意味着概率不存在，也即这个模型没有实际的物理意义，即没有真正意义上的自由粒子，因此我们引入势箱模型，边界条件的引入保证了波函数平方可积性，这也表明局部自由粒子是可以存在的。
