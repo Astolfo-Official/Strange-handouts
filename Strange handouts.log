@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  11 OCT 2025 01:23
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  11 OCT 2025 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1491,85 +1491,86 @@ Missing character: There is no ‘ ("2018) in font cmr10!
 [4
 
 ] [5]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 95.
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 97.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [6] [7] [8] [9]
+) [6] [7] [8] [9] [10]
 File: fig/lzhx/微信图片_20211025092646.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211025092646.png>
+ [11]
 File: fig/lzhx/微信图片_20211025150139.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211025150139.png>
- [10] [11]
+ [12]
 File: fig/lzhx/微信图片_20211104112141.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211104112141.png>
- [12] [13]
+ [13] [14]
 File: fig/lzhx/微信图片_20211026130340.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211026130340.png>
- [14] [15] [16] [17]
+ [15] [16] [17] [18]
 File: fig/lzhx/微信图片_20211028113518.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211028113518.png>
- [18] [19] [20]
+ [19] [20] [21]
 File: fig/lzhx/微信图片_20211030111438.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211030111438.png>
- [21] [22] [23]
+ [22] [23] [24]
 File: fig/lzhx/微信图片_20211102112346.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102112346.png>
 File: fig/lzhx/微信图片_202111021123461.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021123461.png>
- [24] [25] [26] [27]
+ [25] [26] [27] [28]
 File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
- [28]
+ [29]
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021728151.png>
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102175446.png>
- [29]
+ [30]
 File: fig/lzhx/微信图片_20211106011930.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106011930.png>
- [30]
+ [31]
 File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106140136.png>
- [31] [32] [33] [34] [35] [36] [37] [38]) [39]
+ [32] [33] [34] [35] [36] [37] [38] [39]) [40]
 Chapter 2.
 (./body/hc.tex
 File: ./fig/hc/hc1.png Graphic file (type bmp)
 <./fig/hc/hc1.png>
- [40
+ [41
 
-] [41]
+] [42]
 File: ./fig/hc/hc2.png Graphic file (type bmp)
 <./fig/hc/hc2.png>
- [42]
+ [43]
 File: ./fig/hc/hc3.png Graphic file (type bmp)
 <./fig/hc/hc3.png>
- [43] [44] [45] [46]
+ [44] [45] [46] [47]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
 (Font)              scaled to size 8.0pt on input line 260.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
 (Font)              scaled to size 6.0pt on input line 260.
- [47]) [48]
+ [48]) [49]
 Chapter 3.
-(./body/Fourier.tex [49
+(./body/Fourier.tex [50
 
-] [50] [51] [52] [53]) [54]
+] [51] [52] [53] [54]) [55]
 Chapter 4.
-(./body/dmet.tex [55
+(./body/dmet.tex [56
 
 ]
 File: ./fig/et/dmet-hartree-fock-dm.png Graphic file (type bmp)
 <./fig/et/dmet-hartree-fock-dm.png>
-) [56]
+) [57]
 Chapter 5.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
-[57
+[58
 
-] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67]
+] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 517.
@@ -1580,7 +1581,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
-[68]
+[69]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
@@ -1588,9 +1589,9 @@ Overfull \hbox (25.10422pt too wide) in paragraph at lines 552--554
 []$\OML/cmm/m/it/10 Legendre$ \TU/SongtiSCLight(0)/m/n/10 变 换 是 一 个 实 变 量 的 实 值 凸 函 数 的 对 合 变 换，|  代 数 意 义 上\TU/texgyretermes(0)/m/n/10 ,$\OML/cmm/m/it/10 Legendre$ \TU/SongtiSCLight(0)/m/n/10 变 换 是 一 将 向 量 空 间 \TU/texgyretermes(0)/m/n/10 ($\OML/cmm/m/it/10 Vector space$\TU/texgyretermes(0)/m/n/10 )
  []
 
-[69] [70]) [71]
+[70] [71]) [72]
 Chapter 6.
-(./body/question.tex) [72
+(./body/question.tex) [73
 
 ] (./Strange handouts.aux)
  ***********
@@ -1608,12 +1609,12 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47043 strings out of 474773
- 1027371 string characters out of 5757723
- 2000734 words of memory out of 5000000
- 68349 multiletter control sequences out of 15000+600000
+ 47044 strings out of 474773
+ 1027374 string characters out of 5757723
+ 2000756 words of memory out of 5000000
+ 68350 multiletter control sequences out of 15000+600000
  573137 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,15n,108p,716b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (73 pages).
+Output written on Strange handouts.pdf (74 pages).
