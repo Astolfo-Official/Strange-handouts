@@ -34,7 +34,7 @@
 根据定义，任意一个叠加态都是归一化的：
 \[\|\psi\|=\sqrt{\langle\psi,\psi\rangle}=\sqrt{\sum_{\alpha}|c_{\alpha}|^2}=1\]
 \subsection{统计诠释与算符}
-我们定义$\bra{\cdot}$也表示一个量子态，与$\ket{\cdot}$一一对应且满足$\bra{\cdot}=\ket{\cdot}^{\dagger}$。我们分别称$\bra{\cdot}$和$\ket{\cdot}$为左矢和右矢，从上一小节我们知道右矢张成的空间是一个完备的线性空间，同时，左矢通过共轭映射（一一映射）也会生成一个完备的线性空间，也满足态叠加原理：
+我们定义$\bra{\cdot}$也表示一个量子态，与$\ket{\cdot}$一一对应且满足$\bra{\cdot}=\ket{\cdot}^{\dagger}$。我们分别称$\bra{\cdot}$和$\ket{\cdot}$为左矢和右矢，从上一小节我们知道右矢张成的空间是一个完备的线性空间，同时，左矢通过共轭映射（一一映射）也会生成一个完备的线性空间(这由 Riesz 表示定理保证，每个左矢对应都对应一个右矢的共轭)，也满足态叠加原理：
 \[\bra{\psi}=\sum_{\alpha}\bra{\phi_{\alpha}}c_{\alpha}^*, \quad \text{满足归一化：} \sum_{\alpha}|c_{\alpha}^*|^2=1\]
 同时由共轭的性质我们知道$\bra{\cdot}\ket{\cdot}=|\ket{\cdot}|^2\in\mathbb{R}\subset\mathbb{C}$。 假设右矢空间$R=\text{Span}\{\ket{\cdot}\}$，那么左矢空间$L$就是右矢空间的对偶空间，其中的元素为右矢空间的线性泛函（把右矢空间的点（态）映射到数域：$R \to \mathbb{K}=\mathbb{R}\text{ or }\mathbb{C}$）：
 \[\bra{f}:R \to \mathbb{K} \ , \quad \ket{g} \mapsto \bra{f}\ket{g}=\ket{\phi}^{\dagger}\ket{\psi}=\sum_{\alpha\alpha'}c_{f\alpha}^*c_{g\alpha'}\ket{\phi_{\alpha}}^{\dagger}\ket{\phi_{\alpha}}=\sum_{\alpha}c_{f\alpha}^*c_{g\alpha}\]
