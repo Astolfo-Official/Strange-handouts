@@ -260,6 +260,24 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 物理上认为\textcolor{blue}{\textbf{测不准原理提供的是两个算符（测量）之间的兼容程度，越兼容不确定性越小}}。比如你不会觉得测量$y$方向的坐标会跟$x$方向的动量有什么不兼容，因此它俩是对易的。以动量和坐标为例，$\comm{\hat{x}}{\hat{p}_x}=i\hbar$，则：
 \[\Delta \hat{x}\Delta \hat{p}_x \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{x}}{\hat{p}_x} \right \rangle|=\frac{\hbar}{2}\]
 
+\section{薛定谔方程(Schrödinger equation)：从经典力学开始猜}
+从\href{https://github.com/Astolfo-Official/Mathematics-in-Quantum-Chemistry/blob/main/%E3%80%8A%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B2.0.pdf}{经典力学}，定义作用量函数$S(\bm{q},t)$为拉格朗日量沿真实路径的积分(量纲为能量$\times$时间)：
+\[S(\bm{q},t)=\int_{t_0}^{t} L(\bm{q},\dot{\bm{q}},\tau)\dd{\tau}\]
+
+考虑对作用量函数的全微分：
+\[L=\dv{S}{t}=\pdv{S}{t}+\pdv{S}{\bm{q}}\dv{\bm{q}}{t}=\pdv{S}{t}+\pdv{S}{\bm{q}}\hat{\bm{q}}\]
+由于在真实路径上，故拉格朗日方程成立：
+\[\pdv{L}{\bm{q}}-\dv{t}\pdv{L}{\dot{\bm{q}}}=0 \quad \Rightarrow \quad \pdv{S}{\bm{q}}=\int_{t_0}^{t}\pdv{L}{\bm{q}}\dd{\tau}=\int_{t_0}^{t}\dv{t}\pdv{L}{\dot{\bm{q}}}\dd{\tau}=\pdv{L}{\dot{\bm{q}}}=\bm{p}\]
+因此：
+\[L=\pdv{S}{t}+\bm{p}\hat{\bm{q}} \quad \Rightarrow \quad \pdv{S}{t}+\bm{p}\hat{\bm{q}}-L=\pdv{S}{t}+H(\bm{q},\bm{p},t)=\pdv{S}{t}+H(\bm{q},\pdv{S}{\bm{q}},t)=0\]
+上式称为哈密顿-雅可比方程(Hamilton-Jacobi equation)，其与哈密顿力学与拉格朗日力学等价。从哈密顿-雅可比方程出发，薛定谔按照以下方式凑出了薛定谔方程，首先由于体系可以被波函数描述，由波动性可以推测体系波函数具有跟波一样的复指数形式：
+\[\psi(\bm{r},t)=e^{i(\bm{k}\cdot\bm{r}-\omega t)} \quad \Rightarrow \quad \psi(\bm{r},t)=A\exp\left(\frac{iS(\bm{r},t)}{\hbar}\right)\]
+波函数的时间导数为：
+\[\pdv{\psi(\bm{r},t)}{t}=\frac{iA}{\hbar}\pdv{S(\bm{r},t)}{t}\exp\left(\frac{iS(\bm{r},t)}{\hbar}\right)=\frac{i}{\hbar}\pdv{S(\bm{r},t)}{t}\psi(\bm{r},t) \quad \Rightarrow \quad i\hbar\pdv{\psi(\bm{r},t)}{t}=\pdv{S(\bm{r},t)}{t}\psi(\bm{r},t)\]
+带入哈密顿-雅可比方程并把哈密顿写成算符形式：
+\[i\hbar\pdv{\psi(\bm{r},t)}{t}=\pdv{S(\bm{r},t)}{t}\psi(\bm{r},t)\sim-\hat{H}\psi(\bm{r},t) \quad \Rightarrow \quad i\hbar\pdv{\psi(\bm{r},t)}{t}+\hat{H}\psi(\bm{r},t)=0\]
+
+现在回头来看这整个过程，从哈密顿-雅可比方程出发，通过引入波的复指数形式进而类比出薛定谔方程。整个过程非常的不严谨。这是自然的，因为从物理层面上看，量子力学是比经典力学处于更底层的位置，所以你永远无法严格得从经典力学的运动方程推导出量子力学的薛定谔方程。\textbf{就像你永远没法让儿子跟老妈搞生出老爸}。因此，\textcolor{blue}{\textbf{薛定谔方程也可以认为是量子力学的一个基本假设}}。
 \section{自由粒子}
 以一维自由粒子为例，其受到的势能$V$为0,其薛定谔方程可以简化为：
 \[\hat{H}\varPsi(x)=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\varPsi(x)}{\mathrm{d}x^2}=E\varPsi(x)\]
