@@ -426,7 +426,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 \section{氢原子}
 \subsection{氢原子薛定谔方程求解}
-想看自己看附录I
+想看自己看第\ref{hydrgen}章。
 
 \subsection{实、复轨道？}
 举个例子，求解氢原子薛定谔方程我们能得到$n=2$，$l=1$，$m=-1,0,1$三个轨道波函数的表达式：
@@ -437,86 +437,52 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 这些轨道与我们所熟知的$2p_x,2p_y,2p_z$有如下关系：
 \[2p_z=2p_0=N_{2p}ze^{-\frac{r}{2}} \quad 2p_x=\frac{\sqrt{2}}{2}(2p_{-1}-2p_1)=N_{2p}xe^{-\frac{r}{2}} \quad 2p_y=\frac{\sqrt{2}i}{2}(2p_{-1}+2p_1)=N_{2p}ye^{-\frac{r}{2}}\]
 
-插句题外话，由于能量简并，这几个轨道的线性组合得到的任意波函数都是哈密顿量的本征函数，如果轨道能量不简并的话，轨道线性组合的结果将并不会是哈密顿量的本征函数（具体理由详见线性代数），其对算符作用后得到的也不是本征值而是平均值。
+由于能量简并，这几个轨道的线性组合得到的任意波函数都是哈密顿量的本征函数，如果轨道能量不简并的话，轨道线性组合的结果将并不会是哈密顿量的本征函数，其对算符作用后得到的也不是本征值而是期望值。
 
 \section{单核多电子体系}
-\subsection{波恩-奥本海默近似}
-理论上对于一个微观体系，只要我们确定了粒子组成及其相互作用，我们就能写出该体系的哈密顿量，利用基本假设薛定谔方程去求解体系的波函数。
-但是实际上你解个氢原子都解得要死要活的了，甚至氢分子你都不能精确解(这里指给出解析解，理论上来说只要你数值解的精度无穷大也可以认为是给出了精确解，但显然做不到)，那么引入一些近似在不降低太多准确度的前提下大幅提高计算的速度就显得尤为重要。
+\subsection{波恩-奥本海默(Born-Oppenheimer)近似}
+理论上对于一个微观体系，只要我们确定了粒子组成及其相互作用，我们就能写出该体系的哈密顿量，利用基本假设薛定谔方程去求解体系的波函数。但是实际上你解个氢原子都解得要死要活的了，甚至氢分子你都不能给出解析解。那么引入一些近似在不降低太多准确度的前提下大幅提高计算的速度就显得尤为重要。这里我们将介绍一个最普遍的近似——波恩-奥本海默(BO)近似。
 
-这里我们介绍一个基本的也是最普遍的近似——波恩-奥本海默近似，至于为什么不是最基本的，等一下你就知道还有比他更底层的近似了。
+哈密顿量可以写成动能部分和势能部分，那么我们还能继续拆下去吗，该怎么拆呢？一个自然而然的想法就是我们能不能把核的运动和电子的运动分离开呢？于是我们就假设核跟电子的运动无关，进而可以将动能项拆成核动能部分和电子动能部分：
+\[\hat{H}=\hat{T_n}+\hat{T_e}+\hat{V}=\hat{T_n}+\hat{H_e}=-\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}+\sum_{i,j}V_{i,j}\]
 
-哈密顿量可以写成动能部分和势能部分，那么我们还能继续拆下去吗，该怎么拆呢？一个自然而然的想法就是我们能不能把核的运动和电子的运动分离开呢？
-于是我们就假设核跟电子的运动无关，进而可以将动能项拆成核动能部分和电子动能部分：
-\[\hat{H}=\hat{T}+\hat{V} \qquad \hat{T}=\hat{T_n}+\hat{T_e}\]
-于是在介绍波恩-奥本海默近似前我们其实用了一个更基本的近似。
+由于核的运动与电子的运动解耦，我们假设电子的波函数$\psi(\bm{Q},\bm{q})$和核的波函数$\varphi(\bm{Q})$可以分离，于是波函数可以写成如下形式，其中$\bm{Q}$为核坐标，$\bm{q}$为电子坐标：
+\[\varPsi(\bm{Q},\bm{q})=\psi(\bm{Q},\bm{q})\varphi(\bm{Q})\]
 
-结合上面的假设对一个分子体系，我们可以把哈密顿量写成：
-\[\hat{H}=-\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}+\sum_{i,j}V_{i,j}\]
+由于解耦，对电子部分的薛定谔方程来说核坐标$\bm{Q}$被视为参数引入，电子可以感受到核对其的库仑力，这就意味着，反复求解不同核坐标微小变化下的电子薛定谔方程可以获得电子能量$U(\bm{Q})$关于核坐标$\bm{Q}$函数，成为势能面(PES)。由于这种将电子波函数重新计算为无穷小变化的核几何形状的函数的过程让人想起绝热定理的条件，因此这种获得 PES 的方式通常称为绝热近似，而 PES 本身称为绝热面。
 
-我们假设电子的波函数$\psi(Q,q)$和核的波函数$\varphi(Q)$可以分离，于是波函数可以写成如下形式，其中Q为核坐标，q为电子坐标：
-\[\varPsi(Q,q)=\psi(Q,q)\varphi(Q)\]
+正如BO近似的另一个名字定核近似，简单理解，电子相对于核运动太快，波恩-奥本海默近似就是认为核不动，当然这是不对的，\textcolor{blue}{\textbf{BO近似认为的是电子相较于原子核运动很快所以认为核坐标变化后电子总能在瞬间达到新的平衡}}，所以有$\nabla^2_n\psi(\bm{Q},\bm{q}) \approx 0, \ \nabla_n\psi(\bm{Q},\bm{q}) \approx 0$。
 
-正如波恩-奥本海默近似Born-Oppenheimer approximation的另一个名字定核近似，简单理解，电子相对于核运动太快，波恩-奥本海默近似就是认为核不动，当然这是不对的，波恩-奥本海默近似认为的是电子相较于原子核运动很快所以认为电子的总体分布在核外基本不变，所以有：
-\[\nabla^2_n\psi(Q,q) \approx 0 \qquad \nabla_n\psi(Q,q) \approx 0\]
-
-将哈密顿量作用在波函数上，先看动能部分：
-\[\hat{T}\varPsi(Q,q)=-\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}(\psi(Q,q)\varphi(Q))-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}(\psi(Q,q)\varphi(Q))\]
-
-考虑核动能部分：
-\[\hat{T_n}\varPsi(Q,q)=-\sum_i\frac{\hbar^2}{2m_{n,i}}\left (\nabla^2_{n,i}\psi(Q,q) \cdot \varphi(Q)+2\nabla_{n,i}\psi(Q,q) \cdot \nabla_{n,i}\varphi(Q)+ \psi(Q,q) \cdot \nabla^2_{n,i}\varphi(Q)  \right )\]
-\[\hat{T_n}\varPsi(Q,q) \approx -\sum_i\frac{\hbar^2}{2m_{n,i}}\psi(Q,q) \cdot \nabla^2_{n,i}\varphi(Q)=-\psi(Q,q)\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(Q)\]
+将哈密顿量作用在波函数上，先看核动能部分：
+\[\begin{aligned}
+\hat{T_n}\varPsi(\bm{Q},\bm{q})&=-\sum_i\frac{\hbar^2}{2m_{n,i}}\left (\nabla^2_{n,i}\psi(\bm{Q},\bm{q}) \cdot \varphi(\bm{Q})+2\nabla_{n,i}\psi(\bm{Q},\bm{q}) \cdot \nabla_{n,i}\varphi(\bm{Q})+ \psi(\bm{Q},\bm{q}) \cdot \nabla^2_{n,i}\varphi(\bm{Q})  \right )\\ 
+&\approx -\sum_i\frac{\hbar^2}{2m_{n,i}}\psi(\bm{Q},\bm{q}) \cdot \nabla^2_{n,i}\varphi(\bm{Q})=-\psi(\bm{Q},\bm{q})\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(\bm{Q})
+\end{aligned}\]
 
 考虑电子动能部分：
-\[\hat{T_e}\varPsi(Q,q)=-\varphi(Q)\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(Q,q)\]
+\[\hat{T_e}\varPsi(\bm{Q},\bm{q})=-\varphi(\bm{Q})\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(\bm{Q},\bm{q})\]
 
 合并整个哈密顿量，可以将薛定谔方程改写成如下形式：
-\[\hat{H}\varPsi=-\psi\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi-\varphi\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi+\sum_{i,j}V_{i,j}\psi\varphi=E\psi\varphi\]
+\[\hat{H}\varPsi(\bm{Q},\bm{q})=-\psi(\bm{Q},\bm{q})\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(\bm{Q})-\varphi(\bm{Q})\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(\bm{Q},\bm{q})+\sum_{i,j}V_{i,j}\psi(\bm{Q},\bm{q})\varphi(\bm{Q})=E\psi(\bm{Q},\bm{q})\varphi(\bm{Q})\]
 
-波恩-奥本海默近似其实也是一种分离变量，接下来的处理我们将不做多余的文字说明：
-\[-\frac{1}{\varphi(Q)}\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(Q)-\frac{1}{\psi(Q,q)}\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(Q,q)+\sum_{i,j}V_{i,j}=E\]
-\[-\frac{1}{\varphi(Q)}\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(Q):=E-U(Q) \tag{a}\]
-\[-\frac{1}{\psi(Q,q)}\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(Q,q)+\sum_{i,j}V_{i,j}:=U(Q)\]
-\[-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(Q,q)+\sum_{i,j}V_{i,j}\psi(Q,q)=U(Q)\psi(Q,q) \tag{b}\]
+利用分离变量获得电子薛定谔方程:
+\[-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(\bm{Q},\bm{q})+\sum_{i,j}V_{i,j}\psi(\bm{Q},\bm{q})=U(\bm{Q})\psi(\bm{Q},\bm{q})\]
+与核运动方程:
+\[-\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(\bm{Q})=[E-U(\bm{Q})]\varphi(\bm{Q})\]
 
-(a)式即为该分子体系的核薛定谔方程，(b)式即为该分子体系的电子薛定谔方程，也即我们遇见的最常见的薛定谔方程。顺便一提，重新定义的$U(Q)$即为Potential Energy Surface (PES)，也即我们常说的势能面。
-电子结构所关心的是(b)式，解出对应核构型下的电子分布，而动力学(化学反应)求解的是(a)式，认为给定核构型下的电子结构是已知的，某种意义上理论化学考虑化学反应是与电子无关的，这与某有机化学教授所说的"化学反应其实是电子的反应"相抵触(乐
+电子结构所关心的是电子薛定谔方程，解出给定核构型下的电子分布，而动力学关心的是核薛定谔方程，认为给定核构型下的电子结构是已知的。一个有意思的事是：我们求解氢原子的波函数时用的是只含电子项的薛定谔方程，但是我们依然说这个是精确解，这是为什么呢？\textcolor{blue}{\textbf{因为波恩-奥本海默近似本质上是假定变量可分离，因此对实际上确实可分离的体系这就不是一种近似}}。BO近似是必要的，毕竟三体以上的系统我们没法精确求解。
 
-一个有意思的事是，实际上我们求解氢原子的波函数时用的是只含电子项的薛定谔方程，但是我们依然说这个是精确解，这是为什么呢？
-\textbf{因为波恩-奥本海默近似本质上是假定变量可分离，因此对实际上确实可分离的体系这就不是一种近似。}上述视角是从波函数出发，如果我们从哈密顿量开始看，波恩-奥本海默近实际上将核动能从电子哈密顿量中剔除，很容易被误认为是假设核不动。
+\subsection{平均场(Mean field)近似}
+至此，在BO近似后，我们开始接触多电子体系，需要注意的是现在我们其实还是不能直接处理这样的多电子体系，主要的原因是电子-电子相互作用我们处理不了（本质上还是三体以上的系统没法精确求解），所以我们需要考虑进一步近似把多电子体系近似成我们能处理的单电子体系。
 
-\subsection{平均场近似}
-至此，我们开始接触多电子体系，需要注意的是现在我们其实还是不能直接处理这样的多电子体系，主要的原因是电子-电子相互作用我们处理不了，所以我们需要考虑进一步近似把多电子体系近似成我们能处理的单电子体系。
-
-考虑一个多电子原子，其电子哈密顿量可以表示成：
+考虑一个多电子多核系统，其电子哈密顿量可以表示成：
 \[\hat{H}=-\sum_{i}\frac{\hbar^2}{2m_i}\nabla^2_i+\sum_{i,j}\frac{q_iq_j}{4 \pi \varepsilon_0 r_{ij}}-\sum_i\frac{q_iq_n}{4 \pi \varepsilon_0 r_{i}}\]
 
-在平均场近似Central field approximation下，把其他电子对某电子的双体算符(势能)近似成其他电子对该电子产生的势场(单体算符)，并且利用独立粒子近似Independent-particle approximation，把体系哈密顿量近似成单粒子哈密顿量的加和，其中$V_i$为其他粒子对第i个粒子产生的平均势场：
-\[\hat{H}=\sum_{i}\hat{H}_{i} \qquad \text{where} \quad \hat{H}_i=-\frac{\hbar^2}{2m_i}+V_i\]
+在平均场近似下，把其他电子对某电子的双体算符$(\hat{V}_{ij})$平均成其他电子对该电子产生的势场$(\hat{V}_{i})$，此时体系哈密顿算符可以被拆分成单个粒子的哈密顿算符之和：
+\[\hat{H}=\sum_{i}\hat{H}_{i} \qquad \text{where} \quad \hat{H}_i=-\frac{\hbar^2}{2m_i}\nabla^2_i+V_i\]
 
-同理，电子波函数也近似成各个单电子波函数的乘积：
-\[\varPsi=\prod_i\varPsi_i\]
-
-利用分离变量法，我们将原体系总波函数写成单体波函数：
-\[\hat{H}_i\varPsi_i=\left ( -\frac{\hbar^2}{2m_i}+V_i \right ) \varPsi_i=\varepsilon_i\varPsi_i\]
-
-平均场近似下，我们一般配合自洽场方法Self-Consistent Field (SCF)进行求解，自洽场方法的基本思路是利用一套初始的猜测轨道计算势场$V_i$，然后将$V_i$代入方程重新计算轨道，然后不断迭代最终得到稳定解：
-
-我们从电子1（只是我们人为的编号，不代表粒子是可区分的）开始：
-
-某电子的电荷密度可以用下式描述：
-\[\rho_i=-e|\varPsi_i|^2 \qquad (i=1,2,3 \cdots n)\]
-
-其对电子1产生的势场为：
-\[V_{1i}=\frac{-e}{4 \pi \varepsilon_0}\int_{\mathbb{R}^3}\frac{\rho_i}{r_{1i}}d\tau_i=\frac{e^2}{4 \pi \varepsilon_0}\int_{\mathbb{R}^3}\frac{|\varPsi_i|^2}{r_{1i}}d\tau_i \qquad (i=2,3,4 \cdots n)\]
-
-故电子1受到的势场$V_1$为：
-\[V_i=\sum_{i=2}^nV_{1i}-\frac{Ze^2}{4 \pi \varepsilon_0r_1}=\sum_{i=2}^n\frac{e^2}{4 \pi \varepsilon_0}\int_{\mathbb{R}^3}\frac{|\varPsi_i|^2}{r_{1i}}d\tau_i-\frac{Ze^2}{4 \pi \varepsilon_0r_1}\]
-
-故，粒子1的单电子薛定谔方程可以构建成：
-\[\left ( -\frac{\hbar^2}{2m_1}+V_1 \right ) \varPsi_1=\varepsilon_1\varPsi_1\]
-
-求解该方程我们可以得到更新的轨道$\varPsi_1$，利用其我们可以进入粒子2的运算，如此往复一直迭代至收敛至稳定解。
+同理，电子波函数也可以近似成各个单电子波函数的乘积$\varPsi=\varPsi_1(\bm{q}_1)\varPsi_2(\bm{q}_2)\cdots$(这里先对波函数这样的拆分方法正确性按下不表)，此时系统的总薛定谔方程可以被拆分成一系列的单体哈密顿方程：
+\[\hat{H}_i\varPsi_i=\left( -\frac{\hbar^2}{2m_i}\nabla^2_i+\hat{V}_i \right)\varPsi_i=\varepsilon_i\varPsi_i\]
 
 \subsection{粒子全同性与泡利不相容原理}
 全同性应该是微观粒子与宏观物体最不同的地方之一。
@@ -1357,7 +1323,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \nabla^2 = \frac{\partial^2}{\partial r^2} + \frac{2}{r}\frac{\partial}{\partial r} + \frac{1}{r^2}\frac{\partial^2}{\partial\theta^2} + \frac{\cot\theta}{r^2}\frac{\partial}{\partial\theta} + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2} = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial}{\partial\theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
 \]
 
-\section{附录II:氢原子薛定谔方程求解(级数解法)}
+\section{附录II:氢原子薛定谔方程求解(级数解法)\label{hydrgen}}
 利用分离变量法，我们假定定态波函数$\varPsi(r,\theta,\varphi)$可以表示成如下形式：
 \[\varPsi(r,\theta,\varphi)=R(r)\Theta(\theta)\varPhi(\varphi)\]
 
