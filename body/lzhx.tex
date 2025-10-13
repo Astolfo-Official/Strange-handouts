@@ -205,53 +205,41 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 相对应的$\hat{S}_{\phi\psi}\hat{S}_{\psi\phi}^{\dagger}=\mathbbm{1}$读者不难自证。综上所述说明，变换算符$\hat{S}_{\phi\psi}$是一个酉算符。
 
 \section{对易}
-定义算符对易，若两算符$\hat{A}$、$\hat{B}$满足如下结果则称两算符对易：
-\[\comm{\hat{A}}{\hat{B}}=\hat{A}\hat{B}-\hat{B}\hat{A}=0\]
+定义两算符$\hat{A}$、$\hat{B}$的对易子：
+\[\comm{\hat{A}}{\hat{B}}=\hat{A}\hat{B}-\hat{B}\hat{A}\]
 
-对易反映的是算符的可交换性，数学意义上如果两算符对易，他们将\textcolor{blue}{\textbf{拥有相同的本征函数集}}。此时一般用两个算符的本征值来代表他们有共同的本征态：
-\[\hat{A}\ket{ab}=a\ket{ab}, \quad \hat{B}\ket{ab}=b\ket{ab}\]
+如果\textcolor{blue}{\textbf{对易子为0则称两算符对易}}。对易反映的是算符的可交换性，数学意义上如果两算符对易，他们\textcolor{blue}{\textbf{拥有相同的本征函数集}}。此时一般用两个算符的本征值来代表他们有共同的本征态$\hat{A}\ket{ab}=a\ket{ab}, \ \hat{B}\ket{ab}=b\ket{ab}$：
+\[\hat{A}\hat{B}\ket{ab}=\hat{A}b\ket{ab}=b\hat{A}\ket{ab}=ba\ket{ab}=\hat{B}a\ket{ab}=\hat{B}\hat{A}\ket{ab} \quad \Leftrightarrow \quad \comm{\hat{A}}{\hat{B}}=\hat{0}\]
 
-为什么要定义算符的对易，数学上严格的表述是赋范线性空间的算子只满足线性和结合律一般不具备交换律。这就好比你肚子空空时先吃饭再答辩才能拉出好东西，而先答辩再吃饭可能还没等答辩完就饿昏过去了。
+为什么要定义算符的对易，数学上严格的表述是赋范线性空间的算子只满足线性和结合律一般不具备交换律。\textbf{这就好比你肚子空空时先吃饭再答辩才能拉出好东西，而先答辩再吃饭可能还没等答辩完就饿昏过去了}。
 
 而当两算符具有相同的本征态时一个算符只会把本征态映射到一个数乘上本征态本身上而不改\textcolor{blue}{\textbf{变态}}本身，当下一个算符作用上去的时候还是作用在这个本征态上。物理上玄乎的表述来说就是观测会改变系统的状态，只有当算符对易且观测本征态时，观测才不会改变系统的状态（跟放屁一样）。
 
-\[\hat{A}\hat{B}\ket{ab}=\hat{A}b\ket{ab}=b\hat{A}\ket{ab}=ba\ket{ab}=\hat{B}a\ket{ab}=\hat{B}\hat{A}\ket{ab} \quad \Leftrightarrow \quad \comm{\hat{A}}{\hat{B}}=\hat{0}\]
-
 对易还有以下关系：
-\[\comm{\hat{A}}{\hat{B}}=-\comm{\hat{B}}{\hat{A}}\]
-\[\comm{\hat{A}}{\hat{B}+\hat{C}}=\comm{\hat{A}}{\hat{B}}+\comm{\hat{A}}{\hat{C}}\]
-\[\comm{\hat{A}}{\hat{B}\hat{C}}=\hat{B}\comm{\hat{A}}{\hat{C}}+\comm{\hat{A}}{\hat{B}}\hat{C}\]
-\[\comm{\hat{A}\hat{B}}{\hat{C}}=\hat{A}\comm{\hat{B}}{\hat{C}}+\comm{\hat{A}}{\hat{C}}\hat{B}\]
+\[\comm{\hat{A}}{\hat{B}}=-\comm{\hat{B}}{\hat{A}}, \quad \comm{\hat{A}}{\hat{B}+\hat{C}}=\comm{\hat{A}}{\hat{B}}+\comm{\hat{A}}{\hat{C}}\]
+\[\comm{\hat{A}}{\hat{B}\hat{C}}=\hat{B}\comm{\hat{A}}{\hat{C}}+\comm{\hat{A}}{\hat{B}}\hat{C}, \quad \comm{\hat{A}\hat{B}}{\hat{C}}=\hat{A}\comm{\hat{B}}{\hat{C}}+\comm{\hat{A}}{\hat{C}}\hat{B}\]
 \[\comm{\hat{A}}{\comm{\hat{B}}{\hat{C}}}+\comm{\hat{B}}{\comm{\hat{A}}{\hat{C}}}+\comm{\hat{C}}{\comm{\hat{A}}{\hat{B}}}=0\]
+
+一个比较重要的对易是坐标与动量的对易关系$\comm{\hat{x}}{\hat{p}_x}=i\hbar$ (如果没法直接脑补算符之间的运算可以把对易子作用到一个坐标表象的态$\psi(x)$上再算)：
+\[\comm{\hat{x}}{\hat{p}_x}=\hat{x}\hat{p}_x-\hat{p}_x\hat{x}=-i\hbar x\partial_x+i\hbar\partial_xx=i\hbar x\partial_x+i\hbar+i\hbar\hat{x}\partial_x=i\hbar\]
 
 \section{不确定性原理}
 对任意两不对易的算符，都满足不确定性原理 (Uncertainty principle)：
-\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|, \quad \Delta\hat{A}=\sqrt{\hat{A}-\left \langle \hat{A} \right \rangle}\]
-
+\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|, \quad \Delta\hat{A}=\sqrt{\delta\hat{A}}=\sqrt{\hat{A}-\langle \hat{A} \rangle}\]
 下面给出两种证明：
 
-\textbf{一、利用内积的非负性}:
+\paragraph*{一、利用内积的非负性:}
 
-定义$\ket*{\varphi}=(\delta\hat{A}+i\lambda \delta\hat{B})\ket*{f}$，其中，$\hat{A}$、$\hat{B}$为两不对易的厄米算符，$\delta\hat{A}$、$\delta\hat{B}$为：
-\[\delta\hat{A}=\hat{A}-\left \langle \hat{A} \right \rangle \qquad \delta\hat{B}=\hat{B}-\left \langle \hat{B} \right \rangle\]
-则：
+定义$\ket*{\varphi}=(\delta\hat{A}+i\lambda \delta\hat{B})\ket*{f}$，其中，$\hat{A}$、$\hat{B}$为两不对易的厄米算符，则：
 \[\bra*{\varphi}\ket*{\varphi}=\bra*{f}(\delta\hat{A}-i\lambda \delta\hat{B})(\delta\hat{A}+i\lambda \delta\hat{B})\ket*{f} = \left \langle (\delta\hat{A})^2 \right \rangle+i\lambda\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle+\left \langle \lambda^2(\delta\hat{B})^2 \right \rangle \geqslant 0\]
 上式子左侧为$\lambda$的二次式，根据初中数学我们知道：
-\[\left |i\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle\right |^2-4\left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \leqslant 0\]
-即：
-\[\left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \geqslant \qty|\frac{i}{2}\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2=\frac{1}{4}\qty|\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2\]
+\[\left |i\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle\right |^2-4\left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \leqslant 0 \quad \Leftrightarrow \quad \left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \geqslant \qty|\frac{i}{2}\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2=\frac{1}{4}\qty|\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2\]
 依照定义显然有如下关系：
 \[\comm{\delta\hat{A}}{\delta\hat{B}}=\comm{\hat{A}}{\hat{B}}\]
 代入上式得：
-\[(\Delta \hat{A})^2(\Delta \hat{B})^2 = \left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \geqslant \frac{1}{4}\qty|\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2=\frac{1}{4}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|^2\]
+\[(\Delta \hat{A})^2(\Delta \hat{B})^2 = \left \langle (\delta\hat{A})^2 \right \rangle\left \langle (\delta\hat{B})^2 \right \rangle \geqslant \frac{1}{4}\qty|\left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle|^2=\frac{1}{4}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|^2 \quad \Rightarrow \quad \Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
 
-两边开方得到：
-\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
-
-\textbf{二、利用施瓦兹不等式}:
-
-施瓦兹不等式为：
-\[\bra*{a}\ket*{a}\bra*{b}\ket*{b} \geqslant \bra*{a}\ket*{b}\bra*{b}\ket*{a}\]
+\paragraph*{二、利用施瓦兹不等式:}$\bra*{a}\ket*{a}\bra*{b}\ket*{b} \geqslant \bra*{a}\ket*{b}\bra*{b}\ket*{a}=|\bra*{a}\ket*{b}|^2$
 
 定义$\ket*{a}=\delta\hat{A}\ket*{f}$，$\ket*{b}=\delta\hat{B}\ket*{f}$，代入不等式得到：
 \[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \left \langle \delta\hat{A}\delta\hat{B} \right \rangle\left \langle \delta\hat{B}\delta\hat{A} \right \rangle=\left \langle \delta\hat{A}\delta\hat{B} \right \rangle^2\]
@@ -267,15 +255,10 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\qty{\hat{A},\hat{B}}^{\dagger}=\hat{B}^{\dagger}\hat{A}^{\dagger}+\hat{A}^{\dagger}\hat{B}^{\dagger}=\hat{B}\hat{A}+\hat{A}\hat{B}=\qty{\hat{A},\hat{B}}\]
 
 故上式可以继续展开：
-\[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2 +\frac{1}{4} \left |\left \langle \qty{\delta\hat{A},\delta\hat{B}} \right \rangle \right |^2 \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2\]
+\[\left \langle \delta\hat{A}^2 \right \rangle\left \langle \delta\hat{B}^2 \right \rangle \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2 +\frac{1}{4} \left |\left \langle \qty{\delta\hat{A},\delta\hat{B}} \right \rangle \right |^2 \geqslant \frac{1}{4} \left | \left \langle \comm{\delta\hat{A}}{\delta\hat{B}} \right \rangle \right |^2 \quad \Rightarrow \quad \Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
 
-两边开方得到：
-\[\Delta \hat{A}\Delta \hat{B} \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{A}}{\hat{B}} \right \rangle|\]
-
-举个例子，以动量和坐标为例，$\comm{\hat{x}}{\hat{p}_x}=i\hbar$，则：
+物理上认为\textcolor{blue}{\textbf{测不准原理提供的是两个算符（测量）之间的兼容程度，越兼容不确定性越小}}。比如你不会觉得测量$y$方向的坐标会跟$x$方向的动量有什么不兼容，因此它俩是对易的。以动量和坐标为例，$\comm{\hat{x}}{\hat{p}_x}=i\hbar$，则：
 \[\Delta \hat{x}\Delta \hat{p}_x \geqslant \frac{1}{2}\qty|\left \langle \comm{\hat{x}}{\hat{p}_x} \right \rangle|=\frac{\hbar}{2}\]
-
-测不准原理提供的是两个算符（测量）之间的兼容程度，越兼容不确定性越小，比如你不会觉得测量$y$方向的坐标会跟$x$方向的动量有什么不兼容，因此它俩是对易的。
 
 \section{自由粒子}
 以一维自由粒子为例，其受到的势能$V$为0,其薛定谔方程可以简化为：
