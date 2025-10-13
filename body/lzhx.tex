@@ -288,22 +288,14 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 显然，我们能得到：
 \[\lim_{V \rightarrow +\infty}\varPsi=0\]
 
-因此，粒子波函数只可能出现在$x \in [0,l]$的范围内，且为保证连续性，波函数还需满足满足下列边界条件，在这种意义下势箱波函数可以看成是一种驻波：
-\[\varPsi(0)=0 \qquad \varPsi(l)=0\]
+因此，粒子波函数只可能出现在$x \in [0,l]$的范围内，且为保证连续性，波函数还需满足满足下列边界条件$\varPsi(0)=0, \ \varPsi(l)=0$，在这种意义下势箱波函数可以看成是一种驻波：
+\[\varPsi(0)=C_1\sin \ 0+C_2\cos \ 0=0 \Rightarrow C_2=0\]
+\[\varPsi(l)=C_1\sin(\frac{\sqrt{2mE}}{\hbar}l)=0 \quad \Rightarrow \quad E=\frac{n^2 \pi^2 \hbar^2}{2ml^2}=\frac{n^2 h^2}{8ml^2} \quad (n\in\mathbb{N}_+)\]
+利用边界条件$\varPsi(l)=0$，我们得到一维势箱能量量子化。
 
-边界条件的引入也就是梦开始的地方，我们在自由粒子中看不到任何跟离散化有关系的地方，但是在接下来的内容以及后续的内容中我们会发现，量子化的出现都不是来源于量子力学的基本方程也即薛定谔方程，而是来源于各种的边界条件（束缚态）：
-
-利用边界条件$\varPsi(0)=0$:
-\[\varPsi(0)=C_1sin \ 0+C_2cos \ 0=0 \Rightarrow C_2=0\]
-
-再利用边界条件$\varPsi(l)=0$，我们得到一维势箱能量量子化:
-\[\varPsi(l)=C_1sin(\frac{\sqrt{2mE}}{\hbar}l)=0 \quad \Rightarrow \quad E=\frac{n^2 \pi^2 \hbar^2}{2ml^2}=\frac{n^2 h^2}{8ml^2}\]
-
-归一化：
-\[\int_0^l\varPsi^*\varPsi\dd{x}=C_1^2\int_0^lsin^2\left (\frac{n \pi}{l}x \right )\dd{x}=\frac{C_1^2}{2}\int_0^l\left ( 1-cos\left (\frac{2n \pi}{l}x \right ) \right )\dd{x}=\frac{C_1^2l}{2}=1 \quad \Rightarrow \quad C_1=\sqrt{\frac{2}{l}}\]
-
-最终我们得到归一化一维势箱波函数及能量表达式：
-\[\varPsi_n=\sqrt{\frac{2}{l}}sin\left (\frac{n \pi}{l}x \right ) \qquad E_n=\frac{n^2 h^2}{8ml^2} \qquad (n=1,2,3 \cdots)\]
+最后利用归一化得到一维势箱波函数及能量表达式：
+\[\int_0^l\varPsi^*\varPsi\dd{x}=C_1^2\int_0^l \sin^2\left (\frac{n \pi}{l}x \right )\dd{x}=\frac{C_1^2}{2}\int_0^l\left ( 1- \cos\left (\frac{2n \pi}{l}x \right ) \right )\dd{x}=\frac{C_1^2l}{2}=1 \quad \Rightarrow \quad C_1=\sqrt{\frac{2}{l}}\]
+\[\varPsi_n=\sqrt{\frac{2}{l}}、sin\left (\frac{n \pi}{l}x \right ) \qquad E_n=\frac{n^2 h^2}{8ml^2} \quad (n\in\mathbb{N}_+)\]
 
 \begin{center}
     \includegraphics[scale=0.4]{fig/lzhx/微信图片_20211025150139.png}
@@ -312,7 +304,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \subsection{三维势箱Box[a,b,c]}
 三维势箱在利用分离变量的方法可以看成三个一维势箱的乘积，这里我们简单介绍一下分离变量法在势箱中的应用，假设三维势箱三个坐标相互独立，则三维势箱波函数可以写成：
 \[\varPsi(x,y,z):=X(x)Y(y)Z(z)\]
-则，不考虑边界点，势箱波函数可以写成：
+此时薛定谔方程可以展开为：
 \[-\frac{\hbar^2}{2m}\nabla^2\varPsi=-\frac{\hbar^2}{2m}\left (YZ\frac{\partial^2X}{\partial x^2}+XZ\frac{\partial^2Y}{\partial y^2}+XY\frac{\partial^2Z}{\partial z^2} \right )=EXYZ\]
 
 显然，除了平凡解$\psi=0$外，我们可以认为解出的波函数仅在有限个点上取值为零，不考虑这些奇异点，我们将方程两边同时除以$XYZ$:
@@ -324,15 +316,8 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 因此，我们可以将上述三维势箱薛定谔方程方程写成三个一维势箱薛定谔方程：
 \[-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2X}{\mathrm{d}x^2}=E_xX, \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Y}{\mathrm{d}y^2}=E_yY, \qquad -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2Z}{\mathrm{d}z^2}=E_zZ\]
 
-解得三个波函数及能量：
-\[X=\sqrt{\frac{2}{a}}\sin\left (\frac{n_x \pi}{l}x \right ), \qquad Y=\sqrt{\frac{2}{b}}\sin\left (\frac{n_y \pi}{l}y \right ), \qquad Z=\sqrt{\frac{2}{c}}\sin\left (\frac{n_z \pi}{l}z \right )\]
-\[E_{x,n}=\frac{n_x^2 h^2}{8ma^2}, \qquad E_{y,n}=\frac{n_y^2 h^2}{8mb^2}, \qquad E_{z,n}=\frac{n_z^2 h^2}{8mc^2}\]
-\[(n_x,n_y,n_z=1,2,3 \cdots)\]
-
-合并波函数及能量：
-\[\varPsi=\sqrt{\frac{8}{abc}}\sin\left (\frac{n_x \pi}{l}x \right )\sin\left (\frac{n_y \pi}{l}y \right )\sin\left (\frac{n_z \pi}{l}z \right )\]
-\[E_{x,n}=\frac{h^2}{8m} \left (\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2}+\frac{n_z^2}{c^2} \right )\]
-\[(n_x,n_y,n_z=1,2,3 \cdots)\]
+求解并合并得到三维势箱的波函数及能量：
+\[\varPsi=\sqrt{\frac{8}{abc}}\sin\left (\frac{n_x \pi}{l}x \right )\sin\left (\frac{n_y \pi}{l}y \right )\sin\left (\frac{n_z \pi}{l}z \right ), \quad E_{x,n}=\frac{h^2}{8m} \left (\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2}+\frac{n_z^2}{c^2} \right ) \quad (n_x,n_y,n_z \in \mathbb{N}_+)\]
 
 \section{振动量子化——谐振子}
 对势箱中的振动系统，我们可以把哈密顿量构造成：

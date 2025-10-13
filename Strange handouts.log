@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  12 OCT 2025 23:07
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  12 OCT 2025 23:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1495,12 +1495,13 @@ LaTeX Font Info:    Trying to load font information for U+bbm on input line 97.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [6] [7] [8] [9] [10] [11]
+Missing character: There is no 、 ("3001) in font cmr10!
 File: fig/lzhx/微信图片_20211025150139.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211025150139.png>
- [12] [13]
+[12]
 File: fig/lzhx/微信图片_20211104112141.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211104112141.png>
- [14]
+ [13] [14]
 File: fig/lzhx/微信图片_20211026130340.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211026130340.png>
  [15] [16] [17] [18]
@@ -1517,22 +1518,22 @@ File: fig/lzhx/微信图片_202111021123461.png Graphic file (type bmp)
  [25] [26] [27] [28]
 File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
- [29]
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
+ [29]
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021728151.png>
- [30]
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102175446.png>
+ [30]
 File: fig/lzhx/微信图片_20211106011930.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106011930.png>
- [31] [32]
+ [31]
 File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106140136.png>
- [33] [34] [35] [36] [37] [38] [39]) [40]
+ [32] [33] [34] [35] [36] [37] [38] [39]) [40]
 Chapter 2.
 (./body/hc.tex
 File: ./fig/hc/hc1.png Graphic file (type bmp)
