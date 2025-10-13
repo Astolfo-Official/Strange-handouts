@@ -64,7 +64,7 @@
 \[\hat{P}_a\ket{\phi_a}=\ket{\phi_a}\bra{\phi_a}\ket{\phi_a}=\ket{\phi_a}\]
 
 \section{表象理论}
-在上一节的基本假设中我们构建了一个由算符$\hat{A}$的正交归一的本征态空间$\{\ket{\phi_{\alpha}}\}$，并引出了其对偶空间$\{\bra{\phi_{\alpha}}\}$。现在终于不用再引入什么假设可以安心搞点数学了（喜
+在上一节的基本假设中我们构建了一个由算符$\hat{A}$的正交归一的本征态空间$\{\ket{\phi_{\alpha}}\}$，并引出了其对偶空间$\{\bra{\phi_{\alpha}}\}$。而表象理论的核心目的就是如何在已知的态空间表示未知的态。现在终于不用再引入什么假设可以安心搞点数学了（喜
 
 再次重申算符$\hat{A}$的本征态空间$\{\ket{\phi_{\alpha}}\}$基底正交归一：
 \[\hat{A}\ket{\phi_{\alpha}}=\phi_{\alpha}\ket{\phi_{\alpha}}, \quad \bra{\phi_{\alpha}}\ket{\phi_{\alpha'}}=\delta_{\alpha\alpha'}\]
@@ -172,16 +172,17 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \end{aligned}\]
 
 \subsection{表象变换}
-表象理论的一大核心内容是表象之间的变换，这也是$\mathbbm{1}$发挥作用的重要领域。表象变换也即态空间的基底变换，假设我们已知基底$\{\ket{\phi_{\alpha}}\}$，某两个态$\ket{p},\ket{q}$与某个算符$\hat{O}$（并非一定要是生成该基底的算符，但在计算期望时要求至少本征态包含在基底中，原因见下），则内积$\bra{p}\ket{q}$与算符$\hat{O}$在基底$\{\ket{\phi_{\alpha}}\}$下的表示为：
+表象理论的一大核心内容是表象之间的变换，这也是$\mathbbm{1}$发挥作用的重要领域。表象变换也即态空间的基底变换，假设我们已知基底$\{\ket{\phi_{\alpha}}\}$，某两个态$\ket{p},\ket{q}$与算符$\hat{O}$，则内积$\bra{p}\ket{q}$与算符$\hat{O}$在基底$\{\ket{\phi_{\alpha}}\}$下的表示为：
 \[\bra{p}\ket{q}=\bra{p}\mathbbm{1}\ket{q}=\sum_{\alpha}\bra{p}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{q}=\sum_{\alpha}w(\alpha)c_{p\alpha}^*c_{q\alpha}\]
 \[\hat{O}=\mathbbm{1}\hat{O}\mathbbm{1}=\sum_{\alpha\alpha'}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\hat{O}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}:=\sum_{\alpha\alpha'}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\]
 这里$O_{\alpha\alpha'}$是算符在基底$\{\ket{\phi_{\alpha}}\}$下的生成元，这里给出正式名称，再叫矩阵元就不礼貌了。这里突然想到，我们既然可以给内积中间插入一个$\mathbbm{1}$算符，我们能不能插入其他算符呢？比如:
 \[\bra{p}\hat{O}\ket{q}=\sum_{\alpha\alpha'}\bra{p}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\ket{q}=\sum_{\alpha\alpha'}c_{p\alpha}^*w(\alpha)O_{\alpha\alpha'}w(\alpha')c_{q\alpha'}\]
 当$\ket{q}=\ket{p}$时，有：
 \[\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}=\sum_{\alpha\alpha'}\bra{p}\ket{\phi_{\alpha}}w(\alpha)O_{\alpha\alpha'}w(\alpha')\bra{\phi_{\alpha'}}\ket{p}=\sum_{\alpha\alpha'}c_{p\alpha}^*w(\alpha)O_{\alpha\alpha'}w(\alpha')c_{p\alpha'}\]
-然后现在我们卡住了，唯一能推进的办法是假定该算符的本征态包含于基底$\{\ket{\phi_{\alpha}}\}$，此时有$O_{\alpha\alpha'}=O_{\alpha}\delta_{\alpha\alpha'}$:
-\[\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}=\sum_{\alpha}c_{p\alpha}^*w(\alpha)O_{\alpha}w(\alpha)c_{p\alpha}:=\sum_{\alpha}w(\alpha)O_{\alpha}P_p(\alpha) \quad \left(\sum_{\alpha}P_p(\alpha)=\sum_{\alpha}w(\alpha)c_{p\alpha}^*c_{p\alpha}=1\right)\]
-这与数学上期望的定义一致，我们称$\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}$为算符$\hat{O}$在态$\ket{p}$上的期望。
+现在我们想说明上述表达式与数学上的期望定义相容，统计诠释告诉我们系数的平方$|c_{p\alpha}|^2$正比于概率（归一化后取等）考虑把归一化条件写成概率并对期望$\langle\hat{O}\rangle$做量纲分析:
+\[\sum_{\alpha}P_p(\alpha):=\sum_{\alpha}w(\alpha)c_{p\alpha}^*c_{p\alpha}=1\]
+\[\langle\hat{O}\rangle=\sum_{\alpha\alpha'}c_{p\alpha}^*w(\alpha)O_{\alpha\alpha'}w(\alpha')c_{p\alpha'}\sim\sum_{\alpha}w(\alpha)O_{\alpha\alpha}P_p(\alpha)\]
+这与数学上期望的定义一致，我们称\textcolor{blue}{\textbf{$\langle\hat{O}\rangle=\bra{p}\hat{O}\ket{p}$为算符$\hat{O}$在态$\ket{p}$上的期望}}。
 
 回到表象变换，假设我们希望变换到新的基底$\{\ket{\psi_{\beta}}\}$，我们可以继续使用插入$\mathbbm{1}$的方法：
 \[\begin{aligned}
@@ -195,13 +196,13 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{S}_{\phi\psi}=\sum_{\alpha\beta}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}=\sum_{\alpha\beta}\ket{\phi_{\alpha}}w(\alpha)S_{\alpha\beta}w(\beta)\bra{\psi_{\beta}}\]
 容易看出其伴随算子是：
 \[\hat{S}_{\psi\phi}^{\dagger}=\sum_{\beta'\alpha'}\ket{\psi_{\beta'}}w(\beta)\bra{\psi_{\beta'}}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}\]
-计算$\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}$:
-\[\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}=\sum_{\beta'\alpha'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}\]
-由于$\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}=\delta_{\alpha'\alpha}$:
+利用正交归一化条件$\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}=\delta_{\alpha'\alpha}$以下等式成立：
 \[\sum_{\alpha'}\ket{\phi_{\alpha'}}\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}w(\alpha')=\ket{\phi_{\alpha}}\]
-故容易看出：
-\[\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}=\sum_{\beta'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}=\mathbbm{1}\mathbbm{1}\mathbbm{1}=\mathbbm{1}\]
-相对应的$\hat{S}_{\phi\psi}^{\dagger}\hat{S}_{\psi\phi}^{\dagger}=\mathbbm{1}$读者不难自证。综上所述说明，变换算符$\hat{S}_{\phi\psi}$是一个酉算符。至此我们结束了表象理论的内容，表象理论主要是在介绍如何去表示一些态，而下一小节对易部分的内容是在介绍如何去表示一些观测。
+借助上面的等式计算$\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}$:
+\[\begin{aligned}
+\hat{S}_{\psi\phi}^{\dagger}\hat{S}_{\phi\psi}&=\sum_{\beta'\alpha'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha'}}w(\alpha')\bra{\phi_{\alpha'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}\\&=\sum_{\beta'\alpha\beta}\ket{\psi_{\beta'}}w(\beta')\bra{\psi_{\beta'}}\ket{\phi_{\alpha}}w(\alpha)\bra{\phi_{\alpha}}\ket{\psi_{\beta}}w(\beta)\bra{\psi_{\beta}}=\mathbbm{1}\mathbbm{1}\mathbbm{1}=\mathbbm{1}
+\end{aligned}\]
+相对应的$\hat{S}_{\phi\psi}\hat{S}_{\psi\phi}^{\dagger}=\mathbbm{1}$读者不难自证。综上所述说明，变换算符$\hat{S}_{\phi\psi}$是一个酉算符。
 
 \section{对易}
 定义算符对易，若两算符$\hat{A}$、$\hat{B}$满足如下结果则称两算符对易：
