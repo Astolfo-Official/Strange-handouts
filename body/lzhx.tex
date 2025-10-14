@@ -355,20 +355,51 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[x_0=\sqrt{\frac{\hbar}{\mu\omega}}, \quad \xi=\frac{x}{x_0}, \quad \lambda=\frac{2E}{\hbar\omega}\]
 此时谐振子薛定谔方程可以被写成：
 \[\dv[2]{\psi}{\xi}+(\lambda-\xi^2)\psi=0\]
-则，解为：
-\[\varPsi_n(x)=\left(\frac{\mu\omega}{\pi\hbar}\right)^{\frac{1}{4}}\frac{1}{\sqrt{2^nn!}}H_n(\sqrt{\frac{\mu\omega}{\hbar}}x)exp\left(-\frac{\mu\omega}{2\hbar}x^2\right) \qquad (n=1,2,3 \cdots)\]
+当$\xi\to\infty$，观察到（我也不知道他们是怎么观察到的，注意力惊人）其渐进行为$\psi\sim\exp(\pm\xi^2/2)$，为了保证无穷远处收敛性只能取负，因此假设谐振子波函数具有以下形式：
+\[\psi(\xi)=u(\xi)e^{-\xi^2/2}\]
+带入原方程并化简：
+\[\dv[2]{u}{\xi}-2\xi\dv{u}{\xi}+(\lambda-1)u=0\]
+这种 ODE 就不要想着怎么巧解了，直接走流程(正)级数展开（反正这里是纯实数方程，没必要展开到洛朗级数）并求解系数方程得到递推关系式（这我就没必要展示了吧，太占用空间了，自己推去）：
+\[u(\xi)=\sum_{\nu=0}a_{\nu}\xi^{\nu} \quad \Rightarrow \quad a_{\nu+2}=\frac{2\nu+1-\lambda}{(\nu+1)(\nu+2)}a_{\nu}\]
+再次渐进分析，并求解通项（我们这里做的只是估计所以不要在意近似得到结果是不是有点不严谨，只需要数量级大致正确就好）：
+\[\frac{a_{\nu+2}}{a_{\nu}}\sim\frac{2}{\nu} \quad \Rightarrow \quad {a_{\nu}}\sim\frac{C}{(\nu/2)!} \quad \Rightarrow \quad u(\xi)=\sum_{\nu=0}^{\infty}\frac{C}{(\nu/2)!}\xi^{\nu}\sim\sum_{\nu=0}^{\infty}\frac{C}{\nu!}\xi^{2\nu}\sim e^{\xi^2/2}\]
+因此，这里的级数不能是一个无穷级数必须要截断，而显然，截断的条件为:
+\[2\nu+1-\lambda=0 \quad \Rightarrow \quad E=\frac{\hbar\omega}{2}(2\nu+1)=(\nu+\frac{1}{2})\hbar\omega \quad (\nu \in \mathbb{N})\]
+对应的谐振子波函数如下，其中$H_{\nu}(q)$是埃尔米特多项式(Hermite polynomials)：
+\[\bra{x}\ket{\nu}=\psi_{\nu}(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\frac{1}{\sqrt{2^{\nu}\nu!}}H_{\nu}(\xi)e^{-\xi^2/2}, \quad H_{\nu}(\xi)=(-1)^{\nu}e^{\xi^2}\dv[\nu]{\xi}e^{-\xi^2}, \quad (\nu \in \mathbb{N})\]
 
-能量为：
-\[E_n=\left(n+\frac{1}{2}\right)h\nu=\left(n+\frac{1}{2}\right)\hbar\omega \qquad (n=1,2,3\cdots)\]
+可以看到纯级数接是累死人的，为了不每次接这种简单体系都类似人以及看到复杂体系就暴毙，我们需要介绍量子力学中的一种常用办法，升降算符法，虽然最后求解波函数可能还是比较复杂，但是在形式上该方法非常普适，可以拓展到非常复杂的体系。首先回到算符形式的谐振子哈密顿量：
+\[\hat{H}=\frac{\hat{p}^2}{2\mu}+\frac{1}{2}\mu\omega^2\hat{x}^2\]
+定义谐振子的升$(\hat{a}^{\dagger})$降$(\hat{a})$算符如下：
+\[\hat{a}=\sqrt{\frac{\mu\omega}{2\hbar}}(\hat{x}+i\frac{1}{\mu\omega}\hat{p}), \quad \hat{a}^+=\sqrt{\frac{\mu\omega}{2\hbar}}(\hat{x}-i\frac{1}{\mu\omega}\hat{p}), \quad [\hat{a},\hat{a}^{\dagger}]=1\]
+它们俩与哈密顿量的对易关系$[\hat{a},\hat{H}]=\hbar\omega\hat{a}, \ [\hat{a}^{\dagger},\hat{H}]=\hbar\omega\hat{a}^{\dagger}$。\textcolor{blue}{\textbf{一般当算符与哈密顿量具有如下$[\hat{a},\hat{H}]\propto\hat{a}$关系时我们可以考虑其为升降算符}}。我们用$\ket{\nu}$来表示谐振子的本征态，把上述两个对易作用到本征态上：
+\begin{equation}
+\begin{aligned}
+[\hat{a},\hat{H}]\ket{\nu}=(\hat{a}\hat{H}-\hat{H}\hat{a})\ket{\nu}=\hbar\omega\hat{a}\ket{\nu} \quad &\Rightarrow \quad \hat{H}\hat{a}\ket{\nu}=(E_n-\hbar\omega)\hat{a}\ket{\nu}=\hat{a}(E_{\nu}-\hbar\omega)\ket{\nu}\\
+[\hat{a}^{\dagger},\hat{H}]\ket{\nu}=(\hat{a}^{\dagger}\hat{H}-\hat{H}\hat{a}^{\dagger})\ket{\nu}=-\hbar\omega\hat{a}^{\dagger}\ket{\nu} \quad &\Rightarrow \quad \hat{H}\hat{a}^{\dagger}\ket{\nu}=(E_n+\hbar\omega)\hat{a}^{\dagger}\ket{\nu}=\hat{a}^{\dagger}(E_{\nu}+\hbar\omega)\ket{\nu}
+\end{aligned}\label{comma}
+\end{equation}
+此时我们可以看到当作用量一个升或降算符到系统的本征态上后能量上升或下降了$\hbar\omega$，哈密顿量同样的可以表示为：
+\[\hat{H}=\hbar\omega(\hat{a}\hat{a}^{\dagger}-\frac{1}{2})=\hbar\omega(\hat{a}^{\dagger}\hat{a}+\frac{1}{2})\]
+而对于任意一个态，根据内积的正定性我们有：
+\[\bra{\psi}\hat{a}^{\dagger}\hat{a}\ket{\psi}=|\hat{a}\ket{\psi}|^2\geq0 \quad \bra{\psi}\hat{H}\ket{\psi}=\bra{\psi}\left[\hbar\omega(\hat{a}^{\dagger}\hat{a}+\frac{1}{2})\right]\ket{\psi}\geq\frac{1}{2}\hbar\omega\]
+因此态的能量（基态能量）最低只能是$E_0=\hbar\omega/2$，用$\ket{0}$表示基态。而不断把升算符作用到基态上，我们可以发现谐振子本征态的能量满足：
+\[E_{\nu}=(\nu+\frac{1}{2})\hbar\omega \quad (\nu \in \mathbb{N})\]
 
-其中：
-\[H_n(q)=(-1)^ne^{q^2}\frac{\mathrm{d}}{\mathrm{d}x}e^{-q^2} \qquad (n=1,2,3\cdots)\]
+同时，我们还可以利用哈密顿量定义粒子数算符$\hat{N}=\hat{a}^{\dagger}\hat{a}$：
+\[\hat{h}\ket{\nu}=\hbar\omega(\hat{a}^{\dagger}\hat{a}+\frac{1}{2})\ket{\nu}=\hbar\omega(\hat{N}+\frac{1}{2})\ket{\nu}=(\nu+\frac{1}{2})\hbar\omega \quad \Rightarrow \quad \hat{N}\ket{\nu}=\hat{a}^{\dagger}\hat{a}\ket{\nu}=\nu\]
+观察式\ref{comma}我们发现，升降算符作用到本征态上具有以下效果（升降算符能把当前本征态升降到相邻本征态）：
+\[\hat{a}\ket{\nu}=f(\nu)\ket{\nu-1}, \quad \hat{a}^{\dagger}\ket{\nu}=g(\nu)\ket{\nu+1}\]
+利用粒子数算符以及内积正定性可以计算出：
+\[\begin{aligned}
+\bra{\nu-1}f(\nu)^2\ket{\nu-1}=\bra{\nu}\hat{a}^{\dagger}\hat{a}\ket{\nu}=\nu \quad &\Rightarrow \quad f(\nu)=\sqrt{\nu}\\
+\bra{\nu+1}g(\nu)^2\ket{\nu+1}=\bra{\nu}\hat{a}\hat{a}^{\dagger}\ket{\nu}=\bra{\nu}(\hat{a}^{\dagger}\hat{a}+1)\ket{\nu}=\nu+1 \quad &\Rightarrow \quad g(\nu)=\sqrt{\nu+1}\\
+\end{aligned}\]
+最终得到体系的升降算符具有以下关系，以及一般本征态的表示方法：
+\[\hat{a}\ket{\nu}=\sqrt{\nu}\ket{\nu-1}, \quad \hat{a}^{\dagger}\ket{\nu}=\sqrt{\nu+1}\ket{\nu+1}, \quad \ket{\nu}=\frac{1}{\sqrt{\nu!}}\left(\hat{a}^{\dagger}\right)^{\nu}\ket{0}\]
 
-当然，对一般的振动系统，谐振子近似经常是不够的，这时我们会引入非谐校正，比如，引入$Morse \ potential$：
-\[V(r)=D_e\left[1-e^{-\beta(r-r_e)}\right]^2\]
-
-同样对其进行展开得到：
-\[V(r)=D_e\left[\beta^2(r-r_e)^2-\beta^3(r-r_e)^3+\cdots\right]\]
+当然，对一般的振动系统，谐振子近似经常是不够的，这时我们会引入非谐校正，比如引入Morse potential：
+\[V(r)=D_e\left[1-e^{-\beta(r-r_e)}\right]^2 \approx D_e\left[\beta^2(r-r_e)^2-\beta^3(r-r_e)^3+o(r-r_e)^3\right]\]
 
 因此，对应于谐振子的力常数$k$有如下关系：
 \[k=2\beta^2D_e\]
@@ -377,7 +408,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[E_\nu=\left(\nu+\frac{1}{2}\right)\hbar\omega-\left(\nu+\frac{1}{2}\right)^2\hbar\omega x_e \qquad x_e=\frac{\hbar\beta^2}{2\mu\omega}=\frac{\hbar\omega}{4D_e}\]
 
 \begin{center}
-    \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211104112141.png}
+    \includegraphics[scale=0.8]{fig/lzhx/微信图片_20211104112141.png}
 \end{center}
 
 \section{转动量子化——刚性转子}
