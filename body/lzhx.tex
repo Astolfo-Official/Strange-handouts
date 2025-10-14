@@ -141,8 +141,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{D}:R \to R, \quad \ket{\psi} \mapsto \ket{\nabla\psi} \]
 由于我们不知道态是什么，我们只能知道态在某个表象空间下的投影，因此，选择坐标表象：
 \[\bra{\bm{r}}\hat{D}\ket{\psi}=\bra{\bm{r}}\ket{\nabla\psi}=\nabla_{\bm{r}}\psi(\bm{r})\]
-这里可能有点疑惑，详细解释一下：我们知道一个函数的导数（梯度）是什么，而函数是数域到数域到一个映射，即函数的导数这个映射是建立在坐标表象之上的，因此我们抽象构建了一个“导数”算符，使得其在坐标空间下的投影就是函数的导数。
-下一步我们自然而然得会去考虑，那么“导数”算符在坐标表象下的算符表示是什么呢？为例求解该表示，我们还是先来插入一个$\mathbbm{1}$:
+这里可能有点疑惑，详细解释一下：\textbf{我们知道一个函数的导数（梯度）是什么，而函数是数域到数域到一个映射，即函数的导数这个映射是建立在坐标表象之上的，因此我们抽象构建了一个“导数”算符，使得其在坐标空间下的投影就是函数的导数}。下一步我们自然而然得会去考虑，那么“导数”算符在坐标表象下的算符表示是什么呢？为例求解该表示，我们还是先来插入一个$\mathbbm{1}$:
 \[\bra{\bm{r}}\hat{D}\ket{\psi}=\int_{\mathbb{R}^n}\bra{\bm{r}}\hat{D}\ket{\bm{r}'}\bra{\bm{r}'}\ket{\psi}\dd{\bm{r}'}=\int_{\mathbb{R}^n}\bra{\bm{r}}\hat{D}\ket{\bm{r}'}\psi(\bm{r}')\dd{\bm{r}'}=\nabla_{\bm{r}}\psi(\bm{r})\]
 与(\ref{a})式对比，可以发现：
 \[\bra{\bm{r}}\hat{D}\ket{\bm{r}'}=\nabla_{\bm{r}}\delta(\bm{r}-\bm{r}')=\delta(\bm{r}-\bm{r}')\nabla_{\bm{r}'}\]
@@ -284,14 +283,19 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{H}\varPsi(x)=-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\varPsi(x)}{\mathrm{d}x^2}=E\varPsi(x)\]
 
 容易解出其解是一个沿着$x$轴正负方向行进的平面波：
-\[\varPsi(x)=C_1e^{ikx}+C_2e^{-ikx}, \quad k=\sqrt{2mE}/\hbar\]
+\[\varPsi(x)=C_1e^{ikx}+C_2e^{-ikx}, \quad k=\frac{\sqrt{2mE}}{\hbar}\]
 
 一般要求薛定谔方程的解要是品优波函数，满足\textbf{单值、连续$C^n \ (n \geq 2)$、平方（$L^2$）可积}，很显然自由粒子并不满足这个要求，因为不可积。但这并不代表自由粒子是一个毫无意义的模型，比如如果我们在动量空间考虑其薛定谔方程有：
 \[\hat{H}\varPsi(k)=\frac{\hbar^2k^2}{2m}\varPsi(k)=E(k)\varPsi(k) \quad \Rightarrow \quad E(k)=\frac{\hbar^2k^2}{2m}\]
-我们可以轻松获得能量与动量的关系，在凝聚态中称为色散关系（Dispersion relation）非常重要。
+我们可以轻松获得能量与动量的关系，在凝聚态中称为色散关系（Dispersion relation）非常重要，比如我们可以利用色散关心获得自由粒子的群速度:
+\[v_{\rm{g}}=\dv{\omega}{k}=\frac{1}{\hbar}\dv{\omega}{k}=\frac{\hbar k}{m}\]
 \section{平动量子化——势箱}
 \subsection{一维势箱}
 上一小节中我们得不到一个有限模长的自由粒子态，即没有真正意义上的自由粒子。但是如果我们可以退而求其次引入一个有限的零势能环境，在这样的条件下是否存在可能的粒子态呢？因此我们引入势箱模型如下所示，其边界条件可以保证波函数平方可积性，满足了品优波函数的要求。
+
+\begin{center}
+    \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211025092646.png}
+\end{center}
 
 我们给定一维势箱，粒子的势能$V(x)$为分段函数：
 \[V(x)=\left\{
@@ -314,13 +318,13 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 最后利用归一化得到一维势箱波函数及能量表达式：
 \[\int_0^l\varPsi^*\varPsi\dd{x}=C_1^2\int_0^l \sin^2\left (\frac{n \pi}{l}x \right )\dd{x}=\frac{C_1^2}{2}\int_0^l\left ( 1- \cos\left (\frac{2n \pi}{l}x \right ) \right )\dd{x}=\frac{C_1^2l}{2}=1 \quad \Rightarrow \quad C_1=\sqrt{\frac{2}{l}}\]
-\[\varPsi_n=\sqrt{\frac{2}{l}}、sin\left (\frac{n \pi}{l}x \right ) \qquad E_n=\frac{n^2 h^2}{8ml^2} \quad (n\in\mathbb{N}_+)\]
+\[\varPsi_n=\sqrt{\frac{2}{l}}\sin\left (\frac{n \pi}{l}x \right ), \quad E_n=\frac{n^2 h^2}{8ml^2} \quad (n\in\mathbb{N}_+)\]
 
 \begin{center}
-    \includegraphics[scale=0.4]{fig/lzhx/微信图片_20211025150139.png}
+    \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211025150139.png}
 \end{center}
 
-\subsection{三维势箱Box[a,b,c]}
+\subsection{三维势箱}
 三维势箱在利用分离变量的方法可以看成三个一维势箱的乘积，这里我们简单介绍一下分离变量法在势箱中的应用，假设三维势箱三个坐标相互独立，则三维势箱波函数可以写成：
 \[\varPsi(x,y,z):=X(x)Y(y)Z(z)\]
 此时薛定谔方程可以展开为：
@@ -483,7 +487,6 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 合并整个哈密顿量，可以将薛定谔方程改写成如下形式：
 \[\hat{H}\varPsi(\bm{Q},\bm{q})=-\psi(\bm{Q},\bm{q})\sum_i\frac{\hbar^2}{2m_{n,i}}\nabla^2_{n,i}\varphi(\bm{Q})-\varphi(\bm{Q})\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(\bm{Q},\bm{q})+\sum_{i,j}V_{i,j}\psi(\bm{Q},\bm{q})\varphi(\bm{Q})=E\psi(\bm{Q},\bm{q})\varphi(\bm{Q})\]
-
 利用分离变量获得电子薛定谔方程:
 \[-\sum_j\frac{\hbar^2}{2m_e}\nabla^2_{e,j}\psi(\bm{Q},\bm{q})+\sum_{i,j}V_{i,j}\psi(\bm{Q},\bm{q})=U(\bm{Q})\psi(\bm{Q},\bm{q})\]
 与核运动方程:
@@ -508,7 +511,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 简单来说，对两个宏观物体A、B，除了速度、位置外，我们还有大小、颜色之类的特征作为区分物体A、B，这也即表面在经典物理框架下，并没有全同性这一说法。但对于微观粒子A、B，我们似乎只有速度和位置这类无法区分粒子的可观测量。
 
-而对微观粒子，你可以通过测量获得粒子的一个一个一个物理量，但是会发现你测量你舌头上的电子跟野兽先辈林檎上的电子也能测出一样的物理量，即使把你舌头上的电子和野兽先辈林檎上的电子调换一下，你的舌头和野兽先辈的林檎都还是安然无恙的，这也就是微观粒子的全同性。
+\textbf{而对微观粒子，你可以通过测量获得粒子的一个一个一个物理量，但是会发现你测量你舌头上的电子跟野兽先辈林檎上的电子也能测出一样的物理量，即使把你舌头上的电子和野兽先辈林檎上的电子调换一下，你的舌头和野兽先辈的林檎都还是安然无恙的(保持不变)，这也就是微观粒子的全同性。}
 
 接下来，我们的表述将在全同性这一微观粒子基本性质下展开。
 
@@ -570,7 +573,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
     \end{array}
 \]
 
-虽然电子的自旋被认为是电子场的自然结论，但我们不打算在这里介绍相对论量子力学（我暂时也不会）。
+虽然电子的自旋被认为是电子场的自然结论，但我们不打算在这里介绍相对论量子力学（我也不会）。
 本小节我们只介绍电子自旋的一些物理性质并讨论其部分算符以及可观测量，在下一章节我们会介绍电子自旋对原子的物理性质如光谱的影响。
 
 \begin{center}
@@ -613,18 +616,6 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 关于归一化，我们在这里补充一点说明，由于电子自旋假设，电子波函数可以写成,其中$\varphi$为轨道波函数，$\sigma$为自旋波函数，在之前的章节中，我们已经介绍了轨道波函数是归一的：
 \[\varPsi=\varphi\sigma\]
-
-介绍一种简单的表示方法——狄拉克表示：
-\[
-    \left \{
-    \begin{array}{l}
-        \bra{\varPsi}:=\varPsi^{*} \\
-        \ket{\varPsi}:=\varPsi \\
-        \bra{\varPsi}\hat{H}\ket{\varPsi}:=\int_E \varPsi^{*}\hat{H}\varPsi d\tau \\
-        \bra{\varPsi}\ket{\varPsi}:=\int_E \varPsi^{*}\varPsi d\tau 
-    \end{array} 
-    \right .
-\]
 \[\bra{\varPsi}\ket{\varPsi}=\bra{\varphi\sigma}\ket{\varphi\sigma}=\bra{\varphi}\ket{\varphi}\bra{\sigma}\ket{\sigma}=1 \cdot 1=1\]
 
 回到上述问题，我们假设:

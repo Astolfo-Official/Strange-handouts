@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  13 OCT 2025 19:23
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  13 OCT 2025 21:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1495,16 +1495,18 @@ LaTeX Font Info:    Trying to load font information for U+bbm on input line 97.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [6] [7] [8] [9] [10] [11]
-Missing character: There is no 、 ("3001) in font cmr10!
+File: fig/lzhx/微信图片_20211025092646.png Graphic file (type bmp)
+<fig/lzhx/微信图片_20211025092646.png>
+ [12]
 File: fig/lzhx/微信图片_20211025150139.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211025150139.png>
-[12] [13]
+ [13]
 File: fig/lzhx/微信图片_20211104112141.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211104112141.png>
- [14]
+ [14] [15]
 File: fig/lzhx/微信图片_20211026130340.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211026130340.png>
- [15] [16] [17] [18]
+ [16] [17] [18]
 File: fig/lzhx/微信图片_20211028113518.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211028113518.png>
  [19] [20] [21]
@@ -1520,9 +1522,9 @@ File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
+ [29]
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
- [29]
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021728151.png>
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
@@ -1607,10 +1609,10 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47049 strings out of 474773
- 1027907 string characters out of 5757723
- 2001638 words of memory out of 5000000
- 68356 multiletter control sequences out of 15000+600000
+ 47082 strings out of 474773
+ 1029852 string characters out of 5757723
+ 2001588 words of memory out of 5000000
+ 68388 multiletter control sequences out of 15000+600000
  573137 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,15n,108p,716b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s
