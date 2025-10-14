@@ -16,9 +16,9 @@
 \contentsline {section}{\numberline {1.10}氢原子}{16}{section.1.10}%
 \contentsline {subsection}{\numberline {1.10.1}氢原子薛定谔方程求解}{16}{subsection.1.10.1}%
 \contentsline {subsection}{\numberline {1.10.2}实、复轨道？}{16}{subsection.1.10.2}%
-\contentsline {section}{\numberline {1.11}单核多电子体系}{17}{section.1.11}%
-\contentsline {subsection}{\numberline {1.11.1}波恩-奥本海默(Born-Oppenheimer)近似}{17}{subsection.1.11.1}%
-\contentsline {subsection}{\numberline {1.11.2}平均场(Mean field)近似}{18}{subsection.1.11.2}%
+\contentsline {section}{\numberline {1.11}单核多电子体系}{16}{section.1.11}%
+\contentsline {subsection}{\numberline {1.11.1}波恩-奥本海默(Born-Oppenheimer)近似}{16}{subsection.1.11.1}%
+\contentsline {subsection}{\numberline {1.11.2}平均场(Mean field)近似}{17}{subsection.1.11.2}%
 \contentsline {subsection}{\numberline {1.11.3}粒子全同性与泡利不相容原理}{18}{subsection.1.11.3}%
 \contentsline {subsection}{\numberline {1.11.4}电子自旋}{19}{subsection.1.11.4}%
 \contentsline {subsection}{\numberline {1.11.5}slater行列式}{21}{subsection.1.11.5}%
@@ -26,20 +26,20 @@
 \contentsline {section}{\numberline {1.12}原子光谱}{22}{section.1.12}%
 \contentsline {subsection}{\numberline {1.12.1}Hund规则}{23}{subsection.1.12.1}%
 \contentsline {section}{\numberline {1.13}多核粒子体系——线性变分法}{23}{section.1.13}%
-\contentsline {section}{\numberline {1.14}计算化学入门前的垫脚石上的艹}{25}{section.1.14}%
-\contentsline {subsection}{\numberline {1.14.1}Hartree-Fock方法}{25}{subsection.1.14.1}%
+\contentsline {section}{\numberline {1.14}计算化学入门前的垫脚石上的艹}{26}{section.1.14}%
+\contentsline {subsection}{\numberline {1.14.1}Hartree-Fock方法}{26}{subsection.1.14.1}%
 \contentsline {subsection}{\numberline {1.14.2}Hartree-Fock–Roothaan方法}{27}{subsection.1.14.2}%
 \contentsline {subsection}{\numberline {1.14.3}部分基组}{29}{subsection.1.14.3}%
 \contentsline {section}{\numberline {1.15}分子光谱}{30}{section.1.15}%
 \contentsline {subsection}{\numberline {1.15.1}双原子分子光谱实例}{31}{subsection.1.15.1}%
-\contentsline {section}{\numberline {1.16}附录I:一点数学（微积分线代什么的自己去看书）}{33}{section.1.16}%
-\contentsline {subsection}{\numberline {1.16.1}变量分离}{33}{subsection.1.16.1}%
+\contentsline {section}{\numberline {1.16}附录I:一点数学（微积分线代什么的自己去看书）}{32}{section.1.16}%
+\contentsline {subsection}{\numberline {1.16.1}变量分离}{32}{subsection.1.16.1}%
 \contentsline {subsection}{\numberline {1.16.2}球坐标下的拉普拉斯算符展开}{33}{subsection.1.16.2}%
-\contentsline {section}{\numberline {1.17}附录II:氢原子薛定谔方程求解(级数解法)}{35}{section.1.17}%
-\contentsline {subsection}{\numberline {1.17.1}Φ方程的求解}{36}{subsection.1.17.1}%
-\contentsline {subsection}{\numberline {1.17.2}Θ方程的求解}{36}{subsection.1.17.2}%
-\contentsline {subsection}{\numberline {1.17.3}R方程的求解}{38}{subsection.1.17.3}%
-\contentsline {subsection}{\numberline {1.17.4}小结}{40}{subsection.1.17.4}%
+\contentsline {section}{\numberline {1.17}附录II:氢原子薛定谔方程求解(级数解法)}{34}{section.1.17}%
+\contentsline {subsection}{\numberline {1.17.1}Φ方程的求解}{35}{subsection.1.17.1}%
+\contentsline {subsection}{\numberline {1.17.2}Θ方程的求解}{35}{subsection.1.17.2}%
+\contentsline {subsection}{\numberline {1.17.3}R方程的求解}{37}{subsection.1.17.3}%
+\contentsline {subsection}{\numberline {1.17.4}小结}{39}{subsection.1.17.4}%
 \contentsline {chapter}{\numberline {2}核磁初步}{41}{chapter.2}%
 \contentsline {section}{\numberline {2.1}一维核磁}{41}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}磁自旋动量、磁矩和磁矩的能量}{41}{subsection.2.1.1}%

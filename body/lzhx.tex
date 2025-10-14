@@ -343,22 +343,18 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\varPsi=\sqrt{\frac{8}{abc}}\sin\left (\frac{n_x \pi}{l}x \right )\sin\left (\frac{n_y \pi}{l}y \right )\sin\left (\frac{n_z \pi}{l}z \right ), \quad E_{x,n}=\frac{h^2}{8m} \left (\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2}+\frac{n_z^2}{c^2} \right ) \quad (n_x,n_y,n_z \in \mathbb{N}_+)\]
 
 \section{振动量子化——谐振子}
-对势箱中的振动系统，我们可以把哈密顿量构造成：
+对于一个处于振动势的双体系统，我们可以把哈密顿量构造成：
 \[\hat{H}=-\frac{\hbar^2}{2m_1}\nabla^2_1-\frac{\hbar^2}{2m_2}\nabla^2_2+V\]
-
-对势能部分$V(r)$（内坐标表示），我们在平衡位置进行泰勒展开：
-\[V(r)=V(r_e)+V^{'}(r)(r-r_e)+\frac{1}{2}V^{''}(r)(r-r_e)^2+\frac{1}{6}V^{'''}(r)(r-r_e)^3 \cdots=\sum_{i=0}^{+\infty}\frac{V^{(i)}(r_e)}{i!}(r-r_e)^i\]
-
-对谐振子系统，其势能项可以为：
-\[V(r)=V(r_e)+\frac{1}{2}V^{''}(r)(r-r_e)^2\]
-
-因此，势箱中的谐振子薛定谔方程可以描述为：
-\[\left (-\frac{\hbar^2}{2m_1}\nabla^2_1-\frac{\hbar^2}{2m_2}\nabla^2_2+V(r_e)+\frac{1}{2}V^{''}(r)(r-r_e)^2 \right )\varPsi=E\varPsi\]
-考虑质心系
-\[\left (-\frac{\hbar^2}{2\mu}\nabla^2+V(r_e)+\frac{1}{2}V^{''}(r)(r-r_e)^2 \right )\varPsi=E\varPsi\]
-
-这里，我们不再求解该方程，有兴趣的可以自己上网查，这边直接给出解的形式：
-
+考虑质心系:
+\[\bm{R}=\frac{m_1\bm{r}_1+m_2\bm{r}_2}{m_1+m_2}, \quad \bm{r}=\bm{r}_1-\bm{r}_2 \quad \Rightarrow \quad \bm{r}_1=\bm{R}+\frac{m_2}{m_1+m_2}\bm{r}, \quad \bm{r}_2=\bm{R}-\frac{m_1}{m_1+m_2}\bm{r}\]
+可以吧哈密顿重构成（你可以在经典的情况下推出质心系的哈密顿然后用算符换回来）：
+\[\hat{H}=-\frac{\hbar^2}{2M}\nabla^2_{\bm{R}}-\frac{\hbar^2}{2\mu}\nabla^2_{\bm{r}}+V(\bm{r}), \quad M=m_1+m_2, \quad \mu=\frac{m_1m_2}{m_1+m_2}\]
+可以看出质心的运动形式为自由粒子且与两质点的相对运动解耦，且势能仅取决于两质点之间的相对位置，因此我们我们只需要考虑沿着质点之间相对运动方向$\mathbf{e}_{\bm{r}}$的薛定谔方程：
+\[\left(-\frac{\hbar^2}{2\mu}\dv[2]{x}+\frac{1}{2}\mu\omega^2x^2\right)\psi(x)=E\psi(x)\]
+方便求解该方程，引入无量纲化：
+\[x_0=\sqrt{\frac{\hbar}{\mu\omega}}, \quad \xi=\frac{x}{x_0}, \quad \lambda=\frac{2E}{\hbar\omega}\]
+此时谐振子薛定谔方程可以被写成：
+\[\dv[2]{\psi}{\xi}+(\lambda-\xi^2)\psi=0\]
 则，解为：
 \[\varPsi_n(x)=\left(\frac{\mu\omega}{\pi\hbar}\right)^{\frac{1}{4}}\frac{1}{\sqrt{2^nn!}}H_n(\sqrt{\frac{\mu\omega}{\hbar}}x)exp\left(-\frac{\mu\omega}{2\hbar}x^2\right) \qquad (n=1,2,3 \cdots)\]
 
@@ -367,8 +363,6 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 其中：
 \[H_n(q)=(-1)^ne^{q^2}\frac{\mathrm{d}}{\mathrm{d}x}e^{-q^2} \qquad (n=1,2,3\cdots)\]
-\[H_0(q)=1 \qquad H_1(q)=2q \qquad H_2(q)=4q^2-2\]
-\[\omega=\sqrt{\frac{k}{\mu}}\]
 
 当然，对一般的振动系统，谐振子近似经常是不够的，这时我们会引入非谐校正，比如，引入$Morse \ potential$：
 \[V(r)=D_e\left[1-e^{-\beta(r-r_e)}\right]^2\]
