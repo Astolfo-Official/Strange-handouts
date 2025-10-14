@@ -412,61 +412,19 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \end{center}
 
 \section{转动量子化——刚性转子}
-由之前的讨论，我们知道，一个粒子的哈密顿量可以表示成：
-\[\hat{H}=-\frac{\hbar^2}{2m}\nabla^2 + V=-\frac{\hbar^2}{2m}\left ( \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}\right ) + V\]
+在谐振子中我们定义了质心系下两质点的哈密顿量：
+\[\hat{H}=-\frac{\hbar^2}{2\mu}\nabla^2_{\bm{r}}+V(\bm{r})\]
 
-因此，我们可以考虑两个粒子组成的刚性转子哈密顿量为：
-\[\hat{H}=-\frac{\hbar^2}{2m}\left ( \frac{\partial^2}{\partial x_2^2}+\frac{\partial^2}{\partial y_2^2}+\frac{\partial^2}{\partial z_2^2}\right ) -\frac{\hbar^2}{2m}\left ( \frac{\partial^2}{\partial x_2^2}+\frac{\partial^2}{\partial y_2^2}+\frac{\partial^2}{\partial z_2^2}\right ) + V_{12}\]
+在谐振子中我们关心的是两质点沿着两者相对位置方向的运动，而在刚性转动中，我们关心两质点围绕着过质心的某个轴转动，然后通过约化质量的转换，我们相当于构建了一个绕着过原点的某轴旋转的体系，因此体系的势能项$V(\bm{r})=0$，在球坐标下关于$r$的导数项为0：
+\[\hat{H}=-\frac{\hbar^2}{2\mu} \left(\frac{1}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2\sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right)\]
 
-考虑势箱中的刚性转子，$V_{12}=0$：
-\[\hat{H}=-\frac{\hbar^2}{2m}\left ( \frac{\partial^2}{\partial x_1^2}+\frac{\partial^2}{\partial y_1^2}+\frac{\partial^2}{\partial z_1^2}\right ) -\frac{\hbar^2}{2m}\left ( \frac{\partial^2}{\partial x_2^2}+\frac{\partial^2}{\partial y_2^2}+\frac{\partial^2}{\partial z_2^2}\right )\]
+带入薛定谔方程并稍作变形：
+\[\hat{H}\psi=E\psi \quad \Rightarrow \quad -\hbar^2\left(\frac{1}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2\sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right)\psi=2\mu r^2 E\psi\]
 
-定义内坐标：
-\[ \left \{
-    \begin{array}{ll}
-        x=x_1-x_2  \\
-        y=y_1-y_2  \\
-        z=z_1-z_2
-    \end{array}
-    \right .
-\]
-
-则刚性转子的哈密顿量可以写成：
-\[\hat{H}=-\frac{\hbar^2}{2}\left (\frac{1}{m_1}+\frac{1}{m_2}\right )\left ( \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}\right )=-\frac{\hbar^2}{2\mu}\left ( \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}\right ) \]
-
-在球坐标下展开：
-\[\hat{H}=-\frac{\hbar^2}{2\mu} \left (\frac{1}{r^2}\frac{\partial}{\partial{r}}(r^2\frac{\partial}{\partial{r}})+\frac{1}{r^2sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\]
-
-已知其中$r$为常数，则哈密顿量可以继续简化成：
-\[\hat{H}=-\frac{\hbar^2}{2\mu} \left (\frac{1}{r^2sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\]
-
-将哈密顿量对波函数作用，我们稍作变形：
-\[\hat{H}\varPsi=-\frac{\hbar^2}{2\mu} \left (\frac{1}{r^2sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\varPsi=E\varPsi\]
-\[-\hbar^2\left (\frac{1}{sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\varPsi=2\mu r^2 E\varPsi\]
-
-稍微回顾一下经典力学，考虑两个质点$m_1$、$m_2$和轻轴组成的刚性旋转子，两质点间距为r,则此系统的质心系坐标、转动惯量和角动量及能量可以表示成：
-\[r_1=\frac{m_2}{m_1+m_2}r \qquad r_2=\frac{m_1}{m_1+m_2}r\]
-\[I=I_1+I_2=m_1r_1^2+m_2r_2^2=\frac{m_1m_2}{m_1+m_2}r^2\]
-\[L=I\omega \qquad E=\frac{1}{2}I\omega^2=\frac{L^2}{2I}\]
-
-则，我们可以将上述薛定谔方程改写成：
-\[-\hbar^2\left (\frac{1}{sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\varPsi=L^2\varPsi\]
-
-定义角动量平方算符，它反映的是波函数在空间中的角度部分延展程度：
-\[\hat{J}^2=-\hbar^2\left (\frac{1}{sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right )\]
-
-因此有：
-\[\hat{J}^2\varPsi=L^2\varPsi\]
-
-如果我们去解这个方程，我们会得到(我爬了，我实在不想再解一遍，想看的自己去附录求解氢原子薛定谔方程里找类似的部分，这里提供两个解的思路：一是级数法解微分方程，另外是利用升降算符)：
-\[\hat{J}^2\varPsi=l(l+1)\hbar^2\varPsi\]
-
-其中$l$为角量子数。
-
-当然，既然有了$\hat{J}^2$利用角动量模的平方表征波函数的角度部分，当然也会有利用角动量在某方向上的投影表征波函数的角度部分的算符,我们取投影方向为z：
-\[\hat{J_z}\varPsi=l\hbar\varPsi\]
-
-值得一提的是，量子力学中大部分算符是延用经典力学的算符，比如角动量算符可以通过$J=r \times p$得到。
+稍微回顾一下经典力学，考虑两个质点$m_1$、$m_2$和轻轴组成的刚性旋转子，两质点间距为$r$，在质心系以及约化质量的引入下系统的转动惯量，角动量以及能量可以被表示为：
+\[I=\mu r^2, \quad L=I\omega, \quad E=I\omega^2/2=L^2/2I\]
+引入角动量算符$\hat{L}$，我们可以将上述薛定谔方程改写成：
+\[\hat{L}^2\psi:=-\hbar^2\left(\frac{1}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2\sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right)\psi=L^2\psi\]
  
 \begin{center}
     \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211026130340.png}
