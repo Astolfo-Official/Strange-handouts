@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  15 OCT 2025 00:01
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  15 OCT 2025 00:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1472,7 +1472,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 
 ]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 85.
+(Font)              scaled to size 9.0pt on input line 86.
  [2])
 \tf@toc=\write8
 \openout8 = `"Strange handouts.toc"'.
@@ -1617,7 +1617,7 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 Here is how much of TeX's memory you used:
  47088 strings out of 474773
  1029965 string characters out of 5757723
- 2001710 words of memory out of 5000000
+ 2001837 words of memory out of 5000000
  68394 multiletter control sequences out of 15000+600000
  573137 words of font info for 140 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

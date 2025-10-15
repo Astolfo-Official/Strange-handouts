@@ -34,9 +34,9 @@
 根据定义，任意一个叠加态都是归一化的：
 \[\|\psi\|=\sqrt{\langle\psi,\psi\rangle}=\sqrt{\sum_{\alpha}|c_{\alpha}|^2}=1\]
 \subsection{统计诠释与算符}
-我们定义$\bra{\cdot}$也表示一个量子态，与$\ket{\cdot}$一一对应且满足$\bra{\cdot}=\ket{\cdot}^{\dagger}$。我们分别称$\bra{\cdot}$和$\ket{\cdot}$为左矢和右矢，从上一小节我们知道右矢张成的空间是一个完备的线性空间，同时，左矢通过共轭映射（一一映射）也会生成一个完备的线性空间(这由 Riesz 表示定理保证，每个左矢对应都对应一个右矢的共轭)，也满足态叠加原理：
+我们定义$\bra{\cdot}$也表示一个量子态，与$\ket{\cdot}$一一对应且满足$\bra{\cdot}=\ket{\cdot}^{\dagger}$。我们分别称$\bra{\cdot}$和$\ket{\cdot}$为左矢和右矢，从上一小节我们知道右矢张成的空间是一个完备的线性空间，同时，左矢通过共轭映射（一一映射）也会生成一个完备的线性空间( Banach 空间$X$上的赋范线性空间$\mathscr{B}(X,X)$也是 Banach 空间)，也满足态叠加原理：
 \[\bra{\psi}=\sum_{\alpha}\bra{\phi_{\alpha}}c_{\alpha}^*, \quad \text{满足归一化：} \sum_{\alpha}|c_{\alpha}^*|^2=1\]
-同时由共轭的性质我们知道$\bra{\cdot}\ket{\cdot}=|\ket{\cdot}|^2\in\mathbb{R}\subset\mathbb{C}$。 假设右矢空间$R=\text{Span}\{\ket{\cdot}\}$，那么左矢空间$L$就是右矢空间的对偶空间，其中的元素为右矢空间的线性泛函（把右矢空间的点（态）映射到数域：$R \to \mathbb{K}=\mathbb{R}\text{ or }\mathbb{C}$）：
+同时由共轭的性质我们知道$\bra{\cdot}\ket{\cdot}=|\ket{\cdot}|^2\in\mathbb{R}\subset\mathbb{C}$。 假设右矢空间$R=\text{Span}\{\ket{\cdot}\}$，那么左矢空间$L$就是右矢空间的对偶空间，其中的元素为右矢空间的线性泛函（把右矢空间的点（态）映射到数域：$R \to \mathbb{K}=\mathbb{R}\text{ or }\mathbb{C}$，同时由 Riesz 表示定理保证，每个左矢对应都对应一个右矢的共轭以满足内积的需要）：
 \[\bra{f}:R \to \mathbb{K} \ , \quad \ket{g} \mapsto \bra{f}\ket{g}=\ket{\phi}^{\dagger}\ket{\psi}=\sum_{\alpha\alpha'}c_{f\alpha}^*c_{g\alpha'}\ket{\phi_{\alpha}}^{\dagger}\ket{\phi_{\alpha}}=\sum_{\alpha}c_{f\alpha}^*c_{g\alpha}\]
 
 出了泛函这种特殊的映射，我们可以来看看更普通一点的映射，我们称呼态到态的映射为算符或者算子:
@@ -47,8 +47,8 @@
     设$X,Y$是赋范线性空间，$T$是从$X$的线性子空间$D(T) \subset X$到$Y$的映射，若其满足
     \[\forall x,y \in X \ , \ \alpha,\beta \in \mathbb{K} \ , \ T(\alpha x+\beta y)=\alpha Tx+\beta Ty\]
 \end{definition}
-举个例子，我们看看算符$\hat{\bm{p}}_a=\ket{\phi_a}\bra{\phi_a}$作用到态上会发生什么：
-\[\hat{\bm{p}}_a\ket{\psi}=\hat{\bm{p}}_a\left(\sum_{\alpha}c_{\alpha}\ket{\phi_{\alpha}}\right)=\sum_{\alpha}c_{\alpha}\hat{\bm{p}}_a\ket{\phi_{\alpha}}=\sum_{\alpha}c_{\alpha}\ket{\phi_a}\bra{\phi_a}\ket{\phi_{\alpha}}=c_a\ket{\phi_a}\]
+举个例子，我们看看算符$\hat{P}_a=\ket{\phi_a}\bra{\phi_a}$作用到态上会发生什么：
+\[\hat{P}_a\ket{\psi}=\hat{P}_a\left(\sum_{\alpha}c_{\alpha}\ket{\phi_{\alpha}}\right)=\sum_{\alpha}c_{\alpha}\hat{P}_a\ket{\phi_{\alpha}}=\sum_{\alpha}c_{\alpha}\ket{\phi_a}\bra{\phi_a}\ket{\phi_{\alpha}}=c_a\ket{\phi_a}\]
 这个算符提取了态$\ket{\psi}$在基底$\ket{\phi_a}$上的分量，也即是投影。因此该算符也被称为投影算符。我们观察到这个系数$c_{\alpha}$神奇的性质，归一化。同时，在上一小节中我们的论述中提到了基底是系统所有可能的态，那自然而然的我们认为会联想到$|c_{\alpha}|^2$那不就是概率嘛。于是就又了量子力学的第二个基本假设：
 
 \begin{theorem}[统计诠释]
@@ -489,6 +489,8 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[2p_z=2p_0=N_{2p}ze^{-\frac{r}{2}} \quad 2p_x=\frac{\sqrt{2}}{2}(2p_{-1}-2p_1)=N_{2p}xe^{-\frac{r}{2}} \quad 2p_y=\frac{\sqrt{2}i}{2}(2p_{-1}+2p_1)=N_{2p}ye^{-\frac{r}{2}}\]
 
 由于能量简并，这几个轨道的线性组合得到的任意波函数都是哈密顿量的本征函数，如果轨道能量不简并的话，轨道线性组合的结果将并不会是哈密顿量的本征函数，其对算符作用后得到的也不是本征值而是期望值。
+
+\section{电子自旋}
 
 \section{单核多电子体系}
 \subsection{波恩-奥本海默(Born-Oppenheimer)近似}
