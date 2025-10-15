@@ -461,6 +461,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \end{equation}
 令$l=m_{l,\rm{max}}$，得到$\hat{L}^2$的本征值：
 \[\hat{L}^2\ket{l,m_l}=l(l+1)\hbar^2\ket{l,m_l}\]
+进而可以知道$m_l$可以取值$-l,-l+1,\cdots,0,\cdots,l-1,l$。
 
 接下来看升降算符的递推形式，从式\ref{lpm}出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
 \[\hat{L}_+\ket{l,m_l}=\alpha_+(l,m_l)\hbar\ket{l,m_l+1}, \quad \hat{L}_-\ket{l,m_l}=\alpha_-(l,m_l)\hbar\ket{l,m_l-1}\]
@@ -474,7 +475,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 角动量的本征态是球谐函数$\bra{\bm{r}}\ket{l,m_l}=Y_{l,m_l}(\theta,\phi)$，具体的内容可以参考教科书或者\href{https://zhuanlan.zhihu.com/p/419492575}{cyt大佬的知乎文章}。
 
 \begin{center}
-    \includegraphics[scale=0.6]{fig/lzhx/微信图片_20211026130340.png}
+    \includegraphics[scale=0.55]{fig/lzhx/微信图片_20211026130340.png}
 \end{center}
 
 \section{氢原子}
@@ -491,6 +492,33 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 由于能量简并，这几个轨道的线性组合得到的任意波函数都是哈密顿量的本征函数，如果轨道能量不简并的话，轨道线性组合的结果将并不会是哈密顿量的本征函数，其对算符作用后得到的也不是本征值而是期望值。
 
 \section{电子自旋}
+非相对论量子力学体系下，电子自旋被认为是电子的内禀性质，这里就不介绍历史了，总而言之，发现自旋与角动量具有相同的量纲，于是强行跟轨道角动量类比得到：
+\[\hat{S}^2\ket{s,m_s}=s(s+1)\hbar^2\ket{s,m_s}, \quad \hat{S}_z\ket{s,m_s}=m_s\hbar\ket{s,m_s}\]
+\[[\hat{S}^2,\hat{S}_i]=0, \quad [\hat{S}_i,\hat{S}_j]=i\hbar\epsilon_{ijk}\hat{S}_k, \quad (i,j,k=x,y,z)\]
+
+我们定义升降算符：
+\[\hat{S}_+=\hat{S}_x+i\hat{S}_y, \quad \hat{S}_-=\hat{S}_x-i\hat{S}_y\]
+对于升降算符，我们也有以下性质：
+\[[\hat{S}_z,\hat{S}_+]=\hbar\hat{S}_+, \quad [\hat{S}_z,\hat{S}_-]=-\hbar\hat{S}_-, \quad [\hat{S}_+,\hat{S}_-]=2\hbar\hat{S}_z, \quad [\hat{S}^2,\hat{S}_+]=[\hat{S}^2,\hat{S}_-]=0\]
+
+实验上观测到的电子只有两种自旋，即$s=1/2, \ m_s=\pm1/2$，对应的电子自旋态记为$\ket{\uparrow},\ket{\downarrow}$，这两者是$\hat{S}^2,\hat{S}_z$的本征态，在$\ket{\uparrow},\ket{\downarrow}$张成的空间下，$\hat{S}_z$和$\hat{S}^2$可以表示成如下形式：
+\[\hat{S}_z=\frac{\hbar}{2}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad \hat{S}^2=\frac{3}{4}\hbar^2\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\]
+
+根据升降算符的性质$\hat{S}_{\pm}\ket{s,m_s}=\sqrt{s(s+1)-m_s(m_s\pm1)}\hbar\ket{s,m_s\pm1}$可以得出升降算符的矩阵表示：
+\[\hat{S}_+=\hbar\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad \hat{S}_-=\hbar\begin{pmatrix} 0 & 0\\ 1 & 0 \end{pmatrix}\]
+进而能反推出$\hat{S}_x,\hat{S}_y$：
+\[\hat{S}_x=\frac{1}{2}(\hat{S}_++\hat{S}_-)=\frac{\hbar}{2}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \hat{S}_y=\frac{1}{2i}(\hat{S}_+-\hat{S}_-)=\frac{\hbar}{2}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\]
+
+\begin{center}
+    \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211028113518}
+\end{center}
+
+定义泡利矩阵(Pauli Matrices)引入归一化：
+\[\hat{\bm{S}}=(\hat{S}_x,\hat{S}_y,\hat{S}_z)=\frac{\hbar}{2}\hat{\bm{\sigma}}=\frac{\hbar}{2}(\hat{\sigma}_x,\hat{\sigma}_y,\hat{\sigma}_z)\]
+泡利矩阵具有如下性质：
+\[[\hat{\sigma}_i,\hat{\sigma}_j]=2i\epsilon_{ijk}\hat{\sigma}_k, \quad \hat{\sigma}_i^2=\hat{\sigma}_i^{\dagger}\hat{\sigma}_i=\mathbf{I}, \quad (i,j,k=x,y,z)\]
+
+
 
 \section{单核多电子体系}
 \subsection{波恩-奥本海默(Born-Oppenheimer)近似}
@@ -585,43 +613,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{A}\varPsi_{1}(1,2,3 \cdots)=\frac{1}{\sqrt{n!}}\sum_{k}(-1)^{\tau}\hat{P}_{k}\varPsi_{1}(1,2,3 \cdots)=\frac{1}{\sqrt{n!}}\left (\frac{n!}{2}\prod_{i=1}^n\varphi_1(i)-\frac{n!}{2}\prod_{i=1}^n\varphi_1(i) \right )=0\]
 这证明了我们为什么只“见过”波色子扎推在一个能级中，而费米子只能孤零零地处于各自不同的能级上。
 
-\subsection{电子自旋}
-非相对论量子力学体系下，电子自旋被认为是电子的内禀性质，强行跟轨道角动量类比得到：
-
-\[
-    \begin{array}{ll}
-        \hat{J}(\hat{J_x},\hat{J_y},\hat{J_z}) & \hat{S}(\hat{S_x},\hat{S_y},\hat{S_z}) \\
-        L=\sqrt{l(l+1)}\hbar & S=\sqrt{s(s+1)}\\
-        i=0,1,2 \cdots & s=\frac{1}{2}\\
-        J_z=m_l\hbar & S_z=m_s\hbar\\
-        m_l - \text{magnetic number}, & m_s - \text{magnetic spin number},\\
-        \hat{J}^2=\hat{J_x}^2+\hat{J_y}^2+\hat{J_z}^2 & \hat{S}^2=\hat{S_x}^2+\hat{S_y}^2+\hat{S_z}^2 \\
-        \qty[\hat{J}^2,\hat{J_n}]=0 \ (n=x,y,z) & \qty[\hat{S}^2,\hat{S_n}]=0 \ (n=x,y,z)\\
-        \qty[\hat{J_x},\hat{J_y}]=i\hbar\hat{J_z} & \qty[\hat{S_x},\hat{S_y}]=i\hbar\hat{S_z}\\
-        \qty[\hat{J_z},\hat{J_x}]=i\hbar\hat{J_y} & \qty[\hat{S_z},\hat{S_x}]=i\hbar\hat{S_y}\\
-        \qty[\hat{J_y},\hat{J_z}]=i\hbar\hat{J_x} & \qty[\hat{S_y},\hat{S_z}]=i\hbar\hat{S_x}
-    \end{array}
-\]
-
-虽然电子的自旋被认为是电子场的自然结论，但我们不打算在这里介绍相对论量子力学（我也不会）。
-本小节我们只介绍电子自旋的一些物理性质并讨论其部分算符以及可观测量，在下一章节我们会介绍电子自旋对原子的物理性质如光谱的影响。
-
-\begin{center}
-    \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211028113518}
-\end{center}
-
-总结一下我们至今碰到的算符，这里我们采用量子数形式的狄拉克表示符号代替波函数：
-\[
-    \begin{array}{ll}
-        \ket{nlm_lm_s}=R_{nl}(r)Y_{l,m_l}(\theta,\varphi)\sigma_{m_s} \\
-        \hat{H}\ket{nlm_lm_s}=E_{nl}\ket{nlm_lm_s} \\
-        \hat{J}^2\ket{nlm_lm_s}=l(l+1)\hbar^2\ket{nlm_lm_s} \\
-        \hat{J_z}\ket{nlm_lm_s}=m_l\hbar\ket{nlm_lm_s} \\
-        \hat{S}^2\ket{nlm_lm_s}=s(s+1)\hbar^2\ket{nlm_lm_s} \\
-        \hat{S_z}\ket{nlm_lm_s}=m_s\hbar\ket{nlm_lm_s}
-    \end{array}
-\]
-
+\subsection{双自旋体系}
 如果我们对一个双电子体系进行考察，其自旋可以采用如下四种状态：
 \[\sigma_{12}=\sigma_{1}\sigma_{2}=\alpha_1\alpha_2, \ \alpha_1\beta_2, \ \beta_1\alpha_2, \ \beta_1\beta_2\]
 
