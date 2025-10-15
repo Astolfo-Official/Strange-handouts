@@ -425,9 +425,56 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[I=\mu r^2, \quad L=I\omega, \quad E=I\omega^2/2=L^2/2I\]
 引入角动量算符$\hat{L}$，我们可以将上述薛定谔方程改写成：
 \[\hat{L}^2\psi:=-\hbar^2\left(\frac{1}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2\sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right)\psi=L^2\psi\]
- 
+
+至此我们正式进入了角动量薛定谔方程的求解，这里我们采用升降算符的方式求解，推导过程参考\href{https://zhuanlan.zhihu.com/p/419492575}{cyt大佬的知乎文章}。首先从角动量算符的定义出发，与经典定义一样，角动量算符可以通过位置算符和动量算符的叉乘获得$\hat{\bm{L}}=\hat{\bm{r}}\times\hat{\bm{p}}$，在坐标表象下，显然其有三个分量（显然$\hat{L}_x, \ \hat{L}_y, \ \hat{L}_z, \ \hat{L}^2$都是厄米的，自证不难）：
+\[\hat{L}_x=\hat{y}\hat{p}_z-\hat{z}\hat{p}_y, \quad \hat{L}_y=\hat{z}\hat{p}_x-\hat{x}\hat{p}_z, \quad \hat{L}_z=\hat{x}\hat{p}_y-\hat{y}\hat{p}_x\]
+
+我们定义升降算符：
+\[\hat{L}_+=\hat{L}_x+i\hat{L}_y, \quad \hat{L}_-=\hat{L}_x-i\hat{L}_y\]
+
+这里可以作为一个对易关系式的联系，读者不难自证：
+\[[\hat{L}_i,\hat{L}_j]=i\hbar\epsilon_{ijk}\hat{L}_k, \quad [\hat{L}^2,\hat{L}_i]=0, \quad (i,j,k=x,y,z \quad \epsilon_{ijk} \text{ 是\href{https://en.wikipedia.org/wiki/Levi-Civita_symbol}{Levi-Civita符号}})\]
+
+对于升降算符，我们也有以下性质：
+\[[\hat{L}_z,\hat{L}_+]=\hbar\hat{L}_+, \quad [\hat{L}_z,\hat{L}_-]=-\hbar\hat{L}_-, \quad [\hat{L}_+,\hat{L}_-]=2\hbar\hat{L}_z, \quad [\hat{L}^2,\hat{L}_+]=[\hat{L}^2,\hat{L}_-]=0\]
+
+由于$\hat{L}^2$与$\hat{L}_z$对易，它们拥有共同的本征态,该本征态分布由两算符对应的量子数$l$与$m_l$确定，记为$\ket{l,m_l}$，我们发现角动量具有$\hbar$的量纲，且由于$\hbar$是量子力学里的最小离散化单位，因此$\hat{L}_z$的本征值一定是$\hbar$的倍数，该整数记为$m_l$，类似的对于$\hat{L}^2$其本征值也应该是$\hbar^2$的倍数，且由于平方的存在这个倍数一定是正的：
+\[\hat{L}_z\ket{l,m_l}=m_l\hbar\ket{l,m_l}, \quad \hat{L}^2\ket{l,m_l}=f(l)\hbar^2\ket{l,m_l}\]
+
+对$f(l)$可以更进一步约束其取值范围：
+\[\hat{L}^2\ket{l,m_l}-\hat{L}_z^2\ket{l,m_l}=(\hat{L}_x^2+\hat{L}_y^2)\ket{l,m_l}=(f(l)-m_l^2)\hbar^2\ket{l,m_l} \quad \Rightarrow \quad f(l) \geq m_l^2\]
+
+由于升降算符$\hat{L}_{\pm}$与$\hat{L}^2$对易，$\hat{L}_{\pm}$并不改变本征态的$l$部分，而将$\hat{L}_{\pm}$与$\hat{L}_z$的对易子作用到态$\ket{l,m_l}$得到：
+\begin{equation}
+\begin{aligned}\label{lpm}
+\hat{L}_z\hat{L}_+\ket{l,m_l}=\hat{L}_+\hat{L}_z\ket{l,m_l}+[\hat{L}_z,\hat{L}_+]\ket{l,m_l}=m_l\hbar\hat{L}_+\ket{l,m_l}+\hbar\hat{L}_+\ket{l,m_l}=(m_l+1)\hbar\hat{L}_+\ket{l,m_l} \\ \hat{L}_z\hat{L}_-\ket{l,m_l}=\hat{L}_-\hat{L}_z\ket{l,m_l}+[\hat{L}_z,\hat{L}_-]\ket{l,m_l}=m_l\hbar\hat{L}_-\ket{l,m_l}-\hbar\hat{L}_-\ket{l,m_l}=(m_l-1)\hbar\hat{L}_-\ket{l,m_l}
+\end{aligned}    
+\end{equation}
+可以发现，$\hat{L}_{\pm}$作用到态$\ket{l,m_l}$后以$\pm\hbar$的幅度改变了$\hat{L}_z$的本征值，而由于$m_l^2 \leq f(l)$，这说明存在一个最大的$m_l=m_{l,\rm{max}}$满足：
+\[\hat{L}_+\ket{l,m_{l,\rm{max}}}=0\]
+此时再作用个降算符上去也会得到0：
+\begin{equation}
+\begin{aligned}\label{l2pm}
+\hat{L}_-\hat{L}_+\ket{l,m_{l,\rm{max}}}&=(\hat{L}_x-i\hat{L}_y)(\hat{L}_x+i\hat{L}_y)\ket{l,m_{l,\rm{max}}}=(\hat{L}_x^2+\hat{L}_y^2+i[\hat{L}_x,\hat{L}_y])\ket{l,m_{l,\rm{max}}}\\
+&=(\hat{L}^2-\hat{L}_z^2-\hbar\hat{L}_z)\ket{l,m_{l,\rm{max}}}=[f(l)-m_{l,\rm{max}}^2-m_{l,\rm{max}}]\hbar^2\ket{l,m_{l,\rm{max}}}=0
+\end{aligned}
+\end{equation}
+令$l=m_{l,\rm{max}}$，得到$\hat{L}^2$的本征值：
+\[\hat{L}^2\ket{l,m_l}=l(l+1)\hbar^2\ket{l,m_l}\]
+
+接下来看升降算符的递推形式，从式\ref{lpm}出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
+\[\hat{L}_+\ket{l,m_l}=\alpha_+(l,m_l)\hbar\ket{l,m_l+1}, \quad \hat{L}_-\ket{l,m_l}=\alpha_-(l,m_l)\hbar\ket{l,m_l-1}\]
+在式\ref{l2pm}中我们利用了：
+\[\hat{L}_-\hat{L}_+\ket{l,m_l}=[l(l+1)-m_l(m_l+1)]\hbar^2\ket{l,m_l}=\alpha_+(l,m_l)\alpha_-(l,m_l+1)\hbar^2\ket{l,m_l}\]
+同时：
+\[\bra{l,m_l}\hat{L}_-\ket{l,m_l+1}^*=\bra{l,m_l+1}\hat{L}_+\ket{l,m_l} \quad \Rightarrow \quad \alpha_-(l,m_l+1)^*=\alpha_+(l,m_l)\]
+整合以上两式可以知道：
+\[\hat{L}_+\ket{l,m_l}=\sqrt{l(l+1)-m_l(m_l+1)}\hbar\ket{l,m_l+1}, \quad \hat{L}_-\ket{l,m_l}=\sqrt{l(l+1)-m_l(m_l-1)}\hbar\ket{l,m_l-1}\]
+
+角动量的本征态是球谐函数$\bra{\bm{r}}\ket{l,m_l}=Y_{l,m_l}(\theta,\phi)$，具体的内容可以参考教科书或者\href{https://zhuanlan.zhihu.com/p/419492575}{cyt大佬的知乎文章}。
+
 \begin{center}
-    \includegraphics[scale=0.5]{fig/lzhx/微信图片_20211026130340.png}
+    \includegraphics[scale=0.6]{fig/lzhx/微信图片_20211026130340.png}
 \end{center}
 
 \section{氢原子}
@@ -436,9 +483,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 \subsection{实、复轨道？}
 举个例子，求解氢原子薛定谔方程我们能得到$n=2$，$l=1$，$m=-1,0,1$三个轨道波函数的表达式：
-\[2p_0=N_{2p}ze^{-\frac{r}{2}} \qquad (m=0)\]
-\[2p_1=-N_{2p}\frac{\sqrt{2}}{2}(x+iy)e^{-\frac{r}{2}} \qquad (m=1) \]
-\[2p_{-1}=N_{2p}\frac{\sqrt{2}}{2}(x-iy)e^{-\frac{r}{2}} \qquad (m=-1) \]
+\[2p_0=N_{2p}ze^{-\frac{r}{2}}, \quad 2p_1=-N_{2p}\frac{\sqrt{2}}{2}(x+iy)e^{-\frac{r}{2}}, \quad 2p_{-1}=N_{2p}\frac{\sqrt{2}}{2}(x-iy)e^{-\frac{r}{2}}\]
 
 这些轨道与我们所熟知的$2p_x,2p_y,2p_z$有如下关系：
 \[2p_z=2p_0=N_{2p}ze^{-\frac{r}{2}} \quad 2p_x=\frac{\sqrt{2}}{2}(2p_{-1}-2p_1)=N_{2p}xe^{-\frac{r}{2}} \quad 2p_y=\frac{\sqrt{2}i}{2}(2p_{-1}+2p_1)=N_{2p}ye^{-\frac{r}{2}}\]
@@ -484,11 +529,11 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{H}=-\sum_{i}\frac{\hbar^2}{2m_i}\nabla^2_i+\sum_{i,j}\frac{q_iq_j}{4 \pi \varepsilon_0 r_{ij}}-\sum_i\frac{q_iq_n}{4 \pi \varepsilon_0 r_{i}}\]
 
 在平均场近似下，把其他电子对某电子的双体算符$(\hat{V}_{ij})$平均成其他电子对该电子产生的势场$(\hat{V}_{i})$，此时体系哈密顿算符可以被拆分成单个粒子的哈密顿算符之和：
-\[\hat{H}=\sum_{i}\hat{H}_{i} \qquad \text{where} \quad \hat{H}_i=-\frac{\hbar^2}{2m_i}\nabla^2_i+V_i\]
+\[\hat{H}=\sum_{i}\hat{H}_{i} \qquad \text{where} \quad \hat{H}_i=-\frac{\hbar^2}{2m_i}\nabla^2_i+V_{n,i}+V_{e,i}\]
 
-同理，电子波函数也可以近似成各个单电子波函数的乘积$\varPsi=\varPsi_1(\bm{q}_1)\varPsi_2(\bm{q}_2)\cdots$(这里先对波函数这样的拆分方法正确性按下不表)，此时系统的总薛定谔方程可以被拆分成一系列的单体哈密顿方程：
-\[\hat{H}_i\varPsi_i=\left( -\frac{\hbar^2}{2m_i}\nabla^2_i+\hat{V}_i \right)\varPsi_i=\varepsilon_i\varPsi_i\]
-
+同理，电子波函数也可以近似成各个单电子波函数的乘积$\varPsi=\varPsi_1(\bm{q}_1)\varPsi_2(\bm{q}_2)\cdots$(这里先对波函数这样的拆分方法正确性按下不表)，此时系统的总薛定谔方程可以被拆分成一系列的单体薛定谔方程：
+\[\hat{H}_i\ket{\psi_i}=\left( -\frac{\hbar^2}{2m_i}\nabla^2_i+\hat{V}_i \right)\ket{\psi_i}=\varepsilon_i\ket{\psi_i}\]
+但此时哈密顿包含了波函数，因为你需要用波函数来计算电子密度从而构建平均场，即你要解的方程是一个$\hat{H}(\psi)\ket{\psi}=E\ket{\psi}$形式的本征值问题，你当然不能直接对角化哈密顿，此时需要迭代来收敛最终得到波函数，这种方法称为自洽场(Self-Consistent Field, SCF)。
 \subsection{粒子全同性与泡利不相容原理}
 全同性应该是微观粒子与宏观物体最不同的地方之一。
 
