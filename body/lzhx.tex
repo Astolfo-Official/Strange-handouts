@@ -516,8 +516,45 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 定义泡利矩阵(Pauli Matrices)引入归一化：
 \[\hat{\bm{S}}=(\hat{S}_x,\hat{S}_y,\hat{S}_z)=\frac{\hbar}{2}\hat{\bm{\sigma}}=\frac{\hbar}{2}(\hat{\sigma}_x,\hat{\sigma}_y,\hat{\sigma}_z)\]
 泡利矩阵具有如下性质：
-\[[\hat{\sigma}_i,\hat{\sigma}_j]=2i\epsilon_{ijk}\hat{\sigma}_k, \quad \hat{\sigma}_i^2=\hat{\sigma}_i^{\dagger}\hat{\sigma}_i=\mathbf{I}, \quad (i,j,k=x,y,z)\]
+\[[\hat{\sigma}_i,\hat{\sigma}_j]=2i\epsilon_{ijk}\hat{\sigma}_k, \quad \hat{\sigma}_i^2=\hat{\sigma}_i^{\dagger}\hat{\sigma}_i=\mathbf{I}, \quad \Tr\hat{\sigma}_i=0, \quad (i,j,k=x,y,z)\]
 
+\subsection{SU(2)和SO(3)}
+SU(2) 群是一个矩阵群，群元素为$2\times2$的幺正矩阵，而且矩阵的行列式为1。如果将 SU(2) 群元素写做$e^{iA}$,那么因为 $e^{iA}(e^{-iA})^\dagger=e^{iA}e^{-iA^\dagger}=I \ \Rightarrow \ A=A^\dagger$,也就是$A$是Hermite矩阵。又因为$\det(e^{iA})=e^{i\Tr A}=1$,所以$\Tr A=0$。任意一个零迹二阶Hermite矩阵都可以用三个泡利矩阵的线性组合给出，因此 SU(2) 的基本元素都可以用泡利矩阵表示成$e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}, \ \bm{n}\in\mathbb{R}^3, \ |n|=1$。由于这里有四个变量一个约束条件，指数映射将李代数映射到李群，因此 SU(2) 是一个三阶连续群。所以泡利矩阵是 SU(2) 群的李代数 su(2) 的一组完备基。
+
+SO(3) 群是所有行列式为1的$3\times3$的正交矩阵构成的集合。用指数形式表示一个正交矩阵为$R=e^A$ .根据定义，有$R^TR=e^{A^T}e^A=I$ .所以就有$A^T=-A$ ,意味着$A$是反对称矩阵。另外，$\det R=e^{\mathrm{Tr}A}=1$ .所以$\Tr A=0$ .值得指出的是，反对称实矩阵的迹一定是零。所以 SO(3) 群的李代数 so(3) 是所有三阶反对称实矩阵构成的集合。任意一个三阶反对称实矩阵都可以写作
+\[A=\begin{pmatrix}0&-a&b\\a&0&-c\\-b&c&0\end{pmatrix}\]
+因此， SO(3)群也是只有三个自由度，是一个三阶连续群。
+
+\begin{definition}[群同态]
+给定两个群$(G,\ast),(H,\cdot)$和映射$h:(G,*)\to(H,\cdot)$, 满足：
+\[\forall \, u,v \in G, \ h(u*v)=h(u)\cdot h(v)\]
+则称映射$h$为群同态。
+\end{definition}
+
+同态映射保持了群的结合律，同时也需要注意，群同态并不保证其是单、满还是双的，下面我们将证明存在一个从 SU(2) 到 SO(3) 的群同态（略去结合律的验证，这很显然），然后说明这是一个2/1的满同态。
+
+\[
+\begin{tikzcd}[row sep=1.5cm, column sep=1.5cm]
+x\in\mathbb{R}^3 \arrow[r, "y=Rx"] \arrow[d, "\exp(i\theta\bm{x}\cdot\bm{\sigma}/2)"'] 
+    & y\in\mathbb{R}^3 \arrow[d, "\exp(i\theta\bm{y}\cdot\bm{\sigma}/2)"] \\
+X\in\text{SU(2)} \arrow[r, "UXU^\dagger"] 
+    & Y\in\text{SU(2)}
+\end{tikzcd}
+\]
+
+构造以上的映射关系，从$\mathbb{R}^3$中取出一个元素$x$一一映射到 SU(2) 中的$X$，然后定义一个关于 SU(2) 中的元素$U$的映射把$X$映射到$Y$，最后再利用与第一步一样的映射取出$\mathbb{R}^3$中的另外一个元素$y$，只需要说明对于每一个 SU(2) 中的元素$U$都能找到一个 SO(3) 中的元素$R$与之对应。计算$UXU^\dagger$：
+\[UXU^\dagger=\sum_{i=1}^{3}x_ie^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}\sigma_ie^{-i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}:=\sum_{i=1}^{3}x_if_i(\theta)\]
+需要求解$f_i(\theta)$，先导一发(会用到$[\bm{\sigma}\cdot\bm{n},\sigma_i]=-[\sigma_i,\sigma_j]n_j=-2i\epsilon_{ijk}n_j\sigma_k$，这里用了爱因斯坦求和约定)：
+\[f_i^{\prime}(\theta)=\frac{i}{2}e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}[\bm{\sigma}\cdot\bm{n},\sigma_i]e^{-i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}=\sum_{j}\epsilon_{ijk}n_j\frac{i}{2}e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}\sigma_ke^{-i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}=\sum_{j}\epsilon_{ijk}n_jf_k(\theta)\]
+写成矩阵形式$\mathbf{F}'=\mathbf{A}\mathbf{F}$（又是一个复习数学的好时候）：
+\[\mathbf{F}'=\begin{pmatrix}f_1^{\prime}(\theta)\\f_2^{\prime}(\theta)\\f_3^{\prime}(\theta)\end{pmatrix}=\begin{pmatrix}0&-n_3&n_2\\n_3&0&-n_1\\-n_2&n_1&0\end{pmatrix}\begin{pmatrix}f_1(\theta)\\f_2(\theta)\\f_3(\theta)\end{pmatrix}=\mathbf{A}\mathbf{F}\]
+除了直接对角化解方程外这里介绍一些特殊性质，由于矩阵$\mathbf{A}$是反对称的，这意味着$\mathbf{A}\mathbf{F}=\mathbf{n}\times\mathbf{F}$，这表明这个是一个绕着$\mathbf{n}$轴的旋转方程，其解为$\mathbf{F}(\theta)=e^{\theta\mathbf{A}}\mathbf{F}(0)=R\bm{\sigma}$，显然这里$R$是上文提到的 SO(3) 的元素。
+
+整理一下上述计算：
+\[Y=\sum_{i=1}^3y_i\sigma_i=\sum_{i=1}^{3}x_if_i(\theta)=\sum_{i=1}^{3}x_i\sum_{j=1}^{3}R_{ij}\sigma_j \quad \Rightarrow \quad \mathbf{y}=R\mathbf{x}\]
+这需要说明对于每一个 SU(2) 中的元素$U$都能找到一个 SO(3) 中的元素$R$与之对应，即证明了从 SU(2) 到 SO(3) 的同态：
+\[U(\theta)=e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}} \to R(\theta)=e^{\theta\mathbf{A}}, \quad \text{SU(2)} \mapsto \text{SO(3)}\]
+保结合律是显然的。值得注意的是$U(\theta)$与$U(\theta+2\pi)$都对应同一个$R(\theta)$，但是两者并不相等，这一数学事实直接导致了自旋$1/2$系统在旋转下的非经典行为：波函数在空间旋转$2\pi$后改变符号，需要旋转$4\pi$才能复原。这是量子力学区别于经典物理的一个最深刻、最典型的特征。
 
 
 \section{单核多电子体系}
