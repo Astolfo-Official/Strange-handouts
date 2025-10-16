@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  15 OCT 2025 19:17
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  16 OCT 2025 01:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1529,7 +1529,9 @@ File: fig/lzhx/微信图片_20211026130340.png Graphic file (type bmp)
  [16]
 File: fig/lzhx/微信图片_20211028113518.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211028113518.png>
- [17] [18] [19] [20] [21] [22]
+ [17] [18] [19] [20]
+Missing character: There is no ß ("DF) in font cmmi10!
+[21] [22]
 File: fig/lzhx/微信图片_20211030111438.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211030111438.png>
  [23] [24] [25]
@@ -1537,35 +1539,35 @@ File: fig/lzhx/微信图片_20211102112346.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102112346.png>
 File: fig/lzhx/微信图片_202111021123461.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021123461.png>
- [26] [27] [28] [29]
+ [26] [27] [28]
 File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
- [30]
+ [29]
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
 <fig/lzhx/微信图片_202111021728151.png>
- [31]
+ [30]
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102175446.png>
 File: fig/lzhx/微信图片_20211106011930.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106011930.png>
- [32] [33]
+ [31] [32]
 File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106140136.png>
- [34] [35] [36] [37] [38] [39] [40]) [41]
+ [33] [34] [35] [36] [37] [38] [39]) [40]
 Chapter 2.
-(./body/Fourier.tex [42
+(./body/Fourier.tex [41
 
-] [43] [44] [45] [46]) [47]
+] [42] [43] [44] [45]) [46]
 Chapter 3.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
-[48
+[47
 
-] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58]
+] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 517.
@@ -1576,7 +1578,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
-[59]
+[58]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
@@ -1584,7 +1586,7 @@ Overfull \hbox (25.10422pt too wide) in paragraph at lines 552--554
 []$\OML/cmm/m/it/10 Legendre$ \TU/SongtiSCLight(0)/m/n/10 变 换 是 一 个 实 变 量 的 实 值 凸 函 数 的 对 合 变 换，|  代 数 意 义 上\TU/texgyretermes(0)/m/n/10 ,$\OML/cmm/m/it/10 Legendre$ \TU/SongtiSCLight(0)/m/n/10 变 换 是 一 将 向 量 空 间 \TU/texgyretermes(0)/m/n/10 ($\OML/cmm/m/it/10 Vector space$\TU/texgyretermes(0)/m/n/10 )
  []
 
-[60] [61]) [62] (./Strange handouts.aux)
+[59] [60]) [61] (./Strange handouts.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1600,12 +1602,12 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47926 strings out of 474773
- 1057122 string characters out of 5757723
- 2023351 words of memory out of 5000000
- 69241 multiletter control sequences out of 15000+600000
+ 47935 strings out of 474773
+ 1057748 string characters out of 5757723
+ 2023358 words of memory out of 5000000
+ 69250 multiletter control sequences out of 15000+600000
  568807 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,16n,108p,716b,1410s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (63 pages).
+Output written on Strange handouts.pdf (62 pages).
