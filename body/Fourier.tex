@@ -9,33 +9,33 @@
 \qquad \qquad \text{2、f(x)在区间${[-\frac{T}{2},\frac{T}{2}]}$上只有有限个极值点。}
 
 \textit{$f(x)$就可以展开成傅里叶级数} :
-\[f(x)=\frac{a_0}{2}+\sum_{n=1}^{+\infty}(a_ncos(n\omega x)+b_nsin(n\omega x)) \tag{a}\]
+\[f(x)=\frac{a_0}{2}+\sum_{n=1}^{+\infty}(a_n\cos(n\omega x)+b_n\sin(n\omega x)) \tag{a}\]
 
 \textit{其中：}
-\[\omega=\frac{2\pi}{T} \qquad a_0=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)dx\]
-\[a_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)cos(n\omega x)dx \qquad b_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)sin(n\omega x)dx\]
+\[\omega=\frac{2\pi}{T} \qquad a_0=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\dd{x}\]
+\[a_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\cos(n\omega x)\dd{x} \qquad b_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\sin(n\omega x)\dd{x}\]
 \[(n=1,2,3......) \tag{b}\]
 
-\textit{将$cos(n\omega x)$、$sin(n\omega x)$写成复指数形式} ：
-\[cos(n\omega x)=\frac{e^{in\omega x}+e^{-in\omega x}}{2} \qquad sin(n\omega x)=\frac{e^{in\omega x}-e^{-in\omega x}}{2i} \tag{c}\]
+\textit{将$\cos(n\omega x)$、$\sin(n\omega x)$写成复指数形式} ：
+\[\cos(n\omega x)=\frac{e^{in\omega x}+e^{-in\omega x}}{2} \qquad \sin(n\omega x)=\frac{e^{in\omega x}-e^{-in\omega x}}{2i} \tag{c}\]
 
 \textit{则} (a) \textit{式可以写成以下形式 }：
 \[f(x)=\frac{a_0}{2}+\sum_{n=1}^{+\infty}(\frac{a_n-ib_n}{2}e^{in\omega x}+\frac{a_n+ib_n}{2})e^{-in\omega x} \tag{d}\]
 
 \textit{我们令 }:
-\[c_0=\frac{a_0}{2}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)dx\]
-\[c_n=\frac{a_n-ib_n}{2}=\frac{1}{T}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)(cos(n\omega x)dx-isin(n\omega x))dx)=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{-in\omega x}dx\]
-\[c_{-n}=\frac{a_n+ib_n}{2}=\frac{1}{T}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)(cos(n\omega x)dx+isin(n\omega x))dx)=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{in\omega x}dx\]
+\[c_0=\frac{a_0}{2}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\dd{x}\]
+\[c_n=\frac{a_n-ib_n}{2}=\frac{1}{T}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)(\cos(n\omega x)\dd{x}-i\sin(n\omega x))\dd{x})=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{-in\omega x}\dd{x}\]
+\[c_{-n}=\frac{a_n+ib_n}{2}=\frac{1}{T}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)(\cos(n\omega x)\dd{x}+i\sin(n\omega x))\dd{x})=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{in\omega x}\dd{x}\]
 \[(n=1,2,3......)\]
 
 \textit{合并写成 }：
-\[c_n=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{-in\omega x}dx \qquad (n=\pm 1,\pm 2,\pm 3......) \tag{e}\]
+\[c_n=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)e^{-in\omega x}\dd{x} \qquad (n=\pm 1,\pm 2,\pm 3......) \tag{e}\]
 
 \textit{则}(a)\textit{式可以写成 }：
 \[f(x)=c_0+\sum_{n=1}^{+\infty}(c_ne^{i\omega_n x}+c_{-n}e^{-i\omega_n x})=\sum_{n=-\infty}^{+\infty}c_ne^{i\omega_n x} \qquad (\omega_n:=n\omega) \tag{f}\]
 
 \textit{最终，我们得到$f(x)$复指数形式的傅里叶级数 }：
-\[f(x)=\sum_{n=-\infty}^{+\infty}(\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}dy)e^{i\omega_n x} \tag{g}\]
+\[f(x)=\sum_{n=-\infty}^{+\infty}(\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}\dd{y})e^{i\omega_n x} \tag{g}\]
 
 \subsection{傅里叶积分定理}
 
@@ -54,16 +54,16 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 \[\lim_{T \rightarrow \infty}{f_T(x)=f(x)}\]
 
 \textit{则，由$(g)$式可知，对于一个可以展开成傅里叶级数且其周期$T$无穷大的函数，其傅里叶级数可以写成 }:
-\[f(x)=\lim_{T \rightarrow \infty}\frac{1}{T}\sum_{n=-\infty}^{+\infty}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}dy)e^{i\omega_n x} \tag{h}\]
+\[f(x)=\lim_{T \rightarrow \infty}\frac{1}{T}\sum_{n=-\infty}^{+\infty}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}\dd{y})e^{i\omega_n x} \tag{h}\]
 
 \textit{这里，我们定义一个新的量$\Delta{\omega}$ }：
 \[\Delta{\omega}:=\omega_n-\omega_{n-1}=\omega=\frac{2\pi}{T}\]
 
 \textit{则$(h)$式可以写成 }：
-\[f(x)=\lim_{\Delta{\omega} \rightarrow 0}\frac{1}{2\pi}\sum_{n=-\infty}^{+\infty}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}dy)e^{i\omega_n x}\Delta{\omega} \tag{i}\]
+\[f(x)=\lim_{\Delta{\omega} \rightarrow 0}\frac{1}{2\pi}\sum_{n=-\infty}^{+\infty}(\int_{-\frac{T}{2}}^{\frac{T}{2}}f(y)e^{-i\omega_n y}\dd{y})e^{i\omega_n x}\Delta{\omega} \tag{i}\]
 
 \textit{由积分的定义式我们可以知道$(i)$式最终可以写成 }：
-\[f(x)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}dy)e^{i\omega x}d\omega \tag{j}\]
+\[f(x)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}\dd{y})e^{i\omega x}\dd{\omega} \tag{j}\]
 
 \textit{上面我们不严格地推导处理傅里叶积分公式，下面我们给出傅里叶积分公式的严格定义 }：
 
@@ -73,19 +73,19 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \qquad \qquad \text{在任一有限区间上满足迪利克雷条件；}
 
-\qquad \qquad \text{在${(-\infty,+\infty)}$上绝对可积（即$\int_{-\infty}^{+\infty}|f(x)|dx$收敛）；}
+\qquad \qquad \text{在${(-\infty,+\infty)}$上绝对可积（即$\int_{-\infty}^{+\infty}|f(x)|\dd{x}$收敛）；}
 
 \text{当$f(x)$在点$x=x_0$处连续时，则有：}
-\[\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}dy)e^{i\omega x_0}d\omega=f(x_0)\]
+\[\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}\dd{y})e^{i\omega x_0}\dd{\omega}=f(x_0)\]
 
 \text{当$f(x)$在点$x=x_0$处不连续时，则有：}
-\[\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}dy)e^{i\omega x_0}d\omega=\frac{1}{2}\left ( \lim_{x \rightarrow x_0^-}{f(x)}+\lim_{x \rightarrow x_0^+}{f(x)} \right )\]
+\[\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\int_{-\infty}^{+\infty}f(y)e^{-i\omega y}\dd{y})e^{i\omega x_0}\dd{\omega}=\frac{1}{2}\left ( \lim_{x \rightarrow x_0^-}{f(x)}+\lim_{x \rightarrow x_0^+}{f(x)} \right )\]
 
 \subsection{傅里叶变换的概念}
 
 \textbf{定义} \text{如果$f(t)$满足傅里叶积分定理，设} ：
-\[F(\omega)=\int_{-\infty}^{+\infty}f(t)e^{-i\omega t}dt \tag{1}\] 
-\[f(t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F(\omega)e^{i\omega t}d\omega \tag{2}\]
+\[F(\omega)=\int_{-\infty}^{+\infty}f(t)e^{-i\omega t}\dd{t} \tag{1}\] 
+\[f(t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F(\omega)e^{i\omega t}\dd{\omega} \tag{2}\]
 
 \text{则称$F(\omega)$为$f(t)$的象函数，称(1)式为$f(t)$的傅里叶变换式，记为：}
 \[F(\omega)=\mathcal{F}[f(t)]\]
@@ -103,18 +103,18 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 0 & \text{if } x \neq 0\\
 1 & \text{if } x=0
 \end{array} \right. \tag{1}\]
-\[\int_{-\infty}^{+\infty}\delta(t)dt=1 \tag{2}\]
+\[\int_{-\infty}^{+\infty}\delta(t)\dd{t}=1 \tag{2}\]
 
 \textit{不论是$\delta$函数还是有延时的$\delta$函数$(\delta(t-t_0))$,都有如下重要的性质} （\textbf{筛选性质}） ：
 
-\[\int_{-\infty}^{+\infty}\delta(t-t_0)f(t)dt=f(t_0) \tag{k}\]
+\[\int_{-\infty}^{+\infty}\delta(t-t_0)f(t)\dd{t}=f(t_0) \tag{k}\]
 
 \textit{利用这个性质，我们可以对单位脉冲函数求其傅里叶变换及傅里叶逆变换} ：
 
-\[F(\omega)=\mathcal{F}[\delta(t-t_0)]=\int_{-\infty}^{+\infty}\delta(t-t_0)e^{-i\omega t}dt=e^{-i\omega t_0}\]
+\[F(\omega)=\mathcal{F}[\delta(t-t_0)]=\int_{-\infty}^{+\infty}\delta(t-t_0)e^{-i\omega t}\dd{t}=e^{-i\omega t_0}\]
 
 \textit{令$F(\omega)=2\pi \delta(\omega-\omega_0)$则有} ： 
-\[f(t)=\mathcal{F}^{-1}[2\pi \delta(\omega-\omega_0)]=\frac{1}{2\pi}\int_{-\infty}^{+\infty}2\pi \delta(\omega-\omega_0)e^{i\omega t}d\omega=e^{i\omega_0 t}\]
+\[f(t)=\mathcal{F}^{-1}[2\pi \delta(\omega-\omega_0)]=\frac{1}{2\pi}\int_{-\infty}^{+\infty}2\pi \delta(\omega-\omega_0)e^{i\omega t}\dd{\omega}=e^{i\omega_0 t}\]
 
 \textit{这是我们得到两对傅里叶变换对} ：
 
@@ -137,17 +137,17 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \[\frac{\mathrm{d}}{\mathrm{d} t}u(t)=\delta(t)\]
 
-\[F(\omega)=\mathcal{F}[u(t)]=\int_{-\infty}^{+\infty}\frac{1+sgn(t)}{2}e^{-i\omega t}dt=\frac{1}{i\omega}+\pi\delta(\omega)\]
+\[F(\omega)=\mathcal{F}[u(t)]=\int_{-\infty}^{+\infty}\frac{1+sgn(t)}{2}e^{-i\omega t}\dd{t}=\frac{1}{i\omega}+\pi\delta(\omega)\]
 
-\[u(t)=\mathcal{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\Bigl(\frac{1}{i\omega}+\pi\delta(\omega) \Bigl)e^{i\omega t}dt=\frac{1}{2}+\frac{1}{2\pi}\int_{-\infty}^{+\infty}\frac{sin\omega}{\omega}d\omega \tag{n}\]
+\[u(t)=\mathcal{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\Bigl(\frac{1}{i\omega}+\pi\delta(\omega) \Bigl)e^{i\omega t}\dd{t}=\frac{1}{2}+\frac{1}{2\pi}\int_{-\infty}^{+\infty}\frac{\sin\omega}{\omega}\dd{\omega} \tag{n}\]
 
-\textit{$\delta$函数并不是严格意义上数域到数域的函数，而是个定义在函数空间上的泛函，它的引入扩充了傅里叶变换的适用范围，使得一些不满足条件$\int_{-\infty}^{+\infty}|f(x)|dx<+\infty$的函数，如常值函数、符号函数、单位阶跃函数、正弦函数、余弦函数都能进行广义傅里叶变换.}
+\textit{$\delta$函数并不是严格意义上数域到数域的函数，而是个定义在函数空间上的泛函，它的引入扩充了傅里叶变换的适用范围，使得一些不满足条件$\int_{-\infty}^{+\infty}|f(x)|\dd{x}<+\infty$的函数，如常值函数、符号函数、单位阶跃函数、正弦函数、余弦函数都能进行广义傅里叶变换.}
 
 \textit{例如下面两个例子以及上面的常值函数以及单位阶跃函数 }:
 
-\[\mathcal{F}[cos(\omega_0t)]=\pi[\delta(\omega+\omega_0)+\delta(\omega-\omega_0)] \tag{o1}\]
+\[\mathcal{F}[\cos(\omega_0t)]=\pi[\delta(\omega+\omega_0)+\delta(\omega-\omega_0)] \tag{o1}\]
 
-\[\mathcal{F}[sin(\omega_0t)]=i\pi[\delta(\omega+\omega_0)-\delta(\omega-\omega_0)] \tag{o2}\]
+\[\mathcal{F}[\sin(\omega_0t)]=i\pi[\delta(\omega+\omega_0)-\delta(\omega-\omega_0)] \tag{o2}\]
 
 \subsection{傅里叶变换的性质}
 
@@ -174,27 +174,27 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \text{4.积分性质}
 
-\textit{当$t \rightarrow +\infty$时，$\int_{-\infty}^{t}f(t)dt \rightarrow 0$，则 }：
-\[ \mathcal{F}[\int_{-\infty}^{t}f(t)dt]=\frac{1}{i\omega}\mathcal{F}[f(t)]\]
+\textit{当$t \rightarrow +\infty$时，$\int_{-\infty}^{t}f(t)\dd{t} \rightarrow 0$，则 }：
+\[ \mathcal{F}[\int_{-\infty}^{t}f(t)\dd{t}]=\frac{1}{i\omega}\mathcal{F}[f(t)]\]
 
 \text{5.乘积定理}
 
 \textit{若$F_1(\omega)=\mathcal{F}[f_1(t)]$，$F_2(\omega)=\mathcal{F}[f_2(t)]$，则 }:
 
-\[\int_{-\infty}^{+\infty}\overline{f_1(t)}f_2(t)dt=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\overline{F_1(\omega)}F_2(\omega)d\omega\]
-\[\int_{-\infty}^{+\infty}f_1(t)\overline{f_2(t)}dt=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F_1(\omega)\overline{F_2(\omega)}d\omega\]
+\[\int_{-\infty}^{+\infty}\overline{f_1(t)}f_2(t)\dd{t}=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\overline{F_1(\omega)}F_2(\omega)\dd{\omega}\]
+\[\int_{-\infty}^{+\infty}f_1(t)\overline{f_2(t)}\dd{t}=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F_1(\omega)\overline{F_2(\omega)}\dd{\omega}\]
 
 \text{6.能量积分}
 
 \textbf{Parseval等式} \qquad \textit{若$F(\omega)=\mathcal{F}[f(t)]$，则 }：
 
-\[\int_{-\infty}^{+\infty}[f(t)]^2dt=\frac{1}{2\pi}\int_{-\infty}^{+\infty}[F(\omega)]^2d\omega:=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S(\omega)d\omega\]
+\[\int_{-\infty}^{+\infty}[f(t)]^2\dd{t}=\frac{1}{2\pi}\int_{-\infty}^{+\infty}[F(\omega)]^2\dd{\omega}:=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S(\omega)\dd{\omega}\]
 
 \subsection{卷积与卷积定理}
 
 \textit{若已知函数$f_1(t)$、$f_2(t)$，则我们定义卷积为 }：
 
-\[f_1(t)\ast f_2(t):=\int_{-\infty}^{+\infty}f_1(\tau)f_2(t-\tau)d\tau \tag{p}\] 
+\[f_1(t)\ast f_2(t):=\int_{-\infty}^{+\infty}f_1(\tau)f_2(t-\tau)\dd{\tau} \tag{p}\] 
 
 \textit{容易验证卷积运算满足 }：
 
@@ -214,10 +214,6 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \[\frac{\mathrm {d}}{\mathrm {d}x}[f_1(t)\ast f_2(t)]=[\frac{\mathrm {d}}{\mathrm {d}x}f_1(t)]\ast f_2(t)=f_1(t)\ast\frac{\mathrm {d}}{\mathrm {d}x}[ f_2(t)]\]
 
-\textit{卷积的积分 }：
-
-\[\int_{-\infty}^{t}[f_1(\phi)\ast f_2(\phi)]=[\int_{-\infty}^{t}f_1(\phi)]\ast f_2(\phi)=f_1(\phi)\ast [\int_{-\infty}^{t}f_2(\phi)]\]
-
 \textit{卷积不等式 }：
 
 \[|f_1(t)\ast f_2(t)| \leqslant |f_1(t)|\ast |f_2(t)|\]
@@ -234,11 +230,11 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \textit{给定两函数$f_1(t)$、$f_2(t)$,则定义互相关函数 }：
 
-\[R_{12}(\tau):=\int_{-\infty}^{+\infty}f_1(t)f_2(t+\tau)dt \qquad R_{21}(\tau):=\int_{-\infty}^{+\infty}f_1(t+\tau)f_2(t)dt\]
+\[R_{12}(\tau):=\int_{-\infty}^{+\infty}f_1(t)f_2(t+\tau)\dd{t} \qquad R_{21}(\tau):=\int_{-\infty}^{+\infty}f_1(t+\tau)f_2(t)\dd{t}\]
 
 \textit{当$f_1(t)=f_2(t)$时，则定义自相关函数 }：
 
-\[R(\tau):=\int_{-\infty}^{+\infty}f(t)f(t+\tau)dt\]
+\[R(\tau):=\int_{-\infty}^{+\infty}f(t)f(t+\tau)\dd{t}\]
 
 \textit{关于互相关函数有如下性质 }：
 
@@ -246,9 +242,9 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \textit{若令乘积定理中实函数$f_1(t)=f_1(t)$,$f_2(t)=f_2(t+\tau)$,则有 }：
 
-\[\int_{-\infty}^{+\infty}f_1(t)f_2(t+\tau)dt=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\overline{F_1(\omega)}F_2(\omega)e^{i\tau \omega}d\omega :=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S_{12}(\omega)e^{i\tau \omega}d\omega\]
+\[\int_{-\infty}^{+\infty}f_1(t)f_2(t+\tau)\dd{t}=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\overline{F_1(\omega)}F_2(\omega)e^{i\tau \omega}\dd{\omega} :=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S_{12}(\omega)e^{i\tau \omega}\dd{\omega}\]
 
-\[R_{12}(\tau)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S_{12}(\omega)e^{i\tau \omega}d\omega \qquad S_{12}(\omega)=\overline{S_{21}(\omega)} \tag{q}\]
+\[R_{12}(\tau)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S_{12}(\omega)e^{i\tau \omega}\dd{\omega} \qquad S_{12}(\omega)=\overline{S_{21}(\omega)} \tag{q}\]
 
 \textit{当$f_1(t)=f_2(t)$时} （q） \textit{式可做出相应的简化。}
 
@@ -262,16 +258,16 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 
 \textit{对上式两边同时取傅里叶变换，并认为系数项不为时间$t$的函数,由此可得 }：
 
-\[F(\omega)=\mathcal{F}[f(t)]=\int_{-\infty}^{+\infty}[\sum_{n=-\infty}^{+\infty}g(n)e^{in\omega_0 t}]e^{-i\omega t}dt=2\pi\sum_{n=-\infty}^{+\infty}g(n)\delta(\omega-n\omega_0) \tag{r}\]
+\[F(\omega)=\mathcal{F}[f(t)]=\int_{-\infty}^{+\infty}[\sum_{n=-\infty}^{+\infty}g(n)e^{in\omega_0 t}]e^{-i\omega t}\dd{t}=2\pi\sum_{n=-\infty}^{+\infty}g(n)\delta(\omega-n\omega_0) \tag{r}\]
 
 \subsection{非周期函数与连续频谱}
 
 \textit{对非周期函数$f(t)$，若其满足傅里叶积分定理条件，则在$f(t)$的连续点处，有 }：
 
-\[f(t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F(\omega)e^{i\omega t}d\omega\]
+\[f(t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F(\omega)e^{i\omega t}\dd{\omega}\]
 
 \textit{其傅里叶变换式为} ：
 
-\[F(\omega)=\int_{-\infty}^{+\infty}f(t)e^{-i\omega t}dt\] 
+\[F(\omega)=\int_{-\infty}^{+\infty}f(t)e^{-i\omega t}\dd{t}\] 
 
-\textit{在频谱分析中，傅里叶变换式$F(\omega)$又称为$f(t)$的频谱函数，频谱函数的模$|F(\omega)|$称为$f(t)$的振幅频谱（亦可简称为频谱）。在傅里叶积分中当$n\rightarrow +\infty$时，频率间隔$\Delta \omega $成为$d\omega$，$\omega$为连续变量，故称$|F(\omega)|$为连续频谱。对一个时间函数$f(t)$做傅里叶变换，就是求$f(t)$的频谱。}
+\textit{在频谱分析中，傅里叶变换式$F(\omega)$又称为$f(t)$的频谱函数，频谱函数的模$|F(\omega)|$称为$f(t)$的振幅频谱（亦可简称为频谱）。在傅里叶积分中当$n\rightarrow +\infty$时，频率间隔$\Delta \omega $成为$\dd{\omega}$，$\omega$为连续变量，故称$|F(\omega)|$为连续频谱。对一个时间函数$f(t)$做傅里叶变换，就是求$f(t)$的频谱。}

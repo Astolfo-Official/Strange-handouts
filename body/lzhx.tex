@@ -766,118 +766,68 @@ X\in\text{SU(2)} \arrow[r, "UXU^\dagger"]
 既然叫了规则，那这玩意儿估计就有不少反例了（笑
 
 \section{多核粒子体系——线性变分法}
-对一些复杂的多核粒子体系，我们没有办法通过精确求解薛定谔方程得到其能量与波函数，但是我们可以通过利用现有的精确求解波函数猜测其实际波函数的办法来近似实际体系。
-一般而言自然体系都会倾向于使得某态的能量尽可能低，所以我们可以利用猜测轨道得到的能量来衡量近似的质量。
-当然该不等式可能需要要求猜测波函数是正交归一的。
-\[\expval{\tilde{E}}=\frac{\bra{\varPhi}\hat{H}\ket{\varPhi}}{\bra{\varPhi}\ket{\varPhi}} \geqslant E_0\]
+对一些复杂的多核粒子体系，我们没有办法通过精确求解薛定谔方程得到其能量与波函数，但是我们可以通过利用现有的精确求解波函数猜测其实际波函数的办法来近似实际体系。一般而言自然体系都会倾向于使得某态的能量尽可能低，我们会假设存在一个最低的基态能量$E_0$，任意的波函数$\ket{\Phi}$作用到哈密顿量上求得的猜测能量$\tilde{E}$都不会比基态能量$E_0$低，可以通过$\tilde{E}$与$E_0$的差距来衡量猜测函数$\ket{\Phi}$的质量好坏。
 
-这里介绍一下基于原子轨道线性组合(LCAO)得到的猜测分子波函数LCAO-MO进行变分的过程，选用线性组合主要也是因为运算简单。
+\[\langle\tilde{E}\rangle=\frac{\bra{\Phi}\hat{H}\ket{\Phi}}{\bra{\Phi}\ket{\Phi}} \geq E_0\]
 
-利用态叠加原理，现定义猜测波函数$\varPhi$，下表达式中，$c_i$为系数，$f_i$为已知波函数，波函数组张成的空间称为变分空间：
-\[\varPhi=\sum_ic_if_i\]
-
-代入我们的判据：
-\[\expval{\tilde{E}}=\frac{\sum_{i,j}c_ic_j\bra{f_i}\hat{H}\ket{f_j}}{\sum_{i,j}c_ic_j\bra{f_i}\ket{f_j}}\]
-
-这里再定义几个符号：
-\[H_{ij}:=\bra{f_i}\hat{H}\ket{f_j} \qquad S_{ij}:=\bra{f_i}\ket{f_j} \qquad \sum:=\sum_{i,j}\]
-
-则：
-\[\expval{\tilde{E}}=\frac{\sum c_ic_jH_{ij}}{\sum c_ic_jS_{ij}}\]
-
-为了找到再已有函数下使得$\expval{\tilde{E}}$最小的系数组$c_i$，我们需要$\expval{\tilde{E}}$对系数组$c_i$的偏导值等于0，二阶偏导矩阵正定。
-
-为方便处理，我们做以下变形：
-\[\expval{\tilde{E}}\sum c_ic_jS_{ij}=\sum c_ic_jH_{ij}\]
-
-对$c_i$求偏导：
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}\sum c_ic_jS_{ij}+2\expval{\tilde{E}}\sum_j c_jS_{ij}=2\sum_j c_jH_{ij}\]
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}=\frac{2}{\sum c_ic_jS_{ij}}\left(\sum_j c_jH_{ij}-\expval{\tilde{E}}\sum_j c_jS_{ij}\right)=\frac{2}{\sum c_ic_jS_{ij}}\left(\sum_j \left (H_{ij}-\expval{\tilde{E}}S_{ij}\right )c_j\right)\]
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}=0 \Leftrightarrow \sum_j \left (H_{ij}-\expval{\tilde{E}}S_{ij}\right )c_j=0 \qquad (i=1,2,3 \cdots)\]
-
-合并上式：
-\[
-\begin{pmatrix}
-H_{11}-\expval{\tilde{E}}S_{11} & H_{12}-\expval{\tilde{E}}S_{12} & \ldots & H_{1n}-\expval{\tilde{E}}S_{1n}\\
-H_{21}-\expval{\tilde{E}}S_{21} & H_{22}-\expval{\tilde{E}}S_{22} & \ldots & H_{2n}-\expval{\tilde{E}}S_{2n}\\
+假设我们知道一组基$\{\ket{\phi_i}\}$，在该基底上可以任意表示一个猜测函数$\ket{\psi}$并带入能量表达式：
+\[\ket{\psi}=\sum_ic_i\ket{\phi_i} \ (c_i\in\mathbf{R}) \quad \Rightarrow \quad \langle\tilde{E}\rangle=\frac{\bra{\psi}\hat{H}\ket{\psi}}{\bra{\psi}\ket{\psi}}=\left(\sum_{ij}c_ic_j\bra{\phi_i}\hat{H}\ket{\phi_j}\right)\cdot\left(\sum_{ij}c_ic_j\bra{\phi_i}\ket{\phi_j}\right)^{-1}\]
+定义$H_{ij}=\bra{\phi_i}\hat{H}\ket{\phi_j}, \ S_{ij}=\bra{\phi_i}\ket{\phi_j}$，并且对上式做变形：
+\[\langle\tilde{E}\rangle\sum_{ij}c_ic_jS_{ij}=\sum_{ij}c_ic_jH_{ij}\]
+为了找到使得$\langle\tilde{E}\rangle$最小的系数组$c_i$，我们需要$\langle\tilde{E}\rangle$对系数组$c_i$的偏导值等于0，二阶偏导矩阵正定：
+\[\pdv{\langle\tilde{E}\rangle}{c_i}\sum_{ij}c_ic_jS_{ij}+2\langle\tilde{E}\rangle\sum_{j}c_jS_{ij}2=\sum_{j}c_jH_{ij} \quad \Rightarrow \quad \pdv{\langle\tilde{E}\rangle}{c_i}\sum_{ij}c_ic_j\bra{\phi_i}\ket{\phi_j}=2\sum_{j}c_j\left(H_{ij}-\langle\tilde{E}\rangle S_{ij}\right)\]
+\[\pdv{\langle\tilde{E}\rangle}{c_i}=0 \quad \Leftrightarrow \quad \sum_{j}\left(H_{ij}-\langle\tilde{E}\rangle S_{ij}\right)c_j=0, \quad (i=1,2,3 \cdots)\]
+写成矩阵形式：
+\[\begin{pmatrix}
+H_{11}-\langle\tilde{E}\rangle S_{11} & H_{12}-\langle\tilde{E}\rangle S_{12} & \ldots & H_{1n}-\langle\tilde{E}\rangle S_{1n}\\
+H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} & \ldots & H_{2n}-\langle\tilde{E}\rangle S_{2n}\\
 \vdots & \vdots & \ddots & \vdots\\
-H_{n1}-\expval{\tilde{E}}S_{n1} & H_{n2}-\expval{\tilde{E}}S_{n2} & \ldots & H_{nn}-\expval{\tilde{E}}S_{nn}\\
+H_{n1}-\langle\tilde{E}\rangle S_{n1} & H_{n2}-\langle\tilde{E}\rangle S_{n2} & \ldots & H_{nn}-\langle\tilde{E}\rangle S_{nn}\\
 \end{pmatrix}
 \begin{pmatrix}
-c_1\\
-c_2\\
-\vdots\\
-c_n\\
+c_1\\c_2\\\vdots\\c_n\\
 \end{pmatrix}
-=0
-\]
-
+=0\]
 要使得上述齐次方程有解，需要其系数矩阵行列式为0：
-\[
-    \begin{vmatrix}
-        H_{11}-\expval{\tilde{E}}S_{11} & H_{12}-\expval{\tilde{E}}S_{12} & \ldots & H_{1n}-\expval{\tilde{E}}S_{1n}\\
-        H_{21}-\expval{\tilde{E}}S_{21} & H_{22}-\expval{\tilde{E}}S_{22} & \ldots & H_{2n}-\expval{\tilde{E}}S_{2n}\\
-        \vdots & \vdots & \ddots & \vdots\\
-        H_{n1}-\expval{\tilde{E}}S_{n1} & H_{n2}-\expval{\tilde{E}}S_{n2} & \ldots & H_{nn}-\expval{\tilde{E}}S_{nn}\\
-    \end{vmatrix}
-    =0
-\]
+\[\begin{vmatrix}
+H_{11}-\langle\tilde{E}\rangle S_{11} & H_{12}-\langle\tilde{E}\rangle S_{12} & \ldots & H_{1n}-\langle\tilde{E}\rangle S_{1n}\\
+H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} & \ldots & H_{2n}-\langle\tilde{E}\rangle S_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H_{n1}-\langle\tilde{E}\rangle S_{n1} & H_{n2}-\langle\tilde{E}\rangle S_{n2} & \ldots & H_{nn}-\langle\tilde{E}\rangle S_{nn}\\
+\end{vmatrix}=0\]
+求解上述行列式我们能得到能量的估计最小值$\langle\tilde{E}\rangle$。
 
-求解上述行列式我们能得到能量的估计最小值$\expval{\tilde{E}}$。
-
-下面举个例子，如果我们考虑两个波函数张成的变分空间的线性变分：
-\[\varPhi=\sum_{i=1}^2c_if_i\]
-\[\expval{\tilde{E}}=\frac{\sum c_ic_jH_{ij}}{\sum c_ic_jS_{ij}}\]
-\[\expval{\tilde{E}}\sum_{i=1}^2 c_ic_jS_{ij}=\sum_{i=1}^2 c_ic_jH_{ij}\]
-
-对$c_i$求偏导：
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}\sum c_ic_jS_{ij}+2\expval{\tilde{E}}\sum_{i=1}^2 c_jS_{ij}=2\sum_{i=1}^2 c_jH_{ij}\]
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}=\frac{2}{\sum c_ic_jS_{ij}}\left(\sum_{i=1}^2 c_jH_{ij}-\expval{\tilde{E}}\sum_{i=1}^2 c_jS_{ij}\right)=\frac{2}{\sum c_ic_jS_{ij}}\left(\sum_j \left (H_{ij}-\expval{\tilde{E}}S_{ij}\right )c_j\right)\]
-\[\frac{\partial \expval{\tilde{E}}}{\partial c_i}=0 \Leftrightarrow \sum_{i=1}^2 \left (H_{ij}-\expval{\tilde{E}}S_{ij}\right )c_j=0 \qquad (i=1,2)\]
-\[
-\begin{pmatrix}
-H_{11}-\expval{\tilde{E}}S_{11} & H_{12}-\expval{\tilde{E}}S_{12} \\
-H_{21}-\expval{\tilde{E}}S_{21} & H_{22}-\expval{\tilde{E}}S_{22} \\
-\end{pmatrix}
-\begin{pmatrix}
-c_1\\
-c_2
-\end{pmatrix}
-=0
-\]
-\[
-    \begin{vmatrix}
-        H_{11}-\expval{\tilde{E}}S_{11} & H_{12}-\expval{\tilde{E}}S_{12} \\
-        H_{21}-\expval{\tilde{E}}S_{21} & H_{22}-\expval{\tilde{E}}S_{22} \\
-    \end{vmatrix}
-    =0
-\]
-
-对同核双原子分子，重新定义几个符号：
-\[\alpha:=H_{11}=H_{22} \qquad \beta:=H_{12}=H_{21} \qquad S:=S_{12}=S_{21} \qquad S_{11}=S_{22}=1\]
-\[
-    \begin{vmatrix}
-        \alpha-\expval{\tilde{E}} & \beta-\expval{\tilde{E}}S \\
-        \beta-\expval{\tilde{E}}S & \alpha-\expval{\tilde{E}} \\
-    \end{vmatrix}
-    =0
-\]
-
-整理得到：
-\[\alpha-\expval{\tilde{E}}=\pm (\beta-\expval{\tilde{E}}S)\]
-\[\expval{\tilde{E}}=\frac{\alpha-\beta}{1-S} \ or \ \frac{\alpha+\beta}{1+S}\]
+以$H_2^+$为例子，定义符号$\alpha=H_{11}=H_{22}, \ \beta=H_{12}=H_{21}, \ S=S_{12}=S_{21}, \ S_{11}=S_{22}=1$：
+\[\begin{vmatrix}
+H_{11}-\langle\tilde{E}\rangle S_{11} & H_{12}-\langle\tilde{E}\rangle S_{12} \\
+H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
+\end{vmatrix}=
+\begin{vmatrix}
+\alpha-\langle\tilde{E}\rangle & \beta-\langle\tilde{E}\rangle S \\
+\beta-\langle\tilde{E}\rangle S & \alpha-\langle\tilde{E}\rangle \\
+\end{vmatrix}=0 \quad \Rightarrow \quad \langle\tilde{E}\rangle=\frac{\alpha-\beta}{1-S} \quad \text{or} \quad \frac{\alpha+\beta}{1+S}\]
 
 两个能量分别反带回去得到轨道：
-\[\varPhi=\frac{1}{\sqrt{2+2S}}(\varPsi_1+\varPsi_2) \ when \ \expval{\tilde{E}}=\frac{\alpha-\beta}{1-S}\] 
-\[\varPhi=\frac{1}{\sqrt{2-2S}}(\varPsi_1-\varPsi_2) \ when \ \expval{\tilde{E}}=\frac{\alpha+\beta}{1+S}\]
+\[\Phi_+=\frac{1}{\sqrt{2+2S}}(\phi_1+\phi_2) \quad \text{when} \quad \langle\tilde{E}\rangle=\frac{\alpha-\beta}{1-S}, \quad \Phi_-=\frac{1}{\sqrt{2-2S}}(\phi_1-\phi_2) \quad \text{when} \quad \langle\tilde{E}\rangle=\frac{\alpha+\beta}{1+S}\]
 
-现在我们关注一下这两个轨道在空间中的分布情况：
-\[\rho=\int_{\mathbb{R^3}}|\varPhi|^2d\tau\]
-\[\rho_+=\frac{1}{2+2S}\int_{\mathbb{R^3}}\left(\varPsi_1^2+\varPsi_2^2+2\varPsi_1\varPsi_2\right) d\tau\quad \text{when} \ \varPhi=\frac{1}{\sqrt{2+2S}}(\varPsi_1+\varPsi_2)\] 
-\[\rho_-=\frac{1}{2-2S}\int_{\mathbb{R^3}}\left(\varPsi_1^2+\varPsi_2^2-2\varPsi_1\varPsi_2\right) d\tau\quad \text{when} \ \varPhi=\frac{1}{\sqrt{2-2S}}(\varPsi_1-\varPsi_2)\]
+值得注意的是$\alpha,\beta<0,S>0$。前两个是描述单个轨道的具有的能量和两轨道之间的相互作用，单体能量$\alpha$是负的，由位力定理$2\langle T \rangle=-\langle V \rangle$说明单体能量是负的，相互作用$\beta$也是负数的是因为相对单个氢原子，$H_2^+$能让电子感受到更负的势能，由位力定理可以知道电子的能量会更低，说明相互作用也是负的。
 
-值得注意的是，这两个能量其实并不好直接看出相对高低，需要直接计算，注意$\alpha,\beta,S$的数值大小。
-但是在波函数上我们可以有更简单的判断方法——通过数节点数，节点数越多，波函数变化越剧烈，动能部分的能量也越高，根据位里定理(第二章)能量也就越高。
+如果考虑了重叠积分，组成的分子轨道上升的能量比下降的多(重叠积分$S$一般都挺小)：
+\[\Delta E=\left(\frac{\alpha-\beta}{1-S}-\alpha\right)-\left(\alpha-\frac{\alpha+\beta}{1+S}\right)=\frac{\beta-S\alpha}{1-S}-\frac{\beta-S\alpha}{1+S}=2S \cdot \frac{\alpha S-\beta}{1-S^2}\sim 2S \cdot (-\beta)>0 \quad (S \to 0)\]
+
+\begin{center}
+    \includegraphics[scale=0.3]{fig/lzhx/Picture1.jpg}
+\end{center}
+
+如果我们调整两个氢原子核的间距，可以绘制两个态的势能面：
+\begin{center}
+    \includegraphics[scale=0.21]{fig/lzhx/Picture2.jpg}
+\end{center}
+
+虽然我们没有带入具体的数值计算，但是忽略掉这个小细节，可以看到即使只有两个轨道我们也能绘制出相对接近真实的势能面。现在我们回到两个态的名字，成键和反键，成键的势能面随着原子间距从无穷远渐小逐渐降低，在差不多2倍氢原子半径处达到能量的最低值，然后随着原子核再接近由于核之间的斥力成键能量上升。而反键轨道的势能面则是随着原子间距减小而疯狂上涨。因此我们也把成键轨道的势能面称为束缚态，反键轨道的势能面为解离态。
+
+现在我们关注一下这两个轨道在空间中的分布情况(两套原子坐标得积分掉一套)：
+\[\rho=\int_{\mathbb{R}^3}|\Phi|^2\dd{^3\bm{r}} \quad \Rightarrow \quad \rho_+=\frac{1}{2+2S}\int_{\mathbb{R}^3}\left(\phi_1^2+\phi_2^2+2\phi_1\phi_2\right)\dd{^3\bm{r}}, \quad \rho_-=\frac{1}{2-2S}\int_{\mathbb{R}^3}\left(\phi_1^2+\phi_2^2-2\phi_1\phi_2\right)\dd{^3\bm{r}}\]
 
 \begin{figure}[htbp]
     \centering
@@ -892,11 +842,6 @@ c_2
     \caption{$\rho_-$的分布图像}
     \end{minipage}
 \end{figure}
-
-有意思的是，如果考虑了重叠积分，组成的分子轨道上升的能量比下降的多：
-\[\Delta E=\left(\frac{\alpha-\beta}{1-S}-\alpha\right)-\left(\alpha-\frac{\alpha+\beta}{1+S}\right)=2S \cdot \frac{\alpha S-\beta}{1-S^2}\]
-
-考虑重叠积分$S$一般比较小，做小量分析，原式$\sim 2S \cdot (-\beta)>0$
 
 \section{计算化学入门前的垫脚石上的艹}
 \subsection{Hartree-Fock方法}
@@ -945,14 +890,13 @@ c_2
 \[\frac{\delta\eta(\lambda_{ij})}{\delta u_i}=\frac{\delta}{\delta u_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij})\right)=0\]
 
 得到的变分结果我们记为：
-\[\hat{F}\varphi_i=\varepsilon_i\varphi_i \qquad \varepsilon_i=\bra*{u_i}\hat{h} + \hat{J} - \hat{p}\ket*{u_i}\]
+\[\hat{F}\varphi_i=\varepsilon_i\varphi_i \qquad \varepsilon_i=\bra*{u_i}\hat{h}_i+\hat{J}_i-\hat{K}_i\ket*{u_i}\]
 
 其中，$\hat{F}$为Fork算符，$\varepsilon_i$为轨道能量，$\varphi_i$为正则自旋轨道，Fork算符表达式为：
-\[\hat{F} = \hat{h} + \hat{J} - \hat{p}\]
-\[\hat{J}u_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)d\tau_2\right)u_i(1) \qquad \hat{p}u_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_i(2)d\tau_2\right)u_j(1)\]
+\[\hat{F}_i = \hat{h}_i + \hat{J}_i - \hat{K}_i\]
+\[\hat{J}_iu_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)\dd{\tau}_2\right)u_i(1) \qquad \hat{K}_iu_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_i(2)\dd{\tau}_2\right)u_j(1)\]
 
-Hartree-Fork能量如下给出，可以看到其不等于轨道能量之和，原因是因为考虑了电子之间的相互作用。
-
+Hartree-Fork能量如下给出，可以看到其不等于轨道能量之和，原因是因为考虑了电子之间的相互作用。ß
 \[E_{HF}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+V_{NN}\]
 
 当然，单个Slater行列式描述一个多体问题也是有误差的，于是我们希望能进一步地精确波函数，于是就有了CI、CC等方法。
@@ -980,7 +924,7 @@ Fock矩阵也是实对称矩阵，overlap矩阵也是实对称矩阵，我们自
 \[\phi_i = \sum_{i}U_{ji}f_j \qquad \mathbf{\varPhi}=\mathbf{U}\mathbf{\Psi}\]
 其中$\mathbf{U}$为
 \[\mathbf{U}=\mathbf{X}\mathbf{s}^{-1/2} \qquad \mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}=\mathbf{s}\]
-$\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对角阵，$\mathbf{s}^{-1/2}$为矩阵$\mathbf{s}^{-1}$的开放，其定义为$\mathbf{s}^{-1/2}\mathbf{s}^{-1/2}=\mathbf{s}^{-1}$。
+$\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对角阵，$\mathbf{s}^{-1/2}$为矩阵$\mathbf{s}^{-1}$的开方，其定义为$\mathbf{s}^{-1/2}\mathbf{s}^{-1/2}=\mathbf{s}^{-1}$。
 
 做完如下变换之后，Hartree-Fock–Roothaan方程可以改写成：
 \[\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}\mathbf{C}'=(\mathbf{X}\mathbf{s}^{-1/2})^{\dagger}\mathbf{S}(\mathbf{X}\mathbf{s}^{-1/2})\mathbf{C}'=\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}\mathbf{s}^{-1}\mathbf{C}'=\mathbf{s}\mathbf{s}^{-1}\mathbf{C}'=\mathbf{C}' \ , \ (\mathbf{C}':=\mathbf{U}^{\dagger}\mathbf{C})\]
@@ -990,20 +934,24 @@ $\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对�
 实际上在python中使用scipy.linalg.eigh($\mathbf{F}$,$\mathbf{S}$)就能直接解出$\mathbf{C}$。
 但求解Hartree-Fock–Roothaan方程真的只是做一个对角化吗，如果是这样就好了。
 我们具体来看每个矩阵的具体形式，系数矩阵和overlap矩阵是简单的，fock矩阵包含了单电子积分和双电子积分：
-\[F_{\mu\nu} = \bra*{\phi_{\mu}}\hat{h} + \hat{J} - \hat{p}\ket*{\phi_{\nu}}\]
+\[F_{\mu\nu} = \bra*{\phi_{\mu}}\hat{h} + \hat{J} - \hat{K}\ket*{\phi_{\nu}}\]
 单电子积分是简单的
 \[h_{\mu\nu}=\bra*{\phi_{\mu}}\hat{h}\ket*{\phi_{\nu}}\]
 双电子积分我们打包处理
 \begin{equation*}
     \begin{aligned}
-        \bra*{\phi_{\mu}}\hat{J} - \hat{p}\ket*{\phi_{\nu}} & = \bra*{\phi_{\mu}}\ket{\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)\dd{\tau_2}\right)\phi_{\nu}(1)-\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}\phi_{\nu}(2)\dd{\tau_2}\right)u_j(1)} \\
+        \bra*{\phi_{\mu}}\hat{J} - \hat{K}\ket*{\phi_{\nu}} & = \bra*{\phi_{\mu}}\ket{\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)\dd{\tau_2}\right)\phi_{\nu}(1)-\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}\phi_{\nu}(2)\dd{\tau_2}\right)u_j(1)} \\
          & = \sum_{j}\iint \phi_{\mu}^*(1)u_j^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]u_j(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
          & = \sum_{\alpha}\sum_{\beta}\sum_{j}c^*_{\alpha j}c_{\beta j}\iint \phi_{\mu}^*(1)\phi_{\alpha}^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]\phi_{\beta}(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
-         & := \sum_{\alpha}\sum_{\beta}D_{\alpha\beta}\iint \phi_{\mu}^*(1)\phi_{\alpha}^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]\phi_{\beta}(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
-         & := \sum_{\alpha}\sum_{\beta}D_{\alpha\beta}\bra{\phi_{\mu}\phi_{\alpha}}\ket{|\phi_{\nu}\phi_{\beta}}
+         & = \sum_{\alpha}\sum_{\beta}P_{\alpha\beta}\iint \phi_{\mu}^*(1)\phi_{\alpha}^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]\phi_{\beta}(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
+         & = \sum_{\alpha}\sum_{\beta}P_{\alpha\beta}\bra{\phi_{\mu}\phi_{\alpha}}\ket{|\phi_{\beta}\phi_{\nu}}
     \end{aligned}
 \end{equation*}
-其中$D_{\alpha\beta}$是密度矩阵的矩阵元，显然我们知道密度矩阵可以由系数矩阵得到$\mathbf{D}=\mathbf{C}\mathbf{C}^{\dagger}$，所以事实上，我们得到的类似矩阵对角化的一个方程实际上也不像是看起来的那么简单，对这样的方程我们没办法直接求解，于是我们选择万能的迭代。
+这里我们定义了一个新符号：
+\[\bra{\phi_{\mu}\phi_{\alpha}}\ket{|\phi_{\nu}\phi_{\beta}}=\bra{\phi_{\mu}\phi_{\alpha}}\ket{\phi_{\beta}\phi_{\nu}}-\bra{\phi_{\mu}\phi_{\alpha}}\ket{\phi_{\nu}\phi_{\beta}}\]
+用来表示库伦积分减去交换积分。
+
+$P_{\alpha\beta}$是密度矩阵的矩阵元，显然我们知道密度矩阵可以由系数矩阵得到$\mathbf{P}=\mathbf{C}\mathbf{C}^{\dagger}$，所以事实上，我们得到的类似矩阵对角化的一个方程实际上也不像是看起来的那么简单，对这样的方程我们没办法直接求解，于是我们选择万能的迭代。
 迭代需要一个初猜，在这里也就是初始的密度矩阵(给初猜也是技术活)，然后通过对角化更新密度矩阵，反复迭代直到密度矩阵不再变化，这也就是SCF过程。
 \[\mathbf{F}(\mathbf{C}')\mathbf{C}'=\mathbf{C}'\varepsilon\]
 
@@ -1027,10 +975,12 @@ Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
 \[\phi_{abc}^{STO}(x,y,z)=Nx^ay^bz^ce^{-\zeta r}\]
+
 其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$，在远距离与近距离行为拟合实际波函数较好。长得跟氢原子波函数形式相近但是缺乏节点且不完全球谐，且收敛慢。
 
 \paragraph*{Gaussian-type orbitals (GTO's)}
 \[\phi_{abc}^{GTO}(x,y,z)=Nx^ay^bz^ce^{-\zeta r^2}\]
+
 其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$。收敛快且有多种方法处理，长得跟氢原子波函数完全不一样。单个函数在近距离行为相较于Slater函数拟合实际波函数较差，解决办法是用多个函数来逼近Slater函数。
 
 \begin{center}
@@ -1039,15 +989,14 @@ Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体
 
 \paragraph*{Contracted Gaussian type orbitals (CGTO's)}
 \[\phi_{abc}^{CGTO}(x,y,z)=N\sum_{i=1}^n x^ay^bz^ce^{-\zeta r^2}\]
-比较神奇的是，一般我们不叫这个基组CGTO，而是STO-nG。
 
-下面给出的是STO-3G描述不同原子需要的函数个数，一般而言STO-3G都是作为计算体系的极小基：
+在现在的基组构建中 CGTO 也可以用来代替单个 GTO，提升优化效率，单个的CGTO一般称为STO-nG。下面给出的是STO-3G描述不同原子需要的函数个数，一般而言STO-3G都是作为计算体系的极小基：
 \begin{center}
     \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211102171332.png}
 \end{center}
 
 \paragraph*{3–21G Split Valence and Double-Zeta Basis Set}
-在这种基组下，我们把电子分为两种，核层(core orbitals)与价层(valence orbital)，内层的轨道每一个轨道用一个包含三个Gaussian函数的基函数描述，价层每个轨道分为内层与外层，内层(inner shell)用两个Gaussian函数描述，外层(outer shell)用一个Gaussian函数描述，6-31G等同理：
+在这种基组下，我们把电子分为两种，核层(core orbitals)与价层(valence orbital)，内层的轨道每一个轨道用一个包含三个Gaussian函数的基函数描述，价层每个轨道分为内层与外层，内层(inner shell)用两个Gaussian函数描述，外层(outer shell)用一个Gaussian函数描述：
 \begin{center}
     \includegraphics[scale=0.9]{fig/lzhx/微信图片_20211102172815}
 \end{center}
@@ -1324,33 +1273,30 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 利用分离变量法，我们假定定态波函数$\varPsi(r,\theta,\varphi)$可以表示成如下形式：
 \[\varPsi(r,\theta,\varphi)=R(r)\Theta(\theta)\varPhi(\varphi)\]
 
-带入定态薛定谔方程：
-\[\hat{H}R(r)\Theta(\theta)\varPhi(\varphi)=ER(r)\Theta(\theta)\varPhi(\varphi)\]
+带入定态薛定谔方程并在极坐标系下展开，整理方程，我们可以得到：
+\[\frac{\Theta\varPhi}{r^2}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{R\varPhi}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{R\Theta}{r^2\sin^2 \theta }\frac{\partial^2 \varPhi}{\partial{\phi^2}}=-\frac{2m(E-V)}{\hbar^2}R\Theta\varPhi\]
 
-将哈密顿算符展开，将拉普拉斯算符在极坐标系下展开，并整理方程，我们可以得到：
-\[\frac{\Theta\varPhi}{r^2}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{R\varPhi}{r^2sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{R\Theta}{r^2sin^2 \theta }\frac{\partial^2 \varPhi}{\partial{\phi^2}}=-\frac{2m(E-V)}{\hbar^2}R\Theta\varPhi\]
-
-在方程两边同时乘上因子$\frac{r^2sin^2 \theta}{R\Theta\varPhi}$,我们可以得到：
-\[\frac{sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{1}{\varPhi}\frac{\partial^2 \varPhi}{\partial{\phi^2}}=-\frac{2m(E-V)}{\hbar^2}r^2sin^2 \theta\]
+在方程两边同时乘上因子$r^2\sin^2 \theta/R\Theta\varPhi$,我们可以得到：
+\[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{1}{\varPhi}\frac{\partial^2 \varPhi}{\partial{\phi^2}}=-\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta\]
 
 再通过移向，我们得到：
-\[\frac{sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2sin^2 \theta=-\frac{1}{\varPhi}\frac{\partial^2 \varPhi}{\partial{\phi^2}}\]
+\[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta=-\frac{1}{\varPhi}\frac{\partial^2 \varPhi}{\partial{\phi^2}}\]
 
 由于方程两边变量不同，若满足上述等式，方程左右两边都应等于同一个常数，不妨假设该常数为$m^2$，则我们可以得到两个方程：
 \[\frac{\partial^2 \varPhi}{\partial{\phi^2}}+m^2\varPhi=0 \tag{a}\]
-\[\frac{sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2sin^2 \theta=m^2 \tag{4}\]
+\[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta=m^2 \tag{4}\]
 
 将方程$4$两边同时除以$sin^2 \theta$并整理，我们得到：
-\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\frac{m^2}{sin^2 \theta}-\frac{1}{\Theta sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})\]
+\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\frac{m^2}{\sin^2 \theta}-\frac{1}{\Theta \sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})\]
 
 同样的，我们假定上述方程左右两边均等于参数$\beta$，于是我们又得到两个方程：
 \[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta \tag{b}\]
-\[\frac{m^2}{sin^2 \theta}-\frac{1}{\Theta sin\theta}\frac{\partial}{\partial{\theta}}(sin\theta\frac{\partial \Theta}{\partial{\theta}})=\beta \tag{c}\]
+\[\frac{m^2}{\sin^2 \theta}-\frac{1}{\Theta \sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})=\beta \tag{c}\]
 
 至此，我们将定态薛定谔方程拆分成三个含不同变量的常微分方程$a,b,c$。
 \subsection{Φ方程的求解}
 由球坐标中$\varphi$的范围及其边界条件$\varPhi(x)=\varPhi(x+2\pi)$、归一化条件以及方程$a$,我们在这一小节将要处理的对象是柯西问题：
-\[\frac{\mathrm{d}^2 \varPhi}{\mathrm{d}{\phi^2}}+ m^2 \varPhi=0 \qquad \varPhi(x)=\varPhi(x+2\pi) ,\int_{0}^{2\pi}\varPhi^{*}\varPhi d\phi=1\]
+\[\frac{\mathrm{d}^2 \varPhi}{\mathrm{d}{\phi^2}}+ m^2 \varPhi=0 \qquad \varPhi(x)=\varPhi(x+2\pi) ,\int_{0}^{2\pi}\varPhi^{*}\varPhi \dd\phi=1\]
 
 方程$a$的通解形式为：
 \[\varPhi(\phi)=C_1 e^{im\phi}+C_2 e^{-im\phi}\]
@@ -1362,7 +1308,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 \subsection{Θ方程的求解}
 对方程$c$，我们做以下代换：
-\[x=cos\theta \qquad \frac{\mathrm{d} \Theta}{\mathrm{d} x}=\frac{\mathrm{d} \Theta}{\mathrm{d} \theta}\left ( \frac{\mathrm{d} x}{\mathrm{d} \theta} \right )^{-1}=-\frac{1}{sin\theta} \frac{\mathrm{d} \Theta}{\mathrm{d} \theta} \qquad y(x)=\Theta(\theta)\]
+\[x=\cos\theta \qquad \frac{\mathrm{d} \Theta}{\mathrm{d} x}=\frac{\mathrm{d} \Theta}{\mathrm{d} \theta}\left ( \frac{\mathrm{d} x}{\mathrm{d} \theta} \right )^{-1}=-\frac{1}{\sin\theta} \frac{\mathrm{d} \Theta}{\mathrm{d} \theta} \qquad y(x)=\Theta(\theta)\]
 
 则方程$c$可以改写成以下形式：
 \[\frac{m^2}{1-x^2}-\frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]=\beta\]
@@ -1378,8 +1324,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 我们将用级数解法求解该方程，为了保证级数解法的正确性，我们引用一下定理保证在我们给定条件下的$Legendre$方程的解存在且唯一：
 
 \textbf{定理} \qquad 如果$p(z)$和$q(z)$在圆$|z-z_0|<R$内单值解析，则在此圆内二阶线性微分方程的初值问题：
-\[\frac{\mathrm{d}^2w}{\mathrm{d}x^2}+p(z)\frac{\mathrm{d}w}{\mathrm{d}x}+q(z)w=0\]
-\[w(z_0)=a \qquad w^{'}(z_0)=b \qquad (\forall a,b \in \mathbb{C})\]
+\[\frac{\mathrm{d}^2w}{\mathrm{d}x^2}+p(z)\frac{\mathrm{d}w}{\mathrm{d}x}+q(z)w=0, \quad w(z_0)=a, \quad w'(z_0)=b, \quad (\forall a,b \in \mathbb{C})\]
 的解存在且唯一，并且解$w(z)$在这个圆内单值解析。
 
 下面我们将开始求解$Legendre$方程，其中自变量$x$定义在$[-1,1] \subset \mathbb{R}$，我们首先取$x_0=0$，显然0是$Legendre$方程的常点，因此，我们假设方程的解在$x_0=0$的邻域内可以展开成一下形式：
@@ -1392,18 +1337,13 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[c_{k+2}=\frac{k(k+1)-\beta}{(k+2)(k+1)}c_k\]
 
 进而：
-\[c_{2k}=\prod_{n=1}^{k}\frac{(2k-1)(2k-2)-\beta}{(2k)(2k-1)}c_0\]
-\[c_{2k+1}=\prod_{n=1}^{k}\frac{(2k)(2k-1)-\beta}{(2k)(2k+1)}c_1\]
+\[c_{2k}=\prod_{n=1}^{k}\frac{(2k-1)(2k-2)-\beta}{(2k)(2k-1)}c_0, \quad c_{2k+1}=\prod_{n=1}^{k}\frac{(2k)(2k-1)-\beta}{(2k)(2k+1)}c_1\]
 
 因此，我们可以将方程的解按奇偶项拆开：
-\[y(x)=c_1y_0(x)+c_2y_1(x)\]
-\[y_0(x)=1+\sum_{k=1}^{+\infty}\frac{c_{2k}}{c_0}x^{2k}\]
-\[y_1(x)=x+\sum_{k=1}^{+\infty}\frac{c_{2k+1}}{c_1}x^{2k+1}\]
+\[y(x)=c_1y_0(x)+c_2y_1(x), \quad y_0(x)=1+\sum_{k=1}^{+\infty}\frac{c_{2k}}{c_0}x^{2k}, \quad y_1(x)=x+\sum_{k=1}^{+\infty}\frac{c_{2k+1}}{c_1}x^{2k+1}\]
 
-容易看出当x取值$x= \pm 1$时，无穷级数$y_0(x)$、$y_1(x)$发散，与边界条件$|y(\pm 1)|< +\infty$矛盾，为了解决这个问题，我们将要使得无穷级数$y_0(x)$、$y_1(x)$退化为有限项，为此，我们将对特征值$\lambda$赋值：
-\[\beta=l(l+1) \qquad l \in \mathbb{N}_{+}\]
-\[y_0(x)=\sum_{k=0}^{+\infty}\frac{2^{2k}}{(2k)!}\frac{\Gamma(k-\frac{l}{2})\Gamma(\frac{l+1}{2}+k)}{\Gamma(-\frac{l}{2})\Gamma(\frac{l+1}{2})}x^{2k}\]
-\[y_0(x)=\sum_{k=0}^{+\infty}\frac{2^{2k}}{(2k+1)!}\frac{\Gamma(k-\frac{l-1}{2})\Gamma(\frac{l}{2}+1+k)}{\Gamma(-\frac{l-1}{2})\Gamma(\frac{l}{2}+1)}x^{2k+1}\]
+容易看出当x取值$x= \pm 1$时，无穷级数$y_0(x)$、$y_1(x)$发散，与边界条件$|y(\pm 1)|< +\infty$矛盾，为了解决这个问题，我们将要使得无穷级数$y_0(x)$、$y_1(x)$退化为有限项，为此，我们将对特征值赋值$\beta=l(l+1), \ (l \in \mathbb{N}_{+})$：
+\[y_0(x)=\sum_{k=0}^{+\infty}\frac{2^{2k}}{(2k)!}\frac{\Gamma(k-\frac{l}{2})\Gamma(\frac{l+1}{2}+k)}{\Gamma(-\frac{l}{2})\Gamma(\frac{l+1}{2})}x^{2k}, \quad y_1(x)=\sum_{k=0}^{+\infty}\frac{2^{2k}}{(2k+1)!}\frac{\Gamma(k-\frac{l-1}{2})\Gamma(\frac{l}{2}+1+k)}{\Gamma(-\frac{l-1}{2})\Gamma(\frac{l}{2}+1)}x^{2k+1}\]
 
 此时，无穷级数$y(x)$退化成2l项的有限级数$P_l(x)$，我们得到了该方程的本征函数解，也即$Legendre$多项式，在定义域内收敛：
 \[P_l(x)=\sum_{k=0}^{[l/2]}(-1)^k \frac{(2l-2k)!}{2^l k! (l-k)!(l-2k)!}x^{l-2k}\]
@@ -1424,11 +1364,11 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[y=(x^2-1)^{\frac{m}{2}}\frac{\mathrm{d^{m}}P_l(x)}{\mathrm{d}{x^{m}}}=(x^2-1)^{\frac{m}{2}}\frac{\mathrm{d^{m}}}{\mathrm{d}{x^{m}}}\sum_{k=0}^{[l/2]}(-1)^k \frac{(2l-2k)!}{2^l k! (l-k)!(l-2k)!}x^{l-2k}:=(x^2-1)^{\frac{m}{2}}P^m_l(x)\]
 
 至此，方程b的解可以写成：
-\[\Theta(\theta)=(-1)^msin^m(\theta)P^m_l(cos\theta)\]
+\[\Theta(\theta)=(-1)^m\sin^m(\theta)P^m_l(\cos\theta)\]
 
 同时为了满足归一化条件e，$\Theta(\theta)$最终可以表示成：
-\[\int_0^{\pi}\Theta_{l,m}^{*}(\theta)\Theta_{l^{'},m^{'}}(\theta)sin\theta d\theta=\nabla^2_{l,l^{'}} \cdot \nabla^2_{m,m^{'}} \tag{e}\]
-\[\Theta_{l,m}(\theta)=\sqrt{\frac{(2l-1)(l-|m|)!}{2(l+|m|)!}}P^{m}_l(cos\theta) \qquad |m| \leqslant l\]
+\[\int_0^{\pi}\Theta_{l,m}^{*}(\theta)\Theta_{l^{'},m^{'}}(\theta)\sin\theta \dd\theta=\delta_{l,l^{'}} \cdot \delta_{m,m^{'}} \tag{e}\]
+\[\Theta_{l,m}(\theta)=\sqrt{\frac{(2l-1)(l-|m|)!}{2(l+|m|)!}}P^{m}_l(\cos\theta) \qquad |m| \leqslant l\]
 
 此外，$Legendre$多项式也可以通过$Rodrigue$公式定义：
 \[P_l(x) \equiv \frac{1}{2^ll!} \left ( \frac{\mathrm{d}}{\mathrm{d}x} \right )^l(x^2-1)^l\]
@@ -1440,8 +1380,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 对方程b，我们要处理的是以下柯西问题：
 \[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta \qquad r>0 \qquad V=-\frac{e}{4 \pi \varepsilon_0 r}\]
 
-对上述柯西问题，我们做以下代换并整理可以得到方程：
-\[u \equiv rR\]
+对上述柯西问题，我们做代换$u \equiv rR$并整理可以得到方程：
 \[-\frac{\hbar^2}{2m}\frac{\mathrm{d^2}u}{\mathrm{d}r^2}+ \left (\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}-\frac{e}{4 \pi \varepsilon_0r} \right )u=Eu\]
 
 容易看出，当$r \rightarrow +\infty$时,
@@ -1449,8 +1388,10 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 当$E>0$时，容易看出u不收敛于0，为非束缚态；当$E<0$时，我们可以取$B=0$使得当$r \rightarrow +\infty$时$u \rightarrow 0$，因此，我们取$E<0$。
 
-继续通过代换简化方程形式：
-\[\kappa \equiv \frac{\sqrt{-2mE}}{\hbar} \qquad \rho \equiv \kappa r \qquad \rho_o \equiv \frac{me^2}{2 \pi \varepsilon_0 \hbar^2 \kappa}\]
+继续通过代换：
+\[\kappa \equiv \frac{\sqrt{-2mE}}{\hbar}, \quad \rho \equiv \kappa r, \quad \rho_o \equiv \frac{me^2}{2 \pi \varepsilon_0 \hbar^2 \kappa}\]
+
+简化方程形式：
 \[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=\left [ 1-\frac{\rho_0}{\rho}+\frac{l(l+1)}{\rho^2} \right ]u\]
 
 当$\rho \rightarrow +\infty$，原方程近似为：
@@ -1533,11 +1474,11 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \subsection{小结}
 汇总一下上述三个方程的解：
 \[R_{n,l}(r)=\sqrt{ \left (\frac{2}{na} \right )^3 \frac{(n-l-1)!}{2n[(n+l)!]^3}}e^{-\frac{r}{na}}\left (\frac{2r}{na} \right )^l \left [L_{n-l-1}^{2l+1} \left ( \frac{2r}{na} \right ) \right ]\]
-\[\Theta_{l,m}(\theta)=\sqrt{\frac{(2l-1)(l-|m|)!}{2(l+|m|)!}}P^{m}_l(cos\theta)\]
+\[\Theta_{l,m}(\theta)=\sqrt{\frac{(2l-1)(l-|m|)!}{2(l+|m|)!}}P^{m}_l(\cos\theta)\]
 \[\varPhi_{m}(\phi)=\frac{1}{\sqrt{2\pi}}e^{im\phi}\]
 
 两个角度变量函数还能合并为$Y_l^m(\theta,\phi)$：
-\[Y_l^m(\theta,\phi)=\varepsilon \sqrt{\frac{(2l-1)(l-|m|)!}{4 \pi (l+|m|)!}}e^{im\phi}P^{m}_l(cos\theta)\]
+\[Y_l^m(\theta,\phi)=\varepsilon \sqrt{\frac{(2l-1)(l-|m|)!}{4 \pi (l+|m|)!}}e^{im\phi}P^{m}_l(\cos\theta)\]
 
 其中，当$m \geq 0$时$\varepsilon=(-1)^m$，当$m \leq 0$时$\varepsilon=1$，以满足其自动正交性。
 
