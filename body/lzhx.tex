@@ -974,26 +974,28 @@ Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体
 
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
-\[\phi_{abc}^{STO}(x,y,z)=Nx^ay^bz^ce^{-\zeta r}\]
+\[\phi_{abc}^{\rm{STO}}(x,y,z)=Nx^ay^bz^ce^{-\zeta r}\]
 
 其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$，在远距离与近距离行为拟合实际波函数较好。长得跟氢原子波函数形式相近但是缺乏节点且不完全球谐，且收敛慢。
 
 \paragraph*{Gaussian-type orbitals (GTO's)}
-\[\phi_{abc}^{GTO}(x,y,z)=Nx^ay^bz^ce^{-\zeta r^2}\]
+\[\phi_{abc}^{\rm{GTO}}(x,y,z)=Nx^ay^bz^ce^{-\zeta r^2}\]
 
-其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$。收敛快且有多种方法处理，长得跟氢原子波函数完全不一样。单个函数在近距离行为相较于Slater函数拟合实际波函数较差，解决办法是用多个函数来逼近Slater函数。
+其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$。收敛快且有多种方法处理，长得跟氢原子波函数完全不一样。单个函数在近距离行为相较于 Slater 函数拟合实际波函数较差，解决办法是用多个函数来逼近 Slater 函数。比如最常见的 STO-3G 是用三个 GTO 来拟合一个 STO。
 
 \begin{center}
     \includegraphics{fig/lzhx/微信图片_20211102165150}
 \end{center}
 
-\paragraph*{Contracted Gaussian type orbitals (CGTO's)}
-\[\phi_{abc}^{CGTO}(x,y,z)=N\sum_{i=1}^n x^ay^bz^ce^{-\zeta r^2}\]
-
-在现在的基组构建中 CGTO 也可以用来代替单个 GTO，提升优化效率，单个的CGTO一般称为STO-nG。下面给出的是STO-3G描述不同原子需要的函数个数，一般而言STO-3G都是作为计算体系的极小基：
+下面给出的是 STO-3G 描述不同原子需要的函数个数，一般而言 STO-3G 都是作为计算体系的极小基：
 \begin{center}
     \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211102171332.png}
 \end{center}
+
+\paragraph*{Contracted Gaussian type orbitals (CGTO's)}
+\[\phi_{abc}^{\rm{CGTO}}(x,y,z)=N\sum_{i=1}^n x^ay^bz^ce^{-\zeta r^2}\]
+
+在现在的基组构建中 CGTO 也可以用来代替单个 GTO，提升优化效率。
 
 \paragraph*{3–21G Split Valence and Double-Zeta Basis Set}
 在这种基组下，我们把电子分为两种，核层(core orbitals)与价层(valence orbital)，内层的轨道每一个轨道用一个包含三个Gaussian函数的基函数描述，价层每个轨道分为内层与外层，内层(inner shell)用两个Gaussian函数描述，外层(outer shell)用一个Gaussian函数描述：
@@ -1018,8 +1020,8 @@ Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体
 
 
 \section{分子光谱}
-在化学范围内，我们考虑一个分子的能量由平动、转动、振动、电子能量组成：
-\[E=E_{tr}+E_{rot}+E_{vib}+E_{ele}\]
+在BO近似后，我们考虑一个分子的能量由平动、转动、振动、电子能量组成：
+\[E=E_{\rm{trans}}+E_{\rm{rot}}+E_{\rm{vib}}+E_{\rm{el}}\]
 \begin{center}
     \includegraphics{fig/lzhx/微信图片_20211102175446.png}
 \end{center}
