@@ -590,7 +590,7 @@ X\in\text{SU(2)} \arrow[r, "UXU^\dagger"]
 
 电子结构所关心的是电子薛定谔方程，解出给定核构型下的电子分布，而动力学关心的是核薛定谔方程，认为给定核构型下的电子结构是已知的。一个有意思的事是：我们求解氢原子的波函数时用的是只含电子项的薛定谔方程，但是我们依然说这个是精确解，这是为什么呢？\textcolor{blue}{\textbf{因为波恩-奥本海默近似本质上是假定变量可分离，因此对实际上确实可分离的体系这就不是一种近似}}。BO近似是必要的，毕竟三体以上的系统我们没法精确求解。
 
-\subsection{平均场(Mean field)近似}\label{sec:mf}
+\subsection{平均场(Mean field)近似}
 至此，在BO近似后，我们开始接触多电子体系，需要注意的是现在我们其实还是不能直接处理这样的多电子体系，主要的原因是电子-电子相互作用我们处理不了（本质上还是三体以上的系统没法精确求解），所以我们需要考虑进一步近似把多电子体系近似成我们能处理的单电子体系。
 
 考虑一个多电子多核系统，其电子哈密顿量可以表示成：
@@ -844,7 +844,7 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \end{figure}
 
 \section{计算化学入门前的垫脚石上的艹}
-\subsection{Hartree-Fock方法}
+\subsection{Hartree-Fock方法}\label{sec:hf}
 我们都知道一个孤立微观系统的哈密顿如下：
 \[\hat{H}=\hat{T}_N+\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}\]
 在BO近似后，$\hat{T}_N$从电子哈密顿中被移除，$\hat{V}_{NN}$给定核位置后是个常数，可以不包含在电子哈密顿中，但一般来说都还是算的。
@@ -1166,8 +1166,8 @@ $M$为按能量从低到高用符号$X$、$A$、$B$$\cdots$来表示，如：$X^
 
 \section{微扰理论}
 \subsection{非简并定态微扰理论}
-对 BO 近似后的定态的电子薛定谔方程，由于双体项的存在我们无法去精确求解该体系的波函数和能量，为此在\ref{sec:mf}小节里我们介绍了 Mean-Field 近似，使用近似的哈密顿量$\hat{H}_0$来替代原本精确的哈密顿量$\hat{H}$：
-\[\hat{H}=\sum_{i}\hat{h}_i+\sum_{ij}\hat{V}_{ij}=\left(\sum_{i}\hat{h}_i+\sum_{i}\hat{V}_i\right)+\left(\sum_{ij}\hat{V}_{ij}-\sum_{i}\hat{V}_i\right)=\hat{H}_0+\hat{H}'\]
+对 BO 近似后的定态的电子薛定谔方程，由于双体项的存在我们无法去精确求解该体系的波函数和能量，为此在\ref{sec:hf}小节里我们介绍了 Hartree-Fock 方法，使用近似的哈密顿量$\hat{H}_0$来替代原本精确的哈密顿量$\hat{H}$：
+\[\hat{H}=\sum_{i}\hat{h}_i+\sum_{ij}\hat{V}_{ij}=\left(\sum_{i}\hat{F}_i\right)+\left(\sum_{ij}\hat{V}_{ij}-\sum_{i}\hat{F}_i\right)=\hat{H}_0+\hat{H}'\]
 如果想在精度上更进一步，我们必须要考虑偏差的哈密顿量$\hat{H}'$，但是由于直接求解过于复杂（本来就是因此舍弃掉这部分）我们可以考虑使用微扰的方法，利用已知的稍微不那么精确的结果去逼近更精确的结果。
 
 微扰能够成立的原理支撑是我们在最开始的一小节\ref{sec:space}提到的\textcolor{blue}{\textbf{算符的本征态张成的空间是完备的}}。我们假设在$\hat{H}_0$的本征态构成的空间是完备的足以用来表达精确的态。理论上只需要一次修正就能拿到完全精确的结果，但由于实操中我们都只能在有限维空间中处理，相对应地修正次数就得达到无穷，即用无穷级数来展开精确态，而且需要偏差哈密顿的影响一般上要比较小的，为此引入微扰参数$\lambda\neq0$把哈密顿量、态和能量改写成：
@@ -1355,7 +1355,7 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 因此，全体吸收跃迁的平均速率可以写成：
 \[k_{a,r}=\frac{4\pi^2 I}{3 \hbar^2c}\sum_k\sum_m P_k |\overrightarrow{\mu}_{mk}|^2 \delta(\omega_{mk}-\omega)\]
-
+\subsection{MP2}
 \subsection{比尔-朗伯定律}
 
 这里以比尔-朗伯定律(Beer-lambert law)为例,$A$为吸光度，$I$为光强，$\varepsilon$为摩尔吸光系数，$l$为吸收池厚度，$c$为浓度：

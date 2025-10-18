@@ -38,7 +38,8 @@
 \contentsline {subsection}{\numberline {1.17.1}非简并定态微扰理论}{33}{subsection.1.17.1}%
 \contentsline {subsection}{\numberline {1.17.2}一阶k重简并定态微扰理论}{34}{subsection.1.17.2}%
 \contentsline {subsection}{\numberline {1.17.3}一阶含时微扰理论}{35}{subsection.1.17.3}%
-\contentsline {subsection}{\numberline {1.17.4}比尔-朗伯定律}{37}{subsection.1.17.4}%
+\contentsline {subsection}{\numberline {1.17.4}MP2}{37}{subsection.1.17.4}%
+\contentsline {subsection}{\numberline {1.17.5}比尔-朗伯定律}{37}{subsection.1.17.5}%
 \contentsline {section}{\numberline {1.18}附录I:一点数学（微积分线代什么的自己去看书）}{38}{section.1.18}%
 \contentsline {subsection}{\numberline {1.18.1}变量分离}{38}{subsection.1.18.1}%
 \contentsline {subsection}{\numberline {1.18.2}球坐标下的拉普拉斯算符展开}{38}{subsection.1.18.2}%
