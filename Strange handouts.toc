@@ -43,10 +43,10 @@
 \contentsline {subsection}{\numberline {1.18.1}变量分离}{38}{subsection.1.18.1}%
 \contentsline {subsection}{\numberline {1.18.2}球坐标下的拉普拉斯算符展开}{38}{subsection.1.18.2}%
 \contentsline {section}{\numberline {1.19}附录II:氢原子薛定谔方程求解(级数解法)}{40}{section.1.19}%
-\contentsline {subsection}{\numberline {1.19.1}Φ方程的求解}{41}{subsection.1.19.1}%
+\contentsline {subsection}{\numberline {1.19.1}Φ方程的求解}{40}{subsection.1.19.1}%
 \contentsline {subsection}{\numberline {1.19.2}Θ方程的求解}{41}{subsection.1.19.2}%
-\contentsline {subsection}{\numberline {1.19.3}R方程的求解}{43}{subsection.1.19.3}%
-\contentsline {subsection}{\numberline {1.19.4}小结}{45}{subsection.1.19.4}%
+\contentsline {subsection}{\numberline {1.19.3}R方程的求解}{42}{subsection.1.19.3}%
+\contentsline {subsection}{\numberline {1.19.4}小结}{44}{subsection.1.19.4}%
 \contentsline {chapter}{\numberline {2}傅里叶变换}{46}{chapter.2}%
 \contentsline {section}{\numberline {2.1}傅里叶变换的部分相关概念及性质}{46}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}傅里叶级数}{46}{subsection.2.1.1}%

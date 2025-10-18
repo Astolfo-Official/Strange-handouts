@@ -1204,66 +1204,49 @@ k=2: \quad & \hat{H}_0\ket{\psi_n^{(2)}}+\hat{H}'\ket{\psi_n^{(1)}}=E_n^{(0)}\ke
 
 进一步对二阶微扰方程两边都内积上$\bra{\psi_n^{(0)}}$，利用中间正交性化简得到能量的二阶修正：
 \[E_n^{(2)}=\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(1)}}=-\sum_{m\neq n}\frac{\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}}{E_m^{(0)}-E_n^{(0)}}\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_m^{(0)}}=-\sum_{m\neq n}\frac{\left|\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}\right|^2}{E_m^{(0)}-E_n^{(0)}}\]
-用零阶波函数来展开二阶波函数：
-\[\ket{\psi_n^{(2)}}=\sum_{k\neq n}c_{nk}^{(2)}\ket{\psi_k^{(0)}}\]
-带入二阶微扰方程：
-\[\begin{aligned}
-\sum_{k\neq n}c_{nk}^{(2)}\hat{H}_0\ket{\psi_k^{(0)}}+\sum_{k\neq n}c_{nk}^{(1)}\hat{H}'\ket{\psi_k^{(0)}}&=E_n^{(0)}\sum_{k\neq n}c_{nk}^{(2)}\ket{\psi_k^{(0)}}+E_n^{(1)}\sum_{k\neq n}c_{nk}^{(1)}\ket{\psi_k^{(0)}}+E_n^{(2)}\ket{\psi_n^{(0)}}\\
-\sum_{k\neq n}c_{nk}^{(2)}(\hat{H}_0-E_n^{(0)})\ket{\psi_k^{(0)}}&=\sum_{k\neq n}c_{nk}^{(1)}(E_n^{(1)}-\hat{H}')\ket{\psi_k^{(0)}}+E_n^{(2)}\ket{\psi_n^{(0)}}
-\end{aligned}\]
-并在方程两边同时内积上$\bra{\psi_m^{(0)}}$得到：
-\[\begin{aligned}
-\sum_{k\neq n}c_{nk}^{(2)}\bra{\psi_m^{(0)}}(\hat{H}_0-E_n^{(0)})\ket{\psi_k^{(0)}}&=\sum_{k\neq n}c_{nk}^{(1)}\bra{\psi_m^{(0)}}(E_n^{(1)}-\hat{H}')\ket{\psi_k^{(0)}}\\
-c_{nm}^{(2)}(E_m^{(0)}-E_n^{(0)})&=
-\end{aligned}\]
+二阶波函数就不求了（会累死人的，而且后面我就只打算讲讲 MP2 作为例子）。
 
 实际使用来看微扰理论在给出能量的近似时是非常精确的，但对波函数的计算却不是太理想。
 
 \subsection{一阶k重简并定态微扰理论}
-求解微扰的思路是寻找一个好的非微扰态的函数基组，然后将微扰展开为该函数基下的表象，当轨道的能级出现简并的时候上述的讨论将不适用，也即是我们找不到一个好的函数基组来表征微扰（因为此时的非微扰态波函数基组并不相互独立），接下来的内容我们将着重寻找一个好的函数基组。不妨假设找到的独立的函数基为$\varPsi^0$，他来源于几个简并的轨道,由于微扰会使得原本简并的轨道发生裂分，此时我们可以将该函数基写成如下形式：
-\[\varPsi^0=\sum_{i=1}^k\beta_i\varPsi_{k_i}^0\]
-
-记：
-\[\varPsi_k^0=\left (\varPsi_{k_1}^0 , \varPsi_{k_2}^0 ,\varPsi_{k_3}^0, \cdot \cdot \cdot , \varPsi_{k_k}^0\right )^T\]
-
-根据一阶微扰对应的原方程展开项(c)，我们得到：
-\[H_0 \varPsi_n^1+H^{'} \varPsi^0=E_n^0 \varPsi_n^1+E_n^1 \varPsi^0\]
-
-对上述方程两侧同时内积上$\varPsi_{k_i}^0$，得到以下方程组：
-\[\sum_{j=1}^k\beta_j<\varPsi_{k_i}^0|H^{'}|\varPsi_{k_j}^0>=\beta_i E_n^1 \qquad (i=1,2 \cdot\cdot\cdot n)\]
-
-记$W_{ij}=<\varPsi_{k_i}^0|H^{'}|\varPsi_{k_j}^0> \quad (i,j=1,2 \cdot\cdot\cdot n)$，可以将方程组写得更紧凑一些：
-
-\[
-\begin{pmatrix}
-W_{11} & W_{12} & \ldots & W_{1n}\\
-W_{21} & W_{22} & \ldots & W_{2n}\\
+当零阶方程出现简并能级时，直接套用非简并的公式会出现除0的无穷大项，因此需要对简并的能级做单独的讨论，这里我们以一阶能量修正为例，假设零阶时能级$E_n^{(0)}$有$k$个经过正交化后的简并态$\ket{\psi_{nj}^{(0)}}$：
+\[\ket{\psi_{n}^{(0)}}=\sum_{j=1}^{k}c_j\ket{\psi_{nj}^{(0)}}, \quad (j=1,2,\cdots,k)\]
+取其中一个左矢$\bra{\psi_{ni}^{(0)}}$作用到$\ket{\psi_{n}^{(0)}}$对应的一阶方程上并把$\ket{\psi_{n}^{(0)}}$基底$\ket{\psi_{nj}^{(0)}}$上展开：
+\[\begin{aligned}
+\bra{\psi_{ni}^{(0)}}\hat{H}_0\ket{\psi_{n}^{(1)}}+\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{n}^{(0)}}&=E_n^{(0)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(1)}}+E_n^{(1)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(0)}}\\
+\bra{\psi_{ni}^{(0)}}\hat{H}_0\ket{\psi_{n}^{(1)}}+\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}&=E_n^{(0)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(1)}}+E_n^{(1)}\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\ket{\psi_{nj}^{(0)}}\\
+\end{aligned}\]
+利用中间正交性：
+\[\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}=E_n^{(1)}\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\ket{\psi_{nj}^{(0)}}\]
+记$H'_{ij}=\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}, \ (i,j=1,2 \cdot\cdot\cdot k)$，可以将方程组写成矩阵形式：
+\[\begin{pmatrix}
+H'_{11} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22} & \ldots & H'_{2n}\\
 \vdots & \vdots & \ddots & \vdots\\
-W_{n1} & W_{n2} & \ldots & W_{nn}\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}\\
 \end{pmatrix}
+\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}
+=E_n^{(1)}\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}
+\ \Leftrightarrow \
 \begin{pmatrix}
-\beta_1\\
-\beta_2\\
-\vdots\\
-\beta_n\\
+H'_{11}-E_n^{(1)} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22}-E_n^{(1)} & \ldots & H'_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 \end{pmatrix}
-=E_n^1
-\begin{pmatrix}
-\beta_1\\
-\beta_2\\
-\vdots\\
-\beta_n\\
-\end{pmatrix}
-\tag{f} \]
+\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}=0\]
+要使得上式子成立只需要系数矩阵的行列式为0：
+\[\det(\mathbf{H}'-E_n^{(1)}\mathbf{I})=\begin{vmatrix}
+H'_{11}-E_n^{(1)} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22}-E_n^{(1)} & \ldots & H'_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
+\end{vmatrix}=0\]
 
-求解方程组(f)实际上就是研究矩阵$(W_{ij})$的正交对角化，假设$(W_{ij})$正交对角化形式如下：
-\[W=P^T \Lambda P\]
+上述方法可以解出来一系列不同的一阶能量修正项，如果由于我们一开始说过的，这里只讨论了某个能级$E_n^{(0)}$出现了简并的情况，但实际体系中可能出现多个能级简并的情况，那么之需要重复上述的操作即可计算完全部的$\mathbf{E}^{(1)}$。
+\[E_n^{(1)}=\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}\]
 
-则$E_n^1$可表示成：
-\[E_n^1=\Lambda\]
-
-则事先假定的好的函数基$\varPsi^0$也就可以表示成：
-\[\varPsi^0=P^T \varPsi^0_k\]
+回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
 
 \subsection{一阶含时微扰理论}
 当考虑一些更实际的体系如原子吸收与原子发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的一阶含时微扰。先给出我们要处理的对象：
