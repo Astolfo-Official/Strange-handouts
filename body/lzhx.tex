@@ -1250,152 +1250,72 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 \subsection{量子力学的三种等价表述形式}
 这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
-\[i\hbar\pdv{t}\ket{\psi_S(\bm{r},t)}=\hat{H}_S\ket{\psi_S(\bm{r},t)}, \quad \ket{\psi_S(\bm{r},t)}=\hat{U}(t)\ket{\psi(\bm{r},0)_S} \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
+\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_S=\hat{H}_S\ket{\psi(\bm{r},t)}_S, \quad \ket{\psi(\bm{r},t)}_S=\hat{U}(t)\ket{\psi(\bm{r},0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
 进而可以得出时间演化算符是(哈密顿量是不含时的)，其与薛定谔绘景下的哈密顿量$\hat{H}_S$是对易的：
 \[\hat{U}(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_S\dd{t}\right)=\exp\left(-\frac{i\hat{H}_St}{\hbar}\right), \quad [\hat{U}(t),\hat{H}_S]=\exp\left(-\frac{i[\hat{H}_S,\hat{H}_S]t}{\hbar}\right)=0\]
 考虑在$t$时刻的算符$\hat{O}$的期望值：
-\[\bra{\psi_S(\bm{r},t)}\hat{O}\ket{\psi_S(\bm{r},t)}=\bra{\psi_S(\bm{r},0)}\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi_S(\bm{r},0)}=\bra{\psi_H(\bm{r},0)}\hat{O}_H(t)\ket{\psi_H(\bm{r},0)}\]
-这里用到了$\ket{\psi_S(\bm{r},t)}=\ket{\psi_H(\bm{r},0)}$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
+\[\bra{\psi(\bm{r},t)}_S\hat{O}\ket{\psi(\bm{r},t)}_S=\bra{\psi(\bm{r},0)}_S\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi(\bm{r},0)}_S=\bra{\psi(\bm{r},0)}_H\hat{O}_H(t)\ket{\psi(\bm{r},0)}_H\]
+这里用到了$\ket{\psi(\bm{r},t)}_S=\ket{\psi(\bm{r},0)}_H$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
 \[\dv{\hat{O}_H}{t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
 海森堡运动方程可以从薛定谔绘景的时间演化算符出发推导得到：
 \[\dv{\hat{O}_H}{t}=\frac{\partial\hat{U}^{\dagger}(t)}{\partial t}\hat{O}_S\hat{U}(t)+\hat{U}^{\dagger}(t)\hat{O}_S\frac{\partial\hat{U}(t)}{\partial t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_H]=-\frac{i}{\hbar}[\hat{A}_H,\hat{U}^\dagger(t)\hat{U}(t)\hat{H}_S]=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
 
 相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在\textcolor{blue}{\textbf{相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$}}：
-\[\ket{\psi_S(\bm{r},t)}=\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi_I(\bm{r},t)}\]
+\[\ket{\psi(\bm{r},t)}_S=\hat{U}_0(t)\ket{\psi(\bm{r},t)}_I=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi(\bm{r},t)}_I\]
 将上述态的转换带入薛定谔绘景下的薛定谔方程可以得到相互作用绘景下的薛定谔方程以及运动方程：
-\[i\hbar\pdv{t}\ket{\psi_I(\bm{r},t)}=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\hat{H}_I(t)\ket{\psi_I(\bm{r},t)}, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
+\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_I=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi(\bm{r},t)}_I=\hat{H}_I(t)\ket{\psi(\bm{r},t)}_I, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
 由上述薛定谔方程，我们可以类似推导出相互作用绘景下的相互作用时间演化算符，而且其显然满足：
 \[\hat{U}_I(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{t}\right), \quad \hat{U}(t)=\hat{U}_0(t)\hat{U}_I(t)\]
 回到在$t$时刻的算符$\hat{O}$的期望值：
-\[\bra{\psi_S(\bm{r},t)}\hat{O}\ket{\psi_S(\bm{r},t)}=\bra{\psi_S(\bm{r},0)}\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi_S(\bm{r},0)}=\bra{\psi_I(\bm{r},0)}\hat{O}_I(t)\ket{\psi_I(\bm{r},0)}\]
+\[\bra{\psi(\bm{r},t)}_S\hat{O}\ket{\psi(\bm{r},t)}_S=\bra{\psi(\bm{r},0)}_S\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi(\bm{r},0)}_S=\bra{\psi(\bm{r},0)}_I\hat{O}_I(t)\ket{\psi(\bm{r},0)}_I\]
 可以看出三种绘景都是形式一致的，只是量子力学的不同表象罢了（笑
 
 最后遗留一个小问题，由于$\hat{H}_I$含时，我们没法直接写出该时间演化算符的结果，但是可以通过迭代时间演化算符来近似求解，直接对薛定谔方程积分可以得到如下的形式：
-\[i\hbar\pdv{t}\ket{\psi_I(\bm{r},t)}=\hat{H}_I(t)\ket{\psi_I(\bm{r},t)} \quad \Rightarrow \quad \ket{\psi_I(\bm{r},t)}=\ket{\psi_I(\bm{r},0)}-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi_I(\bm{r},\tau)}\]
+\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_I=\hat{H}_I(t)\ket{\psi(\bm{r},t)}_I \quad \Rightarrow \quad \ket{\psi(\bm{r},t)}_I=\ket{\psi(\bm{r},0)}_I-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi(\bm{r},\tau)}_I\]
 不断对积分中的态$\ket{\psi_I(\bm{r},\tau)}$进行迭代可以得到如下递推公式：
-\[\ket{\psi_I(\bm{r},t)}=\ket{\psi_I(\bm{r},0)}+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi_I(\bm{r},0)}\]
+\[\ket{\psi(\bm{r},t)}_I=\ket{\psi(\bm{r},0)}_I+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi(\bm{r},0)}_I\]
 此时我们按照相互作用绘景的相互作用时间演化算符的定义把它从上式中扣出来：
 \[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
 此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
 
 \subsection{含时微扰理论}
-当考虑一些更实际的体系如原子分子吸收发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的含时微扰。在相互作用绘景下，假定非相互作用解已知：
-\[i\hbar\pdv{t}\ket{\psi_n}=\hat{H}\ket{\psi_n}=(\hat{H}_0+\hat{H}')\ket{\psi_n}, \quad i\hbar\pdv{t}\ket{\psi_n^0}=\hat{H}_0\ket{\psi_n^0}\]
+当考虑一些更实际的体系如原子分子吸收发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的含时微扰，假设哈密顿为$\hat{H}=\hat{H}_0+\lambda\hat{H}'(t)$。在相互作用绘景下，给定初态（其实就是定态解）：
+\[i\hbar\pdv{t}\ket{\psi_n(t)}_I=\hat{H}_I\ket{\psi_n(t)}_I, \quad i\hbar\pdv{t}\ket{\psi_n(0)}_I=\hat{H}_I\ket{\psi_n(0)}_I \quad \Leftrightarrow \quad i\hbar\pdv{t}\ket{m}=\hat{H}_I\ket{m}\]
 
-将$\varPsi_n(q,t)$在$\varPsi_n^0(q,t)$的基下展开：
-\[\varPsi_n(q,t)=\sum_{i=1}^nc_i(t)\varPsi_i^0(q,t) \qquad \sum_{i=1}^n|c_i(t)|^2=1\]
+将$\ket{\psi_n(t)}_I$在定态解$\{\ket{m}\}$的基底下展开：
+\[\ket{\psi_n(t)}_I=\sum_m\ket{m}\bra{m}\ket{\psi_n(t)}_I=\sum_mc_{nm}(t)\ket{m} \quad \Rightarrow \quad i\hbar\sum_m\pdv{c_{nm}(t)}{t}\ket{n}=\sum_mc_{nm}(t)\hat{H}_I\ket{n}\]
+对上式两侧同时内积上$\bra{k}$得到，定义个缩写符号$\omega_{km}=(E_k-E_m)/\hbar$（到达态能量减去出发态能量）：
+\[\begin{aligned}
+i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c_{nm}(t)\bra{k}\exp\left(\frac{i\hat{H}_0t}{\hbar}\right)\hat{H}'(t)\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{m}\\
+&=\sum_m\lambda c_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}\exp\left(-\frac{i(E_m-E_k)t}{\hbar}\right)\equiv\sum_m\lambda c_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}e^{i\omega_{km}t}
+\end{aligned}\]
+将展开系数做微扰展开，并带入上式，这里再提一下：
+\[c_{nm}(t)=c_{nm}^{(0)}+\sum_{j=1}^{+\infty}c_{nm}^{(j)}(t)\lambda^i \quad \Rightarrow \quad i\hbar\sum_{j=1}^{+\infty}\pdv{c_{nk}^{(j)}(t)}{t}\lambda^j=\sum_{j=1}^{+\infty}\lambda^j\sum_mc^{(j-1)}_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}e^{i\omega_{km}t}\]
 
-代入原方程：
-\[i \hbar \frac{\partial}{\partial t}\sum_{i=1}^nc_i(t)\varPsi_i^0(q,t)=(\hat{H^0}+\lambda\hat{H^{'}}) \sum_{i=1}^nc_i(t)\varPsi_i^0(q,t)\]
+取出一阶修正项，同时假设定态时系统处于态$\ket{n}$，则系数$c^{(0)}_{nm}=\delta_{mn}$：
+\[i\hbar\pdv{c_{nk}^{(1)}(t)}{t}=\bra{k}\hat{H}'(t)\ket{n}e^{i\omega_{kn}t} \quad \Rightarrow \quad c_{nk}^{(1)}(t)=\frac{1}{i\hbar}\int_{0}^{t}\bra{k}\hat{H}'(\tau)\ket{n}e^{i\omega_{kn}\tau}\dd{\tau}\]
 
-由已知条件(g)可化简上式：
-\[i \hbar \sum_{i=1}^n\frac{\partial c_i(t)}{\partial t}\varPsi_i^0(q,t)=\lambda\hat{H^{'}} \sum_{i=1}^nc_i(t)\varPsi_i^0(q,t)\]
+回看系数$c_{nk}^{(1)}(t)=\bra{k}\ket{\psi_n(t)}_I$的定义我们知道，其平方$P_{n \to k}(t)=|c_{nk}^{(1)}(t)|^2$表示系统在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁概率，通过对跃迁概率求导，我们能知道跃迁的速率，于是我们就能研究动力学辣！
 
-对上式两侧同时内积上$\varPsi_m^0(q,t)$得到：
-\[i \hbar \frac{\partial c_m(t)}{\partial t}=\lambda\sum_{i=1}^nc_i(t)<\varPsi_m^0(q,t)|\hat{H^{'}}|\varPsi_i^0(q,t)>\]
-\[c_k(t)=\sum_{i=0}^{+\infty}c_k^i(t)\lambda^i \qquad (k=1,2 \cdot\cdot\cdot n)\]
-
-将上述两式整合得到：
-\[i \hbar \frac{\partial c_m^0(t)}{\partial t}=0\]
-\[i \hbar \frac{\partial c_m^j(t)}{\partial t}=\sum_{i=1}^nc_i^{j-1}(t)<\varPsi_m^0(q,t)|\hat{H^{'}}|\varPsi_i^0(q,t))>\]
-\[(j=1,2 \cdot\cdot\cdot n)\]
-
-同样的取出一阶修正项系数：
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=\sum_{i=1}^nc_i^0(t)<\varPsi_m^0(q,t)|\hat{H^{'}}|\varPsi_i^0(q,t)> \tag{h}\]
-
-注意到其中包含$c_i^0(t)$，当给定$t=0$时刻跃迁基态$k$后，可以利用零阶修正的结论：
-\[c_i^0(t) = \left\{
-\begin{array}{rl}
-0 & \text{,if  }\quad i \neq k\\
-1 & \text{,if  }\quad i=k
-\end{array} \right. \]
-
-则，式(h)将可以写成：
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=<\varPsi_m^0(q,t)|\hat{H^{'}}|\varPsi_k^0(q,t)>\]
-
-将含时波函数$\varPsi_k^0(q,t)$含时项与定态项分离：
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=e^{-i \omega_{mk} t}H^{'}_{mk} \tag{i}\]
-\[H^{'}_{mk}:=<\varPhi_m^0(q)|\hat{H^{'}}|\varPhi_k^0(q)> \quad \omega_{mk}:=\frac{(E_m-E_k)}{\hbar}\]
-
-解微分方程(i)得到$c_m^1(t)$的解析式：
-\[c_m^1(t)=\frac{H^{'}_{mk}}{\hbar \omega_{mk}}(1-e^{-i \omega_{mk} t})\]
-
-至此，可以利用前两章所叙述的方法求解出波函数与能量的一阶微扰修正。但在含时微扰中，我们更关心的是与实际分子光吸收与发射的跃迁概率$P_m$。
-
-由定义可知：
-\[P_m=|c_m^1(t)|^2=\frac{2{H^{'}_{mk}}^2}{\hbar^2 } \cdot \frac{1-cos(\omega_{mk}t)}{\omega_{mk}^2}\]
-
-由$\delta$函数的性质：
-\[P_m=\frac{2 \pi t{H^{'}_{mk}}^2}{\hbar^2 }\delta(\omega_{mk})\]
-
-因此单位时间内，跃迁概率对时间的导数,也即是两给定能级之间的跃迁速率为:
-\[\frac{\mathrm{d} P_m}{\mathrm{d} t}=\frac{2 \pi {H^{'}_{mk}}^2}{\hbar^2 }\delta(\omega_{mk})=:k_{k \rightarrow m}\]
-
-给定初始能级的所有跃迁$k_{k}$则为：
-\[k_{k}:=\sum_mk_{k \rightarrow m}\]
-
-全体跃迁的平均速率则为：
-\[k_r:=\sum_kk_{k}=\sum_k\sum_m P_k k_{k \rightarrow m} \qquad P_k:=\frac{e^{-\beta E_k}}{Q}\]
-
-对上述定义式进行展开，可以得到费米黄金定则（Fermi golden rule）：
-\[k_r=\frac{2 \pi}{\hbar^2}\sum_k\sum_m P_k {H^{'}_{mk}}^2\delta(\omega_{mk})\]
-
-经过上述讨论，我们也可对分子光吸收或者光发射做一个简单的表述，这里，由于光的波动性，不妨假设微扰为三角形式：
-\[\hat{H^{'}}=-\overrightarrow{\mu} \cdot \overrightarrow{E}(t)cos\omega t\]
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=-<\varPsi_m^0(q,t)|\overrightarrow{\mu}|\varPsi_k^0(q,t)>\cdot \overrightarrow{E}(t)cos\omega t\]
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=-\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t) e^{i \omega_{mk}t}cos\omega t\]
-\[\overrightarrow{\mu}_{mk}:=<\varPhi_m^0(q,t)|\overrightarrow{\mu}|\varPhi_k^0(q,t)>\]
-
-由欧拉公式可得：
-\[cos\omega t=\frac{1}{2}(e^{-i\omega t}+e^{i \omega t})\]
-\[i \hbar \frac{\partial c_m^1(t)}{\partial t}=-\frac{1}{2}\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)(e^{-i\omega t}+e^{i \omega t}) e^{i \omega_{mk}t}\]
-
-积分可得$c_m^1(t)=$：
-\[-\frac{\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)}{2 \hbar}\left [\frac{e^{i(\omega_{mk}+\omega)t}-1}{\omega_{mk}+\omega}+\frac{e^{i(\omega_{mk}-\omega)t}-1}{\omega_{mk}-\omega} \right ]\]
+下面我们以一个具体的微扰哈密顿作为展示，假设存在一个电磁场$\bm{E}(t)=\bm{E}\cos{\omega t}$，与体系的偶极$\hat{\bm{\mu}}$相互作用，因此微扰哈密顿可以写成$\hat{H}'=-\hat{\bm{\mu}}\cdot\bm{E}\cos{\omega t}$，负号来自于相互作用是降低体系能量的。则跃迁系数为：
+\[c_{nk}^{(1)}(t)=\frac{1}{i\hbar}\int_{0}^{t}\bra{k}\hat{H}'(\tau)\ket{n}e^{i\omega_{kn}\tau}\dd{\tau}=\frac{i}{\hbar}\int_{0}^{t}\bra{k}\hat{\bm{\mu}}\ket{n}\cdot \bm{E}\cos{\omega t}e^{i\omega_{kn}\tau}\dd{\tau}\]
+其中$\bm{\mu}_{nk}\equiv\hat{\bm{\mu}}\ket{n}$为跃迁偶极矩，其与电场场强$\bm{E}$与时间无关，可以从积分中提出来：
+\[c_{nk}^{(1)}(t)=\frac{i\bm{\mu}_{nk}\cdot\bm{E}}{2\hbar}\int_{0}^{t}(e^{i\omega t}+e^{-i\omega t})e^{i\omega_{kn}\tau}\dd{\tau}=\frac{\bm{\mu}_{nk}\cdot\bm{E}}{2\hbar}\left[\frac{e^{i(\omega_{kn}+\omega)t}-1}{\omega_{kn}+\omega}+\frac{e^{i(\omega_{kn}-\omega)t}-1}{\omega_{kn}-\omega} \right]\]
 
 对光吸收过程，$\omega$为正值(光发射过程相反)，当$\omega$在合适范围内，满足：
-\[\frac{e^{i(\omega_{mk}+\omega)t}-1}{\omega_{mk} + \omega} \ll \frac{e^{i(\omega_{mk}-\omega)t}-1}{\omega_{mk}-\omega}\]
+\[\left|\frac{e^{i(\omega_{kn}+\omega)t}-1}{\omega_{kn} + \omega}\right| \ll \left|\frac{e^{i(\omega_{kn}-\omega)t}-1}{\omega_{mkn}-\omega}\right|\]
+故对光吸收过程（delta函数这里用到了$\pi\delta(x)/t=\mathrm{sinc}^2(xt)$，有点跳步可以自己推导）：
+\[P_{n \to k}(t)=|c_{nk}^{(1)}(t)|^2\approx\frac{|\bm{\mu}_{nk}\cdot\bm{E}|^2}{2\hbar^2}\cdot\frac{1-\cos{(\omega_{kn}-\omega)t}}{(\omega_{kn}-\omega)^2}=\frac{\pi t}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)\]
+进而可以计算在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
+\[k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E_k-E_n-\hbar\omega)\]
 
-故对光吸收过程：
-\[c_m^1(t)=-\frac{\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)}{2 \hbar}\frac{e^{i(\omega_{mk}-\omega)t}-1}{\omega_{mk}-\omega}\]
-\[P_m=\frac{|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2}{2 \hbar^2}\frac{1-cos(\omega_{mk}-\omega)t}{(\omega_{mk}-\omega)^2}\]
-\[P_m=\frac{\pi t}{2 \hbar^2}|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2 \delta(\omega_{mk}-\omega)\]
+从上述公式可以知道只有当满足$\omega=\omega_{kn}$时越迁才会发生。\textcolor{blue}{\textbf{由微扰假定，我们认为外场不影响系统本身的概率本部，系统处于能量为$E$的态上的概率由平衡态密度$\rho(E)$给出}}。因此如果我们考察在外场频率$\omega=\omega_{kn}$时，即$E_n-\hbar\omega=E_k$，从初态$\ket{n}$发生的越迁速率，也即从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
+\[k_{n \to k}=\int k_{n \to ?}(E)\rho(E)\dd{E}=\int \frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E-E_n-\hbar\omega)\rho(E)\dd{E}=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\rho(E_k)\]
 
-同理可以给出吸收激发的速率常数：
+上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
 
-给定两能级的吸收跃迁速率：
-\[k_{a,k \rightarrow m}=\frac{\mathrm{d} P_m}{\mathrm{d}t}=\frac{\pi}{2 \hbar^2}|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2 \delta(\omega_{mk}-\omega)\]
-
-给定初始能级的所有吸收跃迁$k_{k}$则为：
-\[k_{a,k}=\frac{\pi}{2 \hbar^2}\sum_m|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2 \delta(\omega_{mk}-\omega)\]
-
-全体吸收跃迁的平均速率则为：
-\[k_{a,r}=\frac{\pi}{2 \hbar^2}\sum_k\sum_m P_k |\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2 \delta(\omega_{mk}-\omega)\]
-
-在实际的光吸收过程中，通常会通过从空间不同方向对样品经行照射，对这个过程，应取$|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2$的平均值$<|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2>$：
-\[<|\overrightarrow{\mu}_{mk} \cdot \overrightarrow{E}(t)|^2>=|\overrightarrow{\mu}_{mk}|^2|\overrightarrow{E}(t)|^2<cos^2 \theta>\]
-
-\[<cos^2 \theta>=\frac{\int_0^{2\pi}d\varphi \int_0^{\pi}cos^2 \theta sin \theta d\theta}{\int_0^{2\pi}d\varphi \int_0^{\pi} sin \theta d\theta}=\frac{1}{3}\]
-
-且光密度$I$与$|\overrightarrow{E}(t)|^2$有如下关系：
-\[I=\frac{c}{8 \pi}|\overrightarrow{E}(t)|^2\]
-
-因此，全体吸收跃迁的平均速率可以写成：
-\[k_{a,r}=\frac{4\pi^2 I}{3 \hbar^2c}\sum_k\sum_m P_k |\overrightarrow{\mu}_{mk}|^2 \delta(\omega_{mk}-\omega)\]
 \subsection{MP2}
-\subsection{比尔-朗伯定律}
 
-这里以比尔-朗伯定律(Beer-lambert law)为例,$A$为吸光度，$I$为光强，$\varepsilon$为摩尔吸光系数，$l$为吸收池厚度，$c$为浓度：
-\[A=lg \frac{I_0}{I}=\varepsilon lc \tag{1}\]
-\[-dI=\varepsilon Icdl \tag{2}\]
-
-给定面积$S$的光吸收变化$dI$，应该要等于给定面积下的体积微元$Sdl$中处于合适能级的分子数$N_k$乘上光的能量$\hbar \omega$和吸收速率$k_{a,r}$：
-\[S|dI|=\sum_kN_kk_a\hbar \omega=\sum_kcSdlP_kk_{a,r}\hbar \omega \tag{3}\]
-
-综合1、2、3式得到：
-\[\varepsilon=\frac{\hbar \omega}{I}k_{a,r}=\frac{4\pi^2 \omega}{3 \hbar c}\sum_k\sum_m P_k |\overrightarrow{\mu}_{mk}|^2 \delta(\omega_{mk}-\omega)\]
-
-上述表达式意味着我们可以通过某分子的轨道及能量信息来预测该物质的摩尔吸光系数。
 
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
 \subsection{变量分离}
