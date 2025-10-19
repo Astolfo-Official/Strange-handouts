@@ -276,7 +276,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 带入哈密顿-雅可比方程并把哈密顿写成算符形式：
 \[i\hbar\pdv{\psi(\bm{r},t)}{t}=\pdv{S(\bm{r},t)}{t}\psi(\bm{r},t)\sim-\hat{H}\psi(\bm{r},t) \quad \Rightarrow \quad i\hbar\pdv{\psi(\bm{r},t)}{t}+\hat{H}\psi(\bm{r},t)=0\]
 
-现在回头来看这整个过程，从哈密顿-雅可比方程出发，通过引入波的复指数形式进而类比出薛定谔方程。整个过程非常的不严谨。这是自然的，因为从物理层面上看，量子力学是比经典力学处于更底层的位置，所以你永远无法严格得从经典力学的运动方程推导出量子力学的薛定谔方程。\textbf{就像你永远没法让儿子跟老妈搞生出老爸}。因此，\textcolor{blue}{\textbf{薛定谔方程也可以认为是量子力学的一个基本假设}}。薛定谔凑出薛定谔方程以及一些其他推导都是在坐标空间中进行的，所以坐标表象也叫薛定谔绘景。
+现在回头来看这整个过程，从哈密顿-雅可比方程出发，通过引入波的复指数形式进而类比出薛定谔方程。整个过程非常的不严谨。这是自然的，因为从物理层面上看，量子力学是比经典力学处于更底层的位置，所以你永远无法严格得从经典力学的运动方程推导出量子力学的薛定谔方程。\textbf{就像你永远没法让儿子跟老妈搞生出老爸}。因此，\textcolor{blue}{\textbf{薛定谔方程也可以认为是量子力学的一个基本假设}}。薛定谔凑出薛定谔方程以及一些其他推导都是在坐标空间中进行的，所以坐标表象也叫薛定谔绘景，特点是\textcolor{blue}{\textbf{算符不随时间演化，态随时间演化}}。
 
 \section{自由粒子}
 以一维自由粒子为例，其受到的势能$V$为0,其薛定谔方程可以简化为：
@@ -1248,8 +1248,38 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
 
+\subsection{量子力学的三种等价表述形式}
+这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
+\[i\hbar\pdv{t}\ket{\psi_S(\bm{r},t)}=\hat{H}_S\ket{\psi_S(\bm{r},t)}, \quad \ket{\psi_S(\bm{r},t)}=\hat{U}(t)\ket{\psi(\bm{r},0)_S} \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
+进而可以得出时间演化算符是(哈密顿量是不含时的)，其与薛定谔绘景下的哈密顿量$\hat{H}_S$是对易的：
+\[\hat{U}(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_S\dd{t}\right)=\exp\left(-\frac{i\hat{H}_St}{\hbar}\right), \quad [\hat{U}(t),\hat{H}_S]=\exp\left(-\frac{i[\hat{H}_S,\hat{H}_S]t}{\hbar}\right)=0\]
+考虑在$t$时刻的算符$\hat{O}$的期望值：
+\[\bra{\psi_S(\bm{r},t)}\hat{O}\ket{\psi_S(\bm{r},t)}=\bra{\psi_S(\bm{r},0)}\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi_S(\bm{r},0)}=\bra{\psi_H(\bm{r},0)}\hat{O}_H(t)\ket{\psi_H(\bm{r},0)}\]
+这里用到了$\ket{\psi_S(\bm{r},t)}=\ket{\psi_H(\bm{r},0)}$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
+\[\dv{\hat{O}_H}{t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
+海森堡运动方程可以从薛定谔绘景的时间演化算符出发推导得到：
+\[\dv{\hat{O}_H}{t}=\frac{\partial\hat{U}^{\dagger}(t)}{\partial t}\hat{O}_S\hat{U}(t)+\hat{U}^{\dagger}(t)\hat{O}_S\frac{\partial\hat{U}(t)}{\partial t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_H]=-\frac{i}{\hbar}[\hat{A}_H,\hat{U}^\dagger(t)\hat{U}(t)\hat{H}_S]=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
+
+相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$：
+\[\ket{\psi_S(\bm{r},t)}=\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi_I(\bm{r},t)}\]
+将上述态的转换带入薛定谔绘景下的薛定谔方程可以得到相互作用绘景下的薛定谔方程以及运动方程：
+\[i\hbar\pdv{t}\ket{\psi_I(\bm{r},t)}=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\hat{H}_I(t)\ket{\psi_I(\bm{r},t)}, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
+由上述薛定谔方程，我们可以类似推导出相互作用绘景下的相互作用时间演化算符，而且其显然满足：
+\[\hat{U}_I(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{t}\right), \quad \hat{U}(t)=\hat{U}_0(t)\hat{U}_I(t)\]
+回到内积：
+\[\bra{\psi_S(\bm{r},t)}\hat{O}\ket{\psi_S(\bm{r},t)}=\bra{\psi_S(\bm{r},0)}\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi_S(\bm{r},0)}=\bra{\psi_I(\bm{r},0)}\hat{O}_I(t)\ket{\psi_I(\bm{r},0)}\]
+可以看出三种绘景都是形式一致的，只是量子力学的不同表象罢了（笑
+
+最后遗留一个小问题，由于$\hat{H}_I$含时，我们没法直接写出该时间演化算符的结果，但是可以通过迭代时间演化算符来近似求解，直接对薛定谔方程积分可以得到如下的形式：
+\[i\hbar\pdv{t}\ket{\psi_I(\bm{r},t)}=\hat{H}_I(t)\ket{\psi_I(\bm{r},t)} \quad \Rightarrow \quad \ket{\psi_I(\bm{r},t)}=\ket{\psi_I(\bm{r},0)}-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi_I(\bm{r},\tau)}\]
+不断对积分中的态$\ket{\psi_I(\bm{r},\tau)}$进行迭代可以得到如下递推公式：
+\[\ket{\psi_I(\bm{r},t)}=\ket{\psi_I(\bm{r},0)}+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi_I(\bm{r},0)}\]
+此时我们按照相互作用绘景的相互作用时间演化算符的定义把它从上式中扣出来：
+\[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
+此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
+
 \subsection{一阶含时微扰理论}
-当考虑一些更实际的体系如原子吸收与原子发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的一阶含时微扰。先给出我们要处理的对象：
+当考虑一些更实际的体系如原子吸收与原子发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的8引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的一阶含时微扰。先给出我们要处理的对象：
 \[i \hbar \frac{\partial \varPsi_n(q,t)}{\partial t}=\hat{H} \varPsi_n(q,t)\]
 
 已知：
