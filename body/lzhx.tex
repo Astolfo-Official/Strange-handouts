@@ -1309,7 +1309,7 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 进而可以计算在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
 \[k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E_k-E_n-\hbar\omega)\]
 
-从上述公式可以知道只有当满足$\omega=\omega_{kn}$时越迁才会发生。\textcolor{blue}{\textbf{由微扰假定，我们认为外场不影响系统本身的概率本部，系统处于能量为$E$的态上的概率由平衡态密度$\rho(E)$给出}}。因此如果我们考察在外场频率$\omega=\omega_{kn}$时，即$E_n-\hbar\omega=E_k$，从初态$\ket{n}$发生的越迁速率，也即从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
+从上述公式可以知道只有当满足$\omega=\omega_{kn}$时越迁才会发生。\textcolor{blue}{\textbf{由微扰假定，我们认为外场不影响系统态本身的分布，系统处于能量为$E$的态上的概率由平衡态密度$\rho(E)$给出}}。因此如果我们考察在外场频率$\omega=\omega_{kn}$时，即$E_n-\hbar\omega=E_k$，从初态$\ket{n}$发生的越迁速率，也即从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
 \[k_{n \to k}=\int k_{n \to ?}(E)\rho(E)\dd{E}=\int \frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E-E_n-\hbar\omega)\rho(E)\dd{E}=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\rho(E_k)\]
 
 上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
