@@ -1278,12 +1278,9 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 \[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
 此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
 
-\subsection{一阶含时微扰理论}
-当考虑一些更实际的体系如原子吸收与原子发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的8引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的一阶含时微扰。先给出我们要处理的对象：
-\[i \hbar \frac{\partial \varPsi_n(q,t)}{\partial t}=\hat{H} \varPsi_n(q,t)\]
-
-已知：
-\[i \hbar \frac{\partial \varPsi_n^0(q,t)}{\partial t}=\hat{H} \varPsi_n^0(q,t)\quad \hat{H}=\hat{H^0}+\lambda\hat{H^{'}}\tag{g}\]
+\subsection{含时微扰理论}
+当考虑一些更实际的体系如原子分子吸收发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的含时微扰。在相互作用绘景下，假定非相互作用解已知：
+\[i\hbar\pdv{t}\ket{\psi_n}=\hat{H}\ket{\psi_n}=(\hat{H}_0+\hat{H}')\ket{\psi_n}, \quad i\hbar\pdv{t}\ket{\psi_n^0}=\hat{H}_0\ket{\psi_n^0}\]
 
 将$\varPsi_n(q,t)$在$\varPsi_n^0(q,t)$的基下展开：
 \[\varPsi_n(q,t)=\sum_{i=1}^nc_i(t)\varPsi_i^0(q,t) \qquad \sum_{i=1}^n|c_i(t)|^2=1\]
