@@ -1260,13 +1260,13 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 海森堡运动方程可以从薛定谔绘景的时间演化算符出发推导得到：
 \[\dv{\hat{O}_H}{t}=\frac{\partial\hat{U}^{\dagger}(t)}{\partial t}\hat{O}_S\hat{U}(t)+\hat{U}^{\dagger}(t)\hat{O}_S\frac{\partial\hat{U}(t)}{\partial t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_H]=-\frac{i}{\hbar}[\hat{A}_H,\hat{U}^\dagger(t)\hat{U}(t)\hat{H}_S]=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
 
-相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$：
+相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在\textcolor{blue}{\textbf{相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$}}：
 \[\ket{\psi_S(\bm{r},t)}=\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi_I(\bm{r},t)}\]
 将上述态的转换带入薛定谔绘景下的薛定谔方程可以得到相互作用绘景下的薛定谔方程以及运动方程：
 \[i\hbar\pdv{t}\ket{\psi_I(\bm{r},t)}=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi_I(\bm{r},t)}=\hat{H}_I(t)\ket{\psi_I(\bm{r},t)}, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
 由上述薛定谔方程，我们可以类似推导出相互作用绘景下的相互作用时间演化算符，而且其显然满足：
 \[\hat{U}_I(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{t}\right), \quad \hat{U}(t)=\hat{U}_0(t)\hat{U}_I(t)\]
-回到内积：
+回到在$t$时刻的算符$\hat{O}$的期望值：
 \[\bra{\psi_S(\bm{r},t)}\hat{O}\ket{\psi_S(\bm{r},t)}=\bra{\psi_S(\bm{r},0)}\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi_S(\bm{r},0)}=\bra{\psi_I(\bm{r},0)}\hat{O}_I(t)\ket{\psi_I(\bm{r},0)}\]
 可以看出三种绘景都是形式一致的，只是量子力学的不同表象罢了（笑
 
