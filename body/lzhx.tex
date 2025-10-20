@@ -1341,23 +1341,11 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
 \subsection{变量分离}
-变量分离是解偏微分方程的常用方法，其核心是假设偏微分方程的解可以由几个以不同变量（组）为自变量的函数共同表示，即：
+变量分离是假设偏微分方程的解可以由几个以不同变量（组）为自变量的函数共同表示，即：
 \[y(\bm{r}_1,\bm{r}_2,\cdot\cdot\cdot,\bm{r}_n)=y_1(\bm{r}_1)y_2(\bm{r}_2)\cdot\cdot\cdot y_n(\bm{r}_n)\]
 
-这里，我们以含时薛定谔方程为例简要介绍一下变量分离，下列方程即为含时薛定谔方程：
-\[i \hbar \frac{\partial \psi}{\partial t} =\hat{H}\psi:=\left (-\frac{\hbar^2}{2m}\nabla^2+V \right ) \psi\]
-
-这里，我们假设解出的波函数$\psi(\bm{r},t)$可以被分成以下形式:
-\[\psi(\bm{r},t)=\varPsi(\bm{r})\phi(t)\]
-
-那么含时薛定谔方程可以改写成：
-
-\[i \hbar \varphi \frac{\partial \phi}{\partial t}= -\frac{\hbar^2}{2m} \phi \nabla^2 \varPsi+V\varPsi\phi\]
-
-显然，除了平凡解$\psi=0$外，我们可以认为解出的波函数仅在有限个点上取值为零，不考虑这些奇异点，我们将方程两边同时除以$\varphi$$\phi$:
-
-\[i \hbar \frac{1}{\phi} \frac{\partial \phi}{\partial t}= -\frac{\hbar^2}{2m} \frac{1}{\varPsi} \nabla^2 \varPsi+V\]
-
+这里，我们以含时薛定谔方程为例，假设解出的波函数$\psi(\bm{r},t)=\varPsi(\bm{r})\phi(t)$，除了平凡解$\psi=0$外，我们可以认为解出的波函数仅在有限个点上取值为零，不考虑这些奇异点，我们将方程两边同时除以$\varphi\phi$：
+\[i \hbar \frac{\partial \psi}{\partial t}=\left (-\frac{\hbar^2}{2m}\nabla^2+V \right ) \psi \quad \Rightarrow \quad i \hbar \varphi \frac{\partial \phi}{\partial t}= -\frac{\hbar^2}{2m} \phi \nabla^2 \varPsi+V\varPsi\phi \quad \Rightarrow \quad i \hbar \frac{1}{\phi} \frac{\partial \phi}{\partial t}= -\frac{\hbar^2}{2m} \frac{1}{\varPsi} \nabla^2 \varPsi+V\]
 显然我们可以给出一个能量单位的参数$E$使得原方程可以写成以下方程组:
 \[\left\{
 \begin{array}{r}
@@ -1445,10 +1433,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \]
 
 \section{附录II:氢原子薛定谔方程求解(级数解法)\label{hydrgen}}
-利用分离变量法，我们假定定态波函数$\varPsi(r,\theta,\varphi)$可以表示成如下形式：
-\[\varPsi(r,\theta,\varphi)=R(r)\Theta(\theta)\varPhi(\varphi)\]
-
-带入定态薛定谔方程并在极坐标系下展开，整理方程，我们可以得到：
+利用分离变量法，我们假定定态波函数可以表示成$\varPsi(r,\theta,\varphi)=R(r)\Theta(\theta)\varPhi(\varphi)$，带入定态薛定谔方程并在极坐标系下展开，整理方程，我们可以得到：
 \[\frac{\Theta\varPhi}{r^2}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{R\varPhi}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{R\Theta}{r^2\sin^2 \theta }\frac{\partial^2 \varPhi}{\partial{\phi^2}}=-\frac{2m(E-V)}{\hbar^2}R\Theta\varPhi\]
 
 在方程两边同时乘上因子$r^2\sin^2 \theta/R\Theta\varPhi$,我们可以得到：
@@ -1458,49 +1443,37 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta=-\frac{1}{\varPhi}\frac{\partial^2 \varPhi}{\partial{\phi^2}}\]
 
 由于方程两边变量不同，若满足上述等式，方程左右两边都应等于同一个常数，不妨假设该常数为$m^2$，则我们可以得到两个方程：
-\[\frac{\partial^2 \varPhi}{\partial{\phi^2}}+m^2\varPhi=0 \tag{a}\]
-\[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta=m^2 \tag{4}\]
+\[\frac{\partial^2 \varPhi}{\partial{\phi^2}}+m^2\varPhi=0 \tag{a}\label{eq:a}\]
+\[\frac{\sin^2 \theta}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{\sin\theta}{\Theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})+\frac{2m(E-V)}{\hbar^2}r^2\sin^2 \theta=m^2 \tag{1}\label{eq:1}\]
 
-将方程$4$两边同时除以$sin^2 \theta$并整理，我们得到：
+将方程\ref{eq:1}两边同时除以$sin^2 \theta$并整理，我们得到：
 \[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\frac{m^2}{\sin^2 \theta}-\frac{1}{\Theta \sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})\]
 
 同样的，我们假定上述方程左右两边均等于参数$\beta$，于是我们又得到两个方程：
-\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta \tag{b}\]
-\[\frac{m^2}{\sin^2 \theta}-\frac{1}{\Theta \sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})=\beta \tag{c}\]
+\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta \tag{b}\label{eq:b}\]
+\[\frac{m^2}{\sin^2 \theta}-\frac{1}{\Theta \sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial \Theta}{\partial{\theta}})=\beta \tag{c}\label{eq:c}\]
 
 至此，我们将定态薛定谔方程拆分成三个含不同变量的常微分方程$a,b,c$。
 \subsection{Φ方程的求解}
-由球坐标中$\varphi$的范围及其边界条件$\varPhi(x)=\varPhi(x+2\pi)$、归一化条件以及方程$a$,我们在这一小节将要处理的对象是柯西问题：
-\[\frac{\mathrm{d}^2 \varPhi}{\mathrm{d}{\phi^2}}+ m^2 \varPhi=0 \qquad \varPhi(x)=\varPhi(x+2\pi) ,\int_{0}^{2\pi}\varPhi^{*}\varPhi \dd\phi=1\]
-
-方程$a$的通解形式为：
-\[\varPhi(\phi)=C_1 e^{im\phi}+C_2 e^{-im\phi}\]
-
-带入上述边界条件，我们得到上述柯西问题的解：
-\[\varPhi(\phi)=\frac{1}{\sqrt{2\pi}}e^{im\phi} \qquad (m=0,\pm 1,\pm 2\cdot\cdot\cdot)\]
-
-但显然，上述解与方程$a$的通解并不相同。但问题不大，由于微分方程特解的线性叠加性，我们可以选取一对绝对值为$|m|$的解线性叠加成我们认知中的方程$a$的通解。
+由球坐标中$\varphi$的范围及归一化条件容易求解方程\ref{eq:a}：
+\[\frac{\mathrm{d}^2 \varPhi}{\mathrm{d}{\phi^2}}+ m^2 \varPhi=0 \quad \Rightarrow \quad \varPhi(\phi)=\frac{1}{\sqrt{2\pi}}e^{im\phi} \qquad (m=0,\pm 1,\pm 2\cdot\cdot\cdot)\]
 
 \subsection{Θ方程的求解}
 对方程$c$，我们做以下代换：
-\[x=\cos\theta \qquad \frac{\mathrm{d} \Theta}{\mathrm{d} x}=\frac{\mathrm{d} \Theta}{\mathrm{d} \theta}\left ( \frac{\mathrm{d} x}{\mathrm{d} \theta} \right )^{-1}=-\frac{1}{\sin\theta} \frac{\mathrm{d} \Theta}{\mathrm{d} \theta} \qquad y(x)=\Theta(\theta)\]
+\[x=\cos\theta, \quad \frac{\mathrm{d} \Theta}{\mathrm{d} x}=\frac{\mathrm{d} \Theta}{\mathrm{d} \theta}\left ( \frac{\mathrm{d} x}{\mathrm{d} \theta} \right )^{-1}=-\frac{1}{\sin\theta} \frac{\mathrm{d} \Theta}{\mathrm{d} \theta}, \quad y(x)=\Theta(\theta)\]
 
-则方程$c$可以改写成以下形式：
-\[\frac{m^2}{1-x^2}-\frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]=\beta\]
+则方程$c$可以改写成连带$Legendre$方程：
+\[\frac{m^2}{1-x^2}-\frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]=\beta \quad \Leftrightarrow \quad \frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]+\left (\beta- \frac{m^2}{1-x^2} \right )y=0\]
 
-经整理，我们可以将上述方程改写成：
-\[\frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]+\left (\beta- \frac{m^2}{1-x^2} \right )y=0\]
-
-上述方程即为连带$Legendre$方程。
-
-为了求解上述方程，我们需要从其简化入手，下面我们将给出连带$Legendre$方程的简化，$Legendre$方程：
+为了求解上述方程，我们需要从$Legendre$方程出发：
 \[\frac{\mathrm{d}}{\mathrm{d}{x}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]+\beta y=0\]
 
 我们将用级数解法求解该方程，为了保证级数解法的正确性，我们引用一下定理保证在我们给定条件下的$Legendre$方程的解存在且唯一：
-
-\textbf{定理} \qquad 如果$p(z)$和$q(z)$在圆$|z-z_0|<R$内单值解析，则在此圆内二阶线性微分方程的初值问题：
+\begin{theorem}
+如果$p(z)$和$q(z)$在圆$|z-z_0|<R$内单值解析，则在此圆内二阶线性微分方程的初值问题：
 \[\frac{\mathrm{d}^2w}{\mathrm{d}x^2}+p(z)\frac{\mathrm{d}w}{\mathrm{d}x}+q(z)w=0, \quad w(z_0)=a, \quad w'(z_0)=b, \quad (\forall a,b \in \mathbb{C})\]
 的解存在且唯一，并且解$w(z)$在这个圆内单值解析。
+\end{theorem}
 
 下面我们将开始求解$Legendre$方程，其中自变量$x$定义在$[-1,1] \subset \mathbb{R}$，我们首先取$x_0=0$，显然0是$Legendre$方程的常点，因此，我们假设方程的解在$x_0=0$的邻域内可以展开成一下形式：
 \[y=\sum_{k=0}^{+\infty}c_kx^k\]
@@ -1527,22 +1500,21 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[y=(x^2-1)^{\frac{m}{2}}v(x)\]
 
 带入连带$Legendre$方程展开整理得：
-\[(1-x^2)v^{''}-2(m+1)xv^{'}+[\beta-m(m+1)]v=0 \tag{d}\]
+\[(1-x^2)v''-2(m+1)xv'+[\beta-m(m+1)]v=0 \tag{d}\label{eq:d}\]
 
 如果我们对$Legendre$方程求m次导：
-\[\frac{\mathrm{d^{m+1}}}{\mathrm{d}{x^{m+1}}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]+\beta y^{(m)}=0\]
-\[(1-x^2)\frac{\mathrm{d^{m+2}}y}{\mathrm{d}{x^{m+2}}}-2(m+1)x\frac{\mathrm{d^{m+1}}y}{\mathrm{d}{x^{m+1}}}+[\beta-m(m+1)]\frac{\mathrm{d^{m}}y}{\mathrm{d}{x^{m}}}=0\]
+\[\frac{\mathrm{d^{m+1}}}{\mathrm{d}{x^{m+1}}} \left [(1-x^2) \frac{\mathrm{d} y}{\mathrm{d}{x}} \right ]+\beta y^{(m)}=(1-x^2)\frac{\mathrm{d^{m+2}}y}{\mathrm{d}{x^{m+2}}}-2(m+1)x\frac{\mathrm{d^{m+1}}y}{\mathrm{d}{x^{m+1}}}+[\beta-m(m+1)]\frac{\mathrm{d^{m}}y}{\mathrm{d}{x^{m}}}=0\]
 
-发现其与方程d形式相同。
+发现其与方程\ref{eq:d}形式相同。
 
 于是，我们能直接写出连带$Legendre$方程的解：
 \[y=(x^2-1)^{\frac{m}{2}}\frac{\mathrm{d^{m}}P_l(x)}{\mathrm{d}{x^{m}}}=(x^2-1)^{\frac{m}{2}}\frac{\mathrm{d^{m}}}{\mathrm{d}{x^{m}}}\sum_{k=0}^{[l/2]}(-1)^k \frac{(2l-2k)!}{2^l k! (l-k)!(l-2k)!}x^{l-2k}:=(x^2-1)^{\frac{m}{2}}P^m_l(x)\]
 
-至此，方程b的解可以写成：
+至此，方程\ref{eq:c}的解可以写成：
 \[\Theta(\theta)=(-1)^m\sin^m(\theta)P^m_l(\cos\theta)\]
 
 同时为了满足归一化条件e，$\Theta(\theta)$最终可以表示成：
-\[\int_0^{\pi}\Theta_{l,m}^{*}(\theta)\Theta_{l^{'},m^{'}}(\theta)\sin\theta \dd\theta=\delta_{l,l^{'}} \cdot \delta_{m,m^{'}} \tag{e}\]
+\[\int_0^{\pi}\Theta_{l,m}^{*}(\theta)\Theta_{l^{'},m^{'}}(\theta)\sin\theta \dd\theta=\delta_{l,l^{'}} \cdot \delta_{m,m^{'}} \tag{e}\label{eq:e}\]
 \[\Theta_{l,m}(\theta)=\sqrt{\frac{(2l-1)(l-|m|)!}{2(l+|m|)!}}P^{m}_l(\cos\theta) \qquad |m| \leqslant l\]
 
 此外，$Legendre$多项式也可以通过$Rodrigue$公式定义：
@@ -1552,40 +1524,25 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 \subsection{R方程的求解}
 
-对方程b，我们要处理的是以下柯西问题：
-\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta \qquad r>0 \qquad V=-\frac{e}{4 \pi \varepsilon_0 r}\]
+对方程\ref{eq:b}，我们要处理的是以下柯西问题：
+\[\frac{1}{R}\frac{\partial}{\partial{r}}(r^2\frac{\partial R}{\partial{r}})+\frac{2m(E-V)}{\hbar^2}r^2=\beta, \quad r>0, \quad V=-\frac{e}{4 \pi \varepsilon_0 r}\]
 
 对上述柯西问题，我们做代换$u \equiv rR$并整理可以得到方程：
 \[-\frac{\hbar^2}{2m}\frac{\mathrm{d^2}u}{\mathrm{d}r^2}+ \left (\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}-\frac{e}{4 \pi \varepsilon_0r} \right )u=Eu\]
 
 容易看出，当$r \rightarrow +\infty$时,
-\[u=Ae^{-\frac{\sqrt{-2mE}}{\hbar}r}+Be^{\frac{\sqrt{-2mE}}{\hbar}r}\]
+\[u=A\exp\left(-\frac{\sqrt{-2mE}}{\hbar}r\right)+B\exp\left(\frac{\sqrt{-2mE}}{\hbar}r\right)\]
 
-当$E>0$时，容易看出u不收敛于0，为非束缚态；当$E<0$时，我们可以取$B=0$使得当$r \rightarrow +\infty$时$u \rightarrow 0$，因此，我们取$E<0$。
+当$E>0$时，容易看出u在无穷远处不收敛于0，为非束缚态；当$E<0$时，我们可以取$B=0$使得当$r \rightarrow +\infty$时$u \rightarrow 0$，因此，我们取$E<0$。
 
-继续通过代换：
-\[\kappa \equiv \frac{\sqrt{-2mE}}{\hbar}, \quad \rho \equiv \kappa r, \quad \rho_o \equiv \frac{me^2}{2 \pi \varepsilon_0 \hbar^2 \kappa}\]
+继续通过代换简化方程形式：
+\[\kappa \equiv \frac{\sqrt{-2mE}}{\hbar}, \quad \rho \equiv \kappa r, \quad \rho_o \equiv \frac{me^2}{2 \pi \varepsilon_0 \hbar^2 \kappa} \quad \Rightarrow \quad \frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=\left [ 1-\frac{\rho_0}{\rho}+\frac{l(l+1)}{\rho^2} \right ]u\]
 
-简化方程形式：
-\[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=\left [ 1-\frac{\rho_0}{\rho}+\frac{l(l+1)}{\rho^2} \right ]u\]
+当$\rho \rightarrow +\infty, \ u(\rho) \to 0$，原方程近似为：
+\[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=u \quad \Rightarrow \quad u(\rho)=Ae^{-\rho}+Be^{\rho}\sim Ae^{-\rho}\]
 
-当$\rho \rightarrow +\infty$，原方程近似为：
-\[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=u\]
-
-其解为：
-\[u(\rho)=Ae^{-\rho}+Be^{\rho}\]
-
-由$\lim_{\rho \rightarrow +\infty}u(\rho)=0$，得到$B=0$，最终解应近似为：
-\[u(\rho) \sim Ae^{-\rho}\]
-
-当$\rho \rightarrow 0$，原方程近似为：
-\[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=\frac{l(l+1)}{\rho^2}u\]
-
-可以验证其解为：
-\[u(\rho)=C\rho^{l+1}+D\rho^{-l}\]
-
-由$\lim_{\rho \rightarrow 0}u(\rho)=0$，得到$D=0$，最终解应近似为：
-\[u(\rho) \sim C\rho^{l+1}\]
+当$\rho \rightarrow 0, \ u(\rho) \to 0$，原方程近似为：
+\[\frac{\mathrm{d^2}u}{\mathrm{d}\rho^2}=\frac{l(l+1)}{\rho^2}u \quad \Rightarrow \quad u(\rho)=C\rho^{l+1}+D\rho^{-l} \sim C\rho^{l+1}\]
 
 由于$\rho \rightarrow +\infty$与$\rho \rightarrow 0$均在定义域范围内。所以最终$u(\rho)$的解应包含上述的两个部分，不妨假设$u(\rho)$为以下形式：
 \[u(\rho)=\rho^{l+1}e^{-\rho}v(\rho)\]
@@ -1606,18 +1563,11 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[c_{j+1}=\frac{2(l+1+j)-\rho_0}{(j+1)(j+2l+2)}c_j\]
 
 对上述递推关系做估计，当$j \rightarrow +\infty$，有：
-\[c_{j+1}=\frac{2(l+1+j)-\rho_0}{(j+1)(j+2l+2)}c_j \sim \frac{2j}{(j+1)j}c_j=\frac{2}{(j+1)}c_j\]
+\[c_{j+1}=\frac{2(l+1+j)-\rho_0}{(j+1)(j+2l+2)}c_j \sim \frac{2j}{(j+1)j}c_j=\frac{2}{(j+1)}c_j \quad \Rightarrow \quad c_j \sim \frac{2^j}{j!}c_0\]
+\[\Rightarrow \quad v(\rho) \sim c_0\sum_{j=0}^{+\infty}\frac{2^j}{j!}\rho^j=c_0e^{2\rho} \quad \Rightarrow \quad u(\rho) \sim c_0\rho^{l+1}e^{\rho}\]
 
-那么我们将可以得到：
-\[c_j \sim \frac{2^j}{j!}c_0\]
-\[v(\rho) \sim c_0\sum_{j=0}^{+\infty}\frac{2^j}{j!}\rho^j=c_0e^{2\rho}\]
-\[u(\rho) \sim c_0\rho^{l+1}e^{\rho}\]
-
-可以看出，当$v(\rho)$3为无穷级数时，$u(\rho)$发散，为了解决这个问题，我们可以同样利用上一小节的思路，将无穷级数截断使之退化成有限项级数，保证其收敛性，因此必然存在一个$j_{max}$使得：
-\[c_{j_{max}+1}=\frac{2(l+1+j_{max})-\rho_0}{(j_{max}+1)(j_{max}+2l+2)}c_{j_{max}}=0\]
-
-即：
-\[2(l+1+j_{max})-\rho_0=0\]
+可以看出，当$v(\rho)$为无穷级数时，$u(\rho)$发散，为了解决这个问题，我们可以同样利用上一小节的思路，将无穷级数截断使之退化成有限项级数，保证其收敛性，因此必然存在一个$j_{max}$使得：
+\[c_{j_{max}+1}=\frac{2(l+1+j_{max})-\rho_0}{(j_{max}+1)(j_{max}+2l+2)}c_{j_{max}}=0 \quad \Leftrightarrow \quad 2(l+1+j_{max})-\rho_0=0\]
 
 这时，我们定义：
 \[n \equiv l+1+j_{max}\]
@@ -1626,16 +1576,9 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[v(\rho)=L_{n-l-1}^{2l+1}(2\rho)\]
 
 其中$L_q(x)$为$Laguerre$多项式，$L_{q-p}^{p}(x)$为连带$Laguerre$多项式：
-\[L_{q-p}^{p}(x)=(-1)^p \left ( \frac{\mathrm{d}}{\mathrm{d}x} \right )^qL_q(x)\]\
-\[L_q(x)=e^x\left ( \frac{\mathrm{d}}{\mathrm{d}x} \right )^q(e^{-x}x^q)\]
+\[L_q(x)=e^x\left ( \frac{\mathrm{d}}{\mathrm{d}x} \right )^q(e^{-x}x^q), \quad L_{q-p}^{p}(x)=(-1)^p \left ( \frac{\mathrm{d}}{\mathrm{d}x} \right )^qL_q(x)\]\
 
-这里的n也就是主量子数，从其定义式上我们可以很明显得看出角量子数的取值应为：
-\[l=0,1,2, \cdot\cdot\cdot ,n-1\]
-
-我们也能看出：
-\[\rho_0=2n\]
-
-再结合$\rho_0$与$\kappa$的定义式，我们可以得到：
+这里的n也就是主量子数，从其定义式上我们可以很明显得看出角量子数的取值应为$l=0,1,2, \cdot\cdot\cdot ,n-1$。我们也能看出$\rho_0=2n$。再结合$\rho_0$与$\kappa$的定义式，我们可以得到：
 \[E_n=- \left [\frac{m}{2\hbar^2} \left ( \frac{e^2}{4 \pi \varepsilon_0} \right )^2 \right ] \frac{1}{n^2}\]
 
 以及玻尔半径$a$：
