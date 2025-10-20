@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  19 OCT 2025 16:05
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.11.12)  19 OCT 2025 21:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1567,17 +1567,17 @@ File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
  [32]
 Missing character: There is no ‘ ("2018) in font cmr10!
 Missing character: There is no ‘ ("2018) in font cmr10!
-[33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]) [44]
+[33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44]) [45]
 Chapter 2.
-(./body/Fourier.tex [45
+(./body/Fourier.tex [46
 
-] [46] [47] [48] [49]) [50]
+] [47] [48] [49] [50]) [51]
 Chapter 3.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
-[51
+[52
 
-] [52] [53] [54] [55] [56]
+] [53] [54] [55] [56] [57]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 299.
@@ -1588,10 +1588,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
-[57]
+[58]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
- [58] [59]) [60] (./Strange handouts.aux)
+ [59] [60]) [61] (./Strange handouts.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1615,4 +1615,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  103i,16n,108p,716b,1410s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (61 pages).
+Output written on Strange handouts.pdf (62 pages).
