@@ -1258,12 +1258,12 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 \subsection{MP2}\label{sec:mp}
 这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
 \[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
-只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果（调换一次两个轨道不一样，调换两次则至少三个，这里不包含调换回来的情况）；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
+只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
 \[\bra{\Phi}\sum_{i=1}^{n}\hat{h}_i\ket{\Phi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{h}_i\ket{\psi_i}, \quad \bra{\phi_1\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{h}_i\ket{\psi_1\phi_2\cdots\phi_n}=\bra{\phi_1}\hat{h}_1\ket{\psi_1}\]
 
 我们可以把一次对掉的组分叫做ST。对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
 \[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
-当行列式中存在一个/或者两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
+当行列式中存在一个或两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
 \[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_1}=\sum_{j=1}^n\bra{\phi_1\phi_j}\hat{g}_{1j}(1-\hat{P}_{12})\ket{\psi_1\phi_j}, \quad \bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_{12}}=\bra{\phi_1\phi_2}\hat{g}_{12}(1-\hat{P}_{12})\ket{\psi_1\psi_2}\]
 
 经过上述讨论，现在我们来看 Hartree-Fock，比如能量$E$，是精确哈密顿量在 Slater 行列式上的期望：
@@ -1278,7 +1278,7 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 
 利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
 \[E^{\rm{MP2}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\left|\bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^{ab}_{ij}}\right|^2}{E^{ab}_{ij}-E^{\rm{HF}}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\bra{ij}\ket{|ab}^2}{\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j}\]
-这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。
+这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。前文提到了 HF 的标度是$O(N^4)$来自于双电子积分，而 MP2 在此基础上又对所有轨道求了一次和，因此标度$O(N^5)$。
 
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
 \subsection{变量分离}
