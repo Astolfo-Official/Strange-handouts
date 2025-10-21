@@ -706,9 +706,9 @@ X\in\text{SU(2)} \arrow[r, "UXU^\dagger"]
 \end{array}
 \right |
 \]
-或者，我们可以换一种更简洁的表示方式，利用反对称化算符志杰作用在 Hartree 积（所以轨道乘起来）上：
-\[\varPhi=\hat{A}\varPsi_{a_1,a_2,a_3 \cdots}(1,2,3\cdots)=\frac{1}{\sqrt{n!}}\sum_k(-1)^{\tau}\varPsi_{a_k}(k)\]
-
+或者，我们可以换一种更简洁的表示方式，利用反对称化算符直接作用在 Hartree 积（所以轨道乘起来）上：
+\[\varPhi=\hat{A}\varPsi_{a_1,a_2,\cdots,a_n}(1,2,\cdots,n)=\frac{1}{\sqrt{n!}}\sum_{\bm{k}}(-1)^{\tau(k_1,k_2,\cdots,k_n)}\varPsi_{a_{k_1},a_{k_2},\cdots,a_{k_n}}(k_1,k_2,\cdots,k_n)\]
+这里$\bm{k}$表示$n$个电子填在$n$个轨道上的一种可能的排列，$\tau(k_1,k_2,\cdots,k_n)$表示$\bm{k}$排列下的逆序数。
 \subsection{氦原子}
 根据上面的讨论，我们可以得到氦原子的$1s2s$激发单重态轨道波函数：
 \[\varPsi_{+}=\frac{1}{\sqrt{2!}}[\varphi_a(1)\varphi_b(2)+\varphi_a(2)\varphi_b(1)]\]
@@ -771,7 +771,7 @@ X\in\text{SU(2)} \arrow[r, "UXU^\dagger"]
 \[\langle\tilde{E}\rangle=\frac{\bra{\Phi}\hat{H}\ket{\Phi}}{\bra{\Phi}\ket{\Phi}} \geq E_0\]
 
 假设我们知道一组基$\{\ket{\phi_i}\}$，在该基底上可以任意表示一个猜测函数$\ket{\psi}$并带入能量表达式：
-\[\ket{\psi}=\sum_ic_i\ket{\phi_i} \ (c_i\in\mathbf{R}) \quad \Rightarrow \quad \langle\tilde{E}\rangle=\frac{\bra{\psi}\hat{H}\ket{\psi}}{\bra{\psi}\ket{\psi}}=\left(\sum_{ij}c_ic_j\bra{\phi_i}\hat{H}\ket{\phi_j}\right)\cdot\left(\sum_{ij}c_ic_j\bra{\phi_i}\ket{\phi_j}\right)^{-1}\]
+\[\ket{\psi}=\sum_ic_i\ket{\phi_i} \ (c_i\in\mathbb{R}) \quad \Rightarrow \quad \langle\tilde{E}\rangle=\frac{\bra{\psi}\hat{H}\ket{\psi}}{\bra{\psi}\ket{\psi}}=\left(\sum_{ij}c_ic_j\bra{\phi_i}\hat{H}\ket{\phi_j}\right)\cdot\left(\sum_{ij}c_ic_j\bra{\phi_i}\ket{\phi_j}\right)^{-1}\]
 定义$H_{ij}=\bra{\phi_i}\hat{H}\ket{\phi_j}, \ S_{ij}=\bra{\phi_i}\ket{\phi_j}$，并且对上式做变形：
 \[\langle\tilde{E}\rangle\sum_{ij}c_ic_jS_{ij}=\sum_{ij}c_ic_jH_{ij}\]
 为了找到使得$\langle\tilde{E}\rangle$最小的系数组$c_i$，我们需要$\langle\tilde{E}\rangle$对系数组$c_i$的偏导值等于0，二阶偏导矩阵正定：
@@ -843,134 +843,75 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
     \end{minipage}
 \end{figure}
 
-\section{计算化学入门前的垫脚石上的艹}
-\subsection{Hartree-Fock方法}\label{sec:hf}
-我们都知道一个孤立微观系统的哈密顿如下：
-\[\hat{H}=\hat{T}_N+\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}\]
-在BO近似后，$\hat{T}_N$从电子哈密顿中被移除，$\hat{V}_{NN}$给定核位置后是个常数，可以不包含在电子哈密顿中，但一般来说都还是算的。
-\[\hat{H}_{el}=\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}=\sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}\right)+\sum_{i<j}\frac{1}{r_{ij}}+V_{NN}\]
+\section{Hartree-Fock}
+\subsection{正则轨道下的 Hartree-Fock}\label{sec:hf}
+在BO近似后，电子哈密顿如下：
+\[\hat{H}_{el}=\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}=\sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}\right)+\sum_{i<j}\frac{1}{r_{ij}}+V_{NN}=\sum_i\hat{h}_i+\sum_{i<j}\hat{g}_{ij}+V_{NN}\]
 
-虽然我们已经把核项给舍去了，但电子部分的哈密顿依然是一个多体哈密顿，还是一个难以求解的问题。
-我们一般能处理的都是单体问题，比如氢原子的电子薛定谔、谐振子等等，所以我们希望能将多体问题尽可能精确地转换为单体问题来处理，如我们考虑平均场近似，即将其他电子对该电子的两体作用考虑为一个等效场：
-\[\hat{H}_{el} \approx \sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}+\hat{v}_i\right)+V_{NN}:=\sum_i\hat{F}_i + V_{NN}\]
+虽然我们已经把核项给舍去了，但电子部分的哈密顿依然是一个多体哈密顿，还是一个难以求解的问题。我们一般能处理的都是单体问题，比如氢原子的电子薛定谔、谐振子等等，所以我们希望能将多体问题尽可能精确地转换为单体问题来处理，如我们之前提到的平均场近似，如此一来多电子问题就被转换为了单电子问题。相对应的，体系的波函数也变成了几个单体波函数(自旋轨道)的乘积（Hartree 积）$\ket{\Psi}=\ket{\psi_1\psi_2\cdots \psi_n}$。但由于电子费米子的全同性的要求，上述需要对 Hartree 基做反对称化得到 Slater 行列式$\hat{A}\ket{\psi_1\psi_2\cdots \psi_n}$。
 
-如此一来，上述多电子问题就被转换为了单电子问题，多体哈密顿量被转换单体哈密顿量的加和，理所当然，该体系的波函数也变成了几个单体波函数(自旋轨道)的乘积Hartree积:
-\[\Psi = \psi_1(1)\psi_2(2)\cdots\psi_n(n)=\prod_i\psi_i(i)\]
+而对 Hartree-Fock 方法，是从 Slater 行列式出发，利用变分法将精确哈密顿量转换成单电子算符的和，我们称转换后的单电子问题为 Mean field，一般指的是 HF 与 DFT。从 HF 出发，我们假定了 Slater 行列式是精确的，然后认为哈密顿量是不精确的，由此出发，我们会希望通过不断修正哈密顿量来使得结果更精确，于是就有了 MP 等微扰方法。另一方面，如果我们认为哈密顿量是精确的，那么就认为波函数是不精确的，从 Slater 行列式出发于是就有了 CI, CC, MCSCF 等方法。
 
-由于电子费米子的全同性的要求，上述需要对Hartree基做反对称化得到Slater行列式：
-\[\Psi=\frac{1}{\sqrt{n!}}
-    \begin{vmatrix}
-        u_1(1) & u_2(1) & \ldots & u_n(1)\\
-        u_1(2) & u_2(2) & \ldots & u_n(2)\\
-        \vdots & \vdots & \ddots & \vdots\\
-        u_1(n) & u_2(n) & \ldots & u_n(n)\\
-    \end{vmatrix}
-\]
+由Condon-Slater规则（在\ref{sec:mp}），正则轨道(正交归一的自旋轨道)组成的 Slater 行列式$\ket{\Psi}$对哈密顿量$\hat{H}$的期望（能量$E$）如下所示，其中$\bra{ij}\ket{ij},\bra{ij}\ket{ji}$为库伦积分和交换积分，$h_i$包括了动能项和核对电子的势能：
+\[E=\bra{\Psi}\hat{H}\ket{\Psi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 
-可以看到上面我们假定了单体波函数组成的体系波函数是精确的，然后认为哈密顿量是不精确的，由此出发，我们会希望通过不断修正哈密顿量来使得结果更精确，于是就有了MP2、MP4等微扰方法的出现。
-另一方面，如果我们认为哈密顿量是精确的，那么就认为波函数是不精确的，从Slater行列式出发我们通过变分方法来求解尽可能精确的波函数，已知能量表达式为：
-\[E=\frac{\bra{\Psi}\hat{H}\ket{\Psi}}{\bra{\Psi}\ket{\Psi}}\]
+通过拉格朗日乘数法把正交归一条件引入泛函$\eta(\lambda_{ij})$进行变分：
+\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \psi_i}=\frac{\delta}{\delta u_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i(1)}\ket{\psi_j(1)}-\delta_{ij})\right)=0\]
+跳过复杂得变分推导，得到的新的哈密顿量$\hat{H}_0$：
+\[\hat{H}_0=\sum_i\hat{F}_i=\sum_i\left(\hat{h}_i+\hat{J}_i-\hat{K}_i\right), \quad \hat{F}_i\ket{\psi_i}=\varepsilon_i\ket{\psi_i}\]
+其中，$\hat{F}_i,\hat{h}_i,\hat{J}_i,\hat{K}_i$为 Fork 算符，单体算符，库伦算符和交换算符，$\varepsilon_i$为轨道能量，$\hat{J}_i,\hat{K}_i$的表达式为：
+\[\hat{J}_i\ket{\psi_i} = \sum_{j \neq i}\left(\int\frac{\bra{\psi_j}\ket{\bm{r}}\bra{\bm{r}}\ket{\psi_j}}{r_{ij}}\dd{\bm{r}}\right)\ket{\psi_i}, \quad \hat{K}_i\ket{\psi_i} = \sum_{j \neq i}\left(\int\frac{\bra{\psi_j}\ket{\bm{r}}\bra{\bm{r}}\ket{\psi_i}}{r_{ij}}\dd{\bm{r}}\right)\ket{\psi_j}\]
+将上述两算符打包成$\hat{G}_i=\hat{J}_i-\hat{K}_i$，考虑其在$\ket{\psi_i}$上的期望$\bra{\psi_i}\hat{G}_i\ket{\psi_i}$（$i=j$时显然$\bra{ij}\ket{ij}=\bra{ij}\ket{ji}$）：
+\[\sum_{j\neq i}\iint\frac{1}{r_{ij}}(\bra{\psi_j}\ket{\bm{r}_1}\bra{\bm{r}_1}\ket{\psi_j}\bra{\psi_i}\ket{\bm{r}_2}\bra{\bm{r}_2}\ket{\psi_i}-\bra{\psi_j}\ket{\bm{r}_1}\bra{\bm{r}_1}\ket{\psi_j}\bra{\psi_i}\ket{\bm{r}_2}\bra{\bm{r}_2}\ket{\psi_i})\dd{\bm{r}_1}\dd{\bm{r}_2}=\sum_{j}(\bra{ij}\ket{ij}-\bra{ij}\ket{ji})\]
 
-体系波函数满足：
-\[\bra{u_i(1)}\ket{u_j(1)}=\delta_{ij}\]
+如果我们考虑空间轨道，则 HF 可以分为 RHF (闭壳层，电子成对)，UHF (开壳层，不同自旋单独考虑)和 ROHF (开壳层，部分成对部分单独)。对 UHF 之需要简单写两套能量加起来就好：
+\[E_{\rm{UHF}}=\sum_{i,\uparrow}h_i+\frac{1}{2}\sum_{i,j,\uparrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+\sum_{i,\downarrow}h_i+\frac{1}{2}\sum_{i,j,\downarrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+ROHF 太复杂先不说，看看 RHF 能量：
+\[E_{\rm{RHF}}=2\sum_ih_i+\sum_{i,j}\left(2\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，四种情况$\uparrow\uparrow, \ \uparrow\downarrow, \ \downarrow\uparrow, \ \downarrow\downarrow$只有前后两种自旋相同的积分不为零，因此加倍。但是实际上我们并不能预先知道正则轨道，而是从原子轨道出发构建正则轨道，见在下一小节。在原子轨道基底下，基底的正交归一性不复存在，求解 HF 轨道将不在只是简单的对角化问题。
 
-体系哈密顿量为：
-\[\hat{H}=\sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}\right)+\sum_{i<j}\frac{1}{r_{ij}}+V_{NN}\]
-
-由Condon-Slater规则可知，能量$E$如下所示，其中$\bra{ij}\ket{ij},\bra{ij}\ket{ji}$为库伦积分和交换积分,$\hat{h}_i$包括了动能项和核对电子的势能(单体算符)：
-\[E=\bra{\varPhi}\hat{H}\ket{\varPhi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-
-得到了能量，我们接下来顺理成章的就该来变分，但这里的变分并不是简单的求极值，而是条件变分，由于波函数的限制我们求变分时需要引入以下条件进行拉格朗日乘数法：
-\[\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij}=0\]
-
-定义泛函$\eta(\lambda_{ij})$：
-\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij})\]
-
-由(变分计算量太大而且其他书上有，我就不写了)：
-\[\frac{\delta\eta(\lambda_{ij})}{\delta u_i}=\frac{\delta}{\delta u_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij})\right)=0\]
-
-得到的变分结果我们记为：
-\[\hat{F}\varphi_i=\varepsilon_i\varphi_i \qquad \varepsilon_i=\bra*{u_i}\hat{h}_i+\hat{J}_i-\hat{K}_i\ket*{u_i}\]
-
-其中，$\hat{F}$为Fork算符，$\varepsilon_i$为轨道能量，$\varphi_i$为正则自旋轨道，Fork算符表达式为：
-\[\hat{F}_i = \hat{h}_i + \hat{J}_i - \hat{K}_i\]
-\[\hat{J}_iu_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)\dd{\tau}_2\right)u_i(1) \qquad \hat{K}_iu_i(1) = \sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_i(2)\dd{\tau}_2\right)u_j(1)\]
-
-Fock 算符中电子相互作用项可整体打包成：
-\[\sum_i\bra{u_i}(\hat{J}_i-\hat{K}_i)\ket{u_i}=\sum_{ij}(\bra{ij}\ket{ij}-\bra{ij}\ket{ji})\]
-
-当然，单个Slater行列式描述一个多体问题也是有误差的，于是我们希望能进一步地精确波函数，于是就有了CI、CC等方法。
-
-话说回来，由于我们还是给不出每一个自旋轨道的解析式，所以这个方法我们还没办法直接用。
-
-\subsection{Hartree-Fock–Roothaan方法}
-如上文所说，我们给不出Hartree-Fock方程所需的体系波函数，所以我们需要用已知的函数去拟合体系波函数，这里给出Roothaan给出的方法，得到的方程称为Hartree-Fock–Roothaan方程：
-
-假定体系波函数可以被已知基组展开，下面的公式中同时会展示矩阵表示，基向量采用行向量表示：
-\[\psi_i=\sum_{\nu=1}c_{\nu i}f_{\nu} \qquad (\mathbf{\Psi} = \mathbf{\Phi} \mathbf{C}_{\text{coeff}})\]
-将基函数带入Hartree-Fock方程后可以得到如下表达式：
-\[\hat{F}\sum_{\nu=1}c_{\nu i}f_{\nu}=\varepsilon_i\sum_{\nu=1}c_{\nu i}f_{\nu}\]
-对上述方程等式两边同时左乘一个$f_{\mu}$可以得到
-\[\sum_{\nu=1}c_{\nu i}\bra{f_{\mu}}\hat{F}\ket{f_{\nu}}=\varepsilon_i\sum_{\nu=1}c_{\nu i}\bra{f_{\mu}}\ket{f_{\nu}} \quad \text{where} \quad F_{rs}=\bra{f_r}\hat{F}\ket{f_s} \quad \text{and} \quad S_{rs}=\bra{f_r}\ket{f_s}\]
-
-如果把所有波函数都做上述展开，则可写成如下Hartree-Fock–Roothaan方程
-\[\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\varepsilon\]
-
-上述方程组似乎跟我们能解的方程有一点点不一样，我们能处理的是方程组是厄密矩阵(这里是实对称阵)的正交对角化的问题：
-\[\mathbf{F}\mathbf{C}'=\mathbf{C}'\varepsilon\]
-
-Fock矩阵也是实对称矩阵，overlap矩阵也是实对称矩阵，我们自然会想到能不能将Hartree-Fock–Roothaan方程转化成上述方程呢?
-考虑如下基的酉变换：
-\[\phi_i = \sum_{i}U_{ji}f_j \qquad \mathbf{\varPhi}=\mathbf{U}\mathbf{\Psi}\]
-其中$\mathbf{U}$为
-\[\mathbf{U}=\mathbf{X}\mathbf{s}^{-1/2} \qquad \mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}=\mathbf{s}\]
-$\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对角阵，$\mathbf{s}^{-1/2}$为矩阵$\mathbf{s}^{-1}$的开方，其定义为$\mathbf{s}^{-1/2}\mathbf{s}^{-1/2}=\mathbf{s}^{-1}$。
-
-做完如下变换之后，Hartree-Fock–Roothaan方程可以改写成：
-\[\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}\mathbf{C}'=(\mathbf{X}\mathbf{s}^{-1/2})^{\dagger}\mathbf{S}(\mathbf{X}\mathbf{s}^{-1/2})\mathbf{C}'=\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}\mathbf{s}^{-1}\mathbf{C}'=\mathbf{s}\mathbf{s}^{-1}\mathbf{C}'=\mathbf{C}' \ , \ (\mathbf{C}':=\mathbf{U}^{\dagger}\mathbf{C})\]
-\[\mathbf{U}^{\dagger}\mathbf{F}\mathbf{U}\mathbf{C}'=\varepsilon\mathbf{C}' \Rightarrow \mathbf{F}'\mathbf{C}'=\varepsilon\mathbf{C}' \ , \ (\mathbf{F}':=\mathbf{U}^{\dagger}\mathbf{F}\mathbf{U})\]
-
-然后我们就能解这样一个变换后的方程了。
-实际上在python中使用scipy.linalg.eigh($\mathbf{F}$,$\mathbf{S}$)就能直接解出$\mathbf{C}$。
-但求解Hartree-Fock–Roothaan方程真的只是做一个对角化吗，如果是这样就好了。
-我们具体来看每个矩阵的具体形式，系数矩阵和overlap矩阵是简单的，fock矩阵包含了单电子积分和双电子积分：
-\[F_{\mu\nu} = \bra*{\phi_{\mu}}\hat{h} + \hat{J} - \hat{K}\ket*{\phi_{\nu}}\]
-单电子积分是简单的
-\[h_{\mu\nu}=\bra*{\phi_{\mu}}\hat{h}\ket*{\phi_{\nu}}\]
-双电子积分我们打包处理
+\subsection{Hartree-Fock-Roothaan 方法}
+假定正则轨道被已知的原子轨道基底下展开，则在此基底下 Fock 矩阵和 overlap 矩阵为：
+\[\ket{\psi_i}=\sum_{\nu}c_{\nu i}\ket{\phi_{\nu}} \quad \Leftrightarrow \quad \bm{\Psi}=\bm{\Phi}\mathbf{C}, \quad F_{\mu\nu}=\bra{\phi_{\mu}}\hat{F}\ket{\phi_{\nu}}, \quad S_{\mu\nu}=\bra{\phi_{{\mu}}}\ket{\phi_{\nu}}\]
+将基函数带入Hartree-Fock方程后写成矩阵形式(Hartree-Fock-Roothaan 方程)：
+\[\bra{\phi_{\mu}}\hat{F}\ket{\psi_i}=\varepsilon_i\bra{\phi_{\mu}}\ket{\psi_i} \quad \Rightarrow \quad \sum_{\nu}c_{\nu i}\bra{\phi_{\mu}}\hat{F}\ket{\phi_{\nu}}=\varepsilon_i\sum_{\nu}c_{\nu i}\bra{\phi_{\mu}}\ket{\phi_{\nu}} \quad \Leftrightarrow \quad \mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\bm{\varepsilon}\]
+以上方程的对角化与一般厄密矩阵(这里是实对称阵)的正交对角化$\mathbf{F}\mathbf{C}'=\mathbf{C}'\varepsilon$不一样，考虑 overlap 的酉变换：
+\[\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}=\mathbf{s} \quad \Rightarrow \quad \mathbf{s}^{-1/2}\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}\mathbf{s}^{-1/2}=\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}=\mathbf{1} \quad \Rightarrow \quad \mathbf{U}=\mathbf{X}\mathbf{s}^{-1/2}\]
+其中$\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对角阵，$\mathbf{s}^{-1/2}$为对角阵$\mathbf{s}^{-1}$的开方，其定义为$\mathbf{s}^{-1/2}\mathbf{s}^{-1/2}=\mathbf{s}^{-1}$。
+通过酉变换$\mathbf{U}$将基底变换到标准正交基，在新的基底下系数$\mathbf{C}'$与原系数$\mathbf{C}$的关系$\mathbf{C}=\mathbf{U}\mathbf{C}'$：
+\[\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\bm{\varepsilon} \quad \Rightarrow \quad \mathbf{F}\mathbf{U}\mathbf{C}'=\mathbf{S}\mathbf{U}\mathbf{C}'\bm{\varepsilon} \quad \Rightarrow \quad \mathbf{U}^{\dagger}\mathbf{F}\mathbf{U}\mathbf{C}'=\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}\mathbf{C}'\bm{\varepsilon}\quad \Rightarrow \quad \mathbf{F}'\mathbf{C}'=\mathbf{C}'\bm{\varepsilon}\]
+经过上述酉变换即可得到可对角化的矩阵方程。实际上在 python 中使用 scipy.linalg.eigh($\mathbf{F}$,$\mathbf{S}$) 就能直接解出$\mathbf{C}$。但求解 Hartree-Fock-Roothaan 方程真的只是做一个对角化吗，如果是这样就好了。我们具体来看每个矩阵的具体形式，系数矩阵和 overlap 矩阵是简单的，fock 矩阵包含了单电子积分和双电子积分：
+\[F_{\mu\nu} = \bra{\phi_{\mu}}\hat{h}_i+\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}=\bra{\phi_{\mu}}\hat{h}\ket{\phi_{\nu}}+\bra{\phi_{\mu}}\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}\]
+其中双电子部分：
 \begin{equation*}
-    \begin{aligned}
-        \bra*{\phi_{\mu}}\hat{J} - \hat{K}\ket*{\phi_{\nu}} & = \bra*{\phi_{\mu}}\ket{\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}u_j(2)\dd{\tau_2}\right)\phi_{\nu}(1)-\sum_{j \neq i}\left(\int u_j^*(2)\frac{1}{r_{ij}}\phi_{\nu}(2)\dd{\tau_2}\right)u_j(1)} \\
-         & = \sum_{j}\iint \phi_{\mu}^*(1)u_j^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]u_j(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
-         & = \sum_{\alpha}\sum_{\beta}\sum_{j}c^*_{\alpha j}c_{\beta j}\iint \phi_{\mu}^*(1)\phi_{\alpha}^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]\phi_{\beta}(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
-         & = \sum_{\alpha}\sum_{\beta}P_{\alpha\beta}\iint \phi_{\mu}^*(1)\phi_{\alpha}^*(2)\left[\frac{1}{r_{ij}}(1-\hat{P}_{12})\right]\phi_{\beta}(2)\phi_{\nu}(1) \dd{\tau_1}\dd{\tau_2} \\
-         & = \sum_{\alpha}\sum_{\beta}P_{\alpha\beta}\bra{\phi_{\mu}\phi_{\alpha}}\ket{|\phi_{\beta}\phi_{\nu}}
-    \end{aligned}
+\begin{aligned}
+\bra{\phi_{\mu}}\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}&=\sum_{j}(\bra{\phi_{\mu}j}\ket{\phi_{\nu}j}-\bra{\phi_{\mu}j}\ket{j\phi_{\nu}})=\sum_{rs}\sum_{j}c_{rj}^*c_{sj}(\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}})\\
+&=\sum_{rs}P_{rs}(\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}})=\sum_{rs}P_{rs}\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}\\
+\end{aligned}
 \end{equation*}
-这里我们定义了一个新符号：
-\[\bra{\phi_{\mu}\phi_{\alpha}}\ket{|\phi_{\nu}\phi_{\beta}}=\bra{\phi_{\mu}\phi_{\alpha}}\ket{\phi_{\beta}\phi_{\nu}}-\bra{\phi_{\mu}\phi_{\alpha}}\ket{\phi_{\nu}\phi_{\beta}}\]
-用来表示库伦积分减去交换积分。
+这里我们定义了一个新符号$\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}=\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}}$简化书写。
 
-$P_{\alpha\beta}$是密度矩阵的矩阵元，显然我们知道密度矩阵可以由系数矩阵得到$\mathbf{P}=\mathbf{C}\mathbf{C}^{\dagger}$，所以事实上，我们得到的类似矩阵对角化的一个方程实际上也不像是看起来的那么简单，对这样的方程我们没办法直接求解，于是我们选择万能的迭代。
-迭代需要一个初猜，在这里也就是初始的密度矩阵(给初猜也是技术活)，然后通过对角化更新密度矩阵，反复迭代直到密度矩阵不再变化，这也就是SCF过程。
+上式中$P_{\alpha\beta}$是密度矩阵$\mathbf{P}$的矩阵元，显然我们知道密度矩阵可以由系数矩阵得到$\mathbf{P}=\mathbf{C}\Lambda\mathbf{C}^{\dagger}$，其中$\Lambda$表示每个正则轨道的占据数，与我们对体系的要求有关（见下文），密度矩阵具有以下性质：
+\[1. \ \mathbf{P}=\mathbf{P}^{\dagger}, \quad 2. \ \mathbf{P}\mathbf{S}\mathbf{P}=\mathbf{P}, \quad 3.\ \text{Tr}(\mathbf{P}\mathbf{S})=N\]
+显然密度矩阵也跟采用 R，U 还是 RO 有关，比如在 pySCF 中，密度矩阵通过 1RDM=coeff*mo\_occ*coeff.T 表示，其中 coeff 是系数矩阵，表示从原子轨道到所有正则轨道的变换（基数量守恒，无关是非填入电子），mo\_occ表示轨道占据数。对 R，占据情况只有0和2，对 RO，有0，1和2，对 U 则是两套独立的0和1。
+
+所以事实上\textcolor{blue}{\textbf{需要对角化的 Fock 矩阵也是需要系数矩阵来计算的，因而不能直接对角化}}。
 \[\mathbf{F}(\mathbf{C}')\mathbf{C}'=\mathbf{C}'\varepsilon\]
+
+对这样的方程我们没办法直接求解，于是我们选择万能的迭代。迭代需要一个初猜，在这里也就是初始的密度矩阵(给初猜也是技术活，最简单如无二体项的波函数)，然后通过对角化更新密度矩阵，反复迭代直到密度矩阵不再变化，这也就是SCF过程。
 
 关于Hartree-Fock方法更多的内容推荐大家阅读\textbf{Szabo前三章}，也希望各位能够自己写一个程序来实现(doge)，这里提供两个实例：
 \href{https://github.com/yangdatou/hf-tutorial}{大头版HF (积分算好了) }和
 \href{https://github.com/Walter-Feng/Hartree-Fock-in-CPP}{叔叔版HF (从基组开始嗯造)}。
 
-Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现
+Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现：
 \[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
+基于上述形式的自洽场方程可以介绍DIIS辣（挖坑）！
 
-证明上述方程与Hartree-Fock–Roothaan方程等价之前先介绍密度矩阵的几个性质
-\[1. \ \mathbf{P}=\mathbf{P}^{\dagger} \qquad 2. \ \mathbf{P}\mathbf{S}\mathbf{P}=\mathbf{P} \qquad 3.\ \text{Tr}(\mathbf{P}\mathbf{S})=N\]
+在完成了上述自洽场计算之后，获得了正确的密度矩阵$\mathbf{P}=\mathbf{C}\Lambda\mathbf{C}^{\dagger}$后，我们可以计算能量了：
+\[E=\sum_{i\in\rm{occ}}\bra{i}\hat{h}\ket{i}+\frac{1}{2}\sum_{i,j\in\rm{occ}}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=\sum_{\mu\nu}P_{\mu\nu}\bra{\phi_{\mu}}\hat{h}\ket{\phi_{\nu}}+\frac{1}{2}\sum_{\mu\nu rs}P_{\mu\nu}P_{rs}\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}\]
 
-开始证明
-\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{S}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{F}\mathbf{P}\mathbf{S}=\varepsilon\]
-\[\mathbf{F}\mathbf{C}=\varepsilon\mathbf{S}\mathbf{C} \quad \Rightarrow \quad \mathbf{F}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger}=\varepsilon\mathbf{S}\mathbf{C}(\mathbf{F}\mathbf{C})^{\dagger} \quad \Rightarrow \quad \mathbf{I}=\varepsilon\mathbf{S}\mathbf{P}\mathbf{F} \quad \Rightarrow \quad \mathbf{I}=(\varepsilon\mathbf{S}\mathbf{P}\mathbf{F})^{\dagger} \quad \Rightarrow \quad \mathbf{S}\mathbf{P}\mathbf{F}=\varepsilon^{\dagger}=\varepsilon\]
-
-基于上述形式的自洽场方程可以介绍DIIS辣！
-
+从上述内容可以知道，计算实际体系的 HF 需要计算原子基下的双电子积分，所以 HF 的理论标度为$O(N^4)$。
 
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
@@ -1167,7 +1108,7 @@ $M$为按能量从低到高用符号$X$、$A$、$B$$\cdots$来表示，如：$X^
 \section{微扰理论}
 \subsection{非简并定态微扰理论}
 对 BO 近似后的定态的电子薛定谔方程，由于双体项的存在我们无法去精确求解该体系的波函数和能量，为此在\ref{sec:hf}小节里我们介绍了 Hartree-Fock 方法，使用近似的哈密顿量$\hat{H}_0$来替代原本精确的哈密顿量$\hat{H}$：
-\[\hat{H}=\sum_{i}\hat{h}_i+\sum_{ij}\hat{V}_{ij}=\left(\sum_{i}\hat{F}_i\right)+\left(\sum_{ij}\hat{V}_{ij}-\sum_{i}\hat{F}_i\right)=\hat{H}_0+\hat{H}'\]
+\[\hat{H}=\sum_{i}\hat{h}_i+\sum_{ij}\hat{V}_{ij}=\left(\sum_{i}\hat{F}_i\right)+\left(\sum_{ij}\hat{V}_{ij}-\sum_{i}(\hat{J}_i-\hat{K}_i)\right)=\hat{H}_0+\hat{H}'\]
 如果想在精度上更进一步，我们必须要考虑偏差的哈密顿量$\hat{H}'$，但是由于直接求解过于复杂（本来就是因此舍弃掉这部分）我们可以考虑使用微扰的方法，利用已知的稍微不那么精确的结果去逼近更精确的结果。
 
 微扰能够成立的原理支撑是我们在最开始的一小节\ref{sec:space}提到的\textcolor{blue}{\textbf{算符的本征态张成的空间是完备的}}。我们假设在$\hat{H}_0$的本征态构成的空间是完备的足以用来表达精确的态。理论上只需要一次修正就能拿到完全精确的结果，但由于实操中我们都只能在有限维空间中处理，相对应地修正次数就得达到无穷，即用无穷级数来展开精确态，而且需要偏差哈密顿的影响一般上要比较小的，为此引入微扰参数$\lambda\neq0$把哈密顿量、态和能量改写成：
@@ -1314,7 +1255,7 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 
 上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
 
-\subsection{MP2}
+\subsection{MP2}\label{sec:mp}
 这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
 \[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
 只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果（调换一次两个轨道不一样，调换两次则至少三个，这里不包含调换回来的情况）；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
