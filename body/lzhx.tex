@@ -856,7 +856,7 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \[E=\bra{\Psi}\hat{H}\ket{\Psi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 
 通过拉格朗日乘数法把正交归一条件引入泛函$\eta(\lambda_{ij})$进行变分：
-\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{u_i(1)}\ket{u_j(1)}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \psi_i}=\frac{\delta}{\delta u_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i(1)}\ket{\psi_j(1)}-\delta_{ij})\right)=0\]
+\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \psi_i}=\frac{\delta}{\delta \psi_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij})\right)=0\]
 跳过复杂得变分推导，得到的新的哈密顿量$\hat{H}_0$：
 \[\hat{H}_0=\sum_i\hat{F}_i=\sum_i\left(\hat{h}_i+\hat{J}_i-\hat{K}_i\right), \quad \hat{F}_i\ket{\psi_i}=\varepsilon_i\ket{\psi_i}\]
 其中，$\hat{F}_i,\hat{h}_i,\hat{J}_i,\hat{K}_i$为 Fork 算符，单体算符，库伦算符和交换算符，$\varepsilon_i$为轨道能量，$\hat{J}_i,\hat{K}_i$的表达式为：
@@ -1000,7 +1000,7 @@ $M$为按能量从低到高用符号$X$、$A$、$B$$\cdots$来表示，如：$X^
 
 当然，这么写是并不完全合理，由于全同性，对于对应相同谱相的电子组态我们无法区分，如1、6，3、4三对电子组态，因此，在正式确定对应于同一个谱相的电子组态时，我们需要按照波函数反对称化以及粒子全同性的要求将其两两线性组合。
 
-如对1、6这组，首先写出其价层的$Slater$行列式，并定义简写：
+如对1、6这组，首先写出其价层的 Slater 行列式，并定义简写：
 \[
 \varphi_1=\frac{1}{\sqrt{2}}
 \begin{vmatrix}
@@ -1191,30 +1191,30 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 \subsection{量子力学的三种等价表述形式}
 这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
-\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_S=\hat{H}_S\ket{\psi(\bm{r},t)}_S, \quad \ket{\psi(\bm{r},t)}_S=\hat{U}(t)\ket{\psi(\bm{r},0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
+\[i\hbar\pdv{t}\ket{\psi(t)}_S=\hat{H}_S\ket{\psi(t)}_S, \quad \ket{\psi(t)}_S=\hat{U}(t)\ket{\psi(0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
 进而可以得出时间演化算符是(哈密顿量是不含时的)，其与薛定谔绘景下的哈密顿量$\hat{H}_S$是对易的：
 \[\hat{U}(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_S\dd{t}\right)=\exp\left(-\frac{i\hat{H}_St}{\hbar}\right), \quad [\hat{U}(t),\hat{H}_S]=\exp\left(-\frac{i[\hat{H}_S,\hat{H}_S]t}{\hbar}\right)=0\]
 考虑在$t$时刻的算符$\hat{O}$的期望值：
-\[\bra{\psi(\bm{r},t)}_S\hat{O}\ket{\psi(\bm{r},t)}_S=\bra{\psi(\bm{r},0)}_S\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi(\bm{r},0)}_S=\bra{\psi(\bm{r},0)}_H\hat{O}_H(t)\ket{\psi(\bm{r},0)}_H\]
-这里用到了$\ket{\psi(\bm{r},t)}_S=\ket{\psi(\bm{r},0)}_H$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
+\[\bra{\psi(t)}_S\hat{O}\ket{\psi(t)}_S=\bra{\psi(0)}_S\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi(0)}_S=\bra{\psi(0)}_H\hat{O}_H(t)\ket{\psi(0)}_H\]
+这里用到了$\ket{\psi(t)}_S=\ket{\psi(0)}_H$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
 \[\dv{\hat{O}_H}{t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
 海森堡运动方程可以从薛定谔绘景的时间演化算符出发推导得到：
 \[\dv{\hat{O}_H}{t}=\frac{\partial\hat{U}^{\dagger}(t)}{\partial t}\hat{O}_S\hat{U}(t)+\hat{U}^{\dagger}(t)\hat{O}_S\frac{\partial\hat{U}(t)}{\partial t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_H]=-\frac{i}{\hbar}[\hat{A}_H,\hat{U}^\dagger(t)\hat{U}(t)\hat{H}_S]=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
 
 相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在\textcolor{blue}{\textbf{相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$}}：
-\[\ket{\psi(\bm{r},t)}_S=\hat{U}_0(t)\ket{\psi(\bm{r},t)}_I=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi(\bm{r},t)}_I\]
+\[\ket{\psi(t)}_S=\hat{U}_0(t)\ket{\psi(t)}_I=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi(t)}_I\]
 将上述态的转换带入薛定谔绘景下的薛定谔方程可以得到相互作用绘景下的薛定谔方程以及运动方程：
-\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_I=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi(\bm{r},t)}_I=\hat{H}_I(t)\ket{\psi(\bm{r},t)}_I, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
+\[i\hbar\pdv{t}\ket{\psi(t)}_I=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi(t)}_I=\hat{H}_I(t)\ket{\psi(t)}_I, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
 由上述薛定谔方程，我们可以类似推导出相互作用绘景下的相互作用时间演化算符，而且其显然满足：
 \[\hat{U}_I(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{t}\right), \quad \hat{U}(t)=\hat{U}_0(t)\hat{U}_I(t)\]
 回到在$t$时刻的算符$\hat{O}$的期望值：
-\[\bra{\psi(\bm{r},t)}_S\hat{O}\ket{\psi(\bm{r},t)}_S=\bra{\psi(\bm{r},0)}_S\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi(\bm{r},0)}_S=\bra{\psi(\bm{r},0)}_I\hat{O}_I(t)\ket{\psi(\bm{r},0)}_I\]
+\[\bra{\psi(t)}_S\hat{O}\ket{\psi(t)}_S=\bra{\psi(0)}_S\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi(0)}_S=\bra{\psi(0)}_I\hat{O}_I(t)\ket{\psi(0)}_I\]
 可以看出三种绘景都是形式一致的，只是量子力学的不同表象罢了（笑
 
 最后遗留一个小问题，由于$\hat{H}_I$含时，我们没法直接写出该时间演化算符的结果，但是可以通过迭代时间演化算符来近似求解，直接对薛定谔方程积分可以得到如下的形式：
-\[i\hbar\pdv{t}\ket{\psi(\bm{r},t)}_I=\hat{H}_I(t)\ket{\psi(\bm{r},t)}_I \quad \Rightarrow \quad \ket{\psi(\bm{r},t)}_I=\ket{\psi(\bm{r},0)}_I-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi(\bm{r},\tau)}_I\]
-不断对积分中的态$\ket{\psi_I(\bm{r},\tau)}$进行迭代可以得到如下递推公式：
-\[\ket{\psi(\bm{r},t)}_I=\ket{\psi(\bm{r},0)}_I+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi(\bm{r},0)}_I\]
+\[i\hbar\pdv{t}\ket{\psi(t)}_I=\hat{H}_I(t)\ket{\psi(t)}_I \quad \Rightarrow \quad \ket{\psi(t)}_I=\ket{\psi(0)}_I-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi(\tau)}_I\]
+不断对积分中的态$\ket{\psi_I(\tau)}$进行迭代可以得到如下递推公式：
+\[\ket{\psi(t)}_I=\ket{\psi(0)}_I+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi(0)}_I\]
 此时我们按照相互作用绘景的相互作用时间演化算符的定义把它从上式中扣出来：
 \[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
 此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
