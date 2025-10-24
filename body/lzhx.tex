@@ -1272,8 +1272,8 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 \[E_0=\bra{\Phi}\sum_i\hat{F}_i\ket{\Phi}=\bra{\Phi}\sum_i(\hat{h}_i+\hat{J}_i-\hat{K}_i)\ket{\Phi}=\sum_ih_i+\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 微扰部分哈密顿量是双电子积分算符与库伦积分算符和交换积分算符之间的差，对应微扰能量$E'$：
 \[E'=\bra{\Phi}\sum_{ij}g_{ij}-\sum_i(\hat{J}_i-\hat{K}_i)\ket{\Phi}=\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)-\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=-\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-可以发现在 Hartree-Fock 中我们使用的能量已经包含了微扰部分的能量，因此 Hartree-Fock 可以认为是 MP1。这也是为什么微扰方法是从 MP2 开始的，MP 方法的思想是由于 Hartree-Fock 是利用所有占据轨道变分的最优解，因此优化 Hartree-Fock 需要考虑引入空轨道，这里用$\ket{\Phi^{ab}_{ij}}$表示用两个空轨道$ab$替换了两个占据轨道$ij$。为什么只考虑一次性激发两个轨道呢？我们可以看看只激发一个轨道的情况，假设把占据轨道$i$激发到空轨道$a$，根据规则可以写出一下式子：
-\[\bra{\Phi^{\rm{HF}}}\hat{H}\ket{\Phi^a_i}=\bra{\phi_i}\hat{h}\ket{\phi_a}+\sum_j\bra{ij}\ket{|aj}=\bra{\phi_i}\hat{F}\ket{\phi_a}=\bra{\Phi^{\rm{HF}}}\hat{H}_0\ket{\Phi^a_i} \quad \Rightarrow \quad \bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^a_i}=0\]
+可以发现在 Hartree-Fock 中我们使用的能量已经包含了微扰部分的能量，因此 Hartree-Fock 可以认为是 MP1。这也是为什么微扰方法是从 MP2 开始的，MP 方法的思想是由于 Hartree-Fock 是利用所有占据轨道变分的最优解，因此优化 Hartree-Fock 需要考虑引入空轨道，这里用$\ket{\Phi^{ab}_{ij}}$表示用两个空轨道$ab$替换了两个占据轨道$ij$。为什么只考虑一次性激发两个轨道呢？我们可以看看只激发一个轨道的情况，假设把占据轨道$i$激发到空轨道$a$，根据规则可以写出一下式子(注意这里$\phi_i,\phi_a$是 Fock 算符的本征态，且都是正则(正交归一)轨道)：
+\[\bra{\Phi^{\rm{HF}}}\hat{H}\ket{\Phi^a_i}=\bra{\phi_i}\hat{h}\ket{\phi_a}+\sum_j\bra{ij}\ket{|aj}=\bra{\phi_i}\hat{F}\ket{\phi_a}=\bra{\Phi^{\rm{HF}}}\hat{H}_0\ket{\Phi^a_i}=0 \quad \Rightarrow \quad \bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^a_i}=0\]
 这说明单激发对于修正 Hartree-Fock 能量毫无帮助，上述结论也称为 Brillouin 定理。
 
 利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
