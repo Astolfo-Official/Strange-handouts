@@ -412,10 +412,10 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \end{center}
 
 \section{转动量子化——刚性转子}
-在谐振子中我们定义了质心系下两质点的哈密顿量：
+在谐振子中我们定义了质心系下两质点的哈密顿量(注意这里的$\bm{r}$表示沿着相对运动方向的位移)：
 \[\hat{H}=-\frac{\hbar^2}{2\mu}\nabla^2_{\bm{r}}+V(\bm{r})\]
 
-在谐振子中我们关心的是两质点沿着两者相对位置方向的运动，而在刚性转动中，我们关心两质点围绕着过质心的某个轴转动，然后通过约化质量的转换，我们相当于构建了一个绕着过原点的某轴旋转的体系，因此体系的势能项$V(\bm{r})=0$，在球坐标下关于$r$的导数项为0：
+在谐振子中我们关心的是两质点沿着两者相对位置方向的运动，而在刚性转动中，我们关心两质点围绕着过质心的某个轴转动，然后通过约化质量的转换，我们相当于构建了一个绕着过原点的某轴(一般是z轴)旋转的体系，因此体系的势能项$V(\bm{r})=0$，在球坐标下关于$r$的导数项为0：
 \[\hat{H}=-\frac{\hbar^2}{2\mu} \left(\frac{1}{r^2\sin\theta}\frac{\partial}{\partial{\theta}}(\sin\theta\frac{\partial}{\partial{\theta}})+\frac{1}{r^2\sin^2 \theta }\frac{\partial^2}{\partial{\phi^2}} \right)\]
 
 带入薛定谔方程并稍作变形：
@@ -856,7 +856,7 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \[E=\bra{\Psi}\hat{H}\ket{\Psi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 
 通过拉格朗日乘数法把正交归一条件引入泛函$\eta(\lambda_{ij})$进行变分：
-\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \psi_i}=\frac{\delta}{\delta \psi_i}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij})\right)=0\]
+\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \bra{\bm{r}}\ket{\psi_i}}=\frac{\delta}{\delta \bra{\bm{r}}\ket{\psi_i}}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij})\right)=0\]
 跳过复杂得变分推导，得到的新的哈密顿量$\hat{H}_0$：
 \[\hat{H}_0=\sum_i\hat{F}_i=\sum_i\left(\hat{h}_i+\hat{J}_i-\hat{K}_i\right), \quad \hat{F}_i\ket{\psi_i}=\varepsilon_i\ket{\psi_i}\]
 其中，$\hat{F}_i,\hat{h}_i,\hat{J}_i,\hat{K}_i$为 Fork 算符，单体算符，库伦算符和交换算符，$\varepsilon_i$为轨道能量，$\hat{J}_i,\hat{K}_i$的表达式为：
@@ -868,7 +868,7 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \[E_{\rm{UHF}}=\sum_{i,\uparrow}h_i+\frac{1}{2}\sum_{i,j,\uparrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+\sum_{i,\downarrow}h_i+\frac{1}{2}\sum_{i,j,\downarrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 ROHF 太复杂先不说，看看 RHF 能量：
 \[E_{\rm{RHF}}=2\sum_ih_i+\sum_{i,j}\left(2\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，四种情况$\uparrow\uparrow, \ \uparrow\downarrow, \ \downarrow\uparrow, \ \downarrow\downarrow$只有前后两种自旋相同的积分不为零，因此加倍。但是实际上我们并不能预先知道正则轨道，而是从原子轨道出发构建正则轨道，见在下一小节。在原子轨道基底下，基底的正交归一性不复存在，求解 HF 轨道将不在只是简单的对角化问题。
+对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，四种情况$\uparrow\uparrow, \ \uparrow\downarrow, \ \downarrow\uparrow, \ \downarrow\downarrow$只有前后两种自旋相同的积分不为零，因此加倍。但实际上我们并不知道正则轨道，而是从一些预定义的原子轨道出发构建正则轨道，见下一小节。在原子轨道基底下，基底的正交归一性不复存在，求解 HF 轨道将不在只是简单的对角化问题。
 
 \subsection{Hartree-Fock-Roothaan 方法}
 假定正则轨道被已知的原子轨道基底下展开，则在此基底下 Fock 矩阵和 overlap 矩阵为：
