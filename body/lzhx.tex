@@ -868,7 +868,7 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \[E_{\rm{UHF}}=\sum_{i,\uparrow}h_i+\frac{1}{2}\sum_{i,j,\uparrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+\sum_{i,\downarrow}h_i+\frac{1}{2}\sum_{i,j,\downarrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 ROHF 太复杂先不说，看看 RHF 能量：
 \[E_{\rm{RHF}}=2\sum_ih_i+\sum_{i,j}\left(2\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，四种情况$\uparrow\uparrow, \ \uparrow\downarrow, \ \downarrow\uparrow, \ \downarrow\downarrow$只有前后两种自旋相同的积分不为零，因此加倍。但实际上我们并不知道正则轨道，而是从一些预定义的原子轨道出发构建正则轨道，见下一小节。在原子轨道基底下，基底的正交归一性不复存在，求解 HF 轨道将不在只是简单的对角化问题。
+对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，只有自旋相同的积分不为零，因此加倍。可以看到在 HF 中不同自旋的电子没有相互作用，可以同时出现在一个轨道上，但实际上由于瞬时库伦相互作用，电子会排斥其他电子出现在其附近(Coulomb hole)，这部分相互作用我们称之为\textcolor{blue}{\textbf{动态相关}}。
 
 \subsection{Hartree-Fock-Roothaan 方法}
 假定正则轨道被已知的原子轨道基底下展开，则在此基底下 Fock 矩阵和 overlap 矩阵为：
