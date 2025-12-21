@@ -1189,6 +1189,31 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
 
+\subsection{MP2}\label{sec:mp}
+这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
+\[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
+只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
+\[\bra{\Phi}\sum_{i=1}^{n}\hat{h}_i\ket{\Phi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{h}_i\ket{\psi_i}, \quad \bra{\phi_1\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{h}_i\ket{\psi_1\phi_2\cdots\phi_n}=\bra{\phi_1}\hat{h}_1\ket{\psi_1}\]
+
+我们可以把一次对掉的组分叫做ST。对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
+\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
+当行列式中存在一个或两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
+\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_1}=\sum_{j=1}^n\bra{\phi_1\phi_j}\hat{g}_{1j}(1-\hat{P}_{12})\ket{\psi_1\phi_j}, \quad \bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_{12}}=\bra{\phi_1\phi_2}\hat{g}_{12}(1-\hat{P}_{12})\ket{\psi_1\psi_2}\]
+
+经过上述讨论，现在我们来看 Hartree-Fock，比如能量$E$，是精确哈密顿量在 Slater 行列式上的期望：
+\[E=\bra{\Phi}\hat{H}\ket{\Phi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+非微扰哈密顿量是 Fock 算符之和，对应的非微扰能量$E_0$：
+\[E_0=\bra{\Phi}\sum_i\hat{F}_i\ket{\Phi}=\bra{\Phi}\sum_i(\hat{h}_i+\hat{J}_i-\hat{K}_i)\ket{\Phi}=\sum_ih_i+\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+微扰部分哈密顿量是双电子积分算符与库伦积分算符和交换积分算符之间的差，对应微扰能量$E'$：
+\[E'=\bra{\Phi}\sum_{ij}g_{ij}-\sum_i(\hat{J}_i-\hat{K}_i)\ket{\Phi}=\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)-\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=-\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+可以发现在 Hartree-Fock 中我们使用的能量已经包含了微扰部分的能量，因此 Hartree-Fock 可以认为是 MP1。这也是为什么微扰方法是从 MP2 开始的，MP 方法的思想是由于 Hartree-Fock 是利用所有占据轨道变分的最优解，因此优化 Hartree-Fock 需要考虑引入空轨道，这里用$\ket{\Phi^{ab}_{ij}}$表示用两个空轨道$ab$替换了两个占据轨道$ij$。为什么只考虑一次性激发两个轨道呢？我们可以看看只激发一个轨道的情况，假设把占据轨道$i$激发到空轨道$a$，根据规则可以写出一下式子(注意这里$\phi_i,\phi_a$是 Fock 算符的本征态，且都是正则(正交归一)轨道)：
+\[\bra{\Phi^{\rm{HF}}}\hat{H}\ket{\Phi^a_i}=\bra{\phi_i}\hat{h}\ket{\phi_a}+\sum_j\bra{ij}\ket{|aj}=\bra{\phi_i}\hat{F}\ket{\phi_a}=\bra{\Phi^{\rm{HF}}}\hat{H}_0\ket{\Phi^a_i}=0 \quad \Rightarrow \quad \bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^a_i}=0\]
+这说明单激发对于修正 Hartree-Fock 能量毫无帮助，上述结论也称为 Brillouin 定理。
+
+利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
+\[E^{\rm{MP2}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\left|\bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^{ab}_{ij}}\right|^2}{E^{ab}_{ij}-E^{\rm{HF}}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\bra{ij}\ket{|ab}^2}{\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j}\]
+这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。前文提到了 HF 的标度是$O(N^4)$来自于双电子积分，而 MP2 在此基础上又对所有轨道求了一次和，因此标度$O(N^5)$。
+
 \subsection{量子力学的三种等价表述形式}
 这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
 \[i\hbar\pdv{t}\ket{\psi(t)}_S=\hat{H}_S\ket{\psi(t)}_S, \quad \ket{\psi(t)}_S=\hat{U}(t)\ket{\psi(0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
@@ -1248,38 +1273,55 @@ i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c
 故对光吸收过程（delta函数这里用到了$\pi\delta(x)/t=\mathrm{sinc}^2(xt)$，有点跳步可以自己推导）：
 \[P_{n \to k}(t)=|c_{nk}^{(1)}(t)|^2\approx\frac{|\bm{\mu}_{nk}\cdot\bm{E}|^2}{2\hbar^2}\cdot\frac{1-\cos{(\omega_{kn}-\omega)t}}{(\omega_{kn}-\omega)^2}=\frac{\pi t}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)\]
 进而可以计算在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
-\[k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E_k-E_n-\hbar\omega)\]
+\begin{equation}\label{eq:fgr}
+k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E_k-E_n-\hbar\omega)
+\end{equation}
 
 从上述公式可以知道只有当满足$\omega=\omega_{kn}$时越迁才会发生。\textcolor{blue}{\textbf{由微扰假定，我们认为外场不影响系统态本身的分布，系统处于能量为$E$的态上的概率由平衡态密度$\rho(E)$给出}}。因此如果我们考察在外场频率$\omega=\omega_{kn}$时，即$E_n-\hbar\omega=E_k$，从初态$\ket{n}$发生的越迁速率，也即从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
 \[k_{n \to k}=\int k_{n \to ?}(E)\rho(E)\dd{E}=\int \frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E-E_n-\hbar\omega)\rho(E)\dd{E}=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\rho(E_k)\]
 
 上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
 
-\subsection{MP2}\label{sec:mp}
-这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
-\[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
-只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
-\[\bra{\Phi}\sum_{i=1}^{n}\hat{h}_i\ket{\Phi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{h}_i\ket{\psi_i}, \quad \bra{\phi_1\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{h}_i\ket{\psi_1\phi_2\cdots\phi_n}=\bra{\phi_1}\hat{h}_1\ket{\psi_1}\]
+\subsection{红外光谱}
+红外光谱测量的是样品对红外光的频率吸收$I(\omega)$，遵循比尔-朗伯 (Beel-Lambert) 定律
+\[I(\omega)=\sigma(\omega)l/V\]
+其中$\sigma(\omega)$表示样品的吸收截面，$l$和$V$分别代表辐照样品的长度和体积。此外，样品的吸收截面$\sigma(\omega)$可根据辐射能量损失率$\dot{E}_{\rm{rad}}(\omega)$与能流$S(\omega)$（坡印廷矢量时间平均值）分解为：
+\[\sigma(\omega)=\dot{E}_{\rm{rad}}(\omega)/S(\omega)\]
+在外场$E(t) = E_0 \cos \omega t$作用下，电磁场的坡印廷矢量为$\mathbf{S}=\mathbf{E} \times \mathbf{H}$，其中$\mathbf{E}$和$\mathbf{H}$的振幅满足$\epsilon E^2=\mu H^2$:
+\[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2}E^2\]
+其中$n(\omega)$为频率依赖的折射率，$c=1/\sqrt{\epsilon_0\mu_0}$为真空光速，系数1/2源于二维平面内$\cos^2\omega t$的时间平均。
 
-我们可以把一次对掉的组分叫做ST。对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
-\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
-当行列式中存在一个或两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
-\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_1}=\sum_{j=1}^n\bra{\phi_1\phi_j}\hat{g}_{1j}(1-\hat{P}_{12})\ket{\psi_1\phi_j}, \quad \bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_{12}}=\bra{\phi_1\phi_2}\hat{g}_{12}(1-\hat{P}_{12})\ket{\psi_1\psi_2}\]
+从费米黄金定则[Eq.\eqref{eq:fgr}]出发，假设系统为\textcolor{blue}{\textbf{各向同性}}（三维情况），从$\ket{i}$到$\ket{f}$的吸收跃迁速率为：
+\[W_{i\to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)\]
 
-经过上述讨论，现在我们来看 Hartree-Fock，比如能量$E$，是精确哈密顿量在 Slater 行列式上的期望：
-\[E=\bra{\Phi}\hat{H}\ket{\Phi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-非微扰哈密顿量是 Fock 算符之和，对应的非微扰能量$E_0$：
-\[E_0=\bra{\Phi}\sum_i\hat{F}_i\ket{\Phi}=\bra{\Phi}\sum_i(\hat{h}_i+\hat{J}_i-\hat{K}_i)\ket{\Phi}=\sum_ih_i+\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-微扰部分哈密顿量是双电子积分算符与库伦积分算符和交换积分算符之间的差，对应微扰能量$E'$：
-\[E'=\bra{\Phi}\sum_{ij}g_{ij}-\sum_i(\hat{J}_i-\hat{K}_i)\ket{\Phi}=\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)-\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=-\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-可以发现在 Hartree-Fock 中我们使用的能量已经包含了微扰部分的能量，因此 Hartree-Fock 可以认为是 MP1。这也是为什么微扰方法是从 MP2 开始的，MP 方法的思想是由于 Hartree-Fock 是利用所有占据轨道变分的最优解，因此优化 Hartree-Fock 需要考虑引入空轨道，这里用$\ket{\Phi^{ab}_{ij}}$表示用两个空轨道$ab$替换了两个占据轨道$ij$。为什么只考虑一次性激发两个轨道呢？我们可以看看只激发一个轨道的情况，假设把占据轨道$i$激发到空轨道$a$，根据规则可以写出一下式子(注意这里$\phi_i,\phi_a$是 Fock 算符的本征态，且都是正则(正交归一)轨道)：
-\[\bra{\Phi^{\rm{HF}}}\hat{H}\ket{\Phi^a_i}=\bra{\phi_i}\hat{h}\ket{\phi_a}+\sum_j\bra{ij}\ket{|aj}=\bra{\phi_i}\hat{F}\ket{\phi_a}=\bra{\Phi^{\rm{HF}}}\hat{H}_0\ket{\Phi^a_i}=0 \quad \Rightarrow \quad \bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^a_i}=0\]
-这说明单激发对于修正 Hartree-Fock 能量毫无帮助，上述结论也称为 Brillouin 定理。
+当系统处于平衡态时，处于$\ket{i}$态的概率为$P_i=e^{-\beta E_i}/Z$，其中$Z=\sum_i e^{-\beta E_i}$为正则配分函数。考虑所有可能的初态与末态，吸收跃迁速率的系综平均为：
+\[\begin{aligned}
+\Gamma(\omega)&=\sum_{f,i}P_iW_{i \to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}\ket{f}\bra{f}\hat{\bm{\mu}}\ket{i}e^{i(\omega_{fi}-\omega)t}\\
+&=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}\ket{f}\bra{f}e^{i\hat{H}_0t/\hbar}\hat{\bm{\mu}}e^{-i\hat{H}_0t/\hbar}\ket{i}\\
+&=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}(0)\ket{f}\bra{f}\hat{\bm{\mu}}(t)\ket{i}=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\\
+\end{aligned}\]
 
-利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
-\[E^{\rm{MP2}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\left|\bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^{ab}_{ij}}\right|^2}{E^{ab}_{ij}-E^{\rm{HF}}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\bra{ij}\ket{|ab}^2}{\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j}\]
-这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。前文提到了 HF 的标度是$O(N^4)$来自于双电子积分，而 MP2 在此基础上又对所有轨道求了一次和，因此标度$O(N^5)$。
+类似地，发射跃迁速率$(\omega>0)$为：
+\[W_{f\to i}(-\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)\]
+当$\omega=\omega_{fi}$时，发射跃迁速率的系综平均为：
+\[\begin{aligned}
+\Gamma(-\omega)&=\sum_{f,i}P_fW_{f \to i}(-\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}P_f|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta E_f}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)\\
+&=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta (E_i+\hbar\omega)}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta E_i}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\Gamma(\omega)
+\end{aligned}\]
 
+由此得到$\dot{E}_{\rm{rad}}(\omega)$的最终表达式：
+\[\dot{E}_{\rm{rad}}(\omega)=[\Gamma(\omega)-\Gamma(-\omega)]\hbar\omega=\frac{\omega\bm{E}^2}{12\hbar}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+
+综上所述，红外光谱强度为：
+\[I(\omega)=\frac{\pi l}{3n(\omega)\hbar^2c\epsilon_0V}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega l}{6n(\omega)\hbar c\epsilon_0V}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+
+为简化起见，令$n(\omega),l,V=1$，可得：
+\[I(\omega)=\frac{\pi}{3\hbar^2c\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar c\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+
+若温度足够高 $(\beta\hbar\omega=\hbar\omega/kT \ll 1)$，则：
+\[I(\omega)=\frac{\omega^2}{6c\epsilon_0kT}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+
+\newpage
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
 \subsection{变量分离}
 变量分离是假设偏微分方程的解可以由几个以不同变量（组）为自变量的函数共同表示，即：

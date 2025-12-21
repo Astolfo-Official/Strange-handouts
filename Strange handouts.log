@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  21 DEC 2025 13:42
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  21 DEC 2025 14:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1653,35 +1653,35 @@ Missing character: There is no ‘ ("2018) in font cmr10!
 
 [40]
 
-[41])
+[41]
 
-[42]
+[42])
+
+[43]
 Chapter 2.
 (./body/Fourier.tex
 
-[43
+[44
 
 ]
-
-[44]
 
 [45]
 
 [46]
 
-[47])
+[47]
 
-[48]
+[48])
+
+[49]
 Chapter 3.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
 
 
-[49
+[50
 
 ]
-
-[50]
 
 [51]
 
@@ -1690,6 +1690,8 @@ Missing character: There is no ） ("FF09) in font cmr10!
 [53]
 
 [54]
+
+[55]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 299.
@@ -1702,16 +1704,16 @@ File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
 
 
-[55]
+[56]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
 
-[56]
+[57]
 
-[57])
+[58])
 
-[58] (./Strange handouts.aux)
+[59] (./Strange handouts.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1735,12 +1737,12 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47740 strings out of 473832
- 1052886 string characters out of 5729482
- 2038442 words of memory out of 5000000
- 69971 multiletter control sequences out of 15000+600000
+ 47742 strings out of 473832
+ 1052922 string characters out of 5729482
+ 2039618 words of memory out of 5000000
+ 69973 multiletter control sequences out of 15000+600000
  569391 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,16n,130p,716b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (59 pages).
+Output written on Strange handouts.pdf (60 pages).
