@@ -519,7 +519,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[[\hat{\sigma}_i,\hat{\sigma}_j]=2i\epsilon_{ijk}\hat{\sigma}_k, \quad \hat{\sigma}_i^2=\hat{\sigma}_i^{\dagger}\hat{\sigma}_i=\mathbf{I}, \quad \Tr\hat{\sigma}_i=0, \quad (i,j,k=x,y,z)\]
 
 \subsection{SU(2)和SO(3)}
-SU(2) 群是一个矩阵群，群元素为$2\times2$的幺正矩阵，而且矩阵的行列式为1。如果将 SU(2) 群元素写做$e^{iA}$,那么因为 $e^{iA}(e^{-iA})^\dagger=e^{iA}e^{-iA^\dagger}=I \ \Rightarrow \ A=A^\dagger$,也就是$A$是Hermite矩阵。又因为$\det(e^{iA})=e^{i\Tr A}=1$,所以$\Tr A=0$。任意一个零迹二阶Hermite矩阵都可以用三个泡利矩阵的线性组合给出，因此 SU(2) 的基本元素都可以用泡利矩阵表示成$e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}, \ \bm{n}\in\mathbb{R}^3, \ \theta\in\mathbb{R}, \ |n|=1$。指数上$1/2$的引入是为了满足标准李代数生成元$[\hat{\sigma}_i,\hat{\sigma}_j]=i\epsilon_{ijk}\hat{\sigma}_k$的要求。由于这里有四个变量一个约束条件，指数映射将李代数映射到李群，因此 SU(2) 是一个三阶连续群。所以泡利矩阵是 SU(2) 群的李代数 su(2) 的一组完备基。
+SU(2) 群是一个矩阵群，群元素为$2\times2$的幺正矩阵，而且矩阵的行列式为1。如果将 SU(2) 群元素写做$e^{iA}$,那么因为 $e^{iA}(e^{-iA})^\dagger=e^{iA}e^{-iA^\dagger}=I \ \Rightarrow \ A=A^\dagger$,也就是$A$是Hermite矩阵。又因为$\det(e^{iA})=e^{i\Tr A}=1$,所以$\Tr A=0$。任意一个零迹二阶Hermite矩阵都可以用三个泡利矩阵的线性组合给出，因此 SU(2) 的基本元素都可以用泡利矩阵表示成$e^{i\frac{\theta}{2}\bm{\sigma}\cdot\bm{n}}, \ \bm{n}\in\mathbb{R}^3, \ \theta\in\mathbb{R}, \ |n|=1$。指数上$1/2$的引入是为了满足标准李代数生成元$[\hat{\sigma}_i,\hat{\sigma}_j]=i\epsilon_{ijk}\hat{\sigma}_k$的要求。$\theta$是三维空间旋转角。由于这里有四个变量一个约束条件，指数映射将李代数映射到李群，因此 SU(2) 是一个三阶连续群。所以泡利矩阵是 SU(2) 群的李代数 su(2) 的一组完备基。
 
 SO(3) 群是所有行列式为1的$3\times3$的正交矩阵构成的集合。用指数形式表示一个正交矩阵为$R=e^A$ .根据定义，有$R^TR=e^{A^T}e^A=I$ .所以就有$A^T=-A$ ,意味着$A$是反对称矩阵。另外，$\det R=e^{\mathrm{Tr}A}=1$ .所以$\Tr A=0$ .值得指出的是，反对称实矩阵的迹一定是零。所以 SO(3) 群的李代数 so(3) 是所有三阶反对称实矩阵构成的集合。任意一个三阶反对称实矩阵都可以写作
 \[A=\begin{pmatrix}0&-a&b\\a&0&-c\\-b&c&0\end{pmatrix}\]
