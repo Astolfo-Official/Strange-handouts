@@ -388,7 +388,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 同时，我们还可以利用哈密顿量定义粒子数算符$\hat{N}=\hat{a}^{\dagger}\hat{a}$：
 \[\hat{h}\ket{\nu}=\hbar\omega(\hat{a}^{\dagger}\hat{a}+\frac{1}{2})\ket{\nu}=\hbar\omega(\hat{N}+\frac{1}{2})\ket{\nu}=(\nu+\frac{1}{2})\hbar\omega \quad \Rightarrow \quad \hat{N}\ket{\nu}=\hat{a}^{\dagger}\hat{a}\ket{\nu}=\nu\]
-观察式\ref{comma}我们发现，升降算符作用到本征态上具有以下效果（升降算符能把当前本征态升降到相邻本征态）：
+观察式\eqref{comma}我们发现，升降算符作用到本征态上具有以下效果（升降算符能把当前本征态升降到相邻本征态）：
 \[\hat{a}\ket{\nu}=f(\nu)\ket{\nu-1}, \quad \hat{a}^{\dagger}\ket{\nu}=g(\nu)\ket{\nu+1}\]
 利用粒子数算符以及内积正定性可以计算出：
 \[\begin{aligned}
@@ -463,9 +463,9 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{L}^2\ket{l,m_l}=l(l+1)\hbar^2\ket{l,m_l}\]
 进而可以知道$m_l$可以取值$-l,-l+1,\cdots,0,\cdots,l-1,l$。
 
-接下来看升降算符的递推形式，从式\ref{lpm}出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
+接下来看升降算符的递推形式，从式\eqref{lpm}出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
 \[\hat{L}_+\ket{l,m_l}=\alpha_+(l,m_l)\hbar\ket{l,m_l+1}, \quad \hat{L}_-\ket{l,m_l}=\alpha_-(l,m_l)\hbar\ket{l,m_l-1}\]
-利用式\ref{l2pm}中的结论，我们知道：
+利用式\eqref{l2pm}中的结论，我们知道：
 \[\hat{L}_-\hat{L}_+\ket{l,m_l}=[l(l+1)-m_l(m_l+1)]\hbar^2\ket{l,m_l}=\alpha_+(l,m_l)\alpha_-(l,m_l+1)\hbar^2\ket{l,m_l}\]
 同时：
 \[\bra{l,m_l}\hat{L}_-\ket{l,m_l+1}^*=\bra{l,m_l+1}\hat{L}_+\ket{l,m_l} \quad \Rightarrow \quad \alpha_-(l,m_l+1)^*=\alpha_+(l,m_l)\]
@@ -1291,7 +1291,7 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 \[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2}E^2\]
 其中$n(\omega)$为频率依赖的折射率，$c=1/\sqrt{\epsilon_0\mu_0}$为真空光速，系数1/2源于二维平面内$\cos^2\omega t$的时间平均。
 
-从费米黄金定则[Eq.\eqref{eq:fgr}]出发，假设系统为\textcolor{blue}{\textbf{各向同性}}（三维情况），从$\ket{i}$到$\ket{f}$的吸收跃迁速率为：
+从费米黄金定则[式\eqref{eq:fgr}]出发，假设系统为\textcolor{blue}{\textbf{各向同性}}（三维情况），从$\ket{i}$到$\ket{f}$的吸收跃迁速率为：
 \[W_{i\to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)\]
 
 当系统处于平衡态时，处于$\ket{i}$态的概率为$P_i=e^{-\beta E_i}/Z$，其中$Z=\sum_i e^{-\beta E_i}$为正则配分函数。考虑所有可能的初态与末态，吸收跃迁速率的系综平均为：
