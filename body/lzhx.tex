@@ -1284,12 +1284,12 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 
 \subsection{红外光谱}
 红外光谱测量的是样品对红外光的频率吸收$I(\omega)$，遵循比尔-朗伯 (Beel-Lambert) 定律
-\[I(\omega)=\sigma(\omega)l/V\]
+\[I(\omega)=\alpha(\omega)l=\sigma(\omega)l/V\]
 其中$\sigma(\omega)$表示样品的吸收截面，$l$和$V$分别代表辐照样品的长度和体积。此外，样品的吸收截面$\sigma(\omega)$可根据辐射能量损失率$\dot{E}_{\rm{rad}}(\omega)$与能流$S(\omega)$（坡印廷矢量时间平均值）分解为：
 \[\sigma(\omega)=\dot{E}_{\rm{rad}}(\omega)/S(\omega)\]
 在外场$E(t) = E_0 \cos \omega t$作用下，电磁场的坡印廷矢量为$\mathbf{S}=\mathbf{E} \times \mathbf{H}$，其中$\mathbf{E}$和$\mathbf{H}$的振幅满足$\epsilon E^2=\mu H^2$:
-\[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2}E^2\]
-其中$n(\omega)$为频率依赖的折射率，$c=1/\sqrt{\epsilon_0\mu_0}$为真空光速，系数1/2源于二维平面内$\cos^2\omega t$的时间平均。
+\[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2\mu_r}E^2\]
+其中$n(\omega)=\sqrt{\epsilon_r\mu_r}$为折射率，$c=1/\sqrt{\epsilon_0\mu_0}$为真空光速，系数1/2源于二维平面内$\cos^2\omega t$的时间平均。
 
 从费米黄金定则[式\eqref{eq:fgr}]出发，假设系统为\textcolor{blue}{\textbf{各向同性}}（三维情况），从$\ket{i}$到$\ket{f}$的吸收跃迁速率为：
 \[W_{i\to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)\]
@@ -1315,11 +1315,11 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 综上所述，红外光谱强度为：
 \[I(\omega)=\frac{\pi l}{3n(\omega)\hbar^2c\epsilon_0V}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega l}{6n(\omega)\hbar c\epsilon_0V}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
 
-为简化起见，令$n(\omega),l,V=1$，可得：
-\[I(\omega)=\frac{\pi}{3\hbar^2c\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar c\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+一般文献中都以$\alpha(\omega)n(\omega)$表示红外强度，令$\mu_r=1$，可得：
+\[\alpha(\omega)n(\omega)=\frac{\pi}{3\hbar^2cV\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar cV\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
 
 若温度足够高 $(\beta\hbar\omega=\hbar\omega/kT \ll 1)$，则：
-\[I(\omega)=\frac{\omega^2}{6c\epsilon_0kT}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+\[\alpha(\omega)n(\omega)=\frac{\omega^2}{6cV\epsilon_0kT}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
 
 \newpage
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
