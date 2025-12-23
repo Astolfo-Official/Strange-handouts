@@ -1285,7 +1285,7 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 \subsection{红外光谱}
 红外光谱测量的是样品对红外光的频率吸收$I(\omega)$，遵循比尔-朗伯 (Beel-Lambert) 定律
 \[I(\omega)=\alpha(\omega)l=\sigma(\omega)l/V\]
-其中$\sigma(\omega)$表示样品的吸收截面，$l$和$V$分别代表辐照样品的长度和体积。此外，样品的吸收截面$\sigma(\omega)$可根据辐射能量损失率$\dot{E}_{\rm{rad}}(\omega)$与能流$S(\omega)$（坡印廷矢量时间平均值）分解为：
+其中$\sigma(\omega)$表示样品的吸收截面，$l$和$V$分别代表辐照样品的长度和体积。此外，样品的吸收截面$\sigma(\omega)$可根据辐射能量损失率$\dot{E}_{\rm{rad}}(\omega)=\hbar\omega\Delta k$（$\Delta k$是体系吸收和发射光子的速率差）与能流$S(\omega)=\langle\mathbf{S}(\omega)\rangle$分解为：
 \[\sigma(\omega)=\dot{E}_{\rm{rad}}(\omega)/S(\omega)\]
 在外场$E(t) = E_0 \cos \omega t$作用下，电磁场的坡印廷矢量为$\mathbf{S}=\mathbf{E} \times \mathbf{H}$，其中$\mathbf{E}$和$\mathbf{H}$的振幅满足$\epsilon E^2=\mu H^2$:
 \[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2\mu_r}E^2\]
@@ -1309,17 +1309,17 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 &=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta (E_i+\hbar\omega)}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta E_i}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\Gamma(\omega)
 \end{aligned}\]
 
-由此得到$\dot{E}_{\rm{rad}}(\omega)$的最终表达式：
-\[\dot{E}_{\rm{rad}}(\omega)=[\Gamma(\omega)-\Gamma(-\omega)]\hbar\omega=\frac{\omega\bm{E}^2}{12\hbar}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+一般文献中都以$n(\omega)\alpha(\omega)$表示红外强度，带入$\dot{E}_{\rm{rad}}(\omega)=[\Gamma(\omega)-\Gamma(-\omega)]\hbar\omega$，令$\mu_r=1$，可得：
+\begin{equation}\label{eq:IR_qm_1}
+n(\omega)\alpha(\omega)=\frac{\pi}{3\hbar cV\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar cV\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle
+\end{equation}
 
-综上所述，红外光谱强度为：
-\[I(\omega)=\frac{\pi l}{3n(\omega)\hbar^2c\epsilon_0V}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega l}{6n(\omega)\hbar c\epsilon_0V}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
-
-一般文献中都以$\alpha(\omega)n(\omega)$表示红外强度，令$\mu_r=1$，可得：
-\[\alpha(\omega)n(\omega)=\frac{\pi}{3\hbar^2cV\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar cV\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
-
-若温度足够高 $(\beta\hbar\omega=\hbar\omega/kT \ll 1)$，则：
-\[\alpha(\omega)n(\omega)=\frac{\omega^2}{6cV\epsilon_0kT}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\]
+引入对称偶极自相关函数$C_{\rm{sym}}(t)=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(t)\hat{\bm{\mu}}(0)\rangle/2=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle/2$，其跃迁速率为
+\[\Gamma_{\rm{sym}}(\omega)=\frac{\bm{E}^2}{12\hbar^2}\cdot\frac{1}{2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}(\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle+\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle)=\frac{1}{2}(\Gamma(\omega)+\Gamma(-\omega))=\frac{1+e^{-\beta\hbar\omega}}{2}\Gamma(\omega)\]
+将上式代入式\eqref{eq:IR_qm_1}中，可得：
+\[n(\omega)\alpha(\omega)=\frac{\omega}{3\hbar cV\epsilon_0}\frac{1-e^{-\beta\hbar\omega}}{1+e^{-\beta\hbar\omega}}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}C_{\rm{sym}}(t)\approx\frac{\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
+通过分子动力学（MD）模拟计算的偶极自相关函数 $\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}$ 近似对应于对称量子自相关函数 $C_{\rm{sym}}(t)$ 的经典对应。由于对称偶极自相关函数$C_{\rm{sym}}(t)$是实偶函数，同时当温度较高时$\beta\hbar\omega=\hbar\omega/kT\ll1$，我们还可以进一步近似掉$\tanh(\beta\hbar\omega/2)\approx\beta\hbar\omega/2$，得到经典极限下的红外吸收系数表达式：
+\[n(\omega)\alpha(\omega)=\frac{2\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\approx\frac{\omega^2}{3cV\epsilon_0kT}\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
 
 \newpage
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
