@@ -1314,7 +1314,7 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 n(\omega)\alpha(\omega)=\frac{\pi}{3\hbar cV\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar cV\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle
 \end{equation}
 
-引入对称偶极自相关函数$C_{\rm{sym}}(t)=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(t)\hat{\bm{\mu}}(0)\rangle/2=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle/2$，其跃迁速率为
+引入对称偶极自相关函数$C_{\rm{sym}}(t)=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(t)\hat{\bm{\mu}}(0)\rangle/2$，假定越迁是平稳过程，其跃迁速率为
 \[\Gamma_{\rm{sym}}(\omega)=\frac{\bm{E}^2}{12\hbar^2}\cdot\frac{1}{2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}(\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle+\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle)=\frac{1}{2}(\Gamma(\omega)+\Gamma(-\omega))=\frac{1+e^{-\beta\hbar\omega}}{2}\Gamma(\omega)\]
 将上式代入式\eqref{eq:IR_qm_1}中，可得：
 \[n(\omega)\alpha(\omega)=\frac{\omega}{3\hbar cV\epsilon_0}\frac{1-e^{-\beta\hbar\omega}}{1+e^{-\beta\hbar\omega}}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}C_{\rm{sym}}(t)\approx\frac{\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
