@@ -996,9 +996,9 @@ E=\alpha+2\beta, & \ket{1}+\ket{2}+\ket{3}+\ket{4})/2\\
 \end{lemma}
 所以积分的对称性将取决于被积函数的对称性。
 \begin{theorem}[积分正交性定理]
-设 $G$ 是一个紧致群（或有限群），在空间 $\mathcal{M}$ 上作用，$\dd{\bm{r}}$ 是 $G$-不变测度。设函数 $F: \mathcal{M} \to \mathbb{F}$ 在群 $G$ 作用下按照不可约表示 $\rho^{(k)}$ 变换，
-\[\forall \, g \in G, \quad (g \cdot F)(\bm{r}) = F(g^{-1}\bm{r}) = \sum_{j=1}^{d_k} D^{(k)}_{ij}(g) F_j(\bm{r})\]
-其中 $D^{(k)}(g)$ 是表示 $\rho^{(k)}$ 的矩阵表示，$\{F_j\}$ 是 $\rho^{(k)}$ 的基函数。那么，
+设 $G$ 是一个紧致群（或有限群），在空间 $\mathcal{M}$ 上作用，$\dd{\bm{r}}$ 是 $G$-不变测度。设函数 $F: \mathcal{M} \to \mathbb{F}$ 是在群 $G$ 作用下按照不可约表示 $\rho^{(k)}$ 变换的基函数 $\{F_j\}$ 张成空间中的非零函数，且基函数 $\{F_j\}$ 满足以下关系
+\[\forall \, g \in G, \ i=1,2,\cdots,d_k, \quad (g \cdot F_i)(\bm{r}) = \sum_{j=1}^{d_k} D^{(k)}_{ij}(g) F_j(\bm{r})\]
+其中 $D^{(k)}(g)$ 是表示 $\rho^{(k)}$ 的矩阵表示，$d_k$是不可约表示 $\rho^{(k)}$ 的维度。那么，
 \[\int_{\mathcal{M}} F(\bm{r}) \dd{\bm{r}} \neq 0 \quad \Leftrightarrow \quad \rho^{(k)}=\text{id}\]
 更一般地，如果 $F$ 属于可约表示，则积分非零当且仅当 $\rho^{(k)}$ 的不可约分解中包含恒等表示。
 \end{theorem}
