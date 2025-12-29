@@ -1,0 +1,7 @@
+# 忽略指定文件
+Strange handouts.aux
+Strange handouts.bcf
+Strange handouts.log
+Strange handouts.toc
+Strange handouts.out
+Strange handouts.synctex.gz
