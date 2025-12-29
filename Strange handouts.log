@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  29 DEC 2025 00:37
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  29 DEC 2025 13:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1444,6 +1444,9 @@ LaTeX Warning: Label `thm:-NoValue-' multiply defined.
 LaTeX Warning: Label `thm:-NoValue-' multiply defined.
 
 
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
 LaTeX Warning: Label `def:-NoValue-' multiply defined.
 
 
@@ -1737,17 +1740,26 @@ File: fig/lzhx/c4h4.png Graphic file (type bmp)
 
 
 [29]
+File: fig/lzhx/h2o.png Graphic file (type bmp)
+<fig/lzhx/h2o.png>
+File: fig/lzhx/C2v.png Graphic file (type bmp)
+<fig/lzhx/C2v.png>
+File: fig/lzhx/h2o_vib.png Graphic file (type bmp)
+<fig/lzhx/h2o_vib.png>
+
 
 [30]
 
 [31]
+
+[32]
 File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
 
 
-[32]
+[33]
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
@@ -1756,24 +1768,22 @@ File: fig/lzhx/polarization.png Graphic file (type bmp)
 <fig/lzhx/polarization.png>
 
 
-[33]
+[34]
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102175446.png>
 File: fig/lzhx/微信图片_20211106011930.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106011930.png>
 
 
-[34]
+[35]
 File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106140136.png>
 
 
-[35]
-Missing character: There is no ‘ ("2018) in font cmr10!
-Missing character: There is no ‘ ("2018) in font cmr10!
-
-
 [36]
+Missing character: There is no ‘ ("2018) in font cmr10!
+Missing character: There is no ‘ ("2018) in font cmr10!
+
 
 [37]
 
@@ -1793,35 +1803,35 @@ Missing character: There is no ‘ ("2018) in font cmr10!
 
 [45]
 
-[46])
+[46]
 
-[47]
+[47])
+
+[48]
 Chapter 2.
 (./body/Fourier.tex
 
-[48
+[49
 
 ]
-
-[49]
 
 [50]
 
 [51]
 
-[52])
+[52]
 
-[53]
+[53])
+
+[54]
 Chapter 3.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
 
 
-[54
+[55
 
 ]
-
-[55]
 
 [56]
 
@@ -1830,6 +1840,8 @@ Missing character: There is no ） ("FF09) in font cmr10!
 [58]
 
 [59]
+
+[60]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 299.
@@ -1842,16 +1854,16 @@ File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
 
 
-[60]
+[61]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
 
-[61]
+[62]
 
-[62])
+[63])
 
-[63] (./Strange handouts.aux)
+[64] (./Strange handouts.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1867,12 +1879,12 @@ Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48789 strings out of 473832
- 1084848 string characters out of 5729482
- 2075826 words of memory out of 5000000
- 70997 multiletter control sequences out of 15000+600000
+ 48835 strings out of 473832
+ 1086378 string characters out of 5729482
+ 2076098 words of memory out of 5000000
+ 71040 multiletter control sequences out of 15000+600000
  569431 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,16n,130p,716b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (64 pages).
+Output written on Strange handouts.pdf (65 pages).
