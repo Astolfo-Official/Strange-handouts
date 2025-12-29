@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  27 DEC 2025 21:14
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.8)  29 DEC 2025 00:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1280,6 +1280,90 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 (Font)              scaled to size 10.0pt on input line 1331.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/chemformula/chemformula.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/xfrac/xfrac.sty
+Package: xfrac 2024-06-04 Split-level fractions
+\l__xfrac_slash_box=\box138
+\l__xfrac_tmp_box=\box139
+\l__xfrac_denominator_bot_sep_dim=\dimen354
+\l__xfrac_numerator_bot_sep_dim=\dimen355
+\l__xfrac_numerator_top_sep_dim=\dimen356
+\l__xfrac_slash_left_sep_dim=\dimen357
+\l__xfrac_slash_right_sep_dim=\dimen358
+\l__xfrac_slash_left_muskip=\muskip23
+\l__xfrac_slash_right_muskip=\muskip24
+
+LaTeX template Info: Declaring template type 'xfrac' taking 3 argument(s) on
+(template)           line 100.
+
+
+LaTeX template Info: Declaring instance 'cmr' of type xfrac on line 392.
+
+
+LaTeX template Info: Declaring instance 'cmss' of type xfrac on line 392.
+
+
+LaTeX template Info: Declaring instance 'cmtt' of type xfrac on line 392.
+
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip147
+\L@UnitsRaiseTextstyle=\skip148
+\L@UnitsRaiseScriptstyle=\skip149
+) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen359
+\pgfarrowlength=\dimen360
+\pgfarrowwidth=\dimen361
+\pgfarrowlinewidth=\dimen362
+)
+Package: chemformula 2022/01/23 v4.17 typeset chemical compounds and reactions (CN)
+\l__chemformula_tmpa_dim=\dimen363
+\l__chemformula_tmpb_dim=\dimen364
+\l__chemformula_tmpc_dim=\dimen365
+\l__chemformula_tmpa_int=\count566
+\l__chemformula_tmpb_int=\count567
+\l__chemformula_tmpc_int=\count568
+\l__chemformula_tmpa_box=\box140
+\l__chemformula_tmpb_box=\box141
+\l__chemformula_arrow_length_dim=\dimen366
+\l__chemformula_arrow_label_height_dim=\dimen367
+\l__chemformula_arrow_label_offset_dim=\dimen368
+\l__chemformula_arrow_minimum_length_dim=\dimen369
+\l__chemformula_arrow_shortage_dim=\dimen370
+\l__chemformula_arrow_offset_dim=\dimen371
+\l__chemformula_arrow_yshift_dim=\dimen372
+\l__chemformula_radical_radius_dim=\dimen373
+\l__chemformula_radical_hshift_dim=\dimen374
+\l__chemformula_radical_vshift_dim=\dimen375
+\l__chemformula_radical_space_dim=\dimen376
+\l__chemformula_arrow_head_dim=\dimen377
+\l__chemformula_name_dim=\dimen378
+\l__chemformula_adduct_space_dim=\dimen379
+\l__chemformula_charge_shift_dim=\dimen380
+\l__chemformula_subscript_shift_dim=\dimen381
+\l__chemformula_superscript_shift_dim=\dimen382
+\l__chemformula_subscript_dim=\dimen383
+\l__chemformula_superscript_dim=\dimen384
+\l__chemformula_bond_dim=\dimen385
+\l__chemformula_bond_space_dim=\dimen386
+\l__chemformula_elspec_pair_distance_dim=\dimen387
+\l__chemformula_elspec_pair_line_length_dim=\dimen388
+\l__chemformula_elspec_pair_width_dim=\dimen389
+\l__chemformula_kroegervink_positive_radius_dim=\dimen390
+\l__chemformula_kroegervink_positive_hshift_dim=\dimen391
+\l__chemformula_kroegervink_positive_vshift_dim=\dimen392
+\l__chemformula_kroegervink_positive_space_dim=\dimen393
+\l__chemformula_stoich_space_skip=\skip150
+\l__chemformula_math_space_skip=\skip151
+\l__chemformula_additions_symbol_space_skip=\skip152
+\l__chemformula_count_tokens_int=\count569
+\g__chemformula_lewis_int=\count570
+\l__chemformula_arrow_arg_i_box=\box142
+\l__chemformula_arrow_arg_ii_box=\box143
+\l__chemformula_superscript_box=\box144
+\l__chemformula_subscript_box=\box145
+\l__chemformula_plus_space_skip=\skip153
+\l__chemformula_minus_space_skip=\skip154
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/bbm-macros/bbm.sty
 Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
 LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
@@ -1292,12 +1376,6 @@ Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
 File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
 File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
-File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen354
-\pgfarrowlength=\dimen355
-\pgfarrowwidth=\dimen356
-\pgfarrowlinewidth=\dimen357
 )))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
@@ -1318,6 +1396,51 @@ LaTeX Warning: Label `thm:-NoValue-' multiply defined.
 LaTeX Warning: Label `def:-NoValue-' multiply defined.
 
 
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `def:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
+LaTeX Warning: Label `thm:-NoValue-' multiply defined.
+
+
 LaTeX Warning: Label `thm:-NoValue-' multiply defined.
 
 
@@ -1329,27 +1452,27 @@ LaTeX Warning: Label `def:-NoValue-' multiply defined.
 )
 \openout1 = `"Strange handouts.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-Package hyperref Info: Link coloring ON on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+Package hyperref Info: Link coloring ON on input line 27.
  (./Strange handouts.out) (./Strange handouts.out)
 \@outlinefile=\write7
 \openout7 = `"Strange handouts.out"'.
@@ -1395,8 +1518,8 @@ Package caption Info: End \AtBeginDocument code.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2024/12/24 v6.0g a miscellany of footnote facilities
 \FN@temptoken=\toks47
-\footnotemargin=\dimen358
-\@outputbox@depth=\dimen359
+\footnotemargin=\dimen394
+\@outputbox@depth=\dimen395
 Package footmisc Info: Declaring symbol style bringhurst on input line 699.
 Package footmisc Info: Declaring symbol style chicago on input line 707.
 Package footmisc Info: Declaring symbol style wiley on input line 716.
@@ -1419,10 +1542,10 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"Strange handouts".bbl' not found.
 
 No file "Strange handouts".bbl.
-Package biblatex Info: Reference section=0 on input line 26.
-Package biblatex Info: Reference segment=0 on input line 26.
-\c@lstlisting=\count566
-Package hyperref Info: Option `pageanchor' set `false' on input line 28.
+Package biblatex Info: Reference section=0 on input line 27.
+Package biblatex Info: Reference segment=0 on input line 27.
+\c@lstlisting=\count571
+Package hyperref Info: Option `pageanchor' set `false' on input line 29.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: xetex
 * paper: a4paper
@@ -1458,23 +1581,23 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 28.
 File: ./figure/cover.png Graphic file (type bmp)
 <./figure/cover.png>
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 28.
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 28.
+(Font)              scaled to size 24.88pt on input line 29.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 29.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 28.
+(Font)              scaled to size 14.4pt on input line 29.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 28.
+(Font)              scaled to size 10.0pt on input line 29.
 
 
 [1
@@ -1483,7 +1606,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/it' will be
 
 ]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 17.28pt on input line 33.
+(Font)              scaled to size 17.28pt on input line 34.
  (./Strange handouts.toc
 
 [1
@@ -1498,7 +1621,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 
 
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 34.
+(Font)              scaled to size 9.0pt on input line 35.
 [2]
 Chapter 1.
 (./body/lzhx.tex
@@ -1603,13 +1726,28 @@ File: fig/lzhx/微信图片_202111021123461.png Graphic file (type bmp)
 [26]
 
 [27]
+
+[28]
+File: fig/lzhx/chi.png Graphic file (type bmp)
+<fig/lzhx/chi.png>
+File: fig/lzhx/D4h.png Graphic file (type bmp)
+<fig/lzhx/D4h.png>
+File: fig/lzhx/c4h4.png Graphic file (type bmp)
+<fig/lzhx/c4h4.png>
+
+
+[29]
+
+[30]
+
+[31]
 File: fig/lzhx/微信图片_20211102165150.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102165150.png>
 File: fig/lzhx/微信图片_20211102171332.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102171332.png>
 
 
-[28]
+[32]
 File: fig/lzhx/微信图片_20211102172815.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102172815.png>
 File: fig/lzhx/微信图片_202111021728151.png Graphic file (type bmp)
@@ -1618,30 +1756,22 @@ File: fig/lzhx/polarization.png Graphic file (type bmp)
 <fig/lzhx/polarization.png>
 
 
-[29]
+[33]
 File: fig/lzhx/微信图片_20211102175446.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211102175446.png>
 File: fig/lzhx/微信图片_20211106011930.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106011930.png>
 
 
-[30]
+[34]
 File: fig/lzhx/微信图片_20211106140136.png Graphic file (type bmp)
 <fig/lzhx/微信图片_20211106140136.png>
 
 
-[31]
-Missing character: There is no ‘ ("2018) in font cmr10!
-Missing character: There is no ‘ ("2018) in font cmr10!
-
-
-[32]
-
-[33]
-
-[34]
-
 [35]
+Missing character: There is no ‘ ("2018) in font cmr10!
+Missing character: There is no ‘ ("2018) in font cmr10!
+
 
 [36]
 
@@ -1655,43 +1785,51 @@ Missing character: There is no ‘ ("2018) in font cmr10!
 
 [41]
 
-[42])
+[42]
 
 [43]
-Chapter 2.
-(./body/Fourier.tex
 
-[44
-
-]
+[44]
 
 [45]
 
-[46]
+[46])
 
 [47]
+Chapter 2.
+(./body/Fourier.tex
 
-[48])
+[48
+
+]
 
 [49]
+
+[50]
+
+[51]
+
+[52])
+
+[53]
 Chapter 3.
 (./body/else.tex
 Missing character: There is no ） ("FF09) in font cmr10!
 
 
-[50
+[54
 
 ]
 
-[51]
-
-[52]
-
-[53]
-
-[54]
-
 [55]
+
+[56]
+
+[57]
+
+[58]
+
+[59]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 299.
@@ -1704,45 +1842,37 @@ File: ./fig/Legendre Transform/1.png Graphic file (type bmp)
 <./fig/Legendre Transform/1.png>
 
 
-[56]
+[60]
 File: ./fig/Legendre Transform/2.png Graphic file (type bmp)
 <./fig/Legendre Transform/2.png>
 
 
-[57]
+[61]
 
-[58])
+[62])
 
-[59] (./Strange handouts.aux)
+[63] (./Strange handouts.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `"Strange handouts".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                "Strange handouts"
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to '"Strange handouts".run.xml'.
 \openout1 = `"Strange handouts.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47743 strings out of 473832
- 1052934 string characters out of 5729482
- 2039651 words of memory out of 5000000
- 69974 multiletter control sequences out of 15000+600000
- 569391 words of font info for 119 fonts, out of 8000000 for 9000
+ 48789 strings out of 473832
+ 1084848 string characters out of 5729482
+ 2074826 words of memory out of 5000000
+ 70997 multiletter control sequences out of 15000+600000
+ 569431 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,16n,130p,716b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Strange handouts.pdf (60 pages).
+Output written on Strange handouts.pdf (64 pages).

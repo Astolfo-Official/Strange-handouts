@@ -388,7 +388,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 
 同时，我们还可以利用哈密顿量定义粒子数算符$\hat{N}=\hat{a}^{\dagger}\hat{a}$：
 \[\hat{h}\ket{\nu}=\hbar\omega(\hat{a}^{\dagger}\hat{a}+\frac{1}{2})\ket{\nu}=\hbar\omega(\hat{N}+\frac{1}{2})\ket{\nu}=(\nu+\frac{1}{2})\hbar\omega \quad \Rightarrow \quad \hat{N}\ket{\nu}=\hat{a}^{\dagger}\hat{a}\ket{\nu}=\nu\]
-观察式\eqref{comma}我们发现，升降算符作用到本征态上具有以下效果（升降算符能把当前本征态升降到相邻本征态）：
+观察[式\eqref{comma}]我们发现，升降算符作用到本征态上具有以下效果（升降算符能把当前本征态升降到相邻本征态）：
 \[\hat{a}\ket{\nu}=f(\nu)\ket{\nu-1}, \quad \hat{a}^{\dagger}\ket{\nu}=g(\nu)\ket{\nu+1}\]
 利用粒子数算符以及内积正定性可以计算出：
 \[\begin{aligned}
@@ -463,9 +463,9 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{L}^2\ket{l,m_l}=l(l+1)\hbar^2\ket{l,m_l}\]
 进而可以知道$m_l$可以取值$-l,-l+1,\cdots,0,\cdots,l-1,l$。
 
-接下来看升降算符的递推形式，从式\eqref{lpm}出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
+接下来看升降算符的递推形式，从[式\eqref{lpm}]出发，可以看出当升降算符作用在态$\ket{l,m_l}$具有以下形式：
 \[\hat{L}_+\ket{l,m_l}=\alpha_+(l,m_l)\hbar\ket{l,m_l+1}, \quad \hat{L}_-\ket{l,m_l}=\alpha_-(l,m_l)\hbar\ket{l,m_l-1}\]
-利用式\eqref{l2pm}中的结论，我们知道：
+利用[式\eqref{l2pm}]中的结论，我们知道：
 \[\hat{L}_-\hat{L}_+\ket{l,m_l}=[l(l+1)-m_l(m_l+1)]\hbar^2\ket{l,m_l}=\alpha_+(l,m_l)\alpha_-(l,m_l+1)\hbar^2\ket{l,m_l}\]
 同时：
 \[\bra{l,m_l}\hat{L}_-\ket{l,m_l+1}^*=\bra{l,m_l+1}\hat{L}_+\ket{l,m_l} \quad \Rightarrow \quad \alpha_-(l,m_l+1)^*=\alpha_+(l,m_l)\]
@@ -525,7 +525,7 @@ SO(3) 群是所有行列式为1的$3\times3$的正交矩阵构成的集合。用
 \[A=\begin{pmatrix}0&-a&b\\a&0&-c\\-b&c&0\end{pmatrix}\]
 因此， SO(3)群也是只有三个自由度，是一个三阶连续群。
 
-\begin{definition}[群同态]
+\begin{definition}[群同态]\label{def:g}
 给定两个群$(G,\ast),(H,\cdot)$和映射$h:(G,*)\to(H,\cdot)$, 满足：
 \[\forall \, u,v \in G, \ h(u*v)=h(u)\cdot h(v)\]
 则称映射$h$为群同态。
@@ -843,6 +843,148 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
     \end{minipage}
 \end{figure}
 
+\section{极简（并非）群论}
+\begin{definition}[群]
+给定一个非空集合 $G$ 在其上定义一个二元运算 $\cdot: G \times G \to G$，如果其满足：
+\begin{enumerate}
+\item \textbf{封闭性}：$\forall \, a,b \in G,\ a \cdot b \in G$；
+\item \textbf{结合律}：$\forall \, a,b,c \in G,\ (a \cdot b) \cdot c = a \cdot (b \cdot c)$；
+\item \textbf{单位元}：$\exists \, e \in G,\ \forall a \in G,\ e \cdot a = a \cdot e = a$；
+\item \textbf{逆元}：$\forall \, a \in G,\ \exists a^{-1} \in G,\ a \cdot a^{-1} = a^{-1} \cdot a = e$；
+\end{enumerate}
+则称集合 $G$ 与 运算 $\cdot$ 构成一个群 $(G, \cdot)$。若 $|G| < \infty$，则称 $G$ 为有限群，$|G|$ 称为群的阶，即集合中的元素个数。若运算还满足交换律，则称 $G$ 为交换群（阿贝尔群）。
+\end{definition}
+由分子对称性构成的点群一般都是有限群，同时每个对称元素在欧式空间中都能通过一个矩阵来描述。在之前的章节中我们介绍了群同态[\ref{def:g}]，这是一个保持结合律的映射，因此我们也可以在点群 $(G, \cdot)$ 和数域 $\mathbb{F}$ 上线性空间 $V$ 中的所有可逆线性映射（$V$ 与 $\mathbb{F}^n$，同构，$V$ 中的可逆线性映射一一对应于 $\mathbb{F}^n$ 中的可逆矩阵）构成的群 $GL(V)$ 之间构建一个群同态，称之为群的矩阵表示：
+\begin{definition}[群的矩阵表示]
+群的矩阵表示 $\rho: \ G \to GL(V)$ 满足 
+\[\exists \, \rho(g),\rho(h) \in GL(V), \quad \rho(g h) = \rho(g)\rho(h),\quad \forall \, g,h \in G\]
+\end{definition}
+点群中会有对称元素是毫不相干的，如果映射到矩阵上就会是块对角化的，可以写成两个小的矩阵的直和，空间上如果定义内积的话就是两个正交的空间。因此我们会想到如果取 $V$ 的一个子空间 $W$ 还是可以构建群的矩阵表示，那我们称之为子表示。对那些不能再分解的表示我们称之为不可约表示。
+\begin{definition}[子表示与不可约表示]
+设 $\rho_V: \ G \to GL(V)$ 是一个表示，$W \subseteq V$ 是一个子空间。若
+\[\rho_V(g) W \subseteq W, \quad \forall \, g \in G,\]
+则称 $\rho_W: \ G \to GL(W)$ 是一个 $\rho_V: \ G \to GL(V)$ 的\textbf{子表示}。若 $\rho_V$ 只有平凡表示（$\{0\}$ 和 $\rho_V$ 自身），则称 $\rho_V$ 为\textbf{不可约表示}；否则称为可约表示。
+\end{definition}
+对于有限群 $G$ 的分解，有 Maschke 定理
+\begin{theorem}[Maschke 定理]
+设 $G$ 是有限群，$V$ 是域 $\mathbb{F}$ 上的有限维向量空间，且 $\mathbb{F}$ 的特征不整除 $|G|$（当 $\mathbb{F}=\mathbb{C}$ 或 $\mathbb{R}$ 时，特征为0，自动满足条件）。若 $\rho: G \to GL(V)$ 是 $G$ 的表示，且 $W \subseteq V$ 是 $V$ 的 $G$-不变子空间（即 $\rho(g)W \subseteq W$ 对所有 $g \in G$ 成立），则存在 $G$-不变子空间 $U \subseteq V$ 使得：
+\[V = W \oplus U\]
+也就是说，$W$ 在 $V$ 中有一个互补的 $G$-不变子空间。
+\end{theorem}
+更近一步推论，在 Maschke 定理的条件下，任何有限群 $G$ 的有限维表示都可以分解为不可约表示的直和：
+\[\rho = \rho_1 \oplus \rho_2 \oplus \cdots \oplus \rho_r\]
+若在 $V$ 上存在一个 $G$-不变内积（即 $\langle \rho(g)u, \rho(g)v \rangle = \langle u, v \rangle$ 对所有 $g \in G$ 成立），则对任何不变子空间 $W$，其正交补 $W^\perp$ 也是 $G$-不变的，且 $V = W \oplus W^\perp$。Maschke 定理是特征标理论的基础之一，表明特征标作为表示的不变量（$G$-不变内积），在直和下可加。因此，要了解任何表示的特征标，只需知道所有不可约表示的特征标，且特征标的正交关系依赖于表示的完全可约性。
+
+\begin{definition}[共轭关系]
+设 $G$ 是一个群，对$\forall \, g, h \in G, \ \exists \, x \in G$ 满足 $h = x g x^{-1}$，则称 $g$ 与 $h$ \textbf{共轭}记作 $g \sim h$。
+\end{definition}
+共轭关系$\sim$是等价关系，满足\textbf{自反性}$(g \sim g)$，\textbf{对称性}$(g \sim h \ \Rightarrow \ h \sim g)$， \textbf{传递性}$(g \sim h, \ h \sim k \ \Rightarrow \ g \sim k)$。
+
+\begin{definition}[共轭类]
+群 $G$ 的一个\textbf{共轭类}是指由共轭关系 $\sim$ 确定的一个等价类。元素 $g \in G$ 所在的共轭类记作 $\mathcal{C}(g)$ 或 $[g]$，即
+\[\mathcal{C}(g) = \{ h \in G \mid \exists \, x \in G \text{ 使得 } h = x g x^{-1} \}.\]
+\end{definition}
+
+\begin{definition}[中心化子]
+元素 $g \in G$ 的\textbf{中心化子}定义为 $C_G(g) = \{ x \in G \mid x g = g x \}$，即与 $g$ 交换的所有元素构成的子群。
+\end{definition}
+按照上述共轭类与中心化子对定义，显然可知 $g$ 所在共轭类的大小为
+\[|\mathcal{C}(g)| = [G : C_G(g)] = \frac{|G|}{|C_G(g)|}\]
+特别地，共轭类的大小整除群的阶。
+
+\begin{definition}[类函数]
+一个函数 $f: G \to \mathbb{F}$ 在每个共轭类上取常数值，称为 $G$ 上的\textbf{类函数}，如果对于所有 $g, h \in G$，满足
+\[f(h g h^{-1}) = f(g)\]
+\end{definition}
+\begin{definition}[类函数空间]
+设 $\mathcal{C}(G)$ 为 $G$ 上所有类函数构成的向量空间。在 $\mathcal{C}(G)$ 上定义内积：
+\[\bra{\phi}\ket{\psi} = \frac{1}{|G|} \sum_{g \in G} \phi(g)^*\psi(g)\]
+\end{definition}
+由于确定一个类函数，只需指定它在每个共轭类上的值，因此类函数空间的维数等于共轭类的个数。
+\begin{theorem}
+设 $G$ 是有限群，共轭类的个数为 $r$，则所有类函数构成一个 $r$ 维向量空间。
+\end{theorem}
+
+\begin{definition}[特征标]\label{def:x}
+对于表示 $\rho: \ G \to GL(V)$，其\textbf{特征标} $\chi_\rho: G \to \mathbb{F}$ 定义为
+\[\chi_\rho(g) = \Tr[\rho(g)]=\Tr[R(g)]\]
+\end{definition}
+特征标具有以下重要性质：
+\begin{enumerate}
+\item \textbf{类函数}：$\chi_\rho(h g h^{-1}) = \chi_\rho(g)$，即特征标在共轭类上为常数。
+\item \textbf{加法性}：若 $\rho = \rho_1 \oplus \rho_2$，则 $\chi_\rho = \chi_{\rho_1} + \chi_{\rho_2}$。
+\item \textbf{乘法性}：若 $\rho = \rho_1 \otimes \rho_2$ 是张量积表示，则 $\chi_\rho(g) = \chi_{\rho_1}(g) \chi_{\rho_2}(g)$。
+\item \textbf{维数信息}：$\chi_\rho(e) = \dim V$，其中 $e$ 是单位元。
+\end{enumerate}
+特征标是对群表示映射后的矩阵的迹，\textcolor{blue}{\textbf{与不可约表示数目相同}}。由于特征标是类函数（性质1），因此所有不可约特征标构成 $\mathcal{C}(G)$是类函数空间，\textcolor{blue}{\textbf{且其个数与共轭类的个数相同，都是对应线性空间的维度}}。
+\begin{theorem}[正交定理]
+有限群 $G$ 的所有不可约特征标构成 $\mathcal{C}(G)$ 的一组标准正交基。即若 $\chi_i, \chi_j$ 是两个不可约特征标，则
+\[\bra{\chi_i}\ket{\chi_j} = \delta_{ij}\] 
+\end{theorem}
+
+\begin{definition}[群代数]
+有限群 $G$ 在数域 $\mathbb{F}$ 上的\textbf{群代数} $\mathbb{F}[G]$（$\mathbb{F}$-代数），其维数为 $|G|$，定义为形式线性组合的集合：
+\[\mathbb{F}[G] = \left\{ \sum_{g \in G} a_g g \mid a_g \in \mathbb{F} \right\}\]
+\end{definition}
+显然群代数 $\mathbb{F}[G]$ 中的元素对加法，数乘和乘法封闭。这就是一个用有限群 $G$ 的元素作为基底的线性空间。
+
+\begin{definition}[左(右)正则表示]
+设 $G$ 是一个有限群，$\mathbb{F}[G]$ 是 $G$ 的群代数。\textbf{左(右)正则表示} $L(R): G \to \mathrm{GL}(\mathbb{F}[G])$ 定义为：
+\[L(g) \left( \sum_{h \in G} a_h h \right) = \sum_{h \in G} a_h (gh) = \sum_{h \in G} a_{g^{-1}h} h, \quad R(g) \left( \sum_{h \in G} a_h h \right) = \sum_{h \in G} a_h (hg^{-1}) = \sum_{h \in G} a_{hg} h, \quad \forall \, g \in G\]
+$L(g)$ 和 $R(g)$ 是 $\mathbb{F}[G]$ 上的线性变换，通过左乘 $g$ 和右乘 $g^{-1}$ 作用（为了保持同态性质）。
+\end{definition}
+显然其满足$L(gh) = L(g)L(h), \quad R(gh) = R(g)R(h), \quad L(e) = R(e) = \mathrm{id}$（单位元）。如果我们选择自然基 $\{e_g \mid g \in G\}$，其中 $e_g$ 对应于群元素 $g$。在这个基下正则表示就是置换矩阵（把一个基换到另外一个基）：
+\[[L(g)]_{h,k} = \delta_{g h, k} = \delta_{h, g^{-1} k}, \quad [R(g)]_{h,k} = \delta_{h g^{-1}, k} = \delta_{h, k g}\]
+即 $L(g)$ 把基向量 $e_h$ 映射到 $e_{gh}$，$R(g)$ 把基向量 $e_h$ 映射到 $e_{hg^{-1}}$，其特征标为$\chi_{L}(g) = \chi_{R}(g) = |G|\delta_{g,\rm{id}}$。只有当 $g$ 是单位元时矩阵对角线才非零。由 Maschke 定理：
+
+\begin{theorem}[正则表示的分解]
+设 $G$ 是有限群，有 $r$ 个互不等价的不可约复表示 $\rho_i$，其维数分别为 $d_i$。则左(右)正则表示可以分解为：
+\[L\text{ or }R \cong \bigoplus_{i=1}^r d_i \rho_i\]
+\end{theorem}
+现在我们可以证明维数公式：
+\begin{theorem}[维数公式]
+设 $G$ 是有限群，$|G|$ 是 $G$ 的阶。设 $G$ 有 $r$ 个互不等价的不可约复表示，其维数分别为 $d_1, d_2, \dots, d_r$（即 $d_i = \chi_i(e)$，其中 $\chi_i$ 是第 $i$ 个不可约特征标，$e$ 是 $G$ 的单位元）。则有：
+\[\sum_{i=1}^r d_i^2 = |G|\]
+\end{theorem}
+\begin{proof}
+以左正则表示为例，选择 $g=e$，其特征标 $\chi_L(e)$ 可以分解为
+\[|G| = \chi_L(e) = \sum_{i=1}^r d_i \chi_i(e) = \sum_{i=1}^r d_i^2\]
+\end{proof}
+
+设 $G$ 有 $r$ 个共轭类 $C_k$，其中 $C_1 = \{e\}$。设 $|C_k|$ 是共轭类 $C_k$ 的大小。根据特征标的定义[\ref{def:x}]以及附近的讨论可知，特征标表是一个 $r \times r$ 的复数矩阵，其第 $i$ 行对应第 $i$ 个不可约特征标 $\chi_i$，第 $k$ 列对应共轭类 $C_k$。
+\begin{theorem}[特征标表的行（列）正交关系]
+\[\sum_{k=1}^r \frac{|C_k|}{|G|} \chi_i(C_k)^*\chi_j(C_k) = \delta_{ij}, \quad \sum_{i=1}^r \chi_i(C_k)^*\chi_i(C_\ell) = \frac{|G|}{|C_k|} \delta_{k\ell}\]
+\end{theorem}
+由正交关系，给定一个表示的特征标 $\chi$，可以由以下投影公式计算出如何分解成不可约表示 $\chi$ 的直和：
+\begin{equation}\label{eq:projection}
+\chi \cong \bigoplus_{i=1}^r a_i \chi_i, \quad a_i=\sum_{k=1}^r \frac{|C_k|}{|G|} \chi_i(C_k)^*\chi(C_k) 
+\end{equation}
+\subsection{H\"uckel 分子轨道}
+H\"uckel 近似是$S_{ij}=\delta_{ij}$，每个原子自身带有能量$\alpha$，最近邻的原子之间有交换能$\beta$（这不是 tight-binding 吗）。以环丁烯\ch{C_4H_4}为例子，这里指设计环平面上的四个$p$-轨道。解其久期行列式获得本征值
+
+\[\begin{vmatrix}
+\alpha-E & \beta & 0 & \beta \\
+\beta & \alpha-E & \beta & 0 \\
+0 & \beta & \alpha-E & \beta \\
+\beta & 0 &  \beta & \alpha-E \\
+\end{vmatrix}=0 \quad \Rightarrow \quad (E-\alpha)^2[(E-\alpha)^2-4\beta^2]=0\]
+本征值和对应的本征态为
+\[\left\{\begin{array}{ll}
+E=\alpha-2\beta, & (\ket{1}-\ket{2}+\ket{3}-\ket{4})/2\\  
+E=\alpha, & (\ket{1}-\ket{2}-\ket{3}+\ket{4})/2, \quad (\ket{1}+\ket{2}-\ket{3}-\ket{4})/2\\  
+E=\alpha+2\beta, & \ket{1}+\ket{2}+\ket{3}+\ket{4})/2\\  
+\end{array}\right.\]
+\begin{center}
+\includegraphics[scale=0.3]{fig/lzhx/chi.png}
+\end{center}
+\begin{center}
+\includegraphics[scale=0.2]{fig/lzhx/D4h.png}
+\end{center}
+按照流程，先画出环丁烯的四个$p$-轨道，然后标号，按照特征标表里的对称元素进行对称操作。操作后，每一个$p$-轨道如果保持原样，对应的特征标分量 $\chi(C_k)$为1，相位颠倒为-1，如果不对称为0（比如跑别的位置上了）。根据上述流程，总特征标 $\chi=(4,0,0,0,-2,0,0,-4,0,2)$。利用投影公式[式\ref{eq:projection}]，对每一个特征标嗯算可知 $\chi=A_{2u}\oplus E_g \oplus B_{1u}$。根据特征标标提供的对称函数，可以轻易看出每个本征态的对称性$\ket{\alpha+2\beta}: \ A_{2u}, \ \ket{\alpha_1}: \ E_g(xz), \ \ket{\alpha_2}: \ E_g(yz), \ \ket{\alpha-2\beta}: \ B_{1u}$。当然分解总特征标不一定要投影公式，你观察能力够强也可以（笑死
+\begin{center}
+\includegraphics[scale=0.3]{fig/lzhx/c4h4.png}
+\end{center}
+\newpage
 \section{Hartree-Fock}
 \subsection{正则轨道下的 Hartree-Fock}\label{sec:hf}
 在BO近似后，电子哈密顿如下：
@@ -1316,7 +1458,7 @@ n(\omega)\alpha(\omega)=\frac{\pi}{3\hbar cV\epsilon_0}\sum_{f,i}P_i|\langle f|\
 
 引入对称偶极自相关函数$C_{\rm{sym}}(t)=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(t)\hat{\bm{\mu}}(0)\rangle/2$，假定越迁是平稳过程，其跃迁速率为
 \[\Gamma_{\rm{sym}}(\omega)=\frac{\bm{E}^2}{12\hbar^2}\cdot\frac{1}{2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}(\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle+\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle)=\frac{1}{2}(\Gamma(\omega)+\Gamma(-\omega))=\frac{1+e^{-\beta\hbar\omega}}{2}\Gamma(\omega)\]
-将上式代入式\eqref{eq:IR_qm_1}中，可得：
+将上式代入[式\eqref{eq:IR_qm_1}]中，可得：
 \[n(\omega)\alpha(\omega)=\frac{\omega}{3\hbar cV\epsilon_0}\frac{1-e^{-\beta\hbar\omega}}{1+e^{-\beta\hbar\omega}}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}C_{\rm{sym}}(t)\approx\frac{\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
 通过分子动力学（MD）模拟计算的偶极自相关函数 $\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}$ 近似对应于对称量子自相关函数 $C_{\rm{sym}}(t)$ 的经典对应。由于对称偶极自相关函数$C_{\rm{sym}}(t)$是实偶函数，同时当温度较高时$\beta\hbar\omega=\hbar\omega/kT\ll1$，我们还可以进一步近似掉$\tanh(\beta\hbar\omega/2)\approx\beta\hbar\omega/2$，得到经典极限下的红外吸收系数表达式：
 \[n(\omega)\alpha(\omega)=\frac{2\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\approx\frac{\omega^2}{3cV\epsilon_0kT}\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
