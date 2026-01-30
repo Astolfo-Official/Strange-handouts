@@ -1,0 +1,332 @@
+\section{Hartree-Fock}
+\subsection{正则轨道下的 Hartree-Fock}\label{sec:hf}
+在BO近似后，电子哈密顿如下：
+\[\hat{H}_{el}=\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}=\sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}\right)+\sum_{i<j}\frac{1}{r_{ij}}+V_{NN}=\sum_i\hat{h}_i+\sum_{i<j}\hat{g}_{ij}+V_{NN}\]
+
+虽然我们已经把核项给舍去了，但电子部分的哈密顿依然是一个多体哈密顿，还是一个难以求解的问题。我们一般能处理的都是单体问题，比如氢原子的电子薛定谔、谐振子等等，所以我们希望能将多体问题尽可能精确地转换为单体问题来处理，如我们之前提到的平均场近似，如此一来多电子问题就被转换为了单电子问题。相对应的，体系的波函数也变成了几个单体波函数(自旋轨道)的乘积（Hartree 积）$\ket{\Psi}=\ket{\psi_1\psi_2\cdots \psi_n}$。但由于电子费米子的全同性的要求，上述需要对 Hartree 基做反对称化得到 Slater 行列式$\hat{A}\ket{\psi_1\psi_2\cdots \psi_n}$。
+
+而对 Hartree-Fock 方法，是从 Slater 行列式出发，利用变分法将精确哈密顿量转换成单电子算符的和，我们称转换后的单电子问题为 Mean field，一般指的是 HF 与 DFT。从 HF 出发，我们假定了 Slater 行列式是精确的，然后认为哈密顿量是不精确的，由此出发，我们会希望通过不断修正哈密顿量来使得结果更精确，于是就有了 MP 等微扰方法。另一方面，如果我们认为哈密顿量是精确的，那么就认为波函数是不精确的，从 Slater 行列式出发于是就有了 CI, CC, MCSCF 等方法。
+
+由Condon-Slater规则（在\ref{sec:mp}），正则轨道(正交归一的自旋轨道)组成的 Slater 行列式$\ket{\Psi}$对哈密顿量$\hat{H}$的期望（能量$E$）如下所示，其中$\bra{ij}\ket{ij},\bra{ij}\ket{ji}$为库伦积分和交换积分，$h_i$包括了动能项和核对电子的势能：
+\[E=\bra{\Psi}\hat{H}\ket{\Psi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+
+通过拉格朗日乘数法把正交归一条件引入泛函$\eta(\lambda_{ij})$进行变分：
+\[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \bra{\bm{r}}\ket{\psi_i}}=\frac{\delta}{\delta \bra{\bm{r}}\ket{\psi_i}}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij})\right)=0\]
+跳过复杂得变分推导，得到的新的哈密顿量$\hat{H}_0$：
+\[\hat{H}_0=\sum_i\hat{F}_i=\sum_i\left(\hat{h}_i+\hat{J}_i-\hat{K}_i\right), \quad \hat{F}_i\ket{\psi_i}=\varepsilon_i\ket{\psi_i}\]
+其中，$\hat{F}_i,\hat{h}_i,\hat{J}_i,\hat{K}_i$为 Fork 算符，单体算符，库伦算符和交换算符，$\varepsilon_i$为轨道能量，$\hat{J}_i,\hat{K}_i$的表达式为：
+\[\hat{J}_i\ket{\psi_i} = \sum_{j \neq i}\left(\int\frac{\bra{\psi_j}\ket{\bm{r}}\bra{\bm{r}}\ket{\psi_j}}{r_{ij}}\dd{\bm{r}}\right)\ket{\psi_i}, \quad \hat{K}_i\ket{\psi_i} = \sum_{j \neq i}\left(\int\frac{\bra{\psi_j}\ket{\bm{r}}\bra{\bm{r}}\ket{\psi_i}}{r_{ij}}\dd{\bm{r}}\right)\ket{\psi_j}\]
+将上述两算符打包成$\hat{G}_i=\hat{J}_i-\hat{K}_i$，考虑其在$\ket{\psi_i}$上的期望$\bra{\psi_i}\hat{G}_i\ket{\psi_i}$（$i=j$时显然$\bra{ij}\ket{ij}=\bra{ij}\ket{ji}$）：
+\[\sum_{j\neq i}\iint\frac{1}{r_{ij}}(\bra{\psi_j}\ket{\bm{r}_1}\bra{\bm{r}_1}\ket{\psi_j}\bra{\psi_i}\ket{\bm{r}_2}\bra{\bm{r}_2}\ket{\psi_i}-\bra{\psi_j}\ket{\bm{r}_1}\bra{\bm{r}_1}\ket{\psi_j}\bra{\psi_i}\ket{\bm{r}_2}\bra{\bm{r}_2}\ket{\psi_i})\dd{\bm{r}_1}\dd{\bm{r}_2}=\sum_{j}(\bra{ij}\ket{ij}-\bra{ij}\ket{ji})\]
+
+如果我们考虑空间轨道，则 HF 可以分为 RHF (闭壳层，电子成对)，UHF (开壳层，不同自旋单独考虑)和 ROHF (开壳层，部分成对部分单独)。对 UHF 之需要简单写两套能量加起来就好：
+\[E_{\rm{UHF}}=\sum_{i,\uparrow}h_i+\frac{1}{2}\sum_{i,j,\uparrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+\sum_{i,\downarrow}h_i+\frac{1}{2}\sum_{i,j,\downarrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+ROHF 太复杂先不说，看看 RHF 能量：
+\[E_{\rm{RHF}}=2\sum_ih_i+\sum_{i,j}\left(2\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，只有自旋相同的积分不为零，因此加倍。可以看到在 HF 中不同自旋的电子没有相互作用，可以同时出现在一个轨道上，但实际上由于瞬时库伦相互作用，电子会排斥其他电子出现在其附近(Coulomb hole)，这部分相互作用我们称之为\textcolor{blue}{\textbf{动态相关}}。
+
+\subsection{Hartree-Fock-Roothaan 方法}
+假定正则轨道被已知的原子轨道基底下展开，则在此基底下 Fock 矩阵和 overlap 矩阵为：
+\[\ket{\psi_i}=\sum_{\nu}c_{\nu i}\ket{\phi_{\nu}} \quad \Leftrightarrow \quad \bm{\Psi}=\bm{\Phi}\mathbf{C}, \quad F_{\mu\nu}=\bra{\phi_{\mu}}\hat{F}\ket{\phi_{\nu}}, \quad S_{\mu\nu}=\bra{\phi_{{\mu}}}\ket{\phi_{\nu}}\]
+将基函数带入Hartree-Fock方程后写成矩阵形式(Hartree-Fock-Roothaan 方程)：
+\[\bra{\phi_{\mu}}\hat{F}\ket{\psi_i}=\varepsilon_i\bra{\phi_{\mu}}\ket{\psi_i} \quad \Rightarrow \quad \sum_{\nu}c_{\nu i}\bra{\phi_{\mu}}\hat{F}\ket{\phi_{\nu}}=\varepsilon_i\sum_{\nu}c_{\nu i}\bra{\phi_{\mu}}\ket{\phi_{\nu}} \quad \Leftrightarrow \quad \mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\bm{\varepsilon}\]
+以上方程的对角化与一般厄密矩阵(这里是实对称阵)的正交对角化$\mathbf{F}\mathbf{C}'=\mathbf{C}'\varepsilon$不一样，考虑 overlap 的酉变换：
+\[\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}=\mathbf{s} \quad \Rightarrow \quad \mathbf{s}^{-1/2}\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}\mathbf{s}^{-1/2}=\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}=\mathbf{1} \quad \Rightarrow \quad \mathbf{U}=\mathbf{X}\mathbf{s}^{-1/2}\]
+其中$\mathbf{X}$，$\mathbf{s}$为$\mathbf{S}$正交对角化的变换矩阵和对角阵，$\mathbf{s}^{-1/2}$为对角阵$\mathbf{s}^{-1}$的开方，其定义为$\mathbf{s}^{-1/2}\mathbf{s}^{-1/2}=\mathbf{s}^{-1}$。
+通过酉变换$\mathbf{U}$将基底变换到标准正交基，在新的基底下系数$\mathbf{C}'$与原系数$\mathbf{C}$的关系$\mathbf{C}=\mathbf{U}\mathbf{C}'$：
+\[\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\bm{\varepsilon} \quad \Rightarrow \quad \mathbf{F}\mathbf{U}\mathbf{C}'=\mathbf{S}\mathbf{U}\mathbf{C}'\bm{\varepsilon} \quad \Rightarrow \quad \mathbf{U}^{\dagger}\mathbf{F}\mathbf{U}\mathbf{C}'=\mathbf{U}^{\dagger}\mathbf{S}\mathbf{U}\mathbf{C}'\bm{\varepsilon}\quad \Rightarrow \quad \mathbf{F}'\mathbf{C}'=\mathbf{C}'\bm{\varepsilon}\]
+经过上述酉变换即可得到可对角化的矩阵方程。实际上在 python 中使用 scipy.linalg.eigh($\mathbf{F}$,$\mathbf{S}$) 就能直接解出$\mathbf{C}$。但求解 Hartree-Fock-Roothaan 方程真的只是做一个对角化吗，如果是这样就好了。我们具体来看每个矩阵的具体形式，系数矩阵和 overlap 矩阵是简单的，fock 矩阵包含了单电子积分和双电子积分：
+\[F_{\mu\nu} = \bra{\phi_{\mu}}\hat{h}_i+\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}=\bra{\phi_{\mu}}\hat{h}\ket{\phi_{\nu}}+\bra{\phi_{\mu}}\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}\]
+其中双电子部分：
+\begin{equation*}
+\begin{aligned}
+\bra{\phi_{\mu}}\hat{J}_i-\hat{K}_i\ket{\phi_{\nu}}&=\sum_{j}(\bra{\phi_{\mu}j}\ket{\phi_{\nu}j}-\bra{\phi_{\mu}j}\ket{j\phi_{\nu}})=\sum_{rs}\sum_{j}c_{rj}^*c_{sj}(\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}})\\
+&=\sum_{rs}P_{rs}(\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}})=\sum_{rs}P_{rs}\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}\\
+\end{aligned}
+\end{equation*}
+这里我们定义了一个新符号$\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}=\bra{\phi_{\mu}\phi_r}\ket{\phi_{\nu}\phi_s}-\bra{\phi_{\mu}\phi_r}\ket{\phi_s\phi_{\nu}}$简化书写。
+
+上式中$P_{\alpha\beta}$是密度矩阵$\mathbf{P}$的矩阵元，显然我们知道密度矩阵可以由系数矩阵得到$\mathbf{P}=\mathbf{C}\Lambda\mathbf{C}^{\dagger}$，其中$\Lambda$表示每个正则轨道的占据数，与我们对体系的要求有关（见下文），密度矩阵具有以下性质：
+\[1. \ \mathbf{P}=\mathbf{P}^{\dagger}, \quad 2. \ \mathbf{P}\mathbf{S}\mathbf{P}=\mathbf{P}, \quad 3.\ \text{Tr}(\mathbf{P}\mathbf{S})=N\]
+显然密度矩阵也跟采用 R，U 还是 RO 有关，比如在 pySCF 中，密度矩阵通过 1RDM=coeff*mo\_occ*coeff.T 表示，其中 coeff 是系数矩阵，表示从原子轨道到所有正则轨道的变换（基数量守恒，无关是非填入电子），mo\_occ表示轨道占据数。对 R，占据情况只有0和2，对 RO，有0，1和2，对 U 则是两套独立的0和1。
+
+所以事实上\textcolor{blue}{\textbf{需要对角化的 Fock 矩阵也是需要系数矩阵来计算的，因而不能直接对角化}}。
+\[\mathbf{F}(\mathbf{C}')\mathbf{C}'=\mathbf{C}'\varepsilon\]
+
+对这样的方程我们没办法直接求解，于是我们选择万能的迭代。迭代需要一个初猜，在这里也就是初始的密度矩阵(给初猜也是技术活，最简单如无二体项的波函数)，然后通过对角化更新密度矩阵，反复迭代直到密度矩阵不再变化，这也就是SCF过程。
+
+关于Hartree-Fock方法更多的内容推荐大家阅读\textbf{Szabo前三章}，也希望各位能够自己写一个程序来实现(doge)，这里提供两个实例：
+\href{https://github.com/yangdatou/hf-tutorial}{大头版HF (积分算好了) }和
+\href{https://github.com/Walter-Feng/Hartree-Fock-in-CPP}{叔叔版HF (从基组开始嗯造)}。
+
+Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现：
+\[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
+基于上述形式的自洽场方程可以介绍DIIS辣（挖坑）！
+
+在完成了上述自洽场计算之后，获得了正确的密度矩阵$\mathbf{P}=\mathbf{C}\Lambda\mathbf{C}^{\dagger}$后，我们可以计算能量了：
+\[E=\sum_{i\in\rm{occ}}\bra{i}\hat{h}\ket{i}+\frac{1}{2}\sum_{i,j\in\rm{occ}}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=\sum_{\mu\nu}P_{\mu\nu}\bra{\phi_{\mu}}\hat{h}\ket{\phi_{\nu}}+\frac{1}{2}\sum_{\mu\nu rs}P_{\mu\nu}P_{rs}\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}\]
+
+从上述内容可以知道，计算实际体系的 HF 需要计算原子基下的双电子积分，所以 HF 的理论标度为$O(N^4)$。
+
+\subsection{部分基组}
+\paragraph*{Slater-type orbitals (STO's)}
+\[\phi_{abc}^{\rm{STO}}(x,y,z)=Nx^ay^bz^ce^{-\zeta r}\]
+
+其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$，在远距离与近距离行为拟合实际波函数较好。长得跟氢原子波函数形式相近但是缺乏节点且不完全球谐，且收敛慢。
+
+\paragraph*{Gaussian-type orbitals (GTO's)}
+\[\phi_{abc}^{\rm{GTO}}(x,y,z)=Nx^ay^bz^ce^{-\zeta r^2}\]
+
+其中，$N$为归一化系数，且a,b,c被角动量控制：$a+b+c=L$。收敛快且有多种方法处理，长得跟氢原子波函数完全不一样。单个函数在近距离行为相较于 Slater 函数拟合实际波函数较差，解决办法是用多个函数来逼近 Slater 函数。比如最常见的 STO-3G 是用三个 GTO 来拟合一个 STO。
+
+\begin{center}
+    \includegraphics{fig/lzhx/微信图片_20211102165150}
+\end{center}
+
+下面给出的是 STO-3G 描述不同原子需要的函数个数，一般而言 STO-3G 都是作为计算体系的极小基：
+\begin{center}
+    \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211102171332.png}
+\end{center}
+
+\paragraph*{Contracted Gaussian type orbitals (CGTO's)}
+\[\phi_{abc}^{\rm{CGTO}}(x,y,z)=N\sum_{i=1}^n x^ay^bz^ce^{-\zeta r^2}\]
+
+在现在的基组构建中 CGTO 也可以用来代替单个 GTO，提升优化效率。
+
+\paragraph*{3–21G Split Valence and Double-Zeta Basis Set}
+在这种基组下，我们把电子分为两种，核层(core orbitals)与价层(valence orbital)，内层的轨道每一个轨道用一个包含三个Gaussian函数的基函数描述，价层每个轨道分为内层与外层，内层(inner shell)用两个Gaussian函数描述，外层(outer shell)用一个Gaussian函数描述：
+\begin{center}
+    \includegraphics[scale=0.9]{fig/lzhx/微信图片_20211102172815}
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.7]{fig/lzhx/微信图片_202111021728151}
+\end{center}
+
+\paragraph*{极化函数}
+极化函数是角动量相对更大的函数。将它们添加到基组中，可以增加轨道的可极化性，多Zeta基组使轨道在径向上的分布变得灵活，极化函数使轨道在角度上的分布能够具有更大的变形性，更接近真实分子中电子云变形情况，因此计算精度会得到明显提高。
+\begin{center}
+    \includegraphics[scale=0.4]{fig/lzhx/polarization.png}
+\end{center}
+比如6-31g(d)/6-31g(d,p)或者6-31g*/6-31g**，这两套符号表示的是一个意思，分别表示给重原子(5个)加一套d轨道和给重原子加一套d轨道(5个)给氢原子加一套p轨道(3个)。
+\paragraph*{弥散函数}
+是空间分布更广、更松软的函数(一个指数悉数极小的GTO)，一般来说当研究对象为阴离子，或考察体系的弱相互作用、偶极矩、极化率等方面时需要加入此类函数。但这类函数的弥散实在是太广了，以至于物理意义很难评估，并且极大地增加了计算量，所以弥散函数要慎加。
+
+比如6-31+g/6-31++g，分别表示给重原子的每个价层加一个弥散函数和给重原子的每个价层加一个弥散函数给氢原子的每个价层加一个弥散函数。
+
+\section{微扰理论}
+\subsection{非简并定态微扰理论}
+对 BO 近似后的定态的电子薛定谔方程，由于双体项的存在我们无法去精确求解该体系的波函数和能量，为此在\ref{sec:hf}小节里我们介绍了 Hartree-Fock 方法，使用近似的哈密顿量$\hat{H}_0$来替代原本精确的哈密顿量$\hat{H}$：
+\[\hat{H}=\sum_{i}\hat{h}_i+\sum_{ij}\hat{V}_{ij}=\left(\sum_{i}\hat{F}_i\right)+\left(\sum_{ij}\hat{V}_{ij}-\sum_{i}(\hat{J}_i-\hat{K}_i)\right)=\hat{H}_0+\hat{H}'\]
+如果想在精度上更进一步，我们必须要考虑偏差的哈密顿量$\hat{H}'$，但是由于直接求解过于复杂（本来就是因此舍弃掉这部分）我们可以考虑使用微扰的方法，利用已知的稍微不那么精确的结果去逼近更精确的结果。
+
+微扰能够成立的原理支撑是我们在最开始的一小节\ref{sec:space}提到的\textcolor{blue}{\textbf{算符的本征态张成的空间是完备的}}。我们假设在$\hat{H}_0$的本征态构成的空间是完备的足以用来表达精确的态。理论上只需要一次修正就能拿到完全精确的结果，但由于实操中我们都只能在有限维空间中处理，相对应地修正次数就得达到无穷，即用无穷级数来展开精确态，而且需要偏差哈密顿的影响一般上要比较小的，为此引入微扰参数$\lambda\neq0$把哈密顿量、态和能量改写成：
+\[\hat{H}=\hat{H}_0+\lambda\hat{H}‘, \quad \ket{\psi_n}=\sum_{i=0}^{+\infty}\ket{\psi_n^{(i)}}\lambda^i, \quad E_n=\sum_{i=0}^{+\infty}E_n^{(i)}\lambda^i, \quad \hat{H}_0\ket{\psi_n^{(0)}}=E_n^{(0)}\ket{\psi_n^{(0)}}\]
+
+其中$\ket{\psi_n^{(i)}}$、$E_n^{(i)}$为$\ket{\psi_n}$、$E_n$的$i$阶修正，其中对任意的$i,j$满足$i,j$不同时为0：
+\[1=\bra{\psi_n}\ket{\psi_n}=\left(\sum_{i=0}^{+\infty}\bra{\psi_n^{(i)}}\lambda^i\right)\left(\sum_{i=0}^{+\infty}\ket{\psi_n^{(i)}}\lambda^i\right)=\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}}+\cdots=1 +\cdots \quad \Rightarrow \quad \bra{\psi_n^{(i)}}\ket{\psi_n^{(j)}}=0\]
+这里利用了实函数内积的非负性，我们称上述结论为微扰态的中间正交性。
+
+将微扰展开的态和能量带入微扰展开的哈密顿方程可得：
+\[(\hat{H}_0+\lambda\hat{H}‘)\sum_{i=0}^{+\infty}\ket{\psi_n^{(i)}}\lambda^i=\sum_{i=0}^{+\infty}E_n^{(i)}\lambda^i\sum_{i=0}^{+\infty}\ket{\psi_n^{(i)}}\lambda^i\]
+展开取相同的微扰阶数$k$(等式两边$\lambda$的指数)可得(只研究前两阶微扰就好)：
+\[\begin{aligned}
+k=1: \quad & \hat{H}_0\ket{\psi_n^{(1)}}+\hat{H}'\ket{\psi_n^{(0)}}=E_n^{(0)}\ket{\psi_n^{(1)}}+E_n^{(1)}\ket{\psi_n^{(0)}}\\
+k=2: \quad & \hat{H}_0\ket{\psi_n^{(2)}}+\hat{H}'\ket{\psi_n^{(1)}}=E_n^{(0)}\ket{\psi_n^{(2)}}+E_n^{(1)}\ket{\psi_n^{(1)}}+E_n^{(2)}\ket{\psi_n^{(0)}}
+\end{aligned}\]
+
+对一阶微扰方程两边都内积上$\bra{\psi_n^{(0)}}$，利用中间正交性化简得到能量的一阶修正：
+\[\bra{\psi_n^{(0)}}\hat{H}_0\ket{\psi_n^{(1)}}+\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}=E_n^{(0)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}+E_n^{(1)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}} \quad \Rightarrow \quad E_n^{(1)}=\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}\]
+
+进一步的，如果想获得一阶修正的波函数，我们可以利用上文提到的完备性假设，用零阶波函数来展开一阶波函数，并带入一阶方程：
+\[\ket{\psi_n^{(1)}}=\sum_{k\neq n}c_{nk}^{(1)}\ket{\psi_k^{(0)}}\]
+\[\begin{aligned}
+\sum_{m\neq k}c_{nk}^{(1)}\hat{H}_0\ket{\psi_k^{(0)}}+\hat{H}'\ket{\psi_n^{(0)}}&=E_n^{(0)}\sum_{k\neq n}c_{nk}^{(1)}\ket{\psi_k^{(0)}}+E_n^{(1)}\ket{\psi_n^{(0)}} \\ 
+\sum_{k\neq k}c_{nk}^{(1)}\left(\hat{H}_0-E_n^{(0)}\right)\ket{\psi_k^{(0)}}&=-(\hat{H}'-E_n^{(1)})\ket{\psi_n^{(0)}}
+\end{aligned}\]
+假设零阶微扰态正交归一$\bra{\psi_m^{(0)}}\ket{\psi_k^{(0)}}=\delta_{mk}$，在方程两边同时内积上$\bra{\psi_m^{(0)}}$得到：
+\[\begin{aligned}
+\sum_{k\neq n}c_{nm}^{(1)}\bra{\psi_m^{(0)}}\left(\hat{H}_0-E_n^{(0)}\right)\ket{\psi_k^{(0)}}&=-\bra{\psi_m^{(0)}}(\hat{H}'-E_n^{(1)})\ket{\psi_n^{(0)}}\\
+\sum_{k\neq n}c_{nm}^{(1)}\bra{\psi_m^{(0)}}\left(E_m^{(0)}-E_n^{(0)}\right)\ket{\psi_k^{(0)}}&=-\bra{\psi_m^{(0)}}(\hat{H}'-E_n^{(1)})\ket{\psi_n^{(0)}}
+\end{aligned} \quad \Rightarrow \quad c_{nm}^{(1)}=-\frac{\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}}{E_k^{(0)}-E_n^{(0)}}\]
+最终可以得到一阶修正的波函数：
+\[\ket{\psi_n^{(1)}}=-\sum_{m\neq n}\frac{\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}}{E_m^{(0)}-E_n^{(0)}}\ket{\psi_m^{(0)}}\]
+
+进一步对二阶微扰方程两边都内积上$\bra{\psi_n^{(0)}}$，利用中间正交性化简得到能量的二阶修正：
+\[E_n^{(2)}=\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(1)}}=-\sum_{m\neq n}\frac{\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}}{E_m^{(0)}-E_n^{(0)}}\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_m^{(0)}}=-\sum_{m\neq n}\frac{\left|\bra{\psi_m^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}\right|^2}{E_m^{(0)}-E_n^{(0)}}\]
+二阶波函数就不求了（会累死人的，而且后面我就只打算讲讲 MP2 作为例子）。
+
+实际使用来看微扰理论在给出能量的近似时是非常精确的，但对波函数的计算却不是太理想。
+
+\subsection{一阶k重简并定态微扰理论}
+当零阶方程出现简并能级时，直接套用非简并的公式会出现除0的无穷大项，因此需要对简并的能级做单独的讨论，这里我们以一阶能量修正为例，假设零阶时能级$E_n^{(0)}$有$k$个经过正交化后的简并态$\ket{\psi_{nj}^{(0)}}$：
+\[\ket{\psi_{n}^{(0)}}=\sum_{j=1}^{k}c_j\ket{\psi_{nj}^{(0)}}, \quad (j=1,2,\cdots,k)\]
+取其中一个左矢$\bra{\psi_{ni}^{(0)}}$作用到$\ket{\psi_{n}^{(0)}}$对应的一阶方程上并把$\ket{\psi_{n}^{(0)}}$基底$\ket{\psi_{nj}^{(0)}}$上展开：
+\[\begin{aligned}
+\bra{\psi_{ni}^{(0)}}\hat{H}_0\ket{\psi_{n}^{(1)}}+\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{n}^{(0)}}&=E_n^{(0)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(1)}}+E_n^{(1)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(0)}}\\
+\bra{\psi_{ni}^{(0)}}\hat{H}_0\ket{\psi_{n}^{(1)}}+\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}&=E_n^{(0)}\bra{\psi_{ni}^{(0)}}\ket{\psi_{n}^{(1)}}+E_n^{(1)}\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\ket{\psi_{nj}^{(0)}}\\
+\end{aligned}\]
+利用中间正交性：
+\[\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}=E_n^{(1)}\sum_{j=1}^{k}c_j\bra{\psi_{ni}^{(0)}}\ket{\psi_{nj}^{(0)}}\]
+记$H'_{ij}=\bra{\psi_{ni}^{(0)}}\hat{H}'\ket{\psi_{nj}^{(0)}}, \ (i,j=1,2 \cdot\cdot\cdot k)$，可以将方程组写成矩阵形式：
+\[\begin{pmatrix}
+H'_{11} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22} & \ldots & H'_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}\\
+\end{pmatrix}
+\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}
+=E_n^{(1)}\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}
+\ \Leftrightarrow \
+\begin{pmatrix}
+H'_{11}-E_n^{(1)} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22}-E_n^{(1)} & \ldots & H'_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
+\end{pmatrix}
+\begin{pmatrix}c_1\\c_2\\\vdots\\c_n\end{pmatrix}=0\]
+要使得上式子成立只需要系数矩阵的行列式为0：
+\[\det(\mathbf{H}'-E_n^{(1)}\mathbf{I})=\begin{vmatrix}
+H'_{11}-E_n^{(1)} & H'_{12} & \ldots & H'_{1n}\\
+H'_{21} & H'_{22}-E_n^{(1)} & \ldots & H'_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
+\end{vmatrix}=0\]
+
+上述方法可以解出来一系列不同的一阶能量修正项，如果由于我们一开始说过的，这里只讨论了某个能级$E_n^{(0)}$出现了简并的情况，但实际体系中可能出现多个能级简并的情况，那么之需要重复上述的操作即可计算完全部的$\mathbf{E}^{(1)}$。
+\[E_n^{(1)}=\bra{\psi_n^{(0)}}\hat{H}'\ket{\psi_n^{(0)}}\]
+
+回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
+
+\subsection{MP2}\label{sec:mp}
+这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
+\[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
+只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
+\[\bra{\Phi}\sum_{i=1}^{n}\hat{h}_i\ket{\Phi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{h}_i\ket{\psi_i}, \quad \bra{\phi_1\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{h}_i\ket{\psi_1\phi_2\cdots\phi_n}=\bra{\phi_1}\hat{h}_1\ket{\psi_1}\]
+
+我们可以把一次对掉的组分叫做ST。对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
+\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
+当行列式中存在一个或两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
+\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_1}=\sum_{j=1}^n\bra{\phi_1\phi_j}\hat{g}_{1j}(1-\hat{P}_{12})\ket{\psi_1\phi_j}, \quad \bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_{12}}=\bra{\phi_1\phi_2}\hat{g}_{12}(1-\hat{P}_{12})\ket{\psi_1\psi_2}\]
+
+经过上述讨论，现在我们来看 Hartree-Fock，比如能量$E$，是精确哈密顿量在 Slater 行列式上的期望：
+\[E=\bra{\Phi}\hat{H}\ket{\Phi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+非微扰哈密顿量是 Fock 算符之和，对应的非微扰能量$E_0$：
+\[E_0=\bra{\Phi}\sum_i\hat{F}_i\ket{\Phi}=\bra{\Phi}\sum_i(\hat{h}_i+\hat{J}_i-\hat{K}_i)\ket{\Phi}=\sum_ih_i+\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+微扰部分哈密顿量是双电子积分算符与库伦积分算符和交换积分算符之间的差，对应微扰能量$E'$：
+\[E'=\bra{\Phi}\sum_{ij}g_{ij}-\sum_i(\hat{J}_i-\hat{K}_i)\ket{\Phi}=\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)-\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=-\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
+可以发现在 Hartree-Fock 中我们使用的能量已经包含了微扰部分的能量，因此 Hartree-Fock 可以认为是 MP1。这也是为什么微扰方法是从 MP2 开始的，MP 方法的思想是由于 Hartree-Fock 是利用所有占据轨道变分的最优解，因此优化 Hartree-Fock 需要考虑引入空轨道，这里用$\ket{\Phi^{ab}_{ij}}$表示用两个空轨道$ab$替换了两个占据轨道$ij$。为什么只考虑一次性激发两个轨道呢？我们可以看看只激发一个轨道的情况，假设把占据轨道$i$激发到空轨道$a$，根据规则可以写出一下式子(注意这里$\phi_i,\phi_a$是 Fock 算符的本征态，且都是正则(正交归一)轨道)：
+\[\bra{\Phi^{\rm{HF}}}\hat{H}\ket{\Phi^a_i}=\bra{\phi_i}\hat{h}\ket{\phi_a}+\sum_j\bra{ij}\ket{|aj}=\bra{\phi_i}\hat{F}\ket{\phi_a}=\bra{\Phi^{\rm{HF}}}\hat{H}_0\ket{\Phi^a_i}=0 \quad \Rightarrow \quad \bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^a_i}=0\]
+这说明单激发对于修正 Hartree-Fock 能量毫无帮助，上述结论也称为 Brillouin 定理。
+
+利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
+\[E^{\rm{MP2}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\left|\bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^{ab}_{ij}}\right|^2}{E^{ab}_{ij}-E^{\rm{HF}}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\bra{ij}\ket{|ab}^2}{\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j}\]
+这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。前文提到了 HF 的标度是$O(N^4)$来自于双电子积分，而 MP2 在此基础上又对所有轨道求了一次和，因此标度$O(N^5)$。
+
+\subsection{量子力学的三种等价表述形式}
+这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
+\[i\hbar\pdv{t}\ket{\psi(t)}_S=\hat{H}_S\ket{\psi(t)}_S, \quad \ket{\psi(t)}_S=\hat{U}(t)\ket{\psi(0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
+进而可以得出时间演化算符是(哈密顿量是不含时的)，其与薛定谔绘景下的哈密顿量$\hat{H}_S$是对易的：
+\[\hat{U}(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_S\dd{t}\right)=\exp\left(-\frac{i\hat{H}_St}{\hbar}\right), \quad [\hat{U}(t),\hat{H}_S]=\exp\left(-\frac{i[\hat{H}_S,\hat{H}_S]t}{\hbar}\right)=0\]
+考虑在$t$时刻的算符$\hat{O}$的期望值：
+\[\bra{\psi(t)}_S\hat{O}\ket{\psi(t)}_S=\bra{\psi(0)}_S\hat{U}^{\dagger}(t)\hat{O}(0)\hat{U}(t)\ket{\psi(0)}_S=\bra{\psi(0)}_H\hat{O}_H(t)\ket{\psi(0)}_H\]
+这里用到了$\ket{\psi(t)}_S=\ket{\psi(0)}_H$初态在哪个表象下都是一样的，之后在相互作用绘景也会用到。同时由于薛定谔绘景的算符$\hat{O}$不包含时间，可以直接认为是海森堡绘景下的初始算符$\hat{O}(0)$。于是我们得到了\textcolor{blue}{\textbf{海森堡绘景，即认为算符是随时间演化的而态不随时间演化}}。算符的演化服从海森堡运动方程：
+\[\dv{\hat{O}_H}{t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
+海森堡运动方程可以从薛定谔绘景的时间演化算符出发推导得到：
+\[\dv{\hat{O}_H}{t}=\frac{\partial\hat{U}^{\dagger}(t)}{\partial t}\hat{O}_S\hat{U}(t)+\hat{U}^{\dagger}(t)\hat{O}_S\frac{\partial\hat{U}(t)}{\partial t}=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_H]=-\frac{i}{\hbar}[\hat{A}_H,\hat{U}^\dagger(t)\hat{U}(t)\hat{H}_S]=-\frac{i}{\hbar}[\hat{O}_H,\hat{H}_S]\]
+
+相互作用绘景可以说介于薛定谔绘景和海森堡绘景之间的，因为在\textcolor{blue}{\textbf{相互作用绘景下哈密顿量$\hat{H}(t)$被分为了可以精确求解（不含时）的部分$\hat{H}_0$和复杂的相互作用（含时）的部分$\hat{H}'(t)$，$\hat{H}_0$通过相互作用绘景下的定态演化算符$\hat{U}_0(t)$被吸收到了态里，而$\hat{H}'(t)$通过类似海森堡绘景中的处理变成了相互作用绘景下的哈密顿量$\hat{H}_I(t)$}}：
+\[\ket{\psi(t)}_S=\hat{U}_0(t)\ket{\psi(t)}_I=\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{\psi(t)}_I\]
+将上述态的转换带入薛定谔绘景下的薛定谔方程可以得到相互作用绘景下的薛定谔方程以及运动方程：
+\[i\hbar\pdv{t}\ket{\psi(t)}_I=\hat{U}^{\dagger}_0(t)\hat{H}'(t)\hat{U}_0(t)\ket{\psi(t)}_I=\hat{H}_I(t)\ket{\psi(t)}_I, \quad \dv{\hat{O}_I}{t}=-\frac{i}{\hbar}[\hat{O}_I,\hat{H}_0]\]
+由上述薛定谔方程，我们可以类似推导出相互作用绘景下的相互作用时间演化算符，而且其显然满足：
+\[\hat{U}_I(t)=\exp\left(-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{t}\right), \quad \hat{U}(t)=\hat{U}_0(t)\hat{U}_I(t)\]
+回到在$t$时刻的算符$\hat{O}$的期望值：
+\[\bra{\psi(t)}_S\hat{O}\ket{\psi(t)}_S=\bra{\psi(0)}_S\hat{U}_I^{\dagger}(t)\hat{U}_0^{\dagger}(t)\hat{O}(0)\hat{U}_0(t)\hat{U}_I(t)\ket{\psi(0)}_S=\bra{\psi(0)}_I\hat{O}_I(t)\ket{\psi(0)}_I\]
+可以看出三种绘景都是形式一致的，只是量子力学的不同表象罢了（笑
+
+最后遗留一个小问题，由于$\hat{H}_I$含时，我们没法直接写出该时间演化算符的结果，但是可以通过迭代时间演化算符来近似求解，直接对薛定谔方程积分可以得到如下的形式：
+\[i\hbar\pdv{t}\ket{\psi(t)}_I=\hat{H}_I(t)\ket{\psi(t)}_I \quad \Rightarrow \quad \ket{\psi(t)}_I=\ket{\psi(0)}_I-\frac{i}{\hbar}\int_{0}^{t}\hat{H}_I\dd{\tau}\ket{\psi(\tau)}_I\]
+不断对积分中的态$\ket{\psi_I(\tau)}$进行迭代可以得到如下递推公式：
+\[\ket{\psi(t)}_I=\ket{\psi(0)}_I+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\ket{\psi(0)}_I\]
+此时我们按照相互作用绘景的相互作用时间演化算符的定义把它从上式中扣出来：
+\[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
+此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
+
+\subsection{含时微扰理论}
+当考虑一些更实际的体系如原子分子吸收发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的含时微扰，假设哈密顿为$\hat{H}=\hat{H}_0+\lambda\hat{H}'(t)$。在相互作用绘景下，给定初态（其实就是定态解）：
+\[i\hbar\pdv{t}\ket{\psi_n(t)}_I=\hat{H}_I\ket{\psi_n(t)}_I, \quad i\hbar\pdv{t}\ket{\psi_n(0)}_I=\hat{H}_I\ket{\psi_n(0)}_I \quad \Leftrightarrow \quad i\hbar\pdv{t}\ket{m}=\hat{H}_I\ket{m}\]
+
+将$\ket{\psi_n(t)}_I$在定态解$\{\ket{m}\}$的基底下展开：
+\[\ket{\psi_n(t)}_I=\sum_m\ket{m}\bra{m}\ket{\psi_n(t)}_I=\sum_mc_{nm}(t)\ket{m} \quad \Rightarrow \quad i\hbar\sum_m\pdv{c_{nm}(t)}{t}\ket{n}=\sum_mc_{nm}(t)\hat{H}_I\ket{n}\]
+对上式两侧同时内积上$\bra{k}$得到，定义个缩写符号$\omega_{km}=(E_k-E_m)/\hbar$（到达态能量减去出发态能量）：
+\[\begin{aligned}
+i\hbar\pdv{c_{nk}(t)}{t}&=\sum_mc_{nm}(t)\bra{k}\hat{H}_I\ket{m}=\sum_m\lambda c_{nm}(t)\bra{k}\exp\left(\frac{i\hat{H}_0t}{\hbar}\right)\hat{H}'(t)\exp\left(-\frac{i\hat{H}_0t}{\hbar}\right)\ket{m}\\
+&=\sum_m\lambda c_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}\exp\left(-\frac{i(E_m-E_k)t}{\hbar}\right)\equiv\sum_m\lambda c_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}e^{i\omega_{km}t}
+\end{aligned}\]
+将展开系数做微扰展开，并带入上式，这里再提一下：
+\[c_{nm}(t)=c_{nm}^{(0)}+\sum_{j=1}^{+\infty}c_{nm}^{(j)}(t)\lambda^i \quad \Rightarrow \quad i\hbar\sum_{j=1}^{+\infty}\pdv{c_{nk}^{(j)}(t)}{t}\lambda^j=\sum_{j=1}^{+\infty}\lambda^j\sum_mc^{(j-1)}_{nm}(t)\bra{k}\hat{H}'(t)\ket{m}e^{i\omega_{km}t}\]
+
+取出一阶修正项，同时假设定态时系统处于态$\ket{n}$，则系数$c^{(0)}_{nm}=\delta_{mn}$：
+\[i\hbar\pdv{c_{nk}^{(1)}(t)}{t}=\bra{k}\hat{H}'(t)\ket{n}e^{i\omega_{kn}t} \quad \Rightarrow \quad c_{nk}^{(1)}(t)=\frac{1}{i\hbar}\int_{0}^{t}\bra{k}\hat{H}'(\tau)\ket{n}e^{i\omega_{kn}\tau}\dd{\tau}\]
+
+回看系数$c_{nk}^{(1)}(t)=\bra{k}\ket{\psi_n(t)}_I$的定义我们知道，其平方$P_{n \to k}(t)=|c_{nk}^{(1)}(t)|^2$表示系统在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁概率，通过对跃迁概率求导，我们能知道跃迁的速率，于是我们就能研究动力学辣！
+
+下面我们以一个具体的微扰哈密顿作为展示，假设存在一个电磁场$\bm{E}(t)=\bm{E}\cos{\omega t}$，与体系的偶极$\hat{\bm{\mu}}$相互作用，因此微扰哈密顿可以写成$\hat{H}'=-\hat{\bm{\mu}}\cdot\bm{E}\cos{\omega t}$，负号来自于相互作用是降低体系能量的。则跃迁系数为：
+\[c_{nk}^{(1)}(t)=\frac{1}{i\hbar}\int_{0}^{t}\bra{k}\hat{H}'(\tau)\ket{n}e^{i\omega_{kn}\tau}\dd{\tau}=\frac{i}{\hbar}\int_{0}^{t}\bra{k}\hat{\bm{\mu}}\ket{n}\cdot \bm{E}\cos{\omega t}e^{i\omega_{kn}\tau}\dd{\tau}\]
+其中$\bm{\mu}_{nk}\equiv\hat{\bm{\mu}}\ket{n}$为跃迁偶极矩，其与电场场强$\bm{E}$与时间无关，可以从积分中提出来：
+\[c_{nk}^{(1)}(t)=\frac{i\bm{\mu}_{nk}\cdot\bm{E}}{2\hbar}\int_{0}^{t}(e^{i\omega t}+e^{-i\omega t})e^{i\omega_{kn}\tau}\dd{\tau}=\frac{\bm{\mu}_{nk}\cdot\bm{E}}{2\hbar}\left[\frac{e^{i(\omega_{kn}+\omega)t}-1}{\omega_{kn}+\omega}+\frac{e^{i(\omega_{kn}-\omega)t}-1}{\omega_{kn}-\omega} \right]\]
+
+对光吸收过程，$\omega$为正值(光发射过程相反)，当$\omega$在合适范围内，满足：
+\[\left|\frac{e^{i(\omega_{kn}+\omega)t}-1}{\omega_{kn} + \omega}\right| \ll \left|\frac{e^{i(\omega_{kn}-\omega)t}-1}{\omega_{mkn}-\omega}\right|\]
+故对光吸收过程（delta函数这里用到了$\pi\delta(x)/t=\mathrm{sinc}^2(xt)$，有点跳步可以自己推导）：
+\[P_{n \to k}(t)=|c_{nk}^{(1)}(t)|^2\approx\frac{|\bm{\mu}_{nk}\cdot\bm{E}|^2}{2\hbar^2}\cdot\frac{1-\cos{(\omega_{kn}-\omega)t}}{(\omega_{kn}-\omega)^2}=\frac{\pi t}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)\]
+进而可以计算在$t$时刻从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
+\begin{equation}\label{eq:fgr}
+k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(\omega_{kn}-\omega)=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E_k-E_n-\hbar\omega)
+\end{equation}
+
+从上述公式可以知道只有当满足$\omega=\omega_{kn}$时越迁才会发生。\textcolor{blue}{\textbf{由微扰假定，我们认为外场不影响系统态本身的分布，系统处于能量为$E$的态上的概率由平衡态密度$\rho(E)$给出}}。因此如果我们考察在外场频率$\omega=\omega_{kn}$时，即$E_n-\hbar\omega=E_k$，从初态$\ket{n}$发生的越迁速率，也即从初态$\ket{n}$跃迁到$\ket{k}$的跃迁速率$k_{n \to k}$：
+\[k_{n \to k}=\int k_{n \to ?}(E)\rho(E)\dd{E}=\int \frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\delta(E-E_n-\hbar\omega)\rho(E)\dd{E}=\frac{\pi}{2\hbar}|\bm{\mu}_{nk}\cdot\bm{E}|^2\rho(E_k)\]
+
+上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
+
+\subsection{红外光谱}
+红外光谱测量的是样品对红外光的频率吸收$I(\omega)$，遵循比尔-朗伯 (Beel-Lambert) 定律
+\[I(\omega)=\alpha(\omega)l=\sigma(\omega)l/V\]
+其中$\sigma(\omega)$表示样品的吸收截面，$l$和$V$分别代表辐照样品的长度和体积。此外，样品的吸收截面$\sigma(\omega)$可根据辐射能量损失率$\dot{E}_{\rm{rad}}(\omega)=\hbar\omega\Delta k$（$\Delta k$是体系吸收和发射光子的速率差）与能流$S(\omega)=\langle\mathbf{S}(\omega)\rangle$分解为：
+\[\sigma(\omega)=\dot{E}_{\rm{rad}}(\omega)/S(\omega)\]
+在外场$E(t) = E_0 \cos \omega t$作用下，电磁场的坡印廷矢量为$\mathbf{S}=\mathbf{E} \times \mathbf{H}$，其中$\mathbf{E}$和$\mathbf{H}$的振幅满足$\epsilon E^2=\mu H^2$:
+\[S(\omega)=\frac{1}{2}EH=\frac{1}{2}\sqrt{\frac{\epsilon}{\mu}}E^2=\frac{1}{2}\sqrt{\frac{\epsilon_r\epsilon_0}{\mu_r\mu_0}}E^2=\frac{n(\omega)\epsilon_0c}{2\mu_r}E^2\]
+其中$n(\omega)=\sqrt{\epsilon_r\mu_r}$为折射率，$c=1/\sqrt{\epsilon_0\mu_0}$为真空光速，系数1/2源于二维平面内$\cos^2\omega t$的时间平均。
+
+从费米黄金定则[式\eqref{eq:fgr}]出发，假设系统为\textcolor{blue}{\textbf{各向同性}}（三维情况），从$\ket{i}$到$\ket{f}$的吸收跃迁速率为：
+\[W_{i\to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)\]
+
+当系统处于平衡态时，处于$\ket{i}$态的概率为$P_i=e^{-\beta E_i}/Z$，其中$Z=\sum_i e^{-\beta E_i}$为正则配分函数。考虑所有可能的初态与末态，吸收跃迁速率的系综平均为：
+\[\begin{aligned}
+\Gamma(\omega)&=\sum_{f,i}P_iW_{i \to f}(\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}\ket{f}\bra{f}\hat{\bm{\mu}}\ket{i}e^{i(\omega_{fi}-\omega)t}\\
+&=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}\ket{f}\bra{f}e^{i\hat{H}_0t/\hbar}\hat{\bm{\mu}}e^{-i\hat{H}_0t/\hbar}\ket{i}\\
+&=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\sum_{f,i}P_i\bra{i}\hat{\bm{\mu}}(0)\ket{f}\bra{f}\hat{\bm{\mu}}(t)\ket{i}=\frac{\bm{E}^2}{12\hbar^2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle\\
+\end{aligned}\]
+
+类似地，发射跃迁速率$(\omega>0)$为：
+\[W_{f\to i}(-\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)\]
+当$\omega=\omega_{fi}$时，发射跃迁速率的系综平均为：
+\[\begin{aligned}
+\Gamma(-\omega)&=\sum_{f,i}P_fW_{f \to i}(-\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}P_f|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta E_f}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{if}+\omega)\\
+&=\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta (E_i+\hbar\omega)}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\frac{\pi\bm{E}^2}{6\hbar^2}\sum_{f,i}\frac{e^{-\beta E_i}}{Z}|\langle i|\hat{\bm{\mu}}|f\rangle|^2\delta(\omega_{fi}-\omega)=e^{-\beta\hbar\omega}\Gamma(\omega)
+\end{aligned}\]
+
+一般文献中都以$n(\omega)\alpha(\omega)$表示红外强度，带入$\dot{E}_{\rm{rad}}(\omega)=[\Gamma(\omega)-\Gamma(-\omega)]\hbar\omega$，令$\mu_r=1$，可得：
+\begin{equation}\label{eq:IR_qm_1}
+n(\omega)\alpha(\omega)=\frac{\pi}{3\hbar cV\epsilon_0}\sum_{f,i}P_i|\langle f|\hat{\bm{\mu}}|i\rangle|^2\delta(\omega_{fi}-\omega)=\frac{\omega}{6\hbar cV\epsilon_0}(1-e^{-\beta\hbar\omega})\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle
+\end{equation}
+
+引入对称偶极自相关函数$C_{\rm{sym}}(t)=\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)+\hat{\bm{\mu}}(t)\hat{\bm{\mu}}(0)\rangle/2$，假定越迁是平稳过程，其跃迁速率为
+\[\Gamma_{\rm{sym}}(\omega)=\frac{\bm{E}^2}{12\hbar^2}\cdot\frac{1}{2}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}(\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle+\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(-t)\rangle)=\frac{1}{2}(\Gamma(\omega)+\Gamma(-\omega))=\frac{1+e^{-\beta\hbar\omega}}{2}\Gamma(\omega)\]
+将上式代入[式\eqref{eq:IR_qm_1}]中，可得：
+\[n(\omega)\alpha(\omega)=\frac{\omega}{3\hbar cV\epsilon_0}\frac{1-e^{-\beta\hbar\omega}}{1+e^{-\beta\hbar\omega}}\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}C_{\rm{sym}}(t)\approx\frac{\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{-\infty}^{\infty}e^{-i\omega t}\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
+通过分子动力学（MD）模拟计算的偶极自相关函数 $\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}$ 近似对应于对称量子自相关函数 $C_{\rm{sym}}(t)$ 的经典对应。由于对称偶极自相关函数$C_{\rm{sym}}(t)$是实偶函数，同时当温度较高时$\beta\hbar\omega=\hbar\omega/kT\ll1$，我们还可以进一步近似掉$\tanh(\beta\hbar\omega/2)\approx\beta\hbar\omega/2$，得到经典极限下的红外吸收系数表达式：
+\[n(\omega)\alpha(\omega)=\frac{2\omega}{3\hbar cV\epsilon_0}\tanh\left(\frac{\beta\hbar\omega}{2}\right)\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\approx\frac{\omega^2}{3cV\epsilon_0kT}\int_{0}^{\infty}\cos(\omega t)\dd{t}\langle\hat{\bm{\mu}}(0)\hat{\bm{\mu}}(t)\rangle_{\rm{MD}}\]
+
+\newpage
