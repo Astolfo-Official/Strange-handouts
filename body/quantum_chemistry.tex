@@ -1,15 +1,55 @@
-\section{Hartree-Fock}
-\subsection{正则轨道下的 Hartree-Fock}\label{sec:hf}
+\section{Slater-Condon 规则}
 在BO近似后，电子哈密顿如下：
 \[\hat{H}_{el}=\hat{T}_e+\hat{V}_{Ne}+\hat{V}_{ee}+\hat{V}_{NN}=\sum_i\left(-\frac{1}{2}\nabla^2_i+\sum_N\frac{Z}{r_{Ni}}\right)+\sum_{i<j}\frac{1}{r_{ij}}+V_{NN}=\sum_i\hat{h}_i+\sum_{i<j}\hat{g}_{ij}+V_{NN}\]
 
-虽然我们已经把核项给舍去了，但电子部分的哈密顿依然是一个多体哈密顿，还是一个难以求解的问题。我们一般能处理的都是单体问题，比如氢原子的电子薛定谔、谐振子等等，所以我们希望能将多体问题尽可能精确地转换为单体问题来处理，如我们之前提到的平均场近似，如此一来多电子问题就被转换为了单电子问题。相对应的，体系的波函数也变成了几个单体波函数(自旋轨道)的乘积（Hartree 积）$\ket{\Psi}=\ket{\psi_1\psi_2\cdots \psi_n}$。但由于电子费米子的全同性的要求，上述需要对 Hartree 基做反对称化得到 Slater 行列式$\hat{A}\ket{\psi_1\psi_2\cdots \psi_n}$。
+虽然我们已经把核项给舍去了，但电子部分的哈密顿依然是一个多体（电子之间的库伦相互作用是二体的）哈密顿，还是一个难以求解的问题。我们一般能处理的都是单体问题，比如氢原子的电子薛定谔、谐振子等等，所以我们希望能将多体问题尽可能精确地转换为单体问题来处理，如我们之前提到的平均场近似，如此一来多电子问题就被转换为了单电子问题。相对应的，体系的波函数也变成了几个单体波函数(自旋轨道)的乘积（Hartree 积）$\ket{\Psi}=\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}:=\ket{\phi_1\phi_2\cdots\phi_n}$。但由于电子费米子的全同性的要求，上述需要对 Hartree 基做反对称化得到 Slater 行列式$\ket{\Psi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$。
 
-而对 Hartree-Fock 方法，是从 Slater 行列式出发，利用变分法将精确哈密顿量转换成单电子算符的和，我们称转换后的单电子问题为 Mean field，一般指的是 HF 与 DFT。从 HF 出发，我们假定了 Slater 行列式是精确的，然后认为哈密顿量是不精确的，由此出发，我们会希望通过不断修正哈密顿量来使得结果更精确，于是就有了 MP 等微扰方法。另一方面，如果我们认为哈密顿量是精确的，那么就认为波函数是不精确的，从 Slater 行列式出发于是就有了 CI, CC, MCSCF 等方法。
+在此基础上，我们希望能计算出 Slater 行列式$\ket{\Psi}$对哈密顿量$\hat{H}$的期望值$\bra{\Psi}\hat{H}\ket{\Psi}$，但直接计算会非常复杂，为此我们引入 Slater-Condon 规则来简化计算。
+\begin{theorem}[Slater-Condon 规则]\label{slater-condon}
+设$\ket{\Psi}$和$\ket{\Psi'}$为由正交归一的自旋轨道组成的 Slater 行列式，则其对单体算符$\hat{F}$和双体算符$\hat{G}$
+\[\hat{F}=\sum_i\hat{f}_i, \quad \hat{G}=\sum_{i<j}\hat{g}_{ij}\]
+的矩阵元分别为：
+\begin{itemize}
+\item 若$\ket{\Psi'}=\ket{\Psi}$，则
+\[\bra{\Psi}\hat{F}\ket{\Psi}=\sum_i\bra{i}\hat{f}_i\ket{i}, \quad \bra{\Psi}\hat{G}\ket{\Psi}=\frac{1}{2}\sum_{i,j}(\bra{ij}\hat{g}_{ij}\ket{ij}-\bra{ij}\hat{g}_{ij}\ket{ji})\]
+其中
+\[\bra{ij}\ket{kl}=\iint \psi_i^*(\bm{r}_1)\psi_j^*(\bm{r}_2)\hat{g}(1,2)\psi_k(\bm{r}_1)\psi_l(\bm{r}_2)\dd{\bm{r}_1}\dd{\bm{r}_2}\]
+\item 若$\ket{\Psi'}$与$\ket{\Psi}$仅有一个自旋轨道不同，设$\ket{\Psi'}=\hat{a}_r^{\dagger}\hat{a}_s\ket{\Psi}$，则
+\[\bra{\Psi'}\hat{F}\ket{\Psi}=\bra{r}\hat{f}_r\ket{s}, \quad \bra{\Psi'}\hat{G}\ket{\Psi}=\sum_{i}(\bra{ri}\hat{g}_{ri}\ket{si}-\bra{ri}\hat{g}_{ri}\ket{is})\]
+\item 若$\ket{\Psi'}$与$\ket{\Psi}$有两个自旋轨道不同，设$\ket{\Psi'}=\hat{a}_r^{\dagger}\hat{a}_s^{\dagger}\hat{a}_u\hat{a}_v\ket{\Psi}$，则
+\[\bra{\Psi'}\hat{F}\ket{\Psi}=0, \quad \bra{\Psi'}\hat{G}\ket{\Psi}=\bra{rs}\hat{g}_{rs}\ket{uv}-\bra{rs}\hat{g}_{rs}\ket{vu}\]
+\item 若$\ket{\Psi'}$与$\ket{\Psi}$有超过两个自旋轨道不同，则
+\[\bra{\Psi'}\hat{F}\ket{\Psi}=0, \quad \bra{\Psi'}\hat{G}\ket{\Psi}=0\]
+\end{itemize}
+\end{theorem}
+\begin{proof}
+考虑以正交归一的一组自旋轨道构建的 Slater 行列式$\ket{\Psi}=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
+\[\bra{\Psi}\ket{\Psi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
+只有完全没被调换过粒子编号的态才有不为0的内积，如果不是相同态的内积$\bra{\Psi'}\ket{\Psi}$显然为0，因为根本不可能通过对调获得完全一样的态。
 
-由Condon-Slater规则（在\ref{sec:mp}），正则轨道(正交归一的自旋轨道)组成的 Slater 行列式$\ket{\Psi}$对哈密顿量$\hat{H}$的期望（能量$E$）如下所示，其中$\bra{ij}\ket{ij},\bra{ij}\ket{ji}$为库伦积分和交换积分，$h_i$包括了动能项和核对电子的势能：
+类似的对于单体算符$\hat{f}_i$，用相同的态做内积，只有没被调换过的态有非0结果
+\[\bra{\Psi}\hat{f}_i\ket{\Psi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{f}_i\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\hat{f}_i\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_i}\hat{f}_i\ket{\phi_i}\]
+这里需要注意下角标表示自旋轨道的编号，而算符$\hat{P}_k$是作用到电子编号上的，其角标$k$表示一种对调方式。
+
+如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\Psi'}=\hat{a}_r^{\dagger}\hat{a}_s\ket{\Psi}$）：
+\[\bra{\Psi'}\hat{f}_r\ket{\Psi}=\bra{\phi_r\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{f}_r\hat{P}_k\ket{\phi_s\phi_2\cdots\phi_n}=\bra{\phi_r\phi_2\cdots\phi_n}\hat{f}_r\ket{\phi_s\phi_2\cdots\phi_n}=\bra{\phi_r}\hat{f}_r\ket{\phi_s}\]
+最后带入单体算符$\hat{F}$的定义我们可以得到：
+\[\bra{\Psi}\hat{F}\ket{\Psi}=\bra{\Psi}\sum_{i=1}^{n}\hat{f}_i\ket{\Psi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{f}_i\ket{\phi_i}, \quad \bra{\Psi'}\hat{F}\ket{\Psi}=\bra{\phi_r\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{f}_i\ket{\phi_s\phi_2\cdots\phi_n}=\bra{\phi_r}\hat{f}_r\ket{\phi_s}\]
+
+对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
+\[\bra{\Psi}\hat{G}\ket{\Psi}=\bra{\Psi}\sum_{i<j}\hat{g}_{ij}\ket{\Psi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
+对单替换行列式$\ket{\Psi'}=\hat{a}_r^{\dagger}\hat{a}_s\ket{\Psi}$，只有当$\hat{g}_{ij}$作用在包含了不同轨道的那一对轨道上时才有非0结果：
+\[\bra{\Psi'}\hat{G}\ket{\Psi}=\sum_{i}\bra{\phi_r\phi_i}\hat{g}_{ri}(1-\hat{P}_{12})\ket{\phi_s\phi_i}\]
+对双替换行列式$\ket{\Psi''}=\hat{a}_r^{\dagger}\hat{a}_s^{\dagger}\hat{a}_u\hat{a}_v\ket{\Psi}$，只有当$\hat{g}_{ij}$作用在包含了不同轨道的那一对轨道上时才有非0结果：
+\[\bra{\Psi''}\hat{G}\ket{\Psi}=\bra{\phi_r\phi_s}\hat{g}_{rs}(1-\hat{P}_{12})\ket{\phi_u\phi_v}\]
+更高阶的替换将会在 overlap 部分出现无法匹配的情况，因此结果为0。
+\end{proof}
+\section{Hartree-Fock}
+\subsection{正则轨道下的 Hartree-Fock}\label{sec:hf}
+Hartree-Fock 方法从 Slater 行列式出发，利用变分法将精确哈密顿量转换成单电子算符的和，我们称转换后的单电子问题为 Mean field，一般指的是 HF 与 DFT。从 HF 出发，我们假定了 Slater 行列式是精确的，然后认为哈密顿量是不精确的，由此出发，我们会希望通过不断修正哈密顿量来使得结果更精确，于是就有了 MP 等微扰方法。另一方面，如果我们认为哈密顿量是精确的，那么就认为波函数是不精确的，从 Slater 行列式出发于是就有了 CI, CC, MCSCF 等方法。
+
+由Condon-Slater规则 [定理\ref{slater-condon}]，正则轨道(正交归一的自旋轨道)组成的 Slater 行列式$\ket{\Psi}$对哈密顿量$\hat{H}$的期望（能量$E$）如下所示，其中$\bra{ij}\ket{ij},\bra{ij}\ket{ji}$为库伦积分和交换积分，$h_i$包括了动能项和核对电子的势能：
 \[E=\bra{\Psi}\hat{H}\ket{\Psi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-
 通过拉格朗日乘数法把正交归一条件引入泛函$\eta(\lambda_{ij})$进行变分：
 \[\eta(\lambda_{ij})=E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij}) \quad \Rightarrow \quad \frac{\delta\eta(\lambda_{ij})}{\delta \bra{\bm{r}}\ket{\psi_i}}=\frac{\delta}{\delta \bra{\bm{r}}\ket{\psi_i}}\left(E+\sum_{i,j}\lambda_{ij}(\bra{\psi_i}\ket{\psi_j}-\delta_{ij})\right)=0\]
 跳过复杂得变分推导，得到的新的哈密顿量$\hat{H}_0$：
@@ -23,7 +63,7 @@
 \[E_{\rm{UHF}}=\sum_{i,\uparrow}h_i+\frac{1}{2}\sum_{i,j,\uparrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)+\sum_{i,\downarrow}h_i+\frac{1}{2}\sum_{i,j,\downarrow}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 ROHF 太复杂先不说，看看 RHF 能量：
 \[E_{\rm{RHF}}=2\sum_ih_i+\sum_{i,j}\left(2\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
-对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，只有自旋相同的积分不为零，因此加倍。可以看到在 HF 中不同自旋的电子没有相互作用，可以同时出现在一个轨道上，但实际上由于瞬时库伦相互作用，电子会排斥其他电子出现在其附近(Coulomb hole)，这部分相互作用我们称之为\textcolor{blue}{\textbf{动态相关}}。
+对单电子项，只有自己会跟自己的作用，所以写成空间轨道后加倍，库伦积分也类似，轨道只跟自己积分，但由于涉及了两个轨道，所以翻四倍，而交换积分涉及不同轨道积分，只有自旋相同的积分不为零，因此加倍。可以看到在 HF 中不同自旋的电子没有相互作用，可以同时出现在一个轨道上，但实际上由于瞬时库伦相互作用，电子会排斥其他电子出现在其附近(Coulomb hole)，这部分相互作用我们称之为\textcolor{blue}{\textbf{动态相关}}。另外的，当体系中存在近简并态时，单 Slater 行列式无法描述电子在这些近简并态间的跃迁（即存在多个不同的电子组态对体系影响重大，每一个电子组态对应一个 Slater 行列式，因此需要多个 Slater 行列式才能描述清楚系统的电子结构），这部分相互作用我们称之为\textcolor{blue}{\textbf{静态相关}}。HF 方法由于忽略了电子相关，因此计算结果一般会高于真实能量。
 
 \subsection{Hartree-Fock-Roothaan 方法}
 假定正则轨道被已知的原子轨道基底下展开，则在此基底下 Fock 矩阵和 overlap 矩阵为：
@@ -59,14 +99,38 @@ ROHF 太复杂先不说，看看 RHF 能量：
 \href{https://github.com/yangdatou/hf-tutorial}{大头版HF (积分算好了) }和
 \href{https://github.com/Walter-Feng/Hartree-Fock-in-CPP}{叔叔版HF (从基组开始嗯造)}。
 
-Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现：
-\[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
-基于上述形式的自洽场方程可以介绍DIIS辣（挖坑）！
-
 在完成了上述自洽场计算之后，获得了正确的密度矩阵$\mathbf{P}=\mathbf{C}\Lambda\mathbf{C}^{\dagger}$后，我们可以计算能量了：
 \[E=\sum_{i\in\rm{occ}}\bra{i}\hat{h}\ket{i}+\frac{1}{2}\sum_{i,j\in\rm{occ}}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)=\sum_{\mu\nu}P_{\mu\nu}\bra{\phi_{\mu}}\hat{h}\ket{\phi_{\nu}}+\frac{1}{2}\sum_{\mu\nu rs}P_{\mu\nu}P_{rs}\bra{\phi_{\mu}\phi_r}\ket{|\phi_{\nu}\phi_s}\]
 
 从上述内容可以知道，计算实际体系的 HF 需要计算原子基下的双电子积分，所以 HF 的理论标度为$O(N^4)$。
+
+\subsection{DIIS}
+Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现：
+\[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
+DIIS (Direct Inversion in the Iterative Subspace) 可以直接用在这个形式下引入，其核心思想是利用前几步迭代的信息，通过线性组合构造更优的 Fock 矩阵，使误差矩阵最小化。相比于简单的迭代，DIIS 可以将收敛速度从线性加速至超线性，通常能将所需迭代步数减少 50$\sim$80\%。如最经典的 DIIS 方法，定义第 $i$ 步迭代的误差矩阵：
+\[\mathbf{e}_i=\mathbf{F}_i\mathbf{P}_i\mathbf{S}-\mathbf{S}\mathbf{P}_i\mathbf{F}_i\]
+这个误差矩阵衡量了 Hartree-Fock-Roothaan 方程的不满足程度。当 $\mathbf{e}_i = 0$ 时，表明已经收敛。假设我们保存了最近 $n$ 步的 Fock 矩阵 $\mathbf{F}_1, \mathbf{F}_2, \ldots, \mathbf{F}_n$，利用一组待定的系数$\{c_i\}_{i=1}^n$构造新的 Fock 矩阵和对应的误差矩阵：
+\[\mathbf{F}_{\rm{opt}} = \sum_{i=1}^{n} c_i \mathbf{F}_i \ , \quad \mathbf{e}_{\rm{opt}} = \sum_{i=1}^{n} c_i \mathbf{e}_i, \quad \sum_i^n c_i = 1\]
+为了最小化误差，计算误差矩阵的 Frobenius 范数（矩阵所有元素平方和）极小值：
+\[\left\| \sum_{i=1}^{n} c_i \mathbf{e}_i \right\|_F^2 = \sum_{i,j} \left( \sum_{k=1}^{n} c_k e_k^{ij} \right)^2=\sum_{i,j} \sum_{k,l} c_k c_l e_k^{ij} e_l^{ij} = \sum_{k,l} c_k c_l \sum_{i,j} e_k^{ij} e_l^{ij} = \sum_{k,l} c_k c_l \text{Tr}(\mathbf{e}_k^T \mathbf{e}_l) := \sum_{k,l} c_k c_l E_{kl}\]
+
+引入拉格朗日乘数 $\lambda$ 来处理约束条件：
+\[L = \sum_{k,l} c_k c_l E_{kl} - \lambda \left(\sum_k c_k - 1\right)\]
+对 $c_i$ 求偏导：
+\[\frac{\partial L}{\partial c_i} = 2\sum_{k} c_k E_{ki} - \lambda = 0\]
+
+整理得到线性方程组：
+$$\begin{pmatrix}
+2E_{11} & 2E_{12} & \cdots & 2E_{1n} & -1 \\
+2E_{21} & 2E_{22} & \cdots & 2E_{2n} & -1 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+2E_{n1} & 2E_{n2} & \cdots & 2E_{nn} & -1 \\
+-1 & -1 & \cdots & -1 & 0
+\end{pmatrix}
+\begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \\ \lambda \end{pmatrix}
+= \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \\ -1 \end{pmatrix}$$
+
+通过求解该线性方程组得到最优的系数 $c_i$，进而构造最优的 Fock 矩阵。
 
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
@@ -198,17 +262,7 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
 
 \subsection{MP2}\label{sec:mp}
-这里我们介绍前面略过的 Condon-Slater 规则，首先考虑以正交归一的一组自旋轨道在反对称化后的 Slater 行列式作为体系波函数$\ket{\Phi}=\hat{A}(\ket{\phi_1}\otimes\ket{\phi_2}\otimes\cdots\otimes\ket{\phi_n}):=\hat{A}\ket{\phi_1\phi_2\cdots\phi_n}$，反对称化算符显然有一下性质$\hat{A}=\hat{A}^{\dagger}, \ \hat{A}^2=\sqrt{n!}\hat{A}$（把任意一个位置调换算符作用到反对称化的波函数上只能获得其自身）。因此对overlap：
-\[\bra{\Phi}\ket{\Phi}=\bra{\phi_1\phi_2\cdots\phi_n}\sum_k\epsilon_k\hat{P}_k\ket{\phi_1\phi_2\cdots\phi_n}=\bra{\phi_1\phi_2\cdots\phi_n}\ket{\phi_1\phi_2\cdots\phi_n}=1\]
-只有完全没被调换过粒子编号的态不为0的内积，如果不是相同态的内积$\bra{\Phi}\ket{\Psi}$显然为0。类似的对于单体算符$\hat{h}_i$，如果我们求能量，即要求用相同的态做内积，只有没被调换过的态有非0结果；如果是不同的态作用到单体算符上，则至多只能有一个轨道不一样且该不同的轨道必须包含在单体算符的期望值项里（假设$\ket{\phi_1}\to\ket{\psi_1}$）：
-\[\bra{\Phi}\sum_{i=1}^{n}\hat{h}_i\ket{\Phi}=\sum_{i=1}^{n}\bra{\phi_i}\hat{h}_i\ket{\psi_i}, \quad \bra{\phi_1\phi_2\cdots\phi_n}\sum_{i=1}^{n}\hat{h}_i\ket{\psi_1\phi_2\cdots\phi_n}=\bra{\phi_1}\hat{h}_1\ket{\psi_1}\]
-
-我们可以把一次对掉的组分叫做ST。对于一个态，对掉一次至少两个轨道不一样，对掉两次（注意不包含换回来）则不一样的更多，对单体算符由于只允许一个轨道不一样所以不可能允许存在对掉一次的组分，对双体算符也只允许对掉一次，因此对于双体算符$\hat{g}_{ij}$的期望值可以很轻易得写出：
-\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi}=\sum_{i<j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}=\frac{1}{2}\sum_{i,j}\bra{\phi_i\phi_j}\hat{g}_{ij}(1-\hat{P}_{12})\ket{\phi_i\phi_j}\]
-当行列式中存在一个或两个轨道不一样，那么这两个轨道必须包含在双电子项的积分中，假设分别为$\ket{\phi_1}\to\ket{\psi_1}$和$\ket{\phi_1}\to\ket{\psi_1}, \ \ket{\phi_2}\to\ket{\psi_2}$：
-\[\bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_1}=\sum_{j=1}^n\bra{\phi_1\phi_j}\hat{g}_{1j}(1-\hat{P}_{12})\ket{\psi_1\phi_j}, \quad \bra{\Phi}\sum_{i<j}\hat{g}_{ij}\ket{\Phi_{12}}=\bra{\phi_1\phi_2}\hat{g}_{12}(1-\hat{P}_{12})\ket{\psi_1\psi_2}\]
-
-经过上述讨论，现在我们来看 Hartree-Fock，比如能量$E$，是精确哈密顿量在 Slater 行列式上的期望：
+M{\o}ller-Plesset 微扰理论(MP)是量子化学中一种重要的电子相关能计算方法，基于 Hartree-Fock，通过微扰理论对电子相关效应进行修正。根据前文，体系的基态能量$E$是精确哈密顿量在基态 Slater 行列式上的期望：
 \[E=\bra{\Phi}\hat{H}\ket{\Phi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
 非微扰哈密顿量是 Fock 算符之和，对应的非微扰能量$E_0$：
 \[E_0=\bra{\Phi}\sum_i\hat{F}_i\ket{\Phi}=\bra{\Phi}\sum_i(\hat{h}_i+\hat{J}_i-\hat{K}_i)\ket{\Phi}=\sum_ih_i+\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
@@ -221,6 +275,11 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 利用我们前文在定态非简并微扰的公式可以知道 MP2 能量是：
 \[E^{\rm{MP2}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\left|\bra{\Phi^{\rm{HF}}}\hat{H}'\ket{\Phi^{ab}_{ij}}\right|^2}{E^{ab}_{ij}-E^{\rm{HF}}}=-\sum_{i<j}^{\rm{occ}}\sum_{a<b}^{\rm{vir}}\frac{\bra{ij}\ket{|ab}^2}{\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j}\]
 这里稍微解释一下分母，非微扰的哈密顿是一堆 Fock 算符的和，因此对应的非微扰能量就是轨道能量和，因此两个不同 Slater 行列式的非微扰能量差只需要去数有多少轨道不一样。MP2 基本能覆盖80$\sim$90\%的相关能。前文提到了 HF 的标度是$O(N^4)$来自于双电子积分，而 MP2 在此基础上又对所有轨道求了一次和，因此标度$O(N^5)$。
+\begin{center}
+    \includegraphics[scale=0.65]{fig/lzhx/mpx.png}
+\end{center}
+
+从上述图片可以看到由于是非变分方法，并不像 CI 方法那样能保证能量随着引入更多组态总是下降的，甚至可能出现引入高阶微扰使得相关能的计算误差更大，尤其是在小基组下更容易出现这种情况。考虑到高阶微扰昂贵的计算成本，这就使得微扰这种方法纯纯吃力不讨好。另外一方面，微扰方法假设零阶波函数是对真实波函数的合理近似，即微扰算符足够《小》。HF波函数对系统的描述越不准确，修正项就越大，为了达到一定的精度，需要包含的项就越多。如果参考态对系统的描述很差，收敛速度可能会非常慢或不稳定，以至于无法使用微扰方法。
 
 \subsection{量子力学的三种等价表述形式}
 这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
