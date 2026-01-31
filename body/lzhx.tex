@@ -294,7 +294,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 上一小节中我们得不到一个有限模长的自由粒子态，即没有真正意义上的自由粒子。但是如果我们可以退而求其次引入一个有限的零势能环境，在这样的条件下是否存在可能的粒子态呢？因此我们引入势箱模型如下所示，其边界条件可以保证波函数平方可积性，满足了品优波函数的要求。
 
 \begin{center}
-    \includegraphics[scale=0.6]{fig/lzhx/微信图片_20211025092646.png}
+    \includegraphics[scale=0.6]{fig/lzhx/1d_box.png}
 \end{center}
 
 我们给定一维势箱，粒子的势能$V(x)$为分段函数：
@@ -321,7 +321,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\varPsi_n=\sqrt{\frac{2}{l}}\sin\left (\frac{n \pi}{l}x \right ), \quad E_n=\frac{n^2 h^2}{8ml^2} \quad (n\in\mathbb{N}_+)\]
 
 \begin{center}
-    \includegraphics[scale=0.6]{fig/lzhx/微信图片_20211025150139.png}
+    \includegraphics[scale=0.6]{fig/lzhx/1d_wf.png}
 \end{center}
 
 \subsection{三维势箱}
@@ -408,7 +408,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[E_\nu=\left(\nu+\frac{1}{2}\right)\hbar\omega-\left(\nu+\frac{1}{2}\right)^2\hbar\omega x_e \qquad x_e=\frac{\hbar\beta^2}{2\mu\omega}=\frac{\hbar\omega}{4D_e}\]
 
 \begin{center}
-    \includegraphics[scale=0.8]{fig/lzhx/微信图片_20211104112141.png}
+    \includegraphics[scale=0.8]{fig/lzhx/morse.png}
 \end{center}
 
 \section{转动量子化——刚性转子}
@@ -475,7 +475,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 角动量的本征态是球谐函数$\bra{\bm{r}}\ket{l,m_l}=Y_{l,m_l}(\theta,\phi)$，具体的内容可以参考教科书或者\href{https://zhuanlan.zhihu.com/p/419492575}{cyt大佬的知乎文章}。
 
 \begin{center}
-    \includegraphics[scale=0.55]{fig/lzhx/微信图片_20211026130340.png}
+    \includegraphics[scale=0.55]{fig/lzhx/angular_momentum.png}
 \end{center}
 
 \section{氢原子}
@@ -510,7 +510,7 @@ $\hat{A}^{\dagger}$是定义在右矢空间$R=\{\ket{\cdot}\}$的对偶空间$L=
 \[\hat{S}_x=\frac{1}{2}(\hat{S}_++\hat{S}_-)=\frac{\hbar}{2}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \hat{S}_y=\frac{1}{2i}(\hat{S}_+-\hat{S}_-)=\frac{\hbar}{2}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\]
 
 \begin{center}
-    \includegraphics[scale=0.65]{fig/lzhx/微信图片_20211028113518}
+    \includegraphics[scale=0.65]{fig/lzhx/spin.png}
 \end{center}
 
 定义泡利矩阵(Pauli Matrices)引入归一化：
@@ -742,7 +742,7 @@ X\in\text{SU(2)} \arrow[r, "UXU^\dagger"]
 
 观察三重态和单重态波函数分布概率对$r_{12}$变化的行为：
 \begin{center}
-    \includegraphics[scale=0.7]{fig/lzhx/微信图片_20211030111438.png}
+    \includegraphics[scale=0.7]{fig/lzhx/fermi_hole.png}
 \end{center}
 
 三重态电子在$r_{12}=0$时分布概率为0，且从图像上来看，自旋平行的电子在空间上倾向于相互远离。而单重态电子在$r_{12}=0$时仍有分布，最大分布概率对应的$r_{12}$存在，也即我们一般认识的轨道半径。三重态在$r_{12}=0$的情况被称作Fermi hole。
@@ -816,12 +816,12 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
 \[\Delta E=\left(\frac{\alpha-\beta}{1-S}-\alpha\right)-\left(\alpha-\frac{\alpha+\beta}{1+S}\right)=\frac{\beta-S\alpha}{1-S}-\frac{\beta-S\alpha}{1+S}=2S \cdot \frac{\alpha S-\beta}{1-S^2}\sim 2S \cdot (-\beta)>0 \quad (S \to 0)\]
 
 \begin{center}
-    \includegraphics[scale=0.3]{fig/lzhx/Picture1.jpg}
+    \includegraphics[scale=0.3]{fig/lzhx/h2_energy_level.jpg}
 \end{center}
 
 如果我们调整两个氢原子核的间距，可以绘制两个态的势能面：
 \begin{center}
-    \includegraphics[scale=0.21]{fig/lzhx/Picture2.jpg}
+    \includegraphics[scale=0.21]{fig/lzhx/h2+_pes.jpg}
 \end{center}
 
 虽然我们没有带入具体的数值计算，但是忽略掉这个小细节，可以看到即使只有两个轨道我们也能绘制出相对接近真实的势能面。现在我们回到两个态的名字，成键和反键，成键的势能面随着原子间距从无穷远渐小逐渐降低，在差不多2倍氢原子半径处达到能量的最低值，然后随着原子核再接近由于核之间的斥力成键能量上升。而反键轨道的势能面则是随着原子间距减小而疯狂上涨。因此我们也把成键轨道的势能面称为束缚态，反键轨道的势能面为解离态。
@@ -833,12 +833,12 @@ H_{21}-\langle\tilde{E}\rangle S_{21} & H_{22}-\langle\tilde{E}\rangle S_{22} \\
     \centering
     \begin{minipage}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=5cm]{fig/lzhx/微信图片_20211102112346.png}
+    \includegraphics[width=5cm]{fig/lzhx/h2+_rho+.png}
     \caption{$\rho_+$的分布图像}
     \end{minipage}
     \begin{minipage}[t]{0.48\textwidth}
     \centering
-    \includegraphics[width=5cm]{fig/lzhx/微信图片_202111021123461.png}
+    \includegraphics[width=5cm]{fig/lzhx/h2+_rho-.png}
     \caption{$\rho_-$的分布图像}
     \end{minipage}
 \end{figure}
@@ -1026,7 +1026,7 @@ E=\alpha+2\beta, & \ket{1}+\ket{2}+\ket{3}+\ket{4})/2\\
 在BO近似后，我们考虑一个分子的能量由平动、转动、振动、电子能量组成：
 \[E=E_{\rm{trans}}+E_{\rm{rot}}+E_{\rm{vib}}+E_{\rm{el}}\]
 \begin{center}
-    \includegraphics{fig/lzhx/微信图片_20211102175446.png}
+    \includegraphics{fig/lzhx/mo_pes.png}
 \end{center}
 
 与原子光谱类似，分子光谱也有类似的表达方式：
@@ -1040,7 +1040,7 @@ $\Lambda$的取值如下，判断的方法是看开壳层电子所在轨道的$j
 
 $\Omega$的结果通常用$g$或者$u$来表示，其取值可以通过判断$u$轨道上的单电子个数来判断——每一个在$u$上的电子其对称性都记为$u$，总的$\Omega$取值通过以下方式将各个$u$通过结合运算合成:
 \begin{center}
-    \includegraphics{fig/lzhx/微信图片_20211106011930.png}
+    \includegraphics{fig/lzhx/mo_symmetry.png}
 \end{center}
 
 分子谱相中右上角的角标$+/-$仅在$\Lambda$取值为$\Sigma$时显现，其取值由波函数轨道部分对称或反对称决定：对称时为+，反之为-。
@@ -1164,7 +1164,7 @@ $M$为按能量从低到高用符号$X$、$A$、$B$$\cdots$来表示，如：$X^
 
 最后，按能量高低给氧分子的三个谱相表上相应符号：
 \begin{center}
-    \includegraphics{fig/lzhx/微信图片_20211106140136.png}
+    \includegraphics{fig/lzhx/mo_symmetry.png}
 \end{center}
 
 \section{附录I:一点数学（微积分线代什么的自己去看书）}
