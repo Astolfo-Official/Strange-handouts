@@ -107,7 +107,7 @@ ROHF 太复杂先不说，看看 RHF 能量：
 \subsection{DIIS}
 Hartree-Fock–Roothaan方程还有另外一个形式，以密度矩阵形式体现：
 \[\mathbf{F}\mathbf{P}\mathbf{S}=\mathbf{S}\mathbf{P}\mathbf{F}\]
-DIIS (Direct Inversion in the Iterative Subspace) 可以直接用在这个形式下引入，其核心思想是利用前几步迭代的信息，通过线性组合构造更优的 Fock 矩阵，使误差矩阵最小化。相比于简单的迭代，DIIS 可以将收敛速度从线性加速至超线性，通常能将所需迭代步数减少 50$\sim$80\%。如最经典的 DIIS 方法，定义第 $i$ 步迭代的误差矩阵：
+\href{https://vergil.chemistry.gatech.edu/static/content/diis.pdf}{DIIS} (Direct Inversion in the Iterative Subspace) 可以直接用在这个形式下引入，其核心思想是利用前几步迭代的信息，通过线性组合构造更优的 Fock 矩阵，使误差矩阵最小化。相比于简单的迭代，DIIS 可以将收敛速度从线性加速至超线性，通常能将所需迭代步数减少 50$\sim$80\%。如最经典的 DIIS 方法，定义第 $i$ 步迭代的误差矩阵：
 \[\mathbf{e}_i=\mathbf{F}_i\mathbf{P}_i\mathbf{S}-\mathbf{S}\mathbf{P}_i\mathbf{F}_i\]
 这个误差矩阵衡量了 Hartree-Fock-Roothaan 方程的不满足程度。当 $\mathbf{e}_i = 0$ 时，表明已经收敛。假设我们保存了最近 $n$ 步的 Fock 矩阵 $\mathbf{F}_1, \mathbf{F}_2, \ldots, \mathbf{F}_n$，利用一组待定的系数$\{c_i\}_{i=1}^n$构造新的 Fock 矩阵和对应的误差矩阵：
 \[\mathbf{F}_{\rm{opt}} = \sum_{i=1}^{n} c_i \mathbf{F}_i \ , \quad \mathbf{e}_{\rm{opt}} = \sum_{i=1}^{n} c_i \mathbf{e}_i, \quad \sum_i^n c_i = 1\]
@@ -115,16 +115,16 @@ DIIS (Direct Inversion in the Iterative Subspace) 可以直接用在这个形式
 \[\left\| \sum_{i=1}^{n} c_i \mathbf{e}_i \right\|_F^2 = \sum_{i,j} \left( \sum_{k=1}^{n} c_k e_k^{ij} \right)^2=\sum_{i,j} \sum_{k,l} c_k c_l e_k^{ij} e_l^{ij} = \sum_{k,l} c_k c_l \sum_{i,j} e_k^{ij} e_l^{ij} = \sum_{k,l} c_k c_l \text{Tr}(\mathbf{e}_k^T \mathbf{e}_l) := \sum_{k,l} c_k c_l E_{kl}\]
 
 引入拉格朗日乘数 $\lambda$ 来处理约束条件：
-\[L = \sum_{k,l} c_k c_l E_{kl} - \lambda \left(\sum_k c_k - 1\right)\]
+\[L = \sum_{k,l} c_k c_l E_{kl} - 2\lambda \left(\sum_k c_k - 1\right)\]
 对 $c_i$ 求偏导：
-\[\frac{\partial L}{\partial c_i} = 2\sum_{k} c_k E_{ki} - \lambda = 0\]
+\[\frac{\partial L}{\partial c_i} = 2\sum_{k} c_k E_{ki} - 2\lambda = 0\]
 
 整理得到线性方程组：
 $$\begin{pmatrix}
-2E_{11} & 2E_{12} & \cdots & 2E_{1n} & -1 \\
-2E_{21} & 2E_{22} & \cdots & 2E_{2n} & -1 \\
+E_{11} & E_{12} & \cdots & E_{1n} & -1 \\
+E_{21} & E_{22} & \cdots & E_{2n} & -1 \\
 \vdots & \vdots & \ddots & \vdots & \vdots \\
-2E_{n1} & 2E_{n2} & \cdots & 2E_{nn} & -1 \\
+E_{n1} & E_{n2} & \cdots & E_{nn} & -1 \\
 -1 & -1 & \cdots & -1 & 0
 \end{pmatrix}
 \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \\ \lambda \end{pmatrix}
