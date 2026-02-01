@@ -77,7 +77,7 @@ $\delta$函数有如下重要的性质（\textbf{筛选性质}）：
 这是我们得到两对傅里叶变换对：$\delta(t-t_0)$和$e^{-i\omega t_0}$，$e^{i\omega_0 t}$和$2\pi \delta(\omega-\omega_0)$。可以看出$\delta$函数与平面波是傅立叶变换对。特别的，我们令$t_0=0,\omega_0=0$，则有$\delta(t)$和$1$，$1$和$2\pi \delta(\omega)$。
 稍作推广我们可以得到
 \[\mathcal{F}[\cos(\omega_0t)]=\pi[\delta(\omega+\omega_0)+\delta(\omega-\omega_0)], \quad \mathcal{F}[\sin(\omega_0t)]=i\pi[\delta(\omega+\omega_0)-\delta(\omega-\omega_0)]\]
-\begin{lemma}[傅里叶变换的基本性质]
+\begin{proposition}[傅里叶变换的基本性质]
 设$a,b \in \mathbb{C}$，$f,f_1,f_2$是满足傅立叶积分定理的复值函数，则傅立叶变换具有以下性质:
 \begin{itemize}
 \item 1. 线性
@@ -93,7 +93,7 @@ $\delta$函数有如下重要的性质（\textbf{筛选性质}）：
 \item 6.能量积分(Parseval等式)
 \[\int_{-\infty}^{+\infty}[f(t)]^2\dd{t}=\frac{1}{2\pi}\int_{-\infty}^{+\infty}[F(\omega)]^2\dd{\omega}:=\frac{1}{2\pi}\int_{-\infty}^{+\infty}S(\omega)\dd{\omega}\]
 \end{itemize}
-\end{lemma}
+\end{proposition}
 \subsection{卷积与相关函数}
 我们可以定义卷积运算及相关函数
 \begin{definition}[卷积]
@@ -104,7 +104,7 @@ $\delta$函数有如下重要的性质（\textbf{筛选性质}）：
 给定两函数$f_1(t)$、$f_2(t)$,定义相关函数（$f_1(t)=f_2(t)$时，称$R(\tau)$为自相关函数）：
 \[R(\tau):=\int_{-\infty}^{+\infty}f_1(t)f_2(t+\tau)\dd{t}\]
 \end{definition}
-\begin{lemma}[卷积的性质]
+\begin{proposition}[卷积的性质]
 \begin{itemize}
 \item 1. 交换律：$f_1(t)\ast f_2(t)=f_2(t)\ast f_1(t)$
 \item 2. 结合律：$(f_1(t) \ast f_2(t)) \ast f_3(t)=f_1(t) \ast (f_2(t) \ast f_3(t))$
@@ -116,7 +116,7 @@ $\delta$函数有如下重要的性质（\textbf{筛选性质}）：
 \item 6. $\delta$函数的卷积性质：
 \[f(t) \ast \delta(t)=f(t)\]
 \end{itemize}
-\end{lemma}
+\end{proposition}
 卷积最重要的性质是卷积定理
 \begin{theorem}[卷积定理]
     若$f_1(t)$和$f_2(t)$满足傅里叶积分定理的条件，则有
