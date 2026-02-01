@@ -57,7 +57,7 @@ f_T(x \pm T) & \text{if } x \notin [-\frac{T}{2},\frac{T}{2}]
 \begin{definition}[傅里叶变换与傅里叶逆变换]
 设$f(t)$在${(-\infty,+\infty)}$上满足傅里叶积分定理的条件，可定义以下积分变换
 \[F(\omega)=\int_{-\infty}^{+\infty}f(t)e^{-i\omega t}\dd{t}, \quad f(t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}F(\omega)e^{i\omega t}\dd{\omega}\]
-称$F(\omega)$为$f(t)$的象函数，称$f(t)$到$F(\omega)$的积分变换为傅里叶变换，,$f(t)$为$F(\omega)$的象原函数，称$F(\omega)$到$f(t)$的积分变换为傅里叶逆变换式，记为$F(\omega)=\mathcal{F}[f(t)], \quad f(t)=\mathcal{F}^{-1}[F(\omega)]$。
+称$F(\omega)$为$f(t)$的象函数，称$f(t)$到$F(\omega)$的积分变换为傅里叶变换，,$f(t)$为$F(\omega)$的象原函数，称$F(\omega)$到$f(t)$的积分变换为傅里叶逆变换式，记为$F(\omega)=\mathcal{F}[f(t)], \ f(t)=\mathcal{F}^{-1}[F(\omega)]$。
 \end{definition}
 傅立叶变换中一个重要的应用对象是$\delta$函数（单位脉冲函数），是英国物理学家狄拉克(Dirac)在20世纪20年代引人的，用于描述瞬间或空间几何点上的物理量。例如，瞬时的冲击力、脉冲电流或电压等急速变化的物理量，以及质点的质量分布、点电荷的电量分布等在空间或时间上高度集中的物理量。
 \begin{definition}[单位脉冲函数]
