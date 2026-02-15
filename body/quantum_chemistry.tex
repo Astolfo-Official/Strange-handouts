@@ -132,6 +132,7 @@ E_{n1} & E_{n2} & \cdots & E_{nn} & -1 \\
 
 通过求解该线性方程组得到最优的系数 $c_i$，进而构造最优的 Fock 矩阵。
 
+\newpage
 \subsection{部分基组}
 \paragraph*{Slater-type orbitals (STO's)}
 \[\phi_{abc}^{\rm{STO}}(x,y,z)=Nx^ay^bz^ce^{-\zeta r}\]
@@ -177,6 +178,7 @@ E_{n1} & E_{n2} & \cdots & E_{nn} & -1 \\
 
 比如6-31+g/6-31++g，分别表示给重原子的每个价层加一个弥散函数和给重原子的每个价层加一个弥散函数给氢原子的每个价层加一个弥散函数。
 
+\newpage
 \section{微扰理论}
 \subsection{非简并定态微扰理论}
 对 BO 近似后的定态的电子薛定谔方程，由于双体项的存在我们无法去精确求解该体系的波函数和能量，为此在\ref{sec:hf}小节里我们介绍了 Hartree-Fock 方法，使用近似的哈密顿量$\hat{H}_0$来替代原本精确的哈密顿量$\hat{H}$：
@@ -261,6 +263,7 @@ H'_{n1} & H'_{n2} & \ldots & H'_{nn}-E_n^{(1)}\\
 
 回忆一下一阶能量修正的公式，很显然如果把每个能量都放到$\ket{\psi_{n}^{(0)}}$基下表示这会是个（块）对角阵。这整个流程大致实现了以下操作：最开始的$\mathbf{E}^{(1)}$只是一个块对角的矩阵，这些块来自于简并的能级，然后通过简并态正交化以及上述流程，实现了把这些不是对角阵的块再对角化最终拿到一个完全对角化的一阶修正能量$\mathbf{E}^{(1)}$。
 
+\newpage
 \subsection{MP2}\label{sec:mp}
 M{\o}ller-Plesset 微扰理论(MP)是量子化学中一种重要的电子相关能计算方法，基于 Hartree-Fock，通过微扰理论对电子相关效应进行修正。根据前文，体系的基态能量$E$是精确哈密顿量在基态 Slater 行列式上的期望：
 \[E=\bra{\Phi}\hat{H}\ket{\Phi}=\sum_ih_i+\frac{1}{2}\sum_{i,j}\left(\bra{ij}\ket{ij}-\bra{ij}\ket{ji}\right)\]
@@ -281,6 +284,7 @@ M{\o}ller-Plesset 微扰理论(MP)是量子化学中一种重要的电子相关�
 
 从上述图片可以看到由于是非变分方法，并不像 CI 方法那样能保证能量随着引入更多组态总是下降的，甚至可能出现引入高阶微扰使得相关能的计算误差更大，尤其是在小基组下更容易出现这种情况。考虑到高阶微扰昂贵的计算成本，这就使得微扰这种方法纯纯吃力不讨好。另外一方面，微扰方法假设零阶波函数是对真实波函数的合理近似，即微扰算符足够《小》。HF波函数对系统的描述越不准确，修正项就越大，为了达到一定的精度，需要包含的项就越多。如果参考态对系统的描述很差，收敛速度可能会非常慢或不稳定，以至于无法使用微扰方法。
 
+\newpage
 \subsection{量子力学的三种等价表述形式}
 这里先介绍一下三种量子力学的等价形式：薛定谔绘景，海森堡绘景和相互作用（狄拉克）绘景。分别以下标$S,H,I$表示。从薛定谔绘景开始，我们之前的介绍都是薛定谔绘景下的（不然为什么叫薛定谔方程）。\textcolor{blue}{\textbf{薛定谔绘景认为哈密顿量是不演化（含时）的，而态是演化（含时）的}}，考虑时间演化算符$\hat{U}(t)\equiv\hat{U}(t,0)$：
 \[i\hbar\pdv{t}\ket{\psi(t)}_S=\hat{H}_S\ket{\psi(t)}_S, \quad \ket{\psi(t)}_S=\hat{U}(t)\ket{\psi(0)}_S \quad \Rightarrow \quad i\hbar\pdv{t}\hat{U}(t)=\hat{H}_S\hat{U}(t)\]
@@ -311,6 +315,7 @@ M{\o}ller-Plesset 微扰理论(MP)是量子化学中一种重要的电子相关�
 \[\hat{U}_I(t)=1+\sum_{n=1}^{\infty}\left(-\frac{i}{\hbar}\right)^n\int_{0}^t\dd{\tau_n}\int_{0}^{\tau_n}\dd{\tau_{n-1}}\cdots\int_{0}^{\tau_2}\dd{\tau_1}\hat{H}_I(\tau_n)\hat{H}_I(\tau_{n-1})\cdots\hat{H}_I(\tau_1)\]
 此级数被称为 Dyson 级数，在推各种谱的吸收表达式的时候会用到（哈哈，我反正是看到头秃
 
+\newpage
 \subsection{含时微扰理论}
 当考虑一些更实际的体系如原子分子吸收发射时，会遇到哈密顿量中的含时项不可忽略的情况，这时求解该体系就需要考虑含时的薛定谔方程。由于时间项的引入，简并态出现的可能性将大大下降，因此这里我们仅讨论无简并的含时微扰，假设哈密顿为$\hat{H}=\hat{H}_0+\lambda\hat{H}'(t)$。在相互作用绘景下，给定初态（其实就是定态解）：
 \[i\hbar\pdv{t}\ket{\psi_n(t)}_I=\hat{H}_I\ket{\psi_n(t)}_I, \quad i\hbar\pdv{t}\ket{\psi_n(0)}_I=\hat{H}_I\ket{\psi_n(0)}_I \quad \Leftrightarrow \quad i\hbar\pdv{t}\ket{m}=\hat{H}_I\ket{m}\]
@@ -349,6 +354,7 @@ k_{n \to k}=\dv{P_{n \to k}(t)}{t}=\frac{\pi}{2\hbar^2}|\bm{\mu}_{nk}\cdot\bm{E}
 
 上述公式也称为费米黄金定则（Fermi golden rule），描述了垂直激发（微扰假设，外场不改变势能面，即定态）的越迁速率。不做一些奇奇怪怪的动力学都可以使用上述公式很方便得描述一些光化学物理过程。
 
+\newpage
 \subsection{红外光谱}
 红外光谱测量的是样品对红外光的频率吸收$I(\omega)$，遵循比尔-朗伯 (Beel-Lambert) 定律
 \[I(\omega)=\alpha(\omega)l=\sigma(\omega)l/V\]
