@@ -6,9 +6,7 @@
 在二次量子化的语言下，$\ket*{\Psi_e}$可以被写成:
 \[\ket*{\Psi_e}=a_1^{\dagger}a_2^{\dagger}\cdots a_n^{\dagger}\ket{}\]
 整个系统中我们感兴趣的部分可能只与一小部分电子有关(就算是关系能量之类的整体性质也能拆成小块遍历(也许可能大概)，记为fragment $\ket{\alpha_p}=\alpha_p^{\dagger}\ket{} \ (p=1,2,\cdots,m)$，其余部分记为environment $\ket{\beta_p}=\beta_p^{\dagger}\ket{} \ (p=m+1,m+2,\cdots,n)$。
-那么自然而然，系统在粒子数表象下的总Fock空间可以被fragment和environment的两个子空间张量积表示:
-\[V_{f+e} = V_f \otimes V_e\]
-则全空间的中的一个多电子波函数(在mean field语境下是一个行列式)可以被如下表示：
+那么自然而然，系统在粒子数表象下的总Fock空间可以被fragment和environment的两个子空间直和表示$V_{f+e} = V_f \oplus V_e$，则全空间的中的一个多电子波函数(在mean field语境下是一个行列式)可以被如下表示[\href{https://zhuanlan.zhihu.com/p/86137107}{ Schmidt 分解定理}]：
 \[\ket{\Psi}=\sum_{i=1}^{m}\sum_{j=m+1}^{n}c_{ij}\ket{\alpha_i}\otimes\ket{\beta_j}\]
 我们可以发现该波函数在这个基底下的系数矩阵$\mathbf{C}=[c_{ij}]_{m \times (n-m)}$，可以做SVD分解：
 \[\mathbf{C}=\mathbf{U}\mathbf{\Lambda}\mathbf{V}^{\dagger} \quad , \quad c_{ij}=\sum_{p=1}^{\min\{m,n-m\}}U_{ip}\Lambda_{pp}V_{jp}^*\]
