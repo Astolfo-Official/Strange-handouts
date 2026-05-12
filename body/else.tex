@@ -139,38 +139,29 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 进而可以得到含时的扩散方程：
 \[\frac{\partial \rho}{\partial t}=D\nabla^2\rho\]
 这里我们认为扩散的体系是各向同性的，扩散系数$D$为一常数。$\rho(\mathbf{x},t)$处理起来不便，考虑傅里叶变换：
-\[\pdv{\rho(\mathbf{x},t)}{t}=\pdv{t}\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}=\int\pdv{\rho_{\mathbf{k}}(t)}{t}e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}\]
-\[\nabla^2\rho(\mathbf{x},t)=\nabla^2\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}=\int\rho_{\mathbf{k}}(t)\nabla^2e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}=-\int\rho_{\mathbf{k}}(t)|\mathbf{k}|^2e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}\]
+\[\pdv{\rho(\mathbf{x},t)}{t}=\pdv{t}\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}=\int\pdv{\rho_{\mathbf{k}}(t)}{t}e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}\]
+\[\nabla^2\rho(\mathbf{x},t)=\nabla^2\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}=\int\rho_{\mathbf{k}}(t)\nabla^2e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}=-\int\rho_{\mathbf{k}}(t)|\mathbf{k}|^2e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}\]
 将上面两式带入扩散方程，可得：
-\[\int\left(\pdv{\rho_{\mathbf{k}}(t)}{t}+D|\mathbf{k}|^2\rho_{\mathbf{k}}(t)\right)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}=0 \quad \Rightarrow \quad \pdv{\rho_{\mathbf{k}}(t)}{t}+D|\mathbf{k}|^2\rho_{\mathbf{k}}(t) \quad \Rightarrow \quad \rho_{\mathbf{k}}(t)=\rho_{\mathbf{k}}(0)e^{-D|\mathbf{k}|^2t}\]
-上式中初态$\rho_{\mathbf{k}}(0)$可以通过边界条件$\rho(\mathbf{0},0)=\delta(\mathbf{0})$确定：
-\[\rho_{\mathbf{k}}(0)=\lim_{t \to 0}\rho_{\mathbf{k}}(t)=\frac{1}{2\pi}\lim_{t \to 0}\int\rho(\mathbf{x},t)e^{i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{x}}=\frac{1}{2\pi}\int\lim_{t \to 0}\rho(\mathbf{x},t)e^{i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{x}}=\frac{1}{2\pi}\int\delta(\mathbf{0})e^{i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{x}}=\frac{e^{i\mathbf{k}\cdot\mathbf{0}}}{2\pi}=\frac{1}{2\pi}\]
+\[\int\left(\pdv{\rho_{\mathbf{k}}(t)}{t}+D|\mathbf{k}|^2\rho_{\mathbf{k}}(t)\right)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}=0 \quad \Rightarrow \quad \pdv{\rho_{\mathbf{k}}(t)}{t}+D|\mathbf{k}|^2\rho_{\mathbf{k}}(t)=0 \quad \Rightarrow \quad \rho_{\mathbf{k}}(t)=\rho_{\mathbf{k}}(0)e^{-D|\mathbf{k}|^2t}\]
+上式中初态$\rho_{\mathbf{k}}(0)$可以通过初始条件$\rho(\mathbf{x},0)=\delta^{(3)}(\mathbf{x})$确定。由
+\[\rho(\mathbf{x},t)=\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k},\qquad \rho_{\mathbf{k}}(t)=\frac{1}{(2\pi)^3}\int\rho(\mathbf{x},t)e^{i\mathbf{k}\cdot\mathbf{x}}\dd[3]{x}\]
+可得：
+\[\rho_{\mathbf{k}}(0)=\frac{1}{(2\pi)^3}\int\delta^{(3)}(\mathbf{x})e^{i\mathbf{k}\cdot\mathbf{x}}\dd[3]{x}=\frac{1}{(2\pi)^3}\]
 
 因此空间中的密度函数$\rho(\mathbf{x},t)$为：
-\[\rho(\mathbf{x},t)=\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}=\frac{1}{2\pi}\int e^{-D|\mathbf{k}|^2t-i\mathbf{k}\cdot\mathbf{x}}\dd{\mathbf{k}}\]
-由于被积函数在各个笛卡尔分量上彼此独立，下面只写一维情形$\rho(x,t)$的积分处理。对上式配方可得：
-\[\rho(x,t)=\int_{-\infty}^{+\infty}\frac{1}{2\pi}e^{-Dk^2t-ikx}\dd{k}=\frac{1}{2\pi}\exp\left(-\frac{x^2}{4Dt}\right)\int_{-\infty}^{+\infty}\exp\left[-Dt\left(k+\frac{ix}{2Dt}\right)^2\right]\dd{k}\]
-现在考虑复函数$f(z)=e^{-Dtz^2}$，$z\in\mathbb{C}$。由于$f(z)$在整个复平面上解析，没有奇点。记$a=x/2Dt\in\mathbb{R}$，并考虑闭合积分路径：$-R \xrightarrow{L_1} R \xrightarrow{L_2} R+ia \xrightarrow{L_3} -R+ia \xrightarrow{L_4} -R$，其中$ R\in\mathbb{R}_+$，且沿实轴正方向取为正方向。对竖直路径$L_2$（$L_4$同理），当$R\to\infty$时有：
+\[\rho(\mathbf{x},t)=\int\rho_{\mathbf{k}}(t)e^{-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}=\frac{1}{(2\pi)^3}\int e^{-D|\mathbf{k}|^2t-i\mathbf{k}\cdot\mathbf{x}}\dd[3]{k}\]
+由于被积函数在各个笛卡尔分量上彼此独立，下面简单处理一维下的积分。配方可得：
+\[\rho(x,t)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}e^{-Dk^2t-ikx}\dd{k}=\exp\left(-\frac{x^2}{4Dt}\right)\int_{-\infty}^{+\infty}\exp\left[-Dt\left(k+\frac{ix}{2Dt}\right)^2\right]\dd{k}\]
+对于上述在复平面平移的 Gaussian 积分，引用章节\ref{sec:gaussian}的结论：
+\[\int_{-\infty}^{+\infty}\exp\left[-Dt\left(k+\frac{ix}{2Dt}\right)^2\right]\dd{k}=\int_{-\infty}^{+\infty}e^{-Dtk^2}\dd{k}=\sqrt{\frac{\pi}{Dt}}\]
+因此三维情形的密度函数为：
+\[\rho(\mathbf{x},t)=\left(\frac{1}{4\pi Dt}\right)^{\frac{3}{2}}\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\]
+利用上述函数，可以对位移$\mathbf{x}$和均方位移$\mathbf{x}^2$求期望。
 \[\begin{aligned}
-\left|\int_{L_2}f(z)\dd{z}\right|
-&=\left|\int_0^{a}i\exp\left[-Dt(R+is)^2\right]\dd{s}\right|\\
-&\leq \int_0^{|a|}\left|\exp\left[-Dt(R+is)^2\right]\right|\dd{s}=\int_0^{|a|}\exp\left[-Dt(R^2-s^2)\right]\dd{s}\to 0
-\end{aligned}\]
-由 Cauchy 积分定理，
-\[\oint f(z)\dd{z}=0\]
-于是当$R\to\infty$时，
-\[\int_{L_1}f(z)\dd{z}=-\int_{L_3}f(z)\dd{z}=\int_{-R+ia}^{R+ia}f(z)\dd{z}\]
-即：
-\[\int_{-\infty}^{+\infty}\exp\left[-Dt\left(k+\frac{ix}{2Dt}\right)^2\right]\dd{k}=\int_{-\infty}^{+\infty}e^{-Dtu^2}\dd{u}=\sqrt{\frac{\pi}{Dt}}\]
-因此：
-\[\rho(\mathbf{x},t)=\frac{1}{2\pi}\sqrt{\frac{\pi}{Dt}}\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)=\sqrt{\frac{1}{4\pi Dt}}\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\]
-
-利用上述函数，可以对位移$\mathbf{x}$求期望：
-\[\langle \mathbf{x} \rangle=\sqrt{\frac{1}{4\pi Dt}}\int\mathbf{x}\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\dd{\mathbf{x}}=0\]
-\[\begin{aligned}
-\langle \mathbf{x}^2 \rangle&=\sqrt{\frac{1}{4\pi Dt}}\int\mathbf{x}^2\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\dd{\mathbf{x}}=\sqrt{\frac{1}{4\pi Dt}}\sum_{q=x,y,z}\int_{-\infty}^{\infty} q^2\exp\left(-\frac{q^2}{4Dt}\right)\dd{q}\\
-&=6\sqrt{\frac{1}{4\pi Dt}}\int_0^{\infty} q^2\exp\left(-\frac{q^2}{4Dt}\right)\dd{q}=6\sqrt{\frac{1}{4\pi Dt}}\int_0^{\infty} 4Dtwe^{-w}\sqrt{\frac{Dt}{w}}\dd{w}\\
-&=\frac{12Dt}{\sqrt{\pi}}\int_0^{\infty} \sqrt{w}e^{-w}\dd{w}=\frac{12Dt}{\sqrt{\pi}}\Gamma\left(\frac{3}{2}\right)=\frac{12Dt}{\sqrt{\pi}}\cdot\frac{\sqrt{\pi}}{2}=6Dt
+\langle \mathbf{x} \rangle&=\left(\frac{1}{4\pi Dt}\right)^{\frac{3}{2}}\int\mathbf{x}\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\dd[3]{x}=0\\
+\langle \mathbf{x}^2 \rangle&=\left(\frac{1}{4\pi Dt}\right)^{\frac{3}{2}}\int\mathbf{x}^2\exp\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)\dd[3]{\mathbf{x}}=4\pi\left(\frac{1}{4\pi Dt}\right)^{\frac{3}{2}}\int_0^{\infty}x^4\exp\left(-\frac{x^2}{4Dt}\right)\dd{x}\\
+&=4\pi\left(\frac{1}{4\pi Dt}\right)^{\frac{3}{2}}\int_0^{\infty}(4Dtq)^2e^{-q}\cdot\sqrt{\frac{Dt}{q}}\dd{q}=\frac{8Dt}{\sqrt{\pi}}\int_0^{\infty}q^{\frac{3}{2}}e^{-q}\dd{q}\\
+&=\frac{8Dt}{\sqrt{\pi}}\Gamma\left(\frac{5}{2}\right)=\frac{8Dt}{\sqrt{\pi}}\cdot\frac{3\sqrt{\pi}}{4}=6Dt
 \end{aligned}\]
 
 \section{Legendre 变换}\label{sec:legendre}
@@ -198,7 +189,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[scale=0.8]{./fig/else/2.png}
+    \includegraphics[scale=0.9]{./fig/else/2.png}
 \end{figure}
 
 进而我们可以二维情形，给定二元凸函数$f(x,y)$，其全微分如下:
@@ -207,8 +198,7 @@ i\hbar\frac{1}{\phi}\frac{\partial\phi}{\partial t}=E\\
 \[\frac{\partial f}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}=u\frac{\partial x}{\partial u}+v\frac{\partial y}{\partial u}=\frac{\partial (ux)}{\partial u}-x+v\frac{\partial y}{\partial u}\]
 \[\frac{\partial f}{\partial v}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}=u\frac{\partial x}{\partial v}+v\frac{\partial y}{\partial v}=u\frac{\partial x}{\partial v}+\frac{\partial (vy)}{\partial v}-y\]
 易得
-\[x=\frac{\partial (ux+vy-f)}{\partial u}:=\frac{\partial \tilde{f}}{\partial u}\]
-\[y=\frac{\partial (ux+vy-f)}{\partial v}:=\frac{\partial \tilde{f}}{\partial v}\]
+\[x=\frac{\partial (ux+vy-f)}{\partial u}:=\frac{\partial \tilde{f}}{\partial u}, \quad y=\frac{\partial (ux+vy-f)}{\partial v}:=\frac{\partial \tilde{f}}{\partial v}\]
 
 \begin{definition}[$n$维 Legendre 变换]
 假设$f(x_1,x_2,\cdots,x_n)$为一个实变量的实值凸函数，我们称$\tilde{f}(u_1,u_2,\cdots,u_n)$为$f(x_1,x_2,\cdots,x_n)$的 Legendre 变换如果其满足：
@@ -233,14 +223,15 @@ Legendre 变换在热力学上有应用，其中一个例子就是四个热力�
 \dd{G}=V\dd{p}-S\dd{T} \quad &\Rightarrow \quad \left(\frac{\partial S}{\partial p}\right)_T=-\left(\frac{\partial V}{\partial T}\right)_p
 \end{aligned}\]
 
-在经典力学中，拉格朗日量到哈密顿量的变换也是由 Legendre 变换完成的。拉格朗日量定义为$L=L(\mathbf{q},\dot{\mathbf{q}},t)$这里$q_i$、$\dot{q}_i$、$t$分别为广义坐标、广义速度和时间。利用 Euler-Lagrange 方程：
-\[\frac{\dd}{\dd t}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i}\]
-对$L$求全微分：
-\[\dd{L}=\sum_i\frac{\partial L}{\partial q_i}\dd{q_i}+\sum_i\frac{\partial L}{\partial \dot{q}_i}\dd{\dot{q}_i}+\frac{\partial L}{\partial t}\dd{t}
-=\sum_i\frac{\partial L}{\partial q_i}\dd{q_i}+\sum_i\left[\dd\left(\frac{\partial L}{\partial \dot{q}_i}\dot{q}_i\right)-\dot{q}_i\dd\left(\frac{\partial L}{\partial \dot{q}_i}\right)\right]+\frac{\partial L}{\partial t}\dd{t}\]
+在经典力学中，拉格朗日量到哈密顿量的变换也是由 Legendre 变换完成的。拉格朗日量定义为$L=L(\mathbf{q},\dot{\mathbf{q}},t)$这里$q_i$、$\dot{q}_i$、$t$分别为广义坐标、广义速度和时间。对$L$求全微分：
+
+\[\dd{L}=\sum_i\frac{\partial L}{\partial q_i}\dd{q_i}+\sum_i\frac{\partial L}{\partial \dot{q}_i}\dd{\dot{q}_i}+\frac{\partial L}{\partial t}\dd{t}=\sum_i\frac{\partial L}{\partial q_i}\dd{q_i}+\sum_i\left[\dd\left(\frac{\partial L}{\partial \dot{q}_i}\dot{q}_i\right)-\dot{q}_i\dd\left(\frac{\partial L}{\partial \dot{q}_i}\right)\right]+\frac{\partial L}{\partial t}\dd{t}\]
+
+再利用 Euler-Lagrange 方程：
+\[\frac{\dd}{\dd t}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i} \quad \Rightarrow \quad \dd{L}=\sum_i\frac{\partial L}{\partial q_i}\dd{q_i}+\sum_i\left[\dd\left(\frac{\partial L}{\partial \dot{q}_i}\dot{q}_i\right)-\dot{q}_i\frac{\partial L}{\partial q_i}\right]+\frac{\partial L}{\partial t}\dd{t}\]
 
 现引入广义动量$p_i$：
-\[\dot{p_i}=\frac{\dd}{\dd t}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i} \quad \Rightarrow \quad \dd{L}=\sum_i\dot{p_i}\dd{q_i}+\sum_i\dd\left(p_i\dot{q}_i\right)-\sum_i\dot{q}_i\dd{p_i}+\frac{\partial L}{\partial t}\dd{t}\]
+\[p_i=\frac{\partial L}{\partial \dot{q}_i} \quad \Rightarrow \quad \dot{p_i}=\frac{\dd}{\dd t}\frac{\partial L}{\partial \dot{q}_i}=\frac{\partial L}{\partial q_i} \quad \Rightarrow \quad \dd{L}=\sum_i\dot{p_i}\dd{q_i}+\sum_i\dd\left(p_i\dot{q}_i\right)-\sum_i\dot{q}_i\dd{p_i}+\frac{\partial L}{\partial t}\dd{t}\]
 
 哈密顿量是广义坐标$q_i$、广义动量$p_i$和时间$t$的函数$H=H(\mathbf{q},\mathbf{p},t)$,利用 Legendre 变换：
 \[H(\mathbf{q},\mathbf{p},t)=\sum_ip_iq_i-L(\mathbf{q},\dot{\mathbf{q}},t) \quad \Rightarrow \quad \dd{H}=\sum_i\dd\left(p_iq_i\right)-\dd{L}=\sum_i\dot{q}_i\dd{p_i}-\sum_i\dot{p_i}\dd{q_i}-\frac{\partial L}{\partial t}\dd{t}\]
@@ -251,6 +242,55 @@ Legendre 变换在热力学上有应用，其中一个例子就是四个热力�
 以及：
 \[\frac{\partial L}{\partial t}=-\frac{\partial H}{\partial t}\]
 需要注意的是，拉格朗日力学里广义坐标和广义速度是相互独立的，哈密顿力学里广义坐标和广义动量是相互独立的。速成经典力学可以参考\href{https://github.com/Astolfo-Official/Baby-Math-on-Quantum-Chemistry/blob/main/%E3%80%8A%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B2.0.pdf}{量子化学中的数学第四章}。
+
+\section{Hamilton 正则方程的 Poisson 括号形式与正则变换}
+在\href{https://github.com/Astolfo-Official/Baby-Math-on-Quantum-Chemistry/blob/main/%E3%80%8A%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B2.0.pdf}{量化中的数学基础第四章}中介绍了对相空间中的两个函数$f, g$\textbf{ Poisson 括号}定义为：
+\[\{f,g\}=\sum_{i=1}^{n}\left(\pdv{f}{q_i}\pdv{g}{p_i}-\pdv{f}{p_i}\pdv{g}{q_i}\right)\]
+Poisson 括号只对相空间变量$(q_i,p_i)$求导，而不对显含时间$t$求导。由定义立刻可以看出：
+\[\{q_i,q_j\}=0,\quad \{p_i,p_j\}=0,\quad \{q_i,p_j\}=\delta_{ij}\]
+这三条关系可以看作经典力学中的“正则对易关系”。与对量子力学中的对易类似，详细可以参考\href{https://github.com/Astolfo-Official/Baby-Math-on-Quantum-Chemistry/blob/main/%E3%80%8A%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E3%80%8B2.0.pdf}{量化中的数学}。
+
+从 Hamilton 正则方程出发考虑任意相空间函数$F(\mathbf{q},\mathbf{p},t)$。沿着真实运动轨道，$F$对时间的全导数为：
+\[\dv{F}{t}=\sum_{i=1}^{n}\left(\pdv{F}{q_i}\dot{q}_i+\pdv{F}{p_i}\dot{p}_i\right)+\pdv{F}{t}=\sum_{i=1}^{n}\left(\pdv{F}{q_i}\pdv{H}{p_i}-\pdv{F}{p_i}\pdv{H}{q_i}\right)+\pdv{F}{t}\dv{F}{t}=\{F,H\}+\pdv{F}{t}\]
+特别地，对$F=q_i$和$F=p_i$分别使用上式可以简写 Hamilton 正则方程为$\dot{q}_i=\{q_i,H\}, \ \dot{p}_i=\{p_i,H\}$。因此在 Hamilton 力学中，哈密顿量$H$不仅是能量函数，也是相空间中时间演化的生成元。上式也给出了判断守恒量的方便方法。如果$F$不显含时间，并且$\{F,H\}=0$，则$F(t)$是常数。若$F$显含时间，则守恒条件应写成：
+\[\{F,H\}+\pdv{F}{t}=0\]
+特别地，取$F=H$：
+\[\dv{H}{t}=\{H,H\}+\pdv{H}{t}=\pdv{H}{t}\]
+所以当哈密顿量不显含时间时，体系能量守恒。
+
+我们可以考虑从一组相空间变量$(q_i,p_i)$变到另一组变量$(Q_i,P_i)$：
+\[Q_i=Q_i(\mathbf{q},\mathbf{p},t),\quad P_i=P_i(\mathbf{q},\mathbf{p},t)\]
+如果新变量仍然满足 Hamilton 正则方程，即存在新的哈密顿量$K(\mathbf{Q},\mathbf{P},t)$使得 Hamilton 方程的形式保持不变：
+\[\dot{Q}_i=\pdv{K}{P_i},\quad \dot{P}_i=-\pdv{K}{Q_i}\]
+那么这个变换称为\textcolor{blue}{\textbf{正则变换}}。判断一个变换是否正则的最常用方法是检查新变量之间的 Poisson 括号。若：
+\[\{Q_i,Q_j\}=0,\qquad \{P_i,P_j\}=0,\qquad \{Q_i,P_j\}=\delta_{ij}\]
+则$(Q_i,P_i)$仍是一组正则变量，变换就是正则变换。也就是说，\textcolor{blue}{\textbf{正则变换保持基本 Poisson 括号结构不变}}。
+
+更一般地，正则变换还会保持任意两个函数的 Poisson 括号形式不变：
+\[\{F,G\}_{q,p}=\sum_{i=1}^{n}\left(\pdv{F}{q_i}\pdv{G}{p_i}-\pdv{F}{p_i}\pdv{G}{q_i}\right)=\sum_{i=1}^{n}\left(\pdv{F}{Q_i}\pdv{G}{P_i}-\pdv{F}{P_i}\pdv{G}{Q_i}\right)=\{F,G\}_{Q,P}\]
+这也是正则变换的本质：它不是单纯保持距离或角度，而是保持相空间的辛结构。
+
+如果变换$(q,p)\to(Q,P)$是正则的，则新旧变量的作用量至多相差一个全微分$\dd{F}$：
+\[\sum_{i=1}^{n}p_i\dd{q_i}-H\dd{t}=\sum_{i=1}^{n}P_i\dd{Q_i}-K\dd{t}+\dd{F}\]
+其中$F$称为生成函数。由于全微分项在作用量变分中只给出端点贡献，所以不会改变 Hamilton 方程的形式。
+
+\begin{definition}[生成函数]
+根据生成函数自变量的不同，常见有四类形式$F_1(\mathbf{q},\mathbf{Q},t), \ F_2(\mathbf{q},\mathbf{P},t), \ F_3(\mathbf{p},\mathbf{Q},t), \ F_4(\mathbf{p},\mathbf{P},t)$，都满足：
+\[K=H+\pdv{F_2}{t}\]
+对每一个生成函数，新旧变量$\{p_i, q_i\}$和$\{P_i, Q_i\}$之间的关系也不同，具体如下：
+\[\begin{aligned}
+F_1(\mathbf{q},\mathbf{Q},t) & \quad \Rightarrow \quad p_i=\pdv{F_1}{q_i},\quad P_i=-\pdv{F_1}{Q_i}\\
+F_2(\mathbf{q},\mathbf{P},t) & \quad \Rightarrow \quad p_i=\pdv{F_2}{q_i},\quad Q_i=\pdv{F_2}{P_i}\\
+F_3(\mathbf{p},\mathbf{Q},t) & \quad \Rightarrow \quad q_i=-\pdv{F_3}{p_i},\quad P_i=-\pdv{F_3}{Q_i}\\
+F_4(\mathbf{p},\mathbf{P},t) & \quad \Rightarrow \quad q_i=-\pdv{F_4}{p_i},\quad Q_i=\pdv{F_4}{P_i}
+\end{aligned}\]
+\end{definition}
+
+一个简单的例子是一维无量纲相空间中的变换：
+\[Q=q\cos\theta+p\sin\theta,\quad P=-q\sin\theta+p\cos\theta\]
+其中$\theta$为常数。计算基本 Poisson 括号：
+\[\{Q,P\}=\pdv{Q}{q}\pdv{P}{p}-\pdv{Q}{p}\pdv{P}{q}=\cos\theta\cos\theta-\sin\theta(-\sin\theta)=1, \quad \{Q,Q\}=0,\quad \{P,P\}=0\]
+因此这是一组正则变换。几何上看，它只是把$(q,p)$平面旋转了角度$\theta$，并保持相空间面积$\dd{q}\dd{p}$不变。\textcolor{blue}{\textbf{正则变换的一般几何意义正是保持相空间体积元素和 Poisson 括号结构不变。}}
 
 \section{Gaussian 积分的复平移}\label{sec:gaussian}
 在章节\ref{sec:f_and_b}中我们介绍了以下问题：温度$T$下体积为$V$的三维空间中单个自由粒子，满足薛定谔方程：
