@@ -883,3 +883,141 @@ N=N_+(z)+N_-(z)=\frac{V}{\Lambda^3}f_{3/2}^-(e^{\beta\mu})+\frac{V}{\Lambda^3}f_
 \centering
 \includegraphics[width=0.45\textwidth]{fig/statistical_mechanics/Stoner_instability.png}
 \end{figure}
+
+\newpage
+\section{自旋体系}
+\subsection{Ising 模型和 Heisenberg 模型}
+对于磁性体系，磁化强度$M$与外磁场$H$扮演类似角色：
+\[F=U-TS-HM \quad \Rightarrow \quad \dd F=-P\dd V-S\dd T-M\dd H\]
+因此：
+\[S=-\left(\pdv{F}{T}\right)_H,\quad M=-\left(\pdv{F}{H}\right)_T,\quad \chi=\left(\pdv{M}{H}\right)_T=-\left(\pdv[2]{F}{H}\right)_T\]
+这里$\chi$就是磁化率，它刻画体系对外磁场的线性响应。同时若体系中每个格点带有磁矩$\bm{\mu}_i$，总磁矩为$\mathbf{M}=\sum\bm{\mu}_i$。在铁磁相变中，$\mathbf{M}$同时也是\textbf{序参量}。高温顺磁相中，各个磁矩热涨落方向杂乱，宏观平均$\expval{\mathbf{M}}=0$；低温铁磁相中，即使没有外磁场，体系也能自发选择某个方向，使$\expval{\mathbf{M}}\neq0$。这就是自发对称性破缺。从 Hamiltonian 出发：
+\[\hat H_{\rm eff}=\hat H_0-\mathbf{H}\cdot\hat{\mathbf{M}} \quad \Rightarrow \quad Z(T,H)=\Tr\exp[-\beta(\hat H_0-\mathbf{H}\cdot\hat{\mathbf{M}})]\]
+自由能$F=-k_{\rm B}T\ln Z$对外场求导即可得到磁化强度。特别地，给定弱场$H$场沿$z$方向时：
+\[M=\frac{1}{\beta}\pdv{\ln Z}{H},\quad \chi=\eval{\pdv{M}{H}}_{H=0}=\beta\eval{\expval{M^2}-\expval{M}^2}_{H=0}\]
+
+宏观上描述铁磁相变最典型的现象是：当温度从高温降到 Curie 温度$T_c$以下时，磁化强度从零连续变为非零。定义约化温度$T=(T-T_c)/T_c$，在临界点附近，许多物理量不再是普通的 Taylor 展开，而表现为幂律奇异性。常见定义为：
+\[M(T<T_c,H=0)\propto|t|^\beta, \quad \chi(T<T_c,H=0)\propto |t|^{-\gamma},\quad C_H(T<T_c,H=0)\propto |t|^{-\alpha}, \quad M(T=T_c,H)\propto H^{1/\delta}\]
+其中$\alpha,\beta,\gamma,\delta$称为\textbf{临界指数}。例如$\beta$描述序参量如何从低温侧消失，$\gamma$描述磁化率如何发散，$\alpha$描述热容的奇异部分。若$\alpha=0$，热容也不一定完全正常，而可能出现对数发散。这些指数之间并非完全独立。例如 Rushbrooke 标度关系给出$\alpha+2\beta+\gamma=2$。临界指数的值通常并不由材料的显微细节决定，而是由更粗粒度的性质决定。
+
+回到微观视角，系统的总磁矩主要来自于各个原子或离子中电子的轨道角动量$\hat{\mathbf L}$和自旋角动量$\hat{\mathbf S}$：
+\[\bm{\mu}_L=-g_L\mu_{\rm B}\frac{\hat{\bm L}}{\hbar}, \quad \hat{\bm{\mu}}_S=-g\mu_{\rm B}\frac{\hat{\bm S}}{\hbar},\quad \mu_{\rm B}=\frac{e\hbar}{2m_e}\]
+其中$g\simeq2.0023$，$\mu_{\rm B}$为 Bohr magneton。负号来自电子带负电，因此电子磁矩方向与自旋角动量方向相反。
+
+因此单原子的总磁矩$\hat{\bm{\mu}}_J$为：
+\[\hat{\bm{\mu}}_J=\hat{\bm{\mu}}_L+\hat{\bm{\mu}}_S\approx-\mu_{\rm B}(2\hat{\mathbf S}+\hat{\mathbf L})=-\mu_{\rm B}(\hat{\mathbf J}+\hat{\mathbf S})\]
+量子力学告诉我们总角动量算符$\hat{\mathbf J}=\hat{\mathbf L}+\hat{\mathbf S}$哈密顿算符$\hat{H}$对易，$[\hat{H},\hat{\mathbf J}]=0$。但由于旋轨耦合 (SOC) 的存在，$\hat{\mathbf L}$和$\hat{\mathbf S}$单独并不与哈密顿算符对易，因此单原子总磁矩$\hat{\bm{\mu}}_J$也不与 Hamiltonian 对易。定义可观测磁矩$\hat{\bm{\mu}}_{\rm obs}$：
+\[\hat{\bm{\mu}}_{\rm obs}=\frac{(\hat{\bm{\mu}}_J\cdot\hat{\mathbf{J}})\hat{\mathbf{J}}}{\hat{\mathbf{J}}\cdot\hat{\mathbf{J}}}=-\mu_{\rm B}\frac{(\hat{\mathbf J}+\hat{\mathbf S})\cdot\hat{\mathbf{J}}}{\hat{\mathbf{J}}^2}\hat{\mathbf{J}}=-\mu_{\rm B}\frac{g_J}{\hbar}\hat{\mathbf{J}}, \quad g_J=1+\frac{J(J+1)+S(S+1)-L(L+1)}{2J(J+1)}\]
+这里$g_J$是 \href{https://en.wikipedia.org/wiki/Land%C3%A9_g-factor}{Landé g 因子}。
+
+在章节\ref{sec:double_spin}和\ref{sec:helium}中我们介绍了如果两个电子由于对称性的要求会产生能量不同的单重态和三重态。在凝聚态体系中，由于粒子空间位置固定，类似的两个电子之间的能量差可以用一个简单的交换哈密顿量来描述：
+\[\hat H=-J\hat{\mathbf S}_1\cdot\hat{\mathbf S}_2=-J\left[\frac{1}{2}\left(\hat{S}_1^+\hat{S}_2^-+\hat{S}_1^-\hat{S}_2^+\right)+\hat{S}_1^z\hat{S}_2^z\right]\]
+容易计算得到$E_{\rm triplet}=-J/4, \ E_{\rm singlet}=3J/4$，读者自证不难。拓展到晶体系统上述结论不变：当$J>0$时三重态能量较低，基态为铁磁态，所有自旋尽可能平行；$J<0$时，单重态能量较低，体系倾向反铁磁态，在简单双分格晶格上可形成 Neel 排列。如果考虑外场存在，则模型哈密顿量可以统一成\href{https://en.wikipedia.org/wiki/Quantum_Heisenberg_model}{ Heisenberg 模型}：
+\begin{equation}\label{eq:Heisenberg_model}
+\hat H=-J\sum_{\langle i,j\rangle}\hat{\mathbf S}_i\cdot\hat{\mathbf S}_j-\mathbf{h}\cdot\sum_i\hat{\mathbf S}_i
+\end{equation}
+
+下面我们来看一个例子，考虑一维的零外场的反铁磁链，即 Neel 态：
+\[\ket{\mathrm{Neel}}=\ket{\uparrow_1}\otimes\ket{\downarrow_2}\otimes\ket{\uparrow_3}\otimes\ket{\downarrow_4}\otimes\cdots\otimes\ket{\uparrow_{N-1}}\otimes\ket{\downarrow_N}\]
+这个图像确实是经典 Heisenberg 反铁磁体的基态，但它一般不是量子 Heisenberg Hamiltonian 的真正基态。换句话说，量子自旋涨落或零点运动会进一步降低体系能量。考虑一个由偶数个$S=1/2$自旋组成的一维链，施加周期边界条件，也就是第$N+1$个格点等同于第$1$个格点，并取最近邻反铁磁交换$J<0$。若用 Pauli 矩阵向量$\hat{\boldsymbol{\sigma}}=(\hat{\sigma}_x,\hat{\sigma}_y,\hat{\sigma}_z)$表示格点自旋自由度，则 Hamiltonian 为：
+\[\hat H_{\mathrm{AFM}}=-J\sum_{n=1}^{N}\hat{\boldsymbol{\sigma}}_n\cdot\hat{\boldsymbol{\sigma}}_{n+1}
+=-J\sum_{n=1}^{N}\left[\frac{1}{2}\left(\hat{\sigma}_n^+\hat{\sigma}_{n+1}^-+\hat{\sigma}_n^-\hat{\sigma}_{n+1}^+\right)+\hat{\sigma}_n^z\hat{\sigma}_{n+1}^z\right],\quad \hat{\boldsymbol{\sigma}}_{N+1}\equiv \hat{\boldsymbol{\sigma}}_1\]
+对 Neel 态中任意一对近邻$\ket{\uparrow\downarrow}$，横向翻转项在该态中的期望值为零：
+\[\bra{\uparrow\downarrow}\hat{\sigma}_n^+\hat{\sigma}_{n+1}^-\ket{\uparrow\downarrow}=0, \quad \bra{\uparrow\downarrow}\hat{\sigma}_n^-\hat{\sigma}_{n+1}^+\ket{\uparrow\downarrow}=0, \quad \bra{\uparrow\downarrow}\hat{\sigma}_n^z\hat{\sigma}_{n+1}^z\ket{\uparrow\downarrow}=1\cdot(-1)=-1\]
+因此每一条键给出总能量为：
+\[\bra{\mathrm{Neel}}\hat H_{\mathrm{AFM}}\ket{\mathrm{Neel}}=-J(-N)=JN\]
+
+现在考虑由近邻 singlet 组成的二聚体试探态。由于周期边界条件下有两种交错覆盖方式，可以写成：
+\[\ket{-}=\bigotimes_{n=1}^{N/2}\frac{\ket{\uparrow_{2n}\downarrow_{2n-1}}-\ket{\downarrow_{2n}\uparrow_{2n-1}}}{\sqrt{2}},\quad \ket{+}=\bigotimes_{n=1}^{N/2}\frac{\ket{\uparrow_{2n}\downarrow_{2n+1}}-\ket{\downarrow_{2n}\uparrow_{2n+1}}}{\sqrt{2}}\]
+对一个 singlet 二聚体$(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})/\sqrt{2}$，有：
+\[\bra{\uparrow\downarrow}\hat{\sigma}_1^+\hat{\sigma}_2^-\ket{\downarrow\uparrow}=1,\quad \bra{\downarrow\uparrow}\hat{\sigma}_1^-\hat{\sigma}_2^+\ket{\uparrow\downarrow}=1, \quad \bra{\uparrow\downarrow}\hat{\sigma}_1^z\hat{\sigma}_2^z\ket{\uparrow\downarrow}=-1,\quad \bra{\downarrow\uparrow}\hat{\sigma}_1^z\hat{\sigma}_2^z\ket{\downarrow\uparrow}=-1.\]
+因此总能量为：
+\[\bra{\pm}\hat H_{\mathrm{AFM}}\ket{\pm}=-J\cdot\frac{N}{2}\cdot(-3)=\frac{3}{2}JN\]
+因为反铁磁情形$J<0$，所以：
+\[\bra{\pm}\hat H_{\mathrm{AFM}}\ket{\pm}=\frac{3}{2}JN<JN=\bra{\mathrm{Neel}}\hat H_{\mathrm{AFM}}\ket{\mathrm{Neel}}\]
+这个例子说明，valence-bond 试探态给出的变分能量比经典 Neel 态更低，因此量子涨落确实可以通过局域 singlet 显著降低反铁磁链的能量。不过这里的$\ket{+}$和$\ket{-}$彼此简并，而一维反铁磁链的真正基态按 \href{https://iopscience.iop.org/article/10.1088/0953-8984/10/42/003/pdf}{Marshall theorem} 应当是非简并的，所以这个试探态仍然不是严格的真实基态。
+
+除了能量本身，磁性体系中另一个很重要的量是\textbf{自旋关联函数}。它回答的问题不是“某一个自旋平均指向哪里”，而是“若我知道某一点的自旋取向，离它$r$个格点之外的自旋还在多大程度上记得这个取向”，对于一维 Ising 链，每一个点的自旋为$\pm1$，在零外场中$\expval{s_i}=0$，所以自旋-自旋关联函数可以直接写成：
+\[G(r)=\expval{s_ks_{k+r}}-\expval{s_k}\expval{s_{k+r}}=\expval{s_ks_{k+r}}\]
+如果两个自旋完全无关，则正负取向在统计平均中相互抵消，$G(r)=0$；如果它们倾向于同向，则$G(r)>0$；若倾向于反向，则$G(r)<0$。下面用$N=3$的一维经典 Ising 模型做例子。取开放边界和零外场：
+\[H=-J(s_1s_2+s_2s_3)\]
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+(s_1,s_2,s_3) & s_1s_2 & s_2s_3 & H & e^{-\beta H} \\ \hline
+(+,+,+) & +1 & +1 & -2J & e^{2\beta J} \\
+(+,+,-) & +1 & -1 & 0 & 1 \\
+(+,-,+) & -1 & -1 & +2J & e^{-2\beta J} \\
+(+,-,-) & -1 & +1 & 0 & 1 \\
+(-,-,-) & +1 & +1 & -2J & e^{2\beta J} \\
+(-,-,+) & +1 & -1 & 0 & 1 \\
+(-,+,-) & -1 & -1 & +2J & e^{-2\beta J} \\
+(-,+,+) & -1 & +1 & 0 & 1\\\hline
+\end{array}
+\]
+因此
+\[Z_3=\sum_{s_1,s_2,s_3=\pm1}e^{\beta J(s_1s_2+s_2s_3)}=2e^{2\beta J}+4+2e^{-2\beta J}=8\cosh^2(\beta J)\]
+最近邻关联$G(1)$和次近邻关联$G(2)$为：
+\[G(1)=\expval{s_1s_2}=\frac{2e^{2\beta J}+2-2-2e^{-2\beta J}}{Z_3}=\tanh(\beta J), \quad G(2)=\expval{s_1s_3}=\frac{2e^{2\beta J}+2e^{-2\beta J}-4}{Z_3}=\tanh^2(\beta J)\]
+这个结果已经显示出一维 Ising 链的核心结构：距离每增加一个晶格常数，相关性就多乘一个因子$\tanh(\beta J)$。
+
+对一般的开放链，Hamiltonian 为：
+\[H=-J\sum_{i=1}^{N-1}s_is_{i+1}\]
+配分函数可由逐个求和得到：
+\[Z_N=\sum_{s_1,\cdots,s_N=\pm1}\exp\left(\beta J\sum_{i=1}^{N-1}s_is_{i+1}\right)=\prod_{i=1}^{N-1}\sum_{s_i=\pm1}e^{\beta Js_i s_{i+1}}=2(e^{\beta J}+e^{-\beta J})^{N-1}=2[2\cosh(\beta J)]^{N-1}\]
+这里因子$2$来自整体翻转$s_i\to -s_i$的二重简并。由于$s_i^2=1$，
+\[G(r)=\expval{s_ks_{k+r}}=\expval{s_ks_{k+1}s_{k+1}s_{k+2}\cdots s_{k+r-1}s_{k+r}}\]
+在一维零场开放链中，上式可以看成$r$个最近邻相关的乘积：
+\[G(r)=\expval{s_ks_{k+1}}\expval{s_{k+1}s_{k+2}}\cdots\expval{s_{k+r-1}s_{k+r}}\]
+而任意最近邻关联为：
+\[\expval{s_js_{j+1}}==\frac{1}{Z_N}\sum_{s_j,s_{j+1}=\pm1}s_js_{j+1}e^{\beta Js_js_{j+1}}\cdot\prod_{i\neq j}\sum_{s_i,s_{i+1}=\pm1}e^{\beta Js_is_{i+1}}=\frac{2e^{\beta J}-2e^{-\beta J}}{2e^{\beta J}+2e^{-\beta J}}=\tanh(\beta J)\]
+因此：
+\[G(r)=\expval{s_ks_{k+r}}=[\tanh(\beta J)]^r\]
+
+当$J>0$时这是铁磁关联，$G(r)>0$并随距离衰减；当$J<0$时$\tanh(\beta J)<0$，关联函数带有$(-1)^r$的交替符号，对应反铁磁倾向。若只看衰减包络，可以写成：
+\[|G(r)|=e^{-r/\xi},\quad \xi=-\frac{1}{\ln|\tanh(\beta J)|}\]
+对铁磁低温极限$\beta J\gg1$，
+\[\ln\tanh(\beta J)\sim\ln(1-2e^{-2\beta J})\sim-2e^{-2\beta J},\quad \xi\sim\frac{1}{2}e^{2\beta J}\]
+这说明在低温下，即使一维短程 Ising 模型没有有限温度相变，自旋仍然可以在很长的距离上保持强关联。
+
+更一般地，关联函数测量的是两个自旋之间真正的涨落关联，而不是共同被非零平均磁化强度$m=\expval{s_i}$平移出来的背景。对平移不变体系，$\expval{s_i}$与格点$i$无关，且$\expval{s_is_j}$只依赖距离$r=|i-j|$。在铁磁有序相中，若直接看$\expval{s_is_j}$，则$r\to\infty$时它会趋向$m^2$；而$G_c(r)$会把这部分长程背景扣掉，因此更适合描述涨落如何衰减。
+
+考虑一维经典 Ising 型系统在弱外场$h$下的 Hamiltonian：
+\[\hat H=-J\sum_{\langle i,j\rangle}s_is_j-h\sum_is_i\]
+总磁化强度为$M$与磁化率$\chi$为：
+\[M=\sum_i s_i,\quad \chi=\eval{\pdv{\expval{M}}{h}}_{h=0}=\beta\left(\expval{M^2}-\expval{M}^2\right)=\beta\sum_{i,j}\left(\expval{s_is_j}-\expval{s_i}\expval{s_j}\right)=\beta\sum_{i,j}G_c(|i-j|)\]
+由于关联函数$G_c(r)$与格点位置无关，因此上述双求和可以直接约掉一个，写成单位格点磁化率：
+\[\frac{\chi}{N}=\beta\sum_jG_c(|i-j|)\]
+这就是\href{https://en.wikipedia.org/wiki/Fluctuation%E2%80%93dissipation_theorem}{涨落-耗散定理}在磁性问题中的一个具体形式：磁化率不是某个单点量，而是所有距离上的自旋关联累加起来的结果。若关联只在很短距离内存在，磁化率有限；若临界点附近关联长度$\xi$发散，大量格点一起涨落，磁化率也随之发散。在远离临界点时，关联函数的典型形式为：
+\[G_c(r)\sim\frac{1}{r^{d-2+\eta}}e^{-r/\xi}\]
+其中$d$为空间维数，$\eta$是异常维数。指数衰减因子说明$\xi$给出了“还能彼此记得”的典型距离；幂律因子则来自临界涨落的尺度结构。在临界点$T=T_c$处，$\xi\to\infty$，指数衰减消失，只剩下幂律：
+\[G_c(r)\sim\frac{1}{r^{d-2+\eta}}\]
+这也是为什么临界点没有特征长度尺度：不同尺度的涨落都同时参与进来。若从临界点两侧靠近，一般有：
+\[\xi_\pm\propto |t|^{-\nu},\quad t=\frac{T-T_c}{T_c}\]
+其中$+$和$-$分别表示从高温侧和低温侧靠近临界点。
+
+最后补充一个对低维磁性非常重要的结论：\href{https://en.wikipedia.org/wiki/Mermin%E2%80%93Wagner_theorem}{Mermin-Wagner 定理}。
+\begin{theorem}[Mermin-Wagner 定理]
+对于具有连续对称性且相互作用足够短程的体系，在$d\leq2$维、有限温度下不能发生自发连续对称性破缺。
+\end{theorem}
+\begin{remark} \quad
+因此一维和二维各向同性 Heisenberg 模型不能在$T>0$形成真正的长程铁磁或反铁磁有序。这个定理并不排除二维 Ising 模型的有限温度相变，因为 Ising 自旋只剩下$s_i=\pm1$的离散$Z_2$对称性；也不排除有强磁各向异性、长程相互作用或有限尺寸样品中的准有序现象。
+\end{remark}
+\begin{proof}
+考虑$d$维各向同性铁磁 Heisenberg 模型 [公式\ref{eq:Heisenberg_model}]，$J<0, \ \mathbf{h}=0$。基态中所有自旋平行，低能激发是长波长 magnon。对小波矢$q$，铁磁 magnon 的能量色散为$\varepsilon_q\sim JSq^2$。若热激发出 magnon，它会把总磁化强度降低。单位格点磁化强度可粗略写成：
+\[m(T)=S-\frac{1}{N}\sum_{q\neq0}n_q,\quad n_q=\frac{1}{e^{\beta\varepsilon_q}-1}\]
+其中$n_q$是 Bose 分布。真正危险的是长波长极限$q\to0$：
+\[n_q\sim\frac{k_{\rm B}T}{\varepsilon_q}\sim\frac{k_{\rm B}T}{JSq^2} \quad \Rightarrow \quad \delta m=\frac{1}{N}\sum_{q\neq0}n_q\sim\int_{q_{\min}}^\Lambda\frac{\dd^dq}{(2\pi)^d}\frac{k_{\rm B}T}{JSq^2}\sim\frac{k_{\rm B}T}{JS}\int_{q_{\min}}^\Lambda \dd q\,q^{d-3}\]
+其中$q_{\min}\sim 2\pi/L$由系统尺寸$L$给出，$\Lambda$是晶格尺度给出的紫外截断。当$d=1,2,3$时，
+\[\int_{q_{\min}}^\Lambda \dd q\,q^{-2}\sim\frac{1}{q_{\min}}\to\infty, \quad \int_{q_{\min}}^\Lambda \frac{\dd q}{q}\sim\ln\frac{\Lambda}{q_{\min}}\to\infty, \quad \int_{q_{\min}}^\Lambda \dd q\,q^{0}=\Lambda-q_{\min}<\infty\]
+所以在热力学极限$L\to\infty$下，低维($d\leq2$)无能隙系统任意有限温度都会产生发散的长波长自旋波涨落，足以摧毁假设中的非零磁化强度。另一方面，即使在低维，如果 Hamiltonian 有足够强的各向异性，低能模也可能不再是无能隙的 \href{https://en.wikipedia.org/wiki/Goldstone_boson}{Goldstone 模}。例如讲义中写到的 easy-axis 型各向异性可以用：
+\[\hat H=-J\sum_{\langle i,j\rangle}\hat{\mathbf S}_i\cdot\hat{\mathbf S}_j-D\sum_i(\hat S_i^z)^2,\quad D>0\]
+来表示。它显式选出$z$轴，连续旋转对称性被破坏到离散的上、下两个方向。此时长波长激发通常带有能隙：
+\[\varepsilon_q\sim\Delta+JSq^2,\quad \Delta>0 \quad \Rightarrow \quad n_q\sim\frac{k_{\rm B}T}{\Delta+JSq^2} \quad \Rightarrow \quad \delta m\sim\int_0^\Lambda\dd q\,\frac{q^{d-1}}{\Delta+JSq^2}\]
+当$d=1,2$时：
+\[\int_0^\Lambda\frac{\dd q}{\Delta+JSq^2}<\infty, \quad \int_0^\Lambda\dd q\,\frac{q}{\Delta+JSq^2}=\frac{1}{2JS}\ln\left(1+\frac{JS\Lambda^2}{\Delta}\right)<\infty\]
+因此能隙$\Delta$切断了$q\to0$处的红外发散。物理上说，各向异性使自旋不能以任意小能量做整体慢旋转，所以低维热涨落不再必然摧毁长程序。二维 Ising 磁体能够在有限温度下有相变，正是因为它只剩下离散对称性；但若是二维 easy-plane XY 模型，仍然保留平面内的连续$U(1)$对称性，Mermin-Wagner 定理仍然排除真正的自发磁化，只可能出现 Berezinskii-Kosterlitz-Thouless 意义下的准长程序。这就是 Mermin-Wagner 定理的物理核心。
+\end{proof}
+
+\newpage
+\subsection{平均场理论 (Mean-field theory)}
