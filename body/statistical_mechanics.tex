@@ -1016,11 +1016,11 @@ N=N_+(z)+N_-(z)=\frac{V}{\Lambda^3}f_{3/2}^-(e^{\beta\mu})+\frac{V}{\Lambda^3}f_
 \[\varepsilon_q\sim\Delta+JSq^2,\quad \Delta>0 \quad \Rightarrow \quad n_q\sim\frac{k_{\rm B}T}{\Delta+JSq^2} \quad \Rightarrow \quad \delta m\sim\int_0^\Lambda\dd q\,\frac{q^{d-1}}{\Delta+JSq^2}\]
 当$d=1,2$时：
 \[\int_0^\Lambda\frac{\dd q}{\Delta+JSq^2}<\infty, \quad \int_0^\Lambda\dd q\,\frac{q}{\Delta+JSq^2}=\frac{1}{2JS}\ln\left(1+\frac{JS\Lambda^2}{\Delta}\right)<\infty\]
-因此能隙$\Delta$切断了$q\to0$处的红外发散。物理上说，各向异性使自旋不能以任意小能量做整体慢旋转，所以低维热涨落不再必然摧毁长程序。二维 Ising 磁体能够在有限温度下有相变，正是因为它只剩下离散对称性；但若是二维 easy-plane XY 模型，仍然保留平面内的连续$U(1)$对称性，Mermin-Wagner 定理仍然排除真正的自发磁化，只可能出现 Berezinskii-Kosterlitz-Thouless 意义下的准长程序。这就是 Mermin-Wagner 定理的物理核心。
+因此能隙$\Delta$切断了$q\to0$处的红外发散。物理上说，各向异性使自旋不能以任意小能量做整体慢旋转，所以低维热涨落不再必然摧毁长程序。二维 Ising 磁体能够在有限温度下有相变，正是因为它只剩下离散对称性；但若是二维 easy-plane XY 模型，仍然保留平面内的连续$U(1)$对称性，Mermin-Wagner 定理仍然排除真正的自发磁化，只可能出现 \href{https://en.wikipedia.org/wiki/Berezinskii%E2%80%93Kosterlitz%E2%80%93Thouless_transition}{Berezinskii-Kosterlitz-Thouless} 意义下的准长程序。这就是 Mermin-Wagner 定理的物理核心。
 \end{proof}
 
 \newpage
-\subsection{平均场理论 (Mean-field theory)}
+\subsection{自旋模型体系的平均场理论 (Mean-field theory)}
 平均场理论是一种非常重要的“先把问题做出来”的近似方法。它的核心想法是：多体系统真正困难的地方在于涨落之间彼此纠缠，而平均场近似先假设每个格点只感受到其他格点给出的平均作用。换句话说，我们不再追踪每一个邻居瞬时是向上还是向下，而是把邻居替换成平均磁化强度$m=\expval{s_i}$。这听起来很粗糙，但它经常能正确给出相变是否存在、序参量如何出现、临界指数的平均场值，以及考试中最重要的数量级判断。
 
 仍然从经典 Ising 模型出发：
