@@ -1032,7 +1032,7 @@ N=N_+(z)+N_-(z)=\frac{V}{\Lambda^3}f_{3/2}^-(e^{\beta\mu})+\frac{V}{\Lambda^3}f_
 H_{\rm MF}&=-J\sum_{\langle i,j\rangle}[m(s_i+s_j)-m^2]-h\sum_i s_i=\frac{NJzm^2}{2}-Jm\sum_{\langle i,j\rangle}(s_i+s_j)-h\sum_i s_i\\
 &=\frac{NJzm^2}{2}-Jmz\sum_{i}s_i-h\sum_i s_i=\frac{NzJm^2}{2}-(zJm+h)\sum_i s_i
 \end{aligned}\]
-此时相互作用多体问题被化成了$N$个互不相互作用的单体问题，且每个自旋处在一个有效场$h_{\rm eff}=h+Jmz$中。于是配分函数立刻可以写成：
+此时相互作用多体问题被化成了$N$个互不相互作用的单体问题，\textcolor{blue}{\textbf{如果不在意最终平均场哈密顿前的系数，这个系数在其他性质计算也会被约掉，可以直接把$s_i$之外的自旋替换成平均值$m$然后约掉求和}}，且每个自旋处在一个有效场$h_{\rm eff}=h+Jmz$中。于是配分函数立刻可以写成：
 \[Z_{\rm MF}=\sum_{\{s_i\}=\pm1}e^{\beta H_{\rm MF}}=\exp\left(-\beta NzJm^2/2\right)\left[2\cosh\beta(h+Jmz)\right]^N\]
 对应的平均场自由能密度为：
 \[f_{\rm MF}(m)=\frac{-k_{\rm B}T\ln Z_{\rm MF}}{N}=\frac{zJm^2}{2}-k_{\rm B}T\ln\left[2\cosh\beta(h+Jmz)\right]\]
@@ -1042,8 +1042,10 @@ H_{\rm MF}&=-J\sum_{\langle i,j\rangle}[m(s_i+s_j)-m^2]-h\sum_i s_i=\frac{NJzm^2
 \[m=\expval{s_i}=\frac{1}{Z_{\rm eff}}\sum_{s_i=\pm1}s_ie^{\beta h_{\rm eff}}=\frac{e^{\beta(h+Jmz)}-e^{-\beta(h+Jmz)}}{e^{\beta(h+Jmz)}+e^{-\beta(h+Jmz)}}=\tanh\beta(h+Jmz)\]
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{fig/statistical_mechanics/MFT_scfeq.png}
+\includegraphics[width=0.6\textwidth]{fig/statistical_mechanics/MFT_scfeq.png}
 \end{figure}
+
+判断相变的方法：\textcolor{blue}{\textbf{从斜率0开始旋转$y=m$，这意味着改变温度，如果与$\tanh(\beta(h+Jmz))$的交点从非0变成0了，就说明发生了相变。一阶相变则是直接从非0跳到0了。二阶相变是连续地到0。}}
 
 通过自洽方程求解临界温度既可以画图解，也可以用 Taylor 展开分析。令$h=0$，$m\to0$，自洽方程变成：
 \[m=\tanh(\beta zJm)=\beta zJm-\frac{(\beta zJm)^3}{3}+\cdots \quad \Rightarrow \quad 1=\eval{\dv{m}{m}}_{h,m=0}=\eval{\dv{}{m}\tanh(\beta zJm)}_{h,m=0}\quad\Rightarrow\quad \beta_c zJ=1\]
