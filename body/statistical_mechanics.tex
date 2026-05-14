@@ -1021,3 +1021,113 @@ N=N_+(z)+N_-(z)=\frac{V}{\Lambda^3}f_{3/2}^-(e^{\beta\mu})+\frac{V}{\Lambda^3}f_
 
 \newpage
 \subsection{平均场理论 (Mean-field theory)}
+平均场理论是一种非常重要的“先把问题做出来”的近似方法。它的核心想法是：多体系统真正困难的地方在于涨落之间彼此纠缠，而平均场近似先假设每个格点只感受到其他格点给出的平均作用。换句话说，我们不再追踪每一个邻居瞬时是向上还是向下，而是把邻居替换成平均磁化强度$m=\expval{s_i}$。这听起来很粗糙，但它经常能正确给出相变是否存在、序参量如何出现、临界指数的平均场值，以及考试中最重要的数量级判断。
+
+仍然从经典 Ising 模型出发：
+\[H=-J\sum_{\langle i,j\rangle}s_is_j-h\sum_i s_i,\quad s_i=\pm1\]
+记单个自旋的平均值为$m=\expval{s_i}$，定义偏差$\delta s_i=s_i-m$，显然有$\expval{\delta s_i}=0$。\textcolor{blue}{\textbf{在平均场近似下，体系中其他自旋对某自旋对影响被近似成一个有效场，该近似的生效要求其他自旋不能偏离期望值太多，即偏差$\delta s_i$是小量。}}保留一阶小量，相互作用项$s_is_j$可以写成：
+\[s_is_j=(m+\delta s_i)(m+\delta s_j)=m^2+m(\delta s_i+\delta s_j)+\delta s_i\delta s_j\simeq m^2+m(s_i-m)+m(s_j-m)=m(s_i+s_j)-m^2\]
+若每个格点有$z$个最近邻，则最近邻键数为$Nz/2$，且在$\sum_{\langle i,j\rangle}(s_i+s_j)$中每个$s_i$被数了$z$次，因此：
+\[\begin{aligned}
+H_{\rm MF}&=-J\sum_{\langle i,j\rangle}[m(s_i+s_j)-m^2]-h\sum_i s_i=\frac{NJzm^2}{2}-Jm\sum_{\langle i,j\rangle}(s_i+s_j)-h\sum_i s_i\\
+&=\frac{NJzm^2}{2}-Jmz\sum_{i}s_i-h\sum_i s_i=\frac{NzJm^2}{2}-(zJm+h)\sum_i s_i
+\end{aligned}\]
+此时相互作用多体问题被化成了$N$个互不相互作用的单体问题，且每个自旋处在一个有效场$h_{\rm eff}=h+Jmz$中。于是配分函数立刻可以写成：
+\[Z_{\rm MF}=\sum_{\{s_i\}=\pm1}e^{\beta H_{\rm MF}}=\exp\left(-\beta NzJm^2/2\right)\left[2\cosh\beta(h+Jmz)\right]^N\]
+对应的平均场自由能密度为：
+\[f_{\rm MF}(m)=\frac{-k_{\rm B}T\ln Z_{\rm MF}}{N}=\frac{zJm^2}{2}-k_{\rm B}T\ln\left[2\cosh\beta(h+Jmz)\right]\]
+平衡态的$m$由自由能极小决定，进而可以获得平均场自洽方程：
+\[\pdv{f_{\rm MF}}{m}=zJm-zJ\tanh\beta(h+Jmz)=0 \quad \Leftrightarrow \quad m=\tanh\beta(h+Jmz)\]
+当然在知道里平均场的有效单体哈密顿后，自洽方程还有一个非常快速的推导方法：
+\[m=\expval{s_i}=\frac{1}{Z_{\rm eff}}\sum_{s_i=\pm1}s_ie^{\beta h_{\rm eff}}=\frac{e^{\beta(h+Jmz)}-e^{-\beta(h+Jmz)}}{e^{\beta(h+Jmz)}+e^{-\beta(h+Jmz)}}=\tanh\beta(h+Jmz)\]
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{fig/statistical_mechanics/MFT_scfeq.png}
+\end{figure}
+
+通过自洽方程求解临界温度既可以画图解，也可以用 Taylor 展开分析。令$h=0$，$m\to0$，自洽方程变成：
+\[m=\tanh(\beta zJm)=\beta zJm-\frac{(\beta zJm)^3}{3}+\cdots \quad \Rightarrow \quad 1=\eval{\dv{m}{m}}_{h,m=0}=\eval{\dv{}{m}\tanh(\beta zJm)}_{h,m=0}\quad\Rightarrow\quad \beta_c zJ=1\]
+
+平均场近似给出的$T_c$不是精确值，例如一维 Ising 模型精确结果是$T_c=0$，而平均场会错误给出$T_c=2J/k_{\rm B}$；这正是因为一维涨落太强，平均场忽略涨落后会过度乐观地预测有序。这个结论可以用一个非常简单的 domain wall 论证看出来。考虑一维铁磁 Ising 链，在$T=0$时基态为全体自旋同向$\uparrow\uparrow\uparrow\cdots\uparrow$或$\downarrow\downarrow\downarrow\cdots\downarrow$。对开放链，基态能量为$E_0=-(N-1)J$，熵为$S=0$。现在在链中制造一个 domain wall，如$\uparrow\uparrow\uparrow\downarrow\downarrow\downarrow$只有跨过 domain wall 的那一条键从同向变成反向，能量由$-J$变成$+J$，所以能量代价为$\Delta E=2J$。这个 domain wall 可以放在大约$N-1$个不同的位置，因此带来构型熵：
+\[\Delta S = k_{\rm B}\ln (N-1) \simeq k_{\rm B}\ln N \quad \Rightarrow \quad \Delta F=\Delta E-T\Delta S\simeq 2J-k_{\rm B}T\ln N\]
+只要$T>0$，在热力学极限$N\to\infty$下都有$\Delta F\to-\infty$，也就是说 domain wall 的增殖会降低自由能。大量 domain wall 会把长程有序切成许多有限畴，最终使平均磁化强度消失。因此一维短程 Ising 模型没有有限温度铁磁相变，精确地说$T_c=0$。这个例子也说明了平均场为什么会失败：它只看到一个自旋周围的平均环境，却看不到低维体系中这种代价有限、熵收益随系统大小增长的畴壁涨落。
+
+上述结论实际上是 Ising 模型的精确结论，考虑一维周期链$s_{N+1}=s_1$：
+\[H=-J\sum_{i=1}^{N}s_is_{i+1}-h\sum_{i=1}^{N}s_i \quad \Rightarrow \quad Z=\sum_{s_1,\cdots,s_N=\pm1}\prod_{i=1}^{N}\exp\left[\beta Js_is_{i+1}+\frac{\beta h}{2}(s_i+s_{i+1})\right]\]
+于是定义 transfer matrix：
+\[\mel{s}{T}{s'}=\exp\left[\beta Jss'+\frac{\beta h}{2}(s+s')\right] \quad \Rightarrow \quad T=\begin{pmatrix}
+e^{\beta(J+h)} & e^{-\beta J}\\
+e^{-\beta J} & e^{\beta(J-h)}
+\end{pmatrix}\]
+配分函数就变成矩阵迹，可以用本征值表示：
+\[Z=\Tr T^N=\lambda_+^N+\lambda_-^N, \quad \lambda_\pm=e^{\beta J}\left[\cosh(\beta h)\pm\sqrt{\sinh^2(\beta h)+e^{-4\beta J}}\right]\]
+由$\lambda_+>\lambda_-$可知在热力学极限$N \to \infty$下只需要考虑$\lambda_+$的贡献，所以单位自由能$f$和单位磁化强度$m$为：
+\[f=-\frac{1}{\beta N}\ln Z=-\frac{1}{\beta}\ln\lambda_+, \quad m=-\pdv{f}{h}=\frac{\sinh(\beta h)}{\sqrt{\sinh^2(\beta h)+e^{-4\beta J}}}\]
+因此只要$T>0$，令$h\to0$都有$m=0$。只有在$T=0$时，$e^{-4\beta J}\to0$，体系才会非解析地选择$m=\pm1$。这说明一维短程 Ising 模型的精确临界温度确实为$T_c=0$。这个结论依赖相互作用是短程的，若一维相互作用足够长程，例如$J_{ij}$随距离衰减得很慢，domain wall 的能量代价不再只是常数，一维系统也可能出现有限温度相变。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{fig/statistical_mechanics/2dising.png}
+\end{figure}
+
+二维 Ising 模型的情况不同。此时 domain wall 不再是一个点，而是一条闭合曲线。若翻转一个有限畴，畴壁长度为$P$，每穿过一条畴壁键都会把能量从$-J$变成$+J$，所以能量代价为$\Delta E=2JP$，粗略估计一条长度为$P$的畴壁每一步至多有$3$种继续延伸的选择，因此可能畴壁数目不超过$3^P$，对应构型熵变为和自由能变为：
+\[\Delta S\lesssim k_{\rm B}\ln(3^P\cdot N)\simeq k_{\rm B}P\ln3 \quad \Rightarrow \quad \Delta F\gtrsim P(2J-k_{\rm B}T\ln3)\]
+当$T<2J/(k_{\rm B}\ln3)$时自由能代价随周长$P$线性增加，所以低温铁磁长程序稳定。这就是 Peierls argument 的核心。它不能给出精确$T_c$，但是它证明了二维短程 Ising 模型确实存在有限温度有序相。二维 Ising 模型的精确解由 \href{https://theory.tifr.res.in/~tridib/ReferenceMaterial/PlischkeBergersen_Sec.6.1.pdf}{Onsager} 给出，讲义中介绍的思路仍然是 transfer matrix，只是矩阵从一维的$2\times2$矩阵变成了按整行自旋构型标记的大矩阵。
+
+考虑周期性边界条件下的$N\times N$的二维方格 Ising 模型，并先取$h=0$：
+\[H=-J\sum_{i,j}\left(s_{i,j}s_{i+1,j}+s_{i,j}s_{i,j+1}\right)\]
+这里第一项可以看成相邻两行之间的相互作用，第二项可以看成同一行内部的相互作用。定义第$j$行的整行自旋构型为$\mu_j=\{s_{1,j},s_{2,j},\cdots,s_{N,j}\}$，则可定义 transfer matrix，其矩阵元为：
+\[\mel{\mu_j}{T}{\mu_{j+1}}=\exp\left[\beta J\sum_{i=1}^{N}s_{i,j}s_{i,j+1}+\beta J\sum_{i=1}^{N}s_{i,j}s_{i+1,j}\right]\]
+这样配分函数仍然可以写成矩阵迹：
+\[Z=\sum_{\mu_1,\cdots,\mu_N}\mel{\mu_1}{T}{\mu_2}\mel{\mu_2}{T}{\mu_3}\cdots\mel{\mu_N}{T}{\mu_1}=\Tr T^N\]
+形式上这和一维完全一样，只是$T$现在是$2^N\times2^N$矩阵。若$\lambda_{\max}$是最大本征值，则热力学极限中：
+\[Z\simeq \lambda_{\max}^{N},\quad f=-\frac{k_{\rm B}T}{N^2}\ln Z\simeq-\frac{k_{\rm B}T}{N}\ln\lambda_{\max}\]
+Onsager 的工作本质上就是在$N\to\infty$极限中求出这个最大本征值。最终零场自由能密度可以写成：
+\[f=-k_{\rm B}T\ln\left[2\cosh(2\beta J)\right]-\frac{k_{\rm B}T}{2\pi}\int_0^\pi\ln\left[\frac{1+\sqrt{1-\kappa^2\sin^2\phi}}{2}\right]\dd{\phi}, \quad \kappa=\frac{2\sinh(2\beta J)}{\cosh^2(2\beta J)}\]
+这个表达式的非解析性来自积分中的平方根。当$\kappa<1$时被积函数光滑；临界点出现在$\kappa=1$，也就是：
+\[\frac{2\sinh(2\beta_cJ)}{\cosh^2(2\beta_cJ)}=1 \quad \Leftrightarrow \quad \sinh(2\beta_cJ)=1 \quad \Rightarrow \quad k_{\rm B}T_c=\frac{2J}{\ln(1+\sqrt2)}\simeq2.269J\]
+这个值低于平均场估计$k_{\rm B}T_c=zJ=4J$，说明二维涨落虽然没有强到完全消灭相变，但已经显著降低了临界温度。自由能公式还可以给出热容奇异性。热容可以由自由能的二阶导数获得：
+\[C=-T\pdv[2]{f}{T}\sim -\ln\left|1-\frac{T}{T_c}\right|\]
+当温度$T$趋于$T_{\rm c}$时，热容对数发散，说明二维 Ising 模型的热容指数$\alpha=0$。回到平均场理论，平均场不仅能估计$T_c$，还可以给出一整套临界指数。从自洽方程$m=\tanh\beta(h+Jmz)$，在零外场$h=0$下定义约化温度$t=(T-T_c)/T_c$。在$T$接近$T_c$时，$\beta zJ=T_c/T\simeq1-t$，展开到三阶项$m^3$：
+\[m=(1-t)m-\frac{1}{3}(1-t)^3m^3 \simeq (1-t)m-\frac{1}{3}m^3 \quad \Leftrightarrow \quad tm+\frac{1}{3}m^3=0\]
+当$T>T_c$时$t>0$，只有$m=0$；当$T<T_c$时$t<0$，非零解为：
+\[m^2\simeq-3t,\quad m\propto(-t)^{1/2}\]
+所以平均场给出临界指数$\beta_{\rm MF}=1/2$。磁化率$\chi$可以直接对自洽方程求导获得：
+\[\chi=\eval{\pdv{h}\tanh\beta(h+Jmz)}_{h,m=0}\simeq\beta\eval{\pdv{h}(h+Jmz)}_{h,m=0}=\beta(1+zJ\chi) \quad \Leftrightarrow \quad \chi=\frac{\beta}{1-\beta zJ}\propto\frac{1}{T-T_c}\]
+因此平均场给出$\gamma_{\rm MF}=1$。取$T=T_c$并保留小$m$和小$h$，则：
+\[m=\tanh\beta(Jmz+h)\simeq \beta Jmz+h-\frac{1}{3}(\beta Jmz+h)^3\simeq m+h-\frac{1}{3}(\beta Jmz+h)^3 \quad \Rightarrow \quad h\simeq\frac{1}{3}m^3\]
+因此：
+\[m\propto h^{1/3},\quad \delta_{\rm MF}=3\]
+上述平均场结论依然满足 Rushbrooke 标度关系$\alpha+2\beta+\gamma=2$。
+
+\newpage
+\subsection{一维 Landau 平均场理论和 Ginzburg 判据}
+另一条近似 Ising 模型的路是 Landau 平均场理论。它不从具体显微 Hamiltonian 出发，而是根据对称性写自由能。零外场 Ising 模型在$m\to -m$下不变，因此自由能只能含$m$的偶次幂；外场$h$会线性耦合到$m$：
+\[f_{\rm L}(m)=f_0+\frac{r}{2}m^2+\frac{u}{4!}m^4-hm+\cdots,\quad u>0\]
+上述幂函数的系数可以从平均场的自由能（忽略对数前的系数）获得：
+\[f_{\rm MF}(m)=-k_{\rm B}T\ln\left[2\cosh\beta(h+Jmz)\right]\simeq-k_{\rm B}T\left[\ln2+\frac{1}{2}\beta^2(h+Jmz)^2-\frac{1}{12}\beta^4(h+Jmz)^4+\mathcal{O}(\beta^6)\right]\]
+容易解出：
+\[f_0=-k_{\rm B}T\ln2, \quad r=\frac{zJ}{2}(k_{\rm B}T-zJ)\approx k_{\rm B}(T-T_c), \quad u=2zJ\approx2k_{\rm B}T\]
+平衡条件为：
+\[\pdv{f_{\rm L}}{m}=rm+\frac{u}{6}m^3-h=0\]
+当$h=0$且$r>0$时，唯一极小值为$m=0$；当$r<0$时，$m=0$变为极大值，出现两个等价极小值：
+\[m_0^2=-\frac{6r}{u}\propto T_c-T\]
+因此再次得到$\beta_{\rm MF}=1/2$。当$T>T_c$且$h$很小时，$m\simeq h/r$，所以$\chi\simeq1/r\propto(T-T_c)^{-1}$，即$\gamma_{\rm MF}=1$。当$T=T_c$时$r=0$，有$h=(u/6)m^3$，所以$\delta_{\rm MF}=3$。热容指数也可以从 Landau 自由能读出。对$T>T_c$，极小值在$m=0$，奇异部分$f_{\rm sing}=0$；对$T<T_c$，代入$m_0^2=-6r/u$：
+\[f_{\rm sing}=\frac{r}{2}m_0^2+\frac{u}{4!}m_0^4=-\frac{3r^2}{2u}\propto-(T-T_c)^2\]
+热容为：
+\[C=-T\pdv[2]{f}{T}\]
+所以在$T_c$处只有有限跳变，没有幂律发散，故$\alpha_{\rm MF}=0$。综上所述，平均场的临界指数整理为：
+\[\alpha_{\rm MF}=0,\quad \beta_{\rm MF}=\frac{1}{2},\quad \gamma_{\rm MF}=1,\quad \delta_{\rm MF}=3\]
+它们满足 Rushbrooke 标度关系$\alpha+2\beta+\gamma=2$。
+
+最后的一个问题：平均场什么时候可靠？这正是\href{https://en.wikipedia.org/wiki/Ginzburg_criterion}{Ginzburg 判据}回答的问题。平均场假设在一个相关体积$\xi^d$内，序参量涨落远小于平均值本身：
+\[\expval{(\delta m)^2}_{\xi}\ll m^2\]
+由涨落-耗散关系，相关体积内的涨落量级可以估计为：
+\[\int_0^\xi\left(\expval{s_rs_0}-\expval{s_r}\expval{s_0}\right)\dd[d]{r}=k_{\rm B}T\chi\]
+而平均场给出：
+\[m^2\propto |t|,\quad \chi\propto |t|^{-1},\quad \xi\propto |t|^{-1/2}\]
+于是相对涨落量级为：
+\[\frac{k_{\rm B}T\chi}{m^2\xi^d}\propto\frac{|t|^{-1}}{|t|\cdot |t|^{-d/2}}=|t|^{\frac{d-4}{2}}\]
+若$d>4$，当$t\to0$时这个比值趋于$0$，平均场在临界点附近自洽；若$d<4$，这个比值发散，越接近临界点涨落越压倒平均值，平均场失效。因此 Ising 型短程相互作用体系的上临界维数为$d_c=4$。
+
+这给了一个非常实用的判断方法：如果只需要求最坏情况下估计性质，可以先做平均场，得到$T_c$的数量级、自由能形状、序参量行为和临界指数；但如果需要处理低维、短程相互作用或临界区，就必须警惕涨落修正。相互作用范围越长，或者实验可达的临界区越窄，平均场越可能在较宽温度范围内看起来有效；而对于低维短程体系，真正靠近$T_c$时通常会出现非平均场行为。
