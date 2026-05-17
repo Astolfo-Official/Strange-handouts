@@ -966,11 +966,11 @@ N=N_+(z)+N_-(z)=\frac{V}{\Lambda^3}f_{3/2}^-(e^{\beta\mu})+\frac{V}{\Lambda^3}f_
 配分函数可由逐个求和得到：
 \[Z_N=\sum_{s_1,\cdots,s_N=\pm1}\exp\left(\beta J\sum_{i=1}^{N-1}s_is_{i+1}\right)=\prod_{i=1}^{N-1}\sum_{s_i=\pm1}e^{\beta Js_i s_{i+1}}=2(e^{\beta J}+e^{-\beta J})^{N-1}=2[2\cosh(\beta J)]^{N-1}\]
 这里因子$2$来自整体翻转$s_i\to -s_i$的二重简并。由于$s_i^2=1$，
-\[G(r)=\expval{s_ks_{k+r}}=\expval{s_ks_{k+1}s_{k+1}s_{k+2}\cdots s_{k+r-1}s_{k+r}}\]
+\[G(r)=\expval{s_ks_{k+r}}=\expval{s_ks_{k+1}^2s_{k+2}^2\cdots s_{k+r-1}^2s_{k+r}}=\expval{s_ks_{k+1}s_{k+1}s_{k+2}\cdots s_{k+r-1}s_{k+r}}\]
 在一维零场开放链中，上式可以看成$r$个最近邻相关的乘积：
 \[G(r)=\expval{s_ks_{k+1}}\expval{s_{k+1}s_{k+2}}\cdots\expval{s_{k+r-1}s_{k+r}}\]
 而任意最近邻关联为：
-\[\expval{s_js_{j+1}}==\frac{1}{Z_N}\sum_{s_j,s_{j+1}=\pm1}s_js_{j+1}e^{\beta Js_js_{j+1}}\cdot\prod_{i\neq j}\sum_{s_i,s_{i+1}=\pm1}e^{\beta Js_is_{i+1}}=\frac{2e^{\beta J}-2e^{-\beta J}}{2e^{\beta J}+2e^{-\beta J}}=\tanh(\beta J)\]
+\[\expval{s_js_{j+1}}=\frac{1}{Z_N}\sum_{s_j,s_{j+1}=\pm1}s_js_{j+1}e^{\beta Js_js_{j+1}}\cdot\prod_{i\neq j}\sum_{s_i,s_{i+1}=\pm1}e^{\beta Js_is_{i+1}}=\frac{2e^{\beta J}-2e^{-\beta J}}{2e^{\beta J}+2e^{-\beta J}}=\tanh(\beta J)\]
 因此：
 \[G(r)=\expval{s_ks_{k+r}}=[\tanh(\beta J)]^r\]
 
